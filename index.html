@@ -1,0 +1,318 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Literatura española hasta el siglo XVIII</title>
+  <style>
+    :root{
+      --fg:#1f2937; --bg:#ffffff; --soft:#f3f4f6; --brand:#111827;
+      --medieval:#fef3c7; --rena:#dcfce7; --cerv:#e5e7eb; --barroco:#fae8ff; --ilustra:#dbeafe;
+      --card:#ffffff; --border:#e5e7eb;
+    }
+    html,body{margin:0;padding:0;background:var(--bg);color:var(--fg);font-family: system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji";}
+    a{color:inherit}
+    .container{max-width:1100px;margin:0 auto;padding:1rem}
+    .nav{position:sticky;top:0;z-index:10;background:rgba(255,255,255,.9);backdrop-filter:saturate(180%) blur(10px);border-bottom:1px solid var(--border)}
+    .nav .inner{display:flex;gap:.5rem;align-items:center}
+    .brand{font-weight:800}
+    .spacer{flex:1}
+    .nav a{display:inline-block;padding:.5rem .75rem;border:1px solid var(--border);border-radius:9999px;text-decoration:none;background:#fff}
+    .section{padding:3rem 0}
+    .card{background:var(--card);border:1px solid var(--border);border-radius:1rem;padding:1rem}
+    .grid{display:grid;gap:1rem}
+    @media(min-width:900px){.grid-3{grid-template-columns: 1fr 2fr;}}
+    h1{font-size:clamp(1.8rem,2.5vw,3rem);margin:.3rem 0}
+    h2{font-size:clamp(1.5rem,2vw,2.2rem);margin:0 0 .5rem 0}
+    h3{margin:.5rem 0}
+    .muted{color:#6b7280;font-size:.9rem}
+    .btn{display:inline-block;padding:.6rem 1rem;border-radius:9999px;border:1px solid var(--border);background:#fff;text-decoration:none}
+    .btn.primary{background:var(--brand);color:#fff;border-color:var(--brand)}
+    .list{padding-left:1.1rem}
+    .list li{margin:.35rem 0}
+    .footer{border-top:1px solid var(--border);padding:1rem 0;color:#6b7280}
+    .tag{display:inline-block;padding:.2rem .5rem;border-radius:.5rem;border:1px solid var(--border);background:#fff;margin-right:.4rem}
+    /* Secciones con estética simple */
+    #edad-media{background:var(--medieval)}
+    #renacimiento{background:var(--rena)}
+    #cervantes{background:var(--cerv)}
+    #barroco{background:var(--barroco)}
+    #ilustracion{background:var(--ilustra)}
+    /* Tabla descargas */
+    table{width:100%;border-collapse:collapse}
+    th,td{border:1px solid var(--border);padding:.6rem;text-align:left}
+    th{background:#f8fafc}
+    /* Form miniserie */
+    input, textarea, select{width:100%;padding:.6rem;border:1px solid var(--border);border-radius:.6rem}
+    textarea{min-height:160px}
+  </style>
+</head>
+<body>
+  <!-- NAV -->
+  <div class="nav">
+    <div class="container inner">
+      <div class="brand">📚 Lit. española ⟶ s. XVIII</div>
+      <div class="spacer"></div>
+      <a href="#edad-media">Edad Media</a>
+      <a href="#renacimiento">Renacimiento</a>
+      <a href="#cervantes">Cervantes</a>
+      <a href="#barroco">Barroco</a>
+      <a href="#ilustracion">Ilustración</a>
+      <a href="#descargas">Descargas</a>
+      <a href="#foro">Foro</a>
+      <a href="#miniserie">Miniserie</a>
+    </div>
+  </div>
+
+  <!-- PORTADA -->
+  <section class="section" id="home">
+    <div class="container">
+      <h1>Literatura española hasta el siglo XVIII</h1>
+      <p class="muted">Web simple (un archivo) con 5 épocas, descargas, enlace a foro y taller de miniserie. Súbela tal cual a GitHub Pages, Netlify (Drop) o WordPress (bloque HTML).</p>
+      <div style="display:flex;gap:.5rem;flex-wrap:wrap;margin-top:1rem">
+        <a class="btn" href="#edad-media">Ir a Edad Media</a>
+        <a class="btn" href="#descargas">Ir a Descargas</a>
+        <a class="btn primary" href="#miniserie">Ir a Miniserie</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- EDAD MEDIA -->
+  <section class="section" id="edad-media">
+    <div class="container">
+      <h2>🛡️ Edad Media</h2>
+      <div class="grid grid-3">
+        <div class="card">
+          <h3>Materiales completos</h3>
+          <ul class="list">
+            <li><a href="materials/1. Edad Media.pdf" download>⬇️ Unidad 1. La literatura en la Edad Media (PDF)</a></li>
+          </ul>
+          <p class="muted">Coloca tus PDFs en <code>materials/</code> (misma carpeta que este archivo).</p>
+        </div>
+        <div class="card">
+          <h3>Contexto histórico y claves</h3>
+          <ul class="list">
+            <li><b>Obra/autor/época:</b> Cantar de Mio Cid; anónimo; s. XII–XIII</li>
+            <li><b>3 ideas literarias:</b> Héroe y honra · Realismo y exilio · Oralidad</li>
+            <li><b>3 claves del contexto:</b> Vasallaje · Teocentrismo · Frontera feudal</li>
+            <li><b>Comparador:</b> Cid (sujeto feudal) ↔ Quijote (sujeto moderno)</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- RENACIMIENTO -->
+  <section class="section" id="renacimiento">
+    <div class="container">
+      <h2>🏛️ Renacimiento</h2>
+      <div class="grid grid-3">
+        <div class="card">
+          <h3>Materiales completos</h3>
+          <ul class="list">
+            <li><a href="materials/2. Renacimiento.pdf" download>⬇️ Unidad 2. El Renacimiento (PDF)</a></li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Contexto histórico y claves</h3>
+          <ul class="list">
+            <li><b>Obra/autor/época:</b> Garcilaso de la Vega; s. XVI</li>
+            <li><b>3 ideas literarias:</b> Soneto/égloga/lira · Naturaleza ideal · Amor-conocimiento</li>
+            <li><b>3 claves del contexto:</b> Humanismo · Antropocentrismo · Corte imperial</li>
+            <li><b>Comparador:</b> Garcilaso (armonía) ↔ Barroco (contraste)</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CERVANTES -->
+  <section class="section" id="cervantes">
+    <div class="container">
+      <h2>🪶 Cervantes</h2>
+      <div class="grid grid-3">
+        <div class="card">
+          <h3>Materiales completos</h3>
+          <ul class="list">
+            <li><a href="materials/3. Cervantes.pdf" download>⬇️ Unidad 3. Cervantes (PDF)</a></li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Contexto histórico y claves</h3>
+          <ul class="list">
+            <li><b>Obra/autor/época:</b> Miguel de Cervantes; s. XVI–XVII</li>
+            <li><b>3 ideas literarias:</b> Perspectivismo · Hibridación · Verosimilitud</li>
+            <li><b>3 claves del contexto:</b> Sujeto moderno · Imprenta y mercado · Contradicciones</li>
+            <li><b>Comparador:</b> Quijote (imprenta) ↔ Cid (canto oral)</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BARROCO -->
+  <section class="section" id="barroco">
+    <div class="container">
+      <h2>🎭 Barroco</h2>
+      <div class="grid grid-3">
+        <div class="card">
+          <h3>Materiales completos</h3>
+          <ul class="list">
+            <li><a href="materials/4. Barroco.pdf" download>⬇️ Unidad 4. Barroco (PDF)</a></li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Contexto histórico y claves</h3>
+          <ul class="list">
+            <li><b>Autores:</b> Lope, Calderón</li>
+            <li><b>3 ideas literarias:</b> Mezcla trágico-cómico · Hipérbaton/conceptismo · Honor/apariencia</li>
+            <li><b>3 claves del contexto:</b> Crisis · Absolutismo · Teatro como industria</li>
+            <li><b>Comparador:</b> Barroco (exceso) ↔ Ilustración (claridad)</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ILUSTRACIÓN -->
+  <section class="section" id="ilustracion">
+    <div class="container">
+      <h2>💡 Ilustración</h2>
+      <div class="grid grid-3">
+        <div class="card">
+          <h3>Materiales completos</h3>
+          <ul class="list">
+            <li><a href="materials/5. Ilustracion.pdf" download>⬇️ Unidad 5. Ilustración (PDF)</a></li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Contexto histórico y claves</h3>
+          <ul class="list">
+            <li><b>Autor:</b> Moratín</li>
+            <li><b>3 ideas literarias:</b> Reglas clásicas · Didactismo · Lenguaje claro</li>
+            <li><b>3 claves del contexto:</b> Racionalismo · Reformismo · Tradición vs. cambio</li>
+            <li><b>Comparador:</b> Moratín (razón pública) tras el Barroco</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DESCARGAS -->
+  <section class="section" id="descargas">
+    <div class="container">
+      <h2>📥 Descargas</h2>
+      <div class="card">
+        <table>
+          <thead><tr><th>Documento</th><th>Enlace</th></tr></thead>
+          <tbody>
+            <tr><td>Syllabus del curso</td><td><a href="materials/syllabus.pdf" download>⬇️ Descargar</a></td></tr>
+            <tr><td>Programa detallado sesión a sesión</td><td><a href="materials/programa-detallado.pdf" download>⬇️ Descargar</a></td></tr>
+            <tr><td>Cuaderno de actividades</td><td><a href="materials/actividades.pdf" download>⬇️ Descargar</a></td></tr>
+          </tbody>
+        </table>
+        <p class="muted">Pon aquí tus versiones finales cuando las tengas.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FORO -->
+  <section class="section" id="foro">
+    <div class="container">
+      <h2>💬 Foro</h2>
+      <div class="card">
+        <p>Usaremos el foro de la plataforma del centro para usuarios y notificaciones.</p>
+        <p><a id=" foroLink" class="btn primary" href="https://tu-moodle.ejemplo/curso/foro" target="_blank" rel="noreferrer">Abrir foro del curso</a></p>
+        <p class="muted">✏️ Consejo: cambia la URL de arriba por la de tu curso (abre este archivo y reemplaza el enlace).</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- MINISERIE -->
+  <section class="section" id="miniserie">
+    <div class="container">
+      <h2>🎬 Miniserie del curso</h2>
+      <div class="card">
+        <div class="grid" style="grid-template-columns:1fr;gap:1rem">
+          <label>Obra
+            <select id="obra">
+              <option>Quijote</option>
+              <option>Lazarillo</option>
+            </select>
+          </label>
+          <label>Título del capítulo
+            <input id="titulo" placeholder="Ej.: El sueño de los molinos" />
+          </label>
+          <label>Sinopsis breve
+            <input id="sinopsis" placeholder="Una línea que resuma la escena" />
+          </label>
+          <label>Guion (puedes escribir o modificar la plantilla)
+            <textarea id="guion"></textarea>
+          </label>
+          <div style="display:flex;gap:.5rem;flex-wrap:wrap">
+            <button class="btn primary" id="guardar">Descargar .txt</button>
+            <button class="btn" id="plantilla">Cargar plantilla</button>
+            <button class="btn" id="limpiar">Limpiar</button>
+          </div>
+        </div>
+        <p class="muted" style="margin-top:.75rem">La descarga funciona sin servidor: genera un archivo de texto al momento.</p>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">© <span id="y"></span> Curso: Literatura española hasta el siglo XVIII · Sitio simple (HTML+CSS+JS)</div>
+  </footer>
+
+  <script>
+    // Año
+    document.getElementById('y').textContent = new Date().getFullYear();
+
+    // Plantilla de guion
+    const plantilla = (obra) => `# ${obra} — Guion breve (B1)
+
+Título de la escena:
+Lugar y época: _______________
+Personajes: [Nombre (época/estamento), Objetivo, Obstáculo, Visión]
+
+[ACOTACIÓN] (ambientación, vestuario, luz)
+
+DIÁLOGO (máx. 2-3 páginas)
+- Personaje A: (frase de intención)
+- Personaje B: (respuesta)
+
+[Lectura crítica]
+- ¿Qué mirada del mundo aparece?
+- ¿Qué contradicciones muestra el texto?
+- ¿Qué rasgos sociales del momento aflora?
+
+[PERFORMATIVO]
+- Pausas y énfasis si es recital.
+- Entrada/salida si es teatro.
+`;
+
+    const obra = document.getElementById('obra');
+    const titulo = document.getElementById('titulo');
+    const sinopsis = document.getElementById('sinopsis');
+    const guion = document.getElementById('guion');
+
+    document.getElementById('plantilla').onclick = () => {
+      guion.value = plantilla(obra.value);
+    };
+    document.getElementById('limpiar').onclick = () => {
+      titulo.value = '';
+      sinopsis.value = '';
+      guion.value = '';
+    };
+    document.getElementById('guardar').onclick = () => {
+      const name = `${obra.value}-${(titulo.value||'capitulo').replace(/\s+/g,'_')}.txt`;
+      const content = guion.value || plantilla(obra.value);
+      const blob = new Blob([content], {type:'text/plain;charset=utf-8'});
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url; a.download = name; document.body.appendChild(a); a.click();
+      setTimeout(()=>{ URL.revokeObjectURL(url); a.remove(); }, 0);
+    };
+  </script>
+</body>
+</html>
