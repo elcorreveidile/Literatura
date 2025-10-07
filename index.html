@@ -72,6 +72,49 @@
     .viewer .btn{border-color:#334155;background:#fff;color:#0f172a;font-weight:600;padding:.45rem .8rem;border-radius:.65rem;text-decoration:none;display:inline-flex;align-items:center;gap:.4rem}
     .viewer iframe{flex:1;border:0;border-bottom-left-radius:1rem;border-bottom-right-radius:1rem;background:#fff}
     @media (max-width: 640px){ .viewer{inset:4% 2%} .viewer .btn{flex:1;justify-content:center;min-width:120px} #fileName{flex-basis:100%;font-size:1rem} }
+    /* ===== FONDOS DE ÉPOCA ===== */
+
+/* Tarjetas más legibles sobre fondo */
+.card {
+  background: rgba(255, 255, 255, 0.92);
+  border: 1px solid var(--border);
+  border-radius: 1rem;
+  padding: 1rem;
+}
+
+/* Imagen de fondo por sección */
+#edad-media {
+  background:
+    linear-gradient(to bottom, rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0.25)),
+    url("materials/img/edad-media.jpg") center/cover no-repeat;
+}
+#renacimiento {
+  background:
+    linear-gradient(to bottom, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)),
+    url("materials/img/renacimiento.jpg") center/cover no-repeat;
+}
+#cervantes {
+  background:
+    linear-gradient(to bottom, rgba(0, 0, 0, 0.18), rgba(0, 0, 0, 0.18)),
+    url("materials/img/cervantes.jpg") center/cover no-repeat;
+}
+#barroco {
+  background:
+    linear-gradient(to bottom, rgba(0, 0, 0, 0.22), rgba(0, 0, 0, 0.22)),
+    url("materials/img/barroco.jpg") center/cover no-repeat;
+}
+#ilustracion {
+  background:
+    linear-gradient(to bottom, rgba(0, 0, 0, 0.16), rgba(0, 0, 0, 0.16)),
+    url("materials/img/ilustracion.jpg") center/cover no-repeat;
+}
+
+/* En móvil, más opaco para texto legible */
+@media (max-width: 899px) {
+  .card {
+    background: rgba(255, 255, 255, 0.96);
+  }
+}
   </style>
 </head>
 <body>
