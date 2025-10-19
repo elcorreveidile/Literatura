@@ -13,6 +13,8 @@
     a{color:inherit;text-decoration:none}
     .container{max-width:1100px;margin:0 auto;padding:1rem}
     :target{scroll-margin-top:72px}
+
+    /* NAV */
     .nav{position:sticky;top:0;z-index:20;background:rgba(255,255,255,.96);backdrop-filter:saturate(180%) blur(10px);border-bottom:1px solid var(--border)}
     .nav .inner{display:flex;gap:.5rem;align-items:center}
     .brand{font-weight:800}
@@ -23,19 +25,31 @@
     .mobile-panel{display:none;position:fixed;top:56px;left:0;right:0;background:#fff;border-bottom:1px solid var(--border);box-shadow:0 6px 20px rgba(0,0,0,.06)}
     .mobile-panel .row{display:flex;overflow-x:auto;gap:.5rem;padding:.75rem 1rem}
     .mobile-panel a{display:inline-block;padding:.5rem .75rem;border:1px solid var(--border);border-radius:9999px;background:#fff;white-space:nowrap}
+
+    /* Layout */
     .section{padding:3rem 0;position:relative;overflow:hidden}
     .section > .container{position:relative;z-index:1}
-    .section::before{content:""; position:absolute; inset:0; z-index:0; background-position:center; background-repeat:no-repeat; background-size:cover; opacity:.35;}
+    /* Capa de imagen (velo suave 0.35) */
+    .section::before{
+      content:""; position:absolute; inset:0; z-index:0;
+      background-position:center; background-repeat:no-repeat; background-size:cover;
+      opacity:.35;
+    }
+
+    /* Colores base (por si no hay imagen) */
     #edad-media{background:var(--medieval)}
     #renacimiento{background:var(--rena)}
     #cervantes{background:var(--cerv)}
     #barroco{background:var(--barroco)}
     #ilustracion{background:var(--ilustra)}
+
+    /* Imágenes de fondo (añadimos ?v=3 para evitar caché vieja) */
     #edad-media::before{background-image:url("materials/img/edad-media.jpg?v=3")}
     #renacimiento::before{background-image:url("materials/img/renacimiento.jpg?v=3")}
     #cervantes::before{background-image:url("materials/img/cervantes.jpg?v=3")}
     #barroco::before{background-image:url("materials/img/barroco.jpg?v=3")}
     #ilustracion::before{background-image:url("materials/img/ilustracion.jpg?v=3")}
+
     h1{font-size:clamp(1.8rem,2.5vw,3rem);margin:.3rem 0}
     h2{font-size:clamp(1.5rem,2vw,2.2rem);margin:0 0 .5rem 0}
     h3{margin:.5rem 0}
@@ -46,11 +60,36 @@
     .list li{margin:.35rem 0}
     .footer{border-top:1px solid var(--border);padding:1rem 0;color:#6b7280}
     .card{background:rgba(255,255,255,.92);border:1px solid var(--border);border-radius:1rem;padding:1rem}
+    @media(max-width:899px){.card{background:rgba(255,255,255,.96)}}
     .grid{display:grid;gap:1rem}
     @media(min-width:900px){.grid-3{grid-template-columns: 1fr 1fr 1fr;}}
+    .chip{display:inline-block;padding:.25rem .6rem;border:1px solid var(--border);border-radius:9999px;margin:.15rem .25rem;background:#fff;cursor:pointer}
+    .chip.active{background:#111827;color:#fff;border-color:#111827}
+    .hint{font-size:.9rem;color:#334155;margin:.25rem 0 .5rem}
+
+    table{width:100%;border-collapse:collapse}
+    th,td{border:1px solid var(--border);padding:.6rem;text-align:left}
+    th{background:#f8fafc}
+
+    @media (max-width:899px){.links{display:none}.hamb{display:inline-block}.container{padding:.75rem 1rem}.section{padding:2rem 0}}
+    .nav.open .mobile-panel{display:block}
+
+    /* Visor PDF */
+    .overlay{position:fixed;inset:0;background:rgba(0,0,0,.6);display:none;z-index:50}
+    .overlay.show{display:block}
+    .viewer{position:fixed;inset:5% 3%;background:#111827;border-radius:1rem;box-shadow:0 25px 50px rgba(0,0,0,.35);display:none;flex-direction:column;z-index:60}
+    .viewer .top{display:flex;align-items:center;gap:.5rem;padding:.6rem .75rem;background:#0f172a;color:#fff;border-top-left-radius:1rem;border-top-right-radius:1rem;flex-wrap:wrap}
+    .viewer .top .spacer{flex:1}
+    .viewer .btn{border-color:#334155;background:#fff;color:#0f172a;font-weight:600;padding:.45rem .8rem;border-radius:.65rem;text-decoration:none;display:inline-flex;align-items:center;gap:.4rem}
+    .viewer iframe{flex:1;border:0;border-bottom-left-radius:1rem;border-bottom-right-radius:1rem;background:#fff}
+    @media (max-width:640px){ .viewer{inset:4% 2%} .viewer .btn{flex:1;justify-content:center;min-width:120px} #fileName{flex-basis:100%;font-size:1rem} }
+
+    /* Frame responsivo para la app de versos */
     .app-frame{position:relative;width:100%;height:70vh;min-height:520px;border:1px solid var(--border);border-radius:1rem;overflow:hidden;background:#fff}
     .app-frame iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
-    @media (max-width: 640px){.app-frame{height:65vh;min-height:460px}}
+    @media (max-width: 640px){
+      .app-frame{height:65vh;min-height:460px}
+    }
   </style>
 </head>
 <body>
@@ -59,37 +98,266 @@
     <div class="container inner">
       <div class="brand">📚 Lit. española ⟶ s. XVIII</div>
       <div class="spacer"></div>
-      <div class="links">
+      <div class="links" aria-label="Menú principal">
         <a href="#edad-media">Edad Media</a>
         <a href="#renacimiento">Renacimiento</a>
         <a href="#cervantes">Cervantes</a>
         <a href="#barroco">Barroco</a>
         <a href="#ilustracion">Ilustración</a>
+        <a href="#descargas">Descargas</a>
+        <a href="#foro">Foro</a>
+        <a href="#miniserie">Miniserie</a>
         <a href="#versos">Generador de versos</a>
       </div>
-      <button class="hamb" id="hamb">☰</button>
+      <button class="hamb" id="hamb" aria-label="Abrir menú">☰</button>
+    </div>
+    <div class="mobile-panel" id="mobilePanel">
+      <div class="row">
+        <a href="#edad-media">Edad Media</a>
+        <a href="#renacimiento">Renacimiento</a>
+        <a href="#cervantes">Cervantes</a>
+        <a href="#barroco">Barroco</a>
+        <a href="#ilustracion">Ilustración</a>
+        <a href="#descargas">Descargas</a>
+        <a href="#foro">Foro</a>
+        <a href="#miniserie">Miniserie</a>
+        <a href="#versos">Generador de versos</a>
+      </div>
     </div>
   </div>
 
+  <!-- HOME -->
   <section class="section" id="home">
     <div class="container">
       <h1>Literatura española hasta el siglo XVIII</h1>
-      <p class="muted">Cinco épocas, materiales completos y <b>cuadernos</b>.</p>
+      <p class="muted">Cinco épocas, materiales completos y <b>cuadernos de la sesión</b>. En móvil, los PDF se abren dentro de la web (botón <b>Volver</b>).</p>
     </div>
   </section>
 
-  <!-- GENERADOR DE VERSOS -->
+  <!-- EDAD MEDIA -->
+  <section class="section" id="edad-media">
+    <div class="container">
+      <h2>🛡️ Edad Media</h2>
+      <div class="grid grid-3">
+        <div class="card">
+          <h3>Materiales completos</h3>
+          <ul class="list">
+            <li><button class="btn" data-pdf="materials/1. Edad Media.pdf">⬇️ Unidad 1. La literatura en la Edad Media (PDF)</button></li>
+          </ul>
+          <p class="muted">También puedes <a href="materials/1. Edad Media.pdf" target="_blank" rel="noopener">abrir en pestaña nueva</a>.</p>
+        </div>
+        <div class="card">
+          <h3>Contexto y claves</h3>
+          <ul class="list">
+            <li><b>Obra/autor:</b> Cantar de Mio Cid (anónimo)</li>
+            <li><b>Claves:</b> vasallaje · teocentrismo · frontera feudal</li>
+            <li><b>Tensión:</b> honra/realismo, oralidad/escritura</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Cuadernos de la sesión</h3>
+          <p class="hint">Pulsa la sesión para abrir el cuaderno. En el visor podrás <b>descargar</b> o <b>abrir en pestaña</b>.</p>
+          <div id="chips-edad-media"></div>
+          <ul class="list" id="lista-edad-media"></ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- RENACIMIENTO -->
+  <section class="section" id="renacimiento">
+    <div class="container">
+      <h2>🏛️ Renacimiento</h2>
+      <div class="grid grid-3">
+        <div class="card">
+          <h3>Materiales completos</h3>
+          <ul class="list">
+            <li><button class="btn" data-pdf="materials/2. Renacimiento.pdf">⬇️ Unidad 2. El Renacimiento (PDF)</button></li>
+          </ul>
+          <p class="muted">También puedes <a href="materials/2. Renacimiento.pdf" target="_blank" rel="noopener">abrir en pestaña nueva</a>.</p>
+        </div>
+        <div class="card">
+          <h3>Contexto y claves</h3>
+          <ul class="list">
+            <li><b>Autor:</b> Garcilaso de la Vega</li>
+            <li><b>Claves:</b> humanismo · armonía · naturaleza ideal</li>
+            <li><b>Contraste:</b> equilibrio renacentista vs. contraste barroco</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Cuadernos de la sesión</h3>
+          <p class="hint">Pulsa la sesión para abrir.</p>
+          <div id="chips-renacimiento"></div>
+          <ul class="list" id="lista-renacimiento"></ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CERVANTES -->
+  <section class="section" id="cervantes">
+    <div class="container">
+      <h2>🪶 Cervantes</h2>
+      <div class="grid grid-3">
+        <div class="card">
+          <h3>Materiales completos</h3>
+          <ul class="list">
+            <li><button class="btn" data-pdf="materials/3. Cervantes.pdf">⬇️ Unidad 3. Cervantes (PDF)</button></li>
+          </ul>
+          <p class="muted">También puedes <a href="materials/3. Cervantes.pdf" target="_blank" rel="noopener">abrir en pestaña nueva</a>.</p>
+        </div>
+        <div class="card">
+          <h3>Contexto y claves</h3>
+          <ul class="list">
+            <li><b>Obra:</b> Don Quijote de la Mancha</li>
+            <li><b>Claves:</b> imprenta/mercado · perspectivismo · verosimilitud</li>
+            <li><b>Tensión:</b> idealismo vs. realidad</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Cuadernos de la sesión</h3>
+          <p class="muted">Próximamente.</p>
+          <div id="chips-cervantes"></div>
+          <ul class="list" id="lista-cervantes"></ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BARROCO -->
+  <section class="section" id="barroco">
+    <div class="container">
+      <h2>🎭 Barroco</h2>
+      <div class="grid grid-3">
+        <div class="card">
+          <h3>Materiales completos</h3>
+          <ul class="list">
+            <li><button class="btn" data-pdf="materials/4. Barroco.pdf">⬇️ Unidad 4. Barroco (PDF)</button></li>
+          </ul>
+          <p class="muted">También puedes <a href="materials/4. Barroco.pdf" target="_blank" rel="noopener">abrir en pestaña nueva</a>.</p>
+        </div>
+        <div class="card">
+          <h3>Contexto y claves</h3>
+          <ul class="list">
+            <li><b>Autores:</b> Lope, Calderón, Góngora, Quevedo</li>
+            <li><b>Claves:</b> crisis · absolutismo · teatro/industria</li>
+            <li><b>Estilo:</b> culteranismo/conceptismo</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Cuadernos de la sesión</h3>
+          <p class="muted">Próximamente.</p>
+          <div id="chips-barroco"></div>
+          <ul class="list" id="lista-barroco"></ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ILUSTRACIÓN -->
+  <section class="section" id="ilustracion">
+    <div class="container">
+      <h2>💡 Ilustración</h2>
+    <div class="grid grid-3">
+      <div class="card">
+        <h3>Materiales completos</h3>
+        <ul class="list">
+          <li><button class="btn" data-pdf="materials/5. Ilustracion.pdf">⬇️ Unidad 5. Ilustración (PDF)</button></li>
+        </ul>
+        <p class="muted">También puedes <a href="materials/5. Ilustracion.pdf" target="_blank" rel="noopener">abrir en pestaña nueva</a>.</p>
+      </div>
+      <div class="card">
+        <h3>Contexto y claves</h3>
+        <ul class="list">
+          <li><b>Autor:</b> Moratín</li>
+          <li><b>Claves:</b> razón pública · reforma · claridad</li>
+          <li><b>Giro:</b> del exceso barroco a la regla/claridad</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>Cuadernos de la sesión</h3>
+        <p class="muted">Próximamente.</p>
+        <div id="chips-ilustracion"></div>
+        <ul class="list" id="lista-ilustracion"></ul>
+      </div>
+    </div>
+    </div>
+  </section>
+
+  <!-- DESCARGAS -->
+  <section class="section" id="descargas">
+    <div class="container">
+      <h2>📥 Descargas</h2>
+      <div class="card">
+        <table>
+          <thead><tr><th>Documento</th><th>Acción</th></tr></thead>
+          <tbody>
+            <tr><td>Syllabus del curso</td><td><button class="btn" data-pdf="materials/syllabus.pdf">Abrir/descargar</button></td></tr>
+            <tr><td>Programa detallado sesión a sesión</td><td><button class="btn" data-pdf="materials/programa-detallado.pdf">Abrir/descargar</button></td></tr>
+            <tr><td>Cuaderno de actividades (general)</td><td><button class="btn" data-pdf="materials/cuadernos/Modulo1_Literatura_Medieval.pdf">Abrir/descargar</button></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- FORO -->
+  <section class="section" id="foro">
+    <div class="container">
+      <h2>💬 Foro</h2>
+      <div class="card">
+        <p>Usaremos el foro de la plataforma del centro para usuarios y notificaciones.</p>
+        <p><a class="btn primary" href="https://clasesporzoom.com" target="_blank" rel="noreferrer">Abrir foro del curso</a></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- MINISERIE -->
+  <section class="section" id="miniserie">
+    <div class="container">
+      <h2>🎬 Miniserie del curso</h2>
+      <div class="card">
+        <div class="grid" style="grid-template-columns:1fr;gap:1rem">
+          <label>Obra
+            <select id="obra">
+              <option>Quijote</option>
+              <option>Lazarillo</option>
+            </select>
+          </label>
+          <label>Título del capítulo
+            <input id="titulo" placeholder="Ej.: El sueño de los molinos" />
+          </label>
+          <label>Sinopsis breve
+            <input id="sinopsis" placeholder="Una línea que resuma la escena" />
+          </label>
+          <label>Guion (puedes escribir o modificar la plantilla)
+            <textarea id="guion"></textarea>
+          </label>
+          <div style="display:flex;gap:.5rem;flex-wrap:wrap">
+            <button class="btn primary" id="guardar">Descargar .txt</button>
+            <button class="btn" id="plantilla">Cargar plantilla</button>
+            <button class="btn" id="limpiar">Limpiar</button>
+          </div>
+        </div>
+        <p class="muted" style="margin-top:.75rem">La descarga funciona sin servidor: genera un archivo de texto al momento.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- GENERADOR DE VERSOS (incrustado, sin botón) -->
   <section class="section" id="versos">
     <div class="container">
       <h2>🪶 Generador de versos medievales</h2>
       <div class="card">
-        <p class="muted">Explora el generador directamente aquí:</p>
+        <p class="muted">Usa el generador directamente aquí (mejor en horizontal si estás en móvil).</p>
         <div class="app-frame">
           <iframe
+            id="versosFrame"
             title="Generador de versos medievales"
             src="https://g0sva8c1k280-deploy.space.z.ai/"
             loading="lazy"
             allow="clipboard-write; fullscreen"
+            referrerpolicy="no-referrer"
           ></iframe>
         </div>
       </div>
@@ -97,14 +365,198 @@
   </section>
 
   <footer class="footer">
-    <div class="container">© <span id="y"></span> Curso: Literatura española hasta el siglo XVIII</div>
+    <div class="container">© <span id="y"></span> Curso: Literatura española hasta el siglo XVIII · Sitio simple (HTML+CSS+JS)</div>
   </footer>
 
+  <!-- Visor PDF -->
+  <div class="overlay" id="overlay"></div>
+  <div class="viewer" id="viewer">
+    <div class="top">
+      <strong id="fileName">Documento</strong>
+      <div class="spacer"></div>
+      <a class="btn" id="openTab" target="_blank" rel="noopener">Abrir en pestaña</a>
+      <a class="btn" id="download" download>Descargar</a>
+      <button class="btn primary" id="closeViewer">Volver</button>
+    </div>
+    <iframe id="frame" title="Visor PDF" src="about:blank"></iframe>
+  </div>
+
   <script>
+    // Año
     document.getElementById('y').textContent = new Date().getFullYear();
-    const nav=document.getElementById('nav');
-    const hamb=document.getElementById('hamb');
-    hamb.addEventListener('click',()=>nav.classList.toggle('open'));
+
+    // Menú móvil
+    const nav = document.getElementById('nav');
+    const hamb = document.getElementById('hamb');
+    hamb?.addEventListener('click', ()=> nav.classList.toggle('open'));
+    document.querySelectorAll('#mobilePanel a').forEach(a=> a.addEventListener('click', ()=> nav.classList.remove('open')));
+
+    // Visor PDF
+    const overlay = document.getElementById('overlay');
+    const viewer = document.getElementById('viewer');
+    const frame = document.getElementById('frame');
+    const openTab = document.getElementById('openTab');
+    const download = document.getElementById('download');
+    const fileName = document.getElementById('fileName');
+    const closeViewer = document.getElementById('closeViewer');
+
+    function openPDF(path){
+      fileName.textContent = decodeURIComponent(path.split('/').pop());
+      frame.src = path;
+      openTab.href = path;
+      download.href = path;
+      overlay.classList.add('show');
+      viewer.style.display = 'flex';
+      document.body.style.overflow='hidden';
+    }
+    function closePDF(){
+      overlay.classList.remove('show');
+      viewer.style.display = 'none';
+      frame.src = 'about:blank';
+      document.body.style.overflow='';
+    }
+    overlay.addEventListener('click', closePDF);
+    closeViewer.addEventListener('click', closePDF);
+
+    // Delegación: cualquier [data-pdf] abre visor
+    document.addEventListener('click', (e)=>{
+      const target = e.target.closest('[data-pdf]');
+      if(target){
+        e.preventDefault();
+        openPDF(target.getAttribute('data-pdf'));
+      }
+    });
+
+    // Cuadernos
+    const CUADERNOS = {
+      "Edad Media": {
+        sesiones: [
+          { t: 'Sesión 1 · Literatura Medieval', href: 'materials/cuadernos/Sesion1_Literatura_Medieval.pdf' },
+          { t: 'Sesión 2 · Lírica Medieval', href: 'materials/cuadernos/Sesion2_Lirica_Medieval.pdf' },
+          { t: 'Sesión 3 · Cantar de Mio Cid', href: 'materials/cuadernos/Sesion3_Cantar_de_Mio_Cid.pdf' },
+
+          { 
+            t: 'Sesión 4 · Cid vs. Lázaro',
+            href: 'materials/cuadernos/Sesion4_Cid_vs_Lazaro.pdf',
+            extra: [
+              { t: 'Prezi: Poema de Mio Cid', link: 'https://prezi.com/j-ant5c0s6f5/poema-de-mio-cid/?present=1' }
+            ]
+          },
+
+          { t: 'Sesión 5 · Berceo', href: 'materials/cuadernos/Sesion5_Berceo.pdf' },
+          { t: 'Sesión 6 · Arcipreste', href: 'materials/cuadernos/Sesion6_Arcipreste.pdf' },
+        ],
+        extras: [
+          { t: 'Módulo 1 · Literatura Medieval', href: 'materials/cuadernos/Modulo1_Literatura_Medieval.pdf' },
+          { t: 'Lectura · Afrenta de Corpes', href: 'materials/cuadernos/Lectura_Afrenta_de_Corpes.pdf' },
+          { t: 'Lectura · Bodas (hijas del Cid)', href: 'materials/cuadernos/Lectura_Bodas_Hijas_Cid.pdf' },
+        ]
+      },
+      "Renacimiento": {
+        sesiones: [
+          { t: 'Sesión 7 · Renacimiento', href: 'materials/cuadernos/Sesion7_Renacimiento.pdf' },
+          { t: 'Sesión 8 · Garcilaso', href: 'materials/cuadernos/Sesion8_Garcilaso.pdf' },
+          { t: 'Sesión 9 · Fray Luis & San Juan', href: 'materials/cuadernos/Sesion9_FrayLuis_SanJuan.pdf' },
+        ],
+        extras: []
+      },
+      "Cervantes": { sesiones: [], extras: [] },
+      "Barroco": { sesiones: [], extras: [] },
+      "Ilustración": { sesiones: [], extras: [] },
+    };
+
+    function renderCuadernos(epoca, chipsId, listId){
+      const data = CUADERNOS[epoca] || { sesiones: [], extras: [] };
+      const chips = document.getElementById(chipsId);
+      const list = document.getElementById(listId);
+      if(!chips || !list) return;
+
+      chips.innerHTML = '';
+      list.innerHTML = '';
+
+      data.sesiones.forEach((s)=>{
+        const span = document.createElement('span');
+        span.className = 'chip';
+        span.textContent = s.t;
+        span.onclick = ()=>{
+          document.querySelectorAll('#'+chipsId+' .chip').forEach(c=>c.classList.remove('active'));
+          span.classList.add('active');
+
+          // Botón del PDF principal
+          list.innerHTML = `<li><button class="btn primary" data-pdf="${s.href}">⬇️ Abrir/descargar (${s.t})</button></li>`;
+
+          // Extras (enlaces externos, como Prezi)
+          if (s.extra && Array.isArray(s.extra)) {
+            s.extra.forEach(e => {
+              list.innerHTML += `<li><a class="btn" href="${e.link}" target="_blank" rel="noopener">🌐 ${e.t}</a></li>`;
+            });
+          }
+        };
+        chips.appendChild(span);
+      });
+
+      if(data.sesiones[0]){
+        setTimeout(()=> chips.querySelector('.chip')?.click(), 0);
+      } else {
+        list.innerHTML = '<li class="muted">No hay cuadernos subidos para esta época (todavía).</li>';
+      }
+
+      if(data.extras && data.extras.length){
+        const extrasHeader = document.createElement('h4');
+        extrasHeader.textContent = 'Lecturas y materiales extra';
+        extrasHeader.style.marginTop = '.75rem';
+        list.parentElement.appendChild(extrasHeader);
+        const ulExtras = document.createElement('ul'); ulExtras.className = 'list';
+        data.extras.forEach(e=>{
+          const li = document.createElement('li');
+          li.innerHTML = `<button class="btn" data-pdf="${e.href}">⬇️ ${e.t}</button>`;
+          ulExtras.appendChild(li);
+        });
+        list.parentElement.appendChild(ulExtras);
+      }
+    }
+
+    renderCuadernos('Edad Media','chips-edad-media','lista-edad-media');
+    renderCuadernos('Renacimiento','chips-renacimiento','lista-renacimiento');
+
+    // Miniserie
+    const plantilla = (obra) => `# ${obra} — Guion breve (B1)
+
+Título de la escena:
+Lugar y época: _______________
+Personajes: [Nombre (época/estamento), Objetivo, Obstáculo, Visión]
+
+[ACOTACIÓN] (ambientación, vestuario, luz)
+
+DIÁLOGO (máx. 2-3 páginas)
+- Personaje A: (frase de intención)
+- Personaje B: (respuesta)
+
+[Lectura crítica]
+- ¿Qué mirada del mundo aparece?
+- ¿Qué contradicciones muestra el texto?
+- ¿Qué rasgos sociales del momento aflora?
+
+[PERFORMATIVO]
+- Pausas y énfasis si es recital.
+- Entrada/salida si es teatro o cine.
+`;
+
+    const obra = document.getElementById('obra');
+    const titulo = document.getElementById('titulo');
+    const sinopsis = document.getElementById('sinopsis');
+    const guion = document.getElementById('guion');
+
+    document.getElementById('plantilla')?.addEventListener('click', ()=> { guion.value = plantilla(obra.value); });
+    document.getElementById('limpiar')?.addEventListener('click', ()=> { titulo.value=''; sinopsis.value=''; guion.value=''; });
+    document.getElementById('guardar')?.addEventListener('click', ()=>{
+      const name = `${obra.value}-${(titulo.value||'capitulo').replace(/\s+/g,'_')}.txt`;
+      const content = guion.value || plantilla(obra.value);
+      const blob = new Blob([content], {type:'text/plain;charset=utf-8'});
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a'); a.href = url; a.download = name; document.body.appendChild(a); a.click();
+      setTimeout(()=>{ URL.revokeObjectURL(url); a.remove(); }, 0);
+    });
   </script>
 </body>
 </html>
