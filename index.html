@@ -443,7 +443,16 @@
             ]
           },
 
-          { t: 'Sesión 5 · Berceo', href: 'materials/cuadernos/Sesion5_Berceo.pdf' },
+          { 
+            t: 'Sesión 5 · Berceo',
+            href: 'materials/cuadernos/Sesion5_Berceo.pdf',
+            extra: [
+              { 
+                t: 'Actividad: Gonzalo de Berceo (externa)', 
+                link: 'https://www.perplexity.ai/search/i-need-to-implement-this-propu-G8R.GrYzQg.SI9bZy41SEw?1=d#1' 
+              }
+            ]
+          },
           { t: 'Sesión 6 · Arcipreste', href: 'materials/cuadernos/Sesion6_Arcipreste.pdf' },
         ],
         extras: [
@@ -485,7 +494,7 @@
           // Botón del PDF principal
           list.innerHTML = `<li><button class="btn primary" data-pdf="${s.href}">⬇️ Abrir/descargar (${s.t})</button></li>`;
 
-          // Extras (enlaces externos, como Prezi)
+          // Extras (enlaces externos, como Prezi/actividad)
           if (s.extra && Array.isArray(s.extra)) {
             s.extra.forEach(e => {
               list.innerHTML += `<li><a class="btn" href="${e.link}" target="_blank" rel="noopener">🌐 ${e.t}</a></li>`;
