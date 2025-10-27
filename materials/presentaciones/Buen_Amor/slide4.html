@@ -157,6 +157,46 @@
             border-radius: 4px;
             box-shadow: 0 2px 4px rgba(0,0,0,0.1);
         }
+         /* --- ESTILOS PARA EL MENÚ LATERAL (SIEMPRE VISIBLE) --- */
+.side-menu {
+    width: 280px;
+    height: 100vh;
+    background-color: rgba(58, 42, 26, 0.95);
+    color: #f5f0e6;
+    z-index: 2000;
+    padding-top: 20px;
+    overflow-y: auto;
+    box-shadow: -2px 0 5px rgba(0,0,0,0.2);
+    flex-shrink: 0;
+}
+.menu-content h3 {
+    padding: 0 20px;
+    margin-bottom: 15px;
+    font-family: 'Cinzel', serif;
+    font-size: 1.2em;
+    color: #c9a97e;
+}
+#menuList {
+    list-style: none;
+    padding: 0;
+}
+#menuList li a {
+    display: block;
+    padding: 12px 20px;
+    color: #e6d7c3;
+    text-decoration: none;
+    font-size: 15px;
+    transition: background-color 0.2s, color 0.2s;
+    border-bottom: 1px solid rgba(201, 169, 126, 0.2);
+}
+#menuList li a:hover {
+    background-color: rgba(201, 169, 126, 0.2);
+}
+#menuList li a.active {
+    background-color: #c9a97e;
+    color: #3a2a1a;
+    font-weight: bold;
+}
     </style>
 </head>
 <body>
