@@ -1,5 +1,9 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // Obtenemos el número de la diapositiva actual desde el nombre del archivo
+    // --- CONFIGURACIÓN DE LA PRESENTACIÓN ---
+    // <-- ¡IMPORTANTE! Ajusta este número al total de tus diapositivas
+    const totalSlides = 24; 
+
+    // --- DETECCIÓN DE DIAPOSITIVA ACTUAL ---
     const currentSlideMatch = window.location.pathname.match(/\/?slide(\d+)\.html/);
     if (!currentSlideMatch) {
         console.error("Este script debe ejecutarse en un archivo llamado slideN.html");
@@ -7,41 +11,93 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     const currentSlide = parseInt(currentSlideMatch[1]);
 
-    // Seleccionamos los botones
+    // --- REFERENCIAS A ELEMENTOS DEL DOM ---
     const prevButton = document.getElementById('prevBtn');
     const nextButton = document.getElementById('nextBtn');
+    const sideMenu = document.getElementById('sideMenu');
+    const menuToggle = document.getElementById('menuToggle');
+    const menuList = document.getElementById('menuList');
 
-    // --- NAVEGACIÓN ---
-    // Como todos los archivos están en la misma carpeta,
-    // solo necesitamos el nombre del archivo para navegar.
-
-    // Función para ir a la diapositiva anterior
+    // --- FUNCIONES DE NAVEGACIÓN ---
     const goToPrevSlide = () => {
         if (currentSlide > 1) {
             window.location.href = `slide${currentSlide - 1}.html`;
         }
     };
 
-    // Función para ir a la siguiente diapositiva
     const goToNextSlide = () => {
-        // <-- ¡IMPORTANTE! Cambia este número si tienes más o menos diapositivas
-        const totalSlides = 24; 
         if (currentSlide < totalSlides) {
             window.location.href = `slide${currentSlide + 1}.html`;
         }
     };
 
-    // --- EVENTOS ---
-    // Añadimos los eventos a los botones (si existen)
+    // --- LÓGICA DEL MENÚ LATERAL (CARGA DINÁMICA) ---
+    async function populateMenu() {
+        if (!menuList) return;
+        
+        // Mostrar mensaje de carga
+        menuList.innerHTML = '<li style="padding: 20px; text-align: center; color: #c9a97e;">Cargando índice...</li>';
+
+        for (let i = 1; i <= totalSlides; i++) {
+            try {
+                // Obtenemos el HTML de cada diapositiva
+                const response = await fetch(`slide${i}.html`);
+                if (!response.ok) {
+                    throw new Error(`No se encontró slide${i}.html`);
+                }
+                const htmlText = await response.text();
+                
+                // Extraemos el título usando una expresión regular
+                const titleMatch = htmlText.match(/<title>(.*?)<\/title>/i);
+                const title = titleMatch ? titleMatch[1] : `Diapositiva ${i}`;
+
+                // Creamos el elemento de la lista
+                const li = document.createElement('li');
+                const a = document.createElement('a');
+                a.href = `slide${i}.html`;
+                a.textContent = `${i}. ${title}`;
+                
+                // Resaltamos la diapositiva actual
+                if (i === currentSlide) {
+                    a.classList.add('active');
+                }
+                
+                li.appendChild(a);
+                menuList.appendChild(li);
+
+            } catch (error) {
+                console.error(`Error al cargar el título para slide${i}.html:`, error);
+                // Si hay un error, lo indicamos en el menú
+                const li = document.createElement('li');
+                const a = document.createElement('a');
+                a.href = `#`; // Enlace roto
+                a.textContent = `${i}. (Error al cargar)`;
+                a.style.color = 'red';
+                li.appendChild(a);
+                menuList.appendChild(li);
+            }
+        }
+    }
+    
+    function toggleMenu() {
+        sideMenu.classList.toggle('open');
+    }
+
+    // --- ASIGNACIÓN DE EVENTOS ---
     prevButton?.addEventListener('click', goToPrevSlide);
     nextButton?.addEventListener('click', goToNextSlide);
+    menuToggle?.addEventListener('click', toggleMenu);
 
-    // Añadimos la navegación con las flechas del teclado
     document.addEventListener('keydown', (event) => {
         if (event.key === 'ArrowLeft') {
             goToPrevSlide();
         } else if (event.key === 'ArrowRight') {
             goToNextSlide();
+        } else if (event.key === 'Escape' && sideMenu) {
+            sideMenu.classList.remove('open');
         }
     });
+
+    // --- INICIALIZACIÓN ---
+    populateMenu();
 });
