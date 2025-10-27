@@ -1,14 +1,9 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // Obtenemos la ruta base (el directorio donde se encuentran los slides)
-    const pathParts = window.location.pathname.split('/');
-    pathParts.pop(); // Quitamos el nombre del archivo actual (ej: slide1.html)
-    const basePath = pathParts.join('/') + '/';
-
     // Obtenemos el número de la diapositiva actual desde el nombre del archivo
-    const currentSlideMatch = window.location.pathname.match(/slide(\d+)\.html/);
+    const currentSlideMatch = window.location.pathname.match(/\/?slide(\d+)\.html/);
     if (!currentSlideMatch) {
-        console.error("No se pudo determinar el número de la diapositiva.");
-        return; // Salimos si no estamos en un slide
+        console.error("Este script debe ejecutarse en un archivo llamado slideN.html");
+        return;
     }
     const currentSlide = parseInt(currentSlideMatch[1]);
 
@@ -16,27 +11,30 @@ document.addEventListener('DOMContentLoaded', () => {
     const prevButton = document.getElementById('prevBtn');
     const nextButton = document.getElementById('nextBtn');
 
+    // --- NAVEGACIÓN ---
+    // Como todos los archivos están en la misma carpeta,
+    // solo necesitamos el nombre del archivo para navegar.
+
     // Función para ir a la diapositiva anterior
     const goToPrevSlide = () => {
         if (currentSlide > 1) {
-            window.location.href = `${basePath}slide${currentSlide - 1}.html`;
+            window.location.href = `slide${currentSlide - 1}.html`;
         }
     };
 
     // Función para ir a la siguiente diapositiva
     const goToNextSlide = () => {
-        if (currentSlide < 24) { // Asegúrate de que este número sea tu última diapositiva
-            window.location.href = `${basePath}slide${currentSlide + 1}.html`;
+        // <-- ¡IMPORTANTE! Cambia este número si tienes más o menos diapositivas
+        const totalSlides = 24; 
+        if (currentSlide < totalSlides) {
+            window.location.href = `slide${currentSlide + 1}.html`;
         }
     };
 
-    // Añadimos los eventos a los botones
-    if (prevButton) {
-        prevButton.addEventListener('click', goToPrevSlide);
-    }
-    if (nextButton) {
-        nextButton.addEventListener('click', goToNextSlide);
-    }
+    // --- EVENTOS ---
+    // Añadimos los eventos a los botones (si existen)
+    prevButton?.addEventListener('click', goToPrevSlide);
+    nextButton?.addEventListener('click', goToNextSlide);
 
     // Añadimos la navegación con las flechas del teclado
     document.addEventListener('keydown', (event) => {
