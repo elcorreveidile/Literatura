@@ -14,8 +14,6 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- REFERENCIAS A ELEMENTOS DEL DOM ---
     const prevButton = document.getElementById('prevBtn');
     const nextButton = document.getElementById('nextBtn');
-    const sideMenu = document.getElementById('sideMenu');
-    const menuToggle = document.getElementById('menuToggle');
     const menuList = document.getElementById('menuList');
 
     // --- FUNCIONES DE NAVEGACIÓN ---
@@ -70,7 +68,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 // Si hay un error, lo indicamos en el menú
                 const li = document.createElement('li');
                 const a = document.createElement('a');
-                a.href = `#`; // Enlace roto
+                a.href = `#`;
                 a.textContent = `${i}. (Error al cargar)`;
                 a.style.color = 'red';
                 li.appendChild(a);
@@ -79,22 +77,15 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
     
-    function toggleMenu() {
-        sideMenu.classList.toggle('open');
-    }
-
     // --- ASIGNACIÓN DE EVENTOS ---
     prevButton?.addEventListener('click', goToPrevSlide);
     nextButton?.addEventListener('click', goToNextSlide);
-    menuToggle?.addEventListener('click', toggleMenu);
 
     document.addEventListener('keydown', (event) => {
         if (event.key === 'ArrowLeft') {
             goToPrevSlide();
         } else if (event.key === 'ArrowRight') {
             goToNextSlide();
-        } else if (event.key === 'Escape' && sideMenu) {
-            sideMenu.classList.remove('open');
         }
     });
 
