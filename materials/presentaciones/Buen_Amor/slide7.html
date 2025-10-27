@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Análisis de Poema 2: El Poder del Dinero</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Crimson+Text:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Crimson Text', serif;
+            color: #3a2a1a;
+            background-color: #f5f0e6;
+        }
+        .slide {
+            width: 1280px;
+            min-height: 720px;
+            position: relative;
+            overflow: hidden;
+            background-color: #f5f0e6;
+            display: flex;
+            flex-direction: column;
+        }
+        .header {
+            padding: 40px 70px 20px;
+        }
+        .title {
+            font-family: 'Cinzel', serif;
+            font-size: 40px;
+            font-weight: 700;
+            color: #6b4c3a;
+            margin-bottom: 10px;
+        }
+        .subtitle {
+            font-size: 22px;
+            font-style: italic;
+            color: #8b6f5a;
+        }
+        .content {
+            flex-grow: 1;
+            display: flex;
+            padding: 0 70px 40px;
+            gap: 30px;
+        }
+        .poem-section {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        .poem-card {
+            background-color: #e6d7c3;
+            border-radius: 8px;
+            padding: 25px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.0.1);
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        .poem-title {
+            font-size: 24px;
+            font-weight: 600;
+            color: #6b4c3a;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+        .poem-title i {
+            margin-right: 10px;
+            color: #8b6f5a;
+        }
+        .poem-text {
+            font-size: 20px;
+            line-height: 1.6;
+            margin-bottom: 20px;
+            font-style: italic;
+        }
+        .glossary {
+            background-color: #f0e6d9;
+            border-radius: 8px;
+            padding: 15px;
+        }
+        .glossary-title {
+            font-size: 20px;
+            font-weight: 600;
+            color: #6b4c3a;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+        .glossary-title i {
+            margin-right: 8px;
+            color: #8b6f5a;
+            font-size: 20px;
+        }
+        .glossary-item {
+            display: flex;
+            margin-bottom: 8px;
+        }
+        .glossary-term {
+            font-weight: 600;
+            color: #6b4c3a;
+            margin-right: 8px;
+            min-width: 80px;
+        }
+        .glossary-definition {
+            font-size: 18px;
+        }
+        .analysis-section {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        .analysis-card {
+            background-color: #fff;
+            border-radius: 8px;
+            padding: 25px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.0.1);
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        .analysis-title {
+            font-size: 24px;
+            font-weight: 600;
+            color: #6b4c3a;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+        .analysis-title i {
+            margin-right: 10px;
+            color: #8b6f5a;
+        }
+        .question {
+            margin-bottom: 20px;
+        }
+        .question-text {
+            font-size: 20px;
+            font-weight: 600;
+            color: #6b4c3a;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: flex-start;
+        }
+        .question-text i {
+            margin-right: 8px;
+            color: #8b6f5a;
+            font-size: 20px;
+            margin-top: 3px;
+        }
+        .student-name {
+            color: #8b6f5a;
+            font-weight: 600;
+            margin-right: 5px;
+        }
+        .answer {
+            font-size: 20px;
+            line-height: 1.4;
+            margin-left: 28px;
+        }
+        .answer strong {
+            color: #6b4c3a;
+            font-weight: 600;
+        }
+        .highlight {
+            background-color: rgba(201, 169, 126, 0.3);
+            padding: 2px 4px;
+            border-radius: 3px;
+        }
+        .bridge-box {
+            background-color: #f0e6d9;
+            border-radius: 8px;
+            padding: 15px;
+            margin-top: 15px;
+            border-left: 4px solid #8b6f5a;
+            border-radius: 4px;
+        }
+        .bridge-title {
+            font-size: 20px;
+            font-weight: 600;
+            color: #6b4c3a;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+        }
+        .bridge-title i {
+            margin-right: 8px;
+            color: #8b6f5a;
+            font-size: 20px;
+        }
+        .bridge-text {
+            font-size: 18px;
+            line-height: 1.4;
+        }
+        .image-container {
+            margin-top: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .image-container img {
+            max-width: 100%;
+            max-height: 180px;
+            border-radius: 4px;
+            box-shadow: 0 2px 4px (0,0,0,0.0.1);
+        }
+    </style>
+</head>
+<body>
+    <div class="slide">
+        <div class="header">
+            <h1 class="title">Análisis de Poema 2: El Poder del Dinero</h1>
+            <p class="subtitle">"El dinero es del mundo el gran agitador"</p>
+        </div>
+        <div class="content">
+            <div class="poem-section">
+                <div class="poem-card">
+                    <h2 class="poem-title">
+                        <i class="material-icons">monetization_on</i>
+                        Texto Original
+                    </h2>
+                    <div class="poem-text">
+                        "Hace mucho el dinero, mucho se le ha de amar;<br>
+                        al torpe hace discreto, hombre de respetar,<br>
+                        hace correr al cojo, al mudo le hace hablar;<br>
+                        el que no tiene manos bien lo quiere tomar.<br><br>
+                        
+                        Aun al hombre necio y rudo labrador<br>
+                        dineros le convierten en hidalgo doctor;<br>
+                        cuanto más rico es uno, más grande es su valor,<br>
+                        quien no tiene dineros no es de sí señor."
+                    </div>
+                    
+                    <div class="glossary">
+                        <h3 class="glossary-title">
+                            <i class="material-icons">translate</i>
+                            Glosario
+                        </h3>
+                        <div class="glossary-item">
+                            <div class="glossary-term">Torpe:</div>
+                            <div class="glossary-definition">Tonto, ignorante</div>
+                        </div>
+                        <div class="glossary-item">
+                            <div class="glossary-term">Discreto:</div>
+                            <div class="glossary-definition">Prudente, sabio</div>
+                        </div>
+                        <div class="glossary-item">
+                            <div class="glossary-term">Labrador:</div>
+                            <div class="glossary-definition">Campesino, trabajador del campo</div>
+                        </div>
+                        <div class="glossary-item">
+                            <div class="glossary-term">Hidalgo:</div>
+                            <div class="glossary-definition">Noble, persona de alta posición social</div>
+                        </div>
+                        <div class="glossary-item">
+                            <div class="glossary-term">Tomar:</div>
+                            <div class="glossary-definition">Recibir, aceptar</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="analysis-section">
+                <div class="analysis-card">
+                    <h2 class="analysis-title">
+                        <i class="material-icons">psychology</i>
+                        Análisis Guiado
+                    </h2>
+                    
+                    <div class="question">
+                        <div class="question-text">
+                            <i class="material-icons">help_outline</i>
+                            <span class="student-name">ETHAN y JAMIE:</span> ¿Qué poderes tiene el dinero?
+                        </div>
+                        <div class="answer">
+                            <strong>Transformador</strong> • Convierte ignorantes en sabios<br>
+                            <strong>Curativo</strong> • Hace caminar a cojos, hablar a mudos<br>
+                            <strong>Universal</strong> • Todos lo desean, incluso los impedidos<br>
+                            <strong>Ascensor social</strong> • Convierte labrador en hidalgo
+                        </div>
+                    </div>
+                    
+                    <div class="question">
+                        <div class="question-text">
+                            <i class="material-icons">help_outline</i>
+                            <span class="student-name">ANNALISE:</span> ¿Es Juan Ruiz un capitalista del siglo XIV?
+                        </div>
+                        <div class="answer">
+                            <span class="highlight">No necesariamente</span> • Más bien <strong>describe una realidad</strong> de su tiempo<br>
+                            Refleja el <strong>ascenso de la burguesía comercial</strong><br>
+                            Muestra cómo el dinero <strong>transforma las relaciones sociales</strong>
+                        </div>
+                    </div>
+                    
+                    <div class="question">
+                        <div class="question-text">
+                            <i class="material-icons">help_outline</i>
+                            <span class="student-name">LYDIA y RACHEL:</span> ¿Por qué un sacerdote escribiría así?
+                        </div>
+                        <div class="answer">
+                            Contradicción entre <strong>rol religioso</strong> y <strong>observación social</strong><br>
+                            Reflexión sobre la <strong>naturaleza humana</strong> más allá de lo dogmático
+                        </div>
+                    </div>
+                    
+                    <div class="bridge-box">
+                        <h3 class="bridge-title">
+                            <i class="material-icons">compare_arrows</i>
+                            Puente a la Parte 2
+                        </h3>
+                        <div class="bridge-text">
+                            Esta pregunta conecta con el análisis ideológico. La contradicción entre un sacerdote que escribe sobre el poder del dinero nos lleva a preguntarnos por las ideas y valores que estaban cambiando en la sociedad del siglo XIV.
+                        </div>
+                    </div>
+                    
+                    <div class="image-container">
+                        <img src="https://sfile.chatglm.cn/images-ppt/06607768cae3.jpg" alt="Escena medieval de comercio">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

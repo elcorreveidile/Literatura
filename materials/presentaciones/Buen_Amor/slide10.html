@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Un libro para todos (y que todos pueden cambiar)</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Crimson+Text:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Crimson Text', serif;
+            color: #3a2a1a;
+            background-color: #f5f0e6;
+        }
+        .slide {
+            width: 1280px;
+            min-height: 720px;
+            position: relative;
+            overflow: hidden;
+            background-color: #f5f0e6;
+            display: flex;
+            flex-direction: column;
+        }
+        .header {
+            padding: 40px 70px 20px;
+        }
+        .title {
+            font-family: 'Cinzel', serif;
+            font-size: 40px;
+            font-weight: 700;
+            color: #6b4c3a;
+            margin-bottom: 10px;
+        }
+        .content {
+            flex-grow: 1;
+            display: flex;
+            padding: 0 70px 40px;
+            gap: 30px;
+        }
+        .left-section {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        .right-section {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        .element-box {
+            display: flex;
+            margin-bottom: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .element-left {
+            background-color: #8b6f5a;
+            color: #f5f0e6;
+            padding: 20px;
+            width: 40%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .element-title {
+            font-size: 22px;
+            font-weight: 600;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+        .element-subtitle {
+            font-size: 18px;
+            opacity: 0.9;
+        }
+        .element-right {
+            padding: 20px;
+            width: 60%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .element-description {
+            font-size: 20px;
+            line-height: 1.4;
+        }
+        .element-description strong {
+            color: #6b4c3a;
+            font-weight: 600;
+        }
+        .analysis-card {
+            background-color: #e6d7c3;
+            border-radius: 8px;
+            padding: 25px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+        }
+        .analysis-title {
+            font-size: 24px;
+            font-weight: 600;
+            color: #6b4c3a;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+        .analysis-title i {
+            margin-right: 10px;
+            color: #8b6f5a;
+        }
+        .analysis-text {
+            font-size: 20px;
+            line-height: 1.5;
+            margin-bottom: 20px;
+        }
+        .analysis-text strong {
+            color: #6b4c3a;
+            font-weight: 600;
+        }
+        .quote {
+            font-style: italic;
+            margin: 15px 0;
+            padding-left: 15px;
+            border-left: 3px solid #8b6f5a;
+            border-radius: 3px;
+        }
+        .bridge-box {
+            background-color: #f0e6d9;
+            border-radius: 8px;
+            padding: 15px;
+            margin-top: 15px;
+            border-left: 4px solid #8b6f5a;
+            border-radius: 4px;
+        }
+        .bridge-title {
+            font-size: 20px;
+            font-weight: 600;
+            color: #6b4c3a;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+        }
+        .bridge-title i {
+            margin-right: 8px;
+            color: #8b6f5a;
+            font-size: 20px;
+        }
+        .bridge-text {
+            font-size: 18px;
+            line-height: 1.4;
+        }
+        .question-card {
+            background-color: #fff;
+            border-radius: 8px;
+            padding: 25px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        .question-title {
+            font-size: 24px;
+            font-weight: 600;
+            color: #6b4c3a;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+        .question-title i {
+            margin-right: 10px;
+            color: #8b6f5a;
+            font-size: 20px;
+        }
+        .student-names {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 15px;
+        }
+        .student-name {
+            background-color: #8b6f5a;
+            color: #f5f0e6;
+            padding: 5px 10px;
+            border-radius: 15px;
+            font-size: 16px;
+            font-weight: 600;
+        }
+        .question-text {
+            font-size: 22px;
+            font-weight: 600;
+            color: #6b4c3a;
+            margin-bottom: 15px;
+            font-style: italic;
+        }
+        .question-options {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        .option {
+            display: flex;
+            align-items: center;
+            background-color: #f9f4ec;
+            border-radius: 8px;
+            padding: 15px;
+        }
+        .option-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: #8b6f5a;
+            color: #f5f0e6;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-right: 15px;
+        }
+        .option-text {
+            font-size: 20px;
+            line-height: 1.4;
+        }
+        .image-container {
+            margin-top: auto;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .image-container img {
+            max-width: 100%;
+            max-height: 180px;
+            border-radius: 4px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+    </style>
+</head>
+<body>
+    <div class="slide">
+        <div class="header">
+            <h1 class="title">Un libro para todos (y que todos pueden cambiar)</h1>
+        </div>
+        <div class="content">
+            <div class="left-section">
+                <div class="element-box">
+                    <div class="element-left">
+                        <h3 class="element-title">
+                            <i class="material-icons">translate</i>
+                            Lenguaje
+                        </h3>
+                        <p class="element-subtitle">Mezcla culto/popular</p>
+                    </div>
+                    <div class="element-right">
+                        <p class="element-description">
+                            <strong>Democratización de la palabra</strong><br>
+                            El castellano como lengua de todos, no solo latín para eruditos
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="element-box">
+                    <div class="element-left">
+                        <h3 class="element-title">
+                            <i class="material-icons">view_module</i>
+                            Estructura
+                        </h3>
+                        <p class="element-subtitle">Episódica, abierta</p>
+                    </div>
+                    <div class="element-right">
+                        <p class="element-description">
+                            <strong>Obra colectiva, no dogmática</strong><br>
+                            Invita a la participación y reinterpretación
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="analysis-card">
+                    <h2 class="analysis-title">
+                        <i class="material-icons">psychology</i>
+                        Análisis combinado
+                    </h2>
+                    <div class="analysis-text">
+                        <p>Juan Ruiz escribe en <span class="highlight">castellano</span>, no en latín. Mezcla <span class="highlight">religión y groserías</span>.</p>
+                        
+                        <div class="quote">
+                            "La palabra no es solo del Papa o de la Universidad, es mía, es de la calle."
+                        </div>
+                        
+                        <p>Al final, <span class="highlight">invita a otros a escribir más</span>. ¡Es como un Wikipedia medieval!</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="right-section">
+                <div class="question-card">
+                    <h2 class="question-title">
+                        <i class="material-icons">help_outline</i>
+                        Pregunta para reflexionar
+                    </h2>
+                    
+                    <div class="student-names">
+                        <div class="student-name">JAMIE</div>
+                        <div class="student-name">ETHAN</div>
+                        <div class="student-name">ANNALISE</div>
+                        <div class="student-name">LYDIA</div>
+                        <div class="student-name">RACHEL</div>
+                    </div>
+                    
+                    <div class="question-text">
+                        ¿Por qué es revolucionario que un libro sea "abierto" y no "dogmático"?
+                    </div>
+                    
+                    <div class="question-options">
+                        <div class="option">
+                            <div class="option-icon">
+                                <i class="material-icons">arrow_right</i>
+                            <div class="option-text">
+                                <strong>Ruptura con la autoridad eclesiástica</strong> como única fuente de verdad
+                            </div>
+                        </div>
+                        
+                        <div class="option">
+                            <div class="option-icon">
+                                <i class="material-icons">arrow_right</i>
+                            <div class="option-text">
+                                <strong>Pluralidad de interpretaciones</strong> frente a la verdad única
+                            </div>
+                        </div>
+                        
+                        <div class="option">
+                            <div class="option-icon">
+                                <i class="material-icons">arrow_right</i>
+                            <div class="option-text">
+                                <strong>Participación del lector</strong> en la construcción del significado
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="concept-text">
+                        <p>Este enfoque <span class="highlight">democratiza el conocimiento</span> y anticipa la modernidad literaria, donde el texto no es un objeto sagrado sino un <span class="highlight">espacio de diálogo</span>.</p>
+                    </div>
+                    
+                    <div class="image-container">
+                        <img src="https://sfile.chatglm.cn/images-ppt/06e5c308bdb7.jpg" alt="Manuscrito medieval del Libro de Buen Amor">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

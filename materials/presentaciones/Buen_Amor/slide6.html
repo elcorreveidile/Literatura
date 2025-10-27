@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Análisis de Poema 1: La Introducción</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Crimson+Text:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Crimson Text', serif;
+            color: #3a2a1a;
+            background-color: #f5f0e6;
+        }
+        .slide {
+            width: 1280px;
+            min-height: 720px;
+            position: relative;
+            overflow: hidden;
+            background-color: #f5f0e6;
+            display: flex;
+            flex-direction: column;
+        }
+        .header {
+            padding: 40px 70px 20px;
+        }
+        .title {
+            font-family: 'Cinzel', serif;
+            font-size: 40px;
+            font-weight: 700;
+            color: #6b4c3a;
+            margin-bottom: 10px;
+        }
+        .subtitle {
+            font-size: 22px;
+            font-style: italic;
+            color: #8b6f5a;
+        }
+        .content {
+            flex-grow: 1;
+            display: flex;
+            padding: 0 70px 40px;
+            gap: 30px;
+        }
+        .poem-section {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        .poem-card {
+            background-color: #e6d7c3;
+            border-radius: 8px;
+            padding: 25px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        .poem-title {
+            font-size: 24px;
+            font-weight: 600;
+            color: #6b4c3a;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+        .poem-title i {
+            margin-right: 10px;
+            color: #8b6f5a;
+        }
+        .poem-text {
+            font-size: 20px;
+            line-height: 1.6;
+            margin-bottom: 20px;
+            font-style: italic;
+        }
+        .glossary {
+            background-color: #f0e6d9;
+            border-radius: 8px;
+            padding: 15px;
+        }
+        .glossary-title {
+            font-size: 20px;
+            font-weight: 600;
+            color: #6b4c3a;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+        .glossary-title i {
+            margin-right: 8px;
+            color: #8b6f5a;
+            font-size: 20px;
+        }
+        .glossary-item {
+            display: flex;
+            margin-bottom: 8px;
+        }
+        .glossary-term {
+            font-weight: 600;
+            color: #6b4c3a;
+            margin-right: 8px;
+            min-width: 80px;
+        }
+        .glossary-definition {
+            font-size: 18px;
+        }
+        .analysis-section {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        .analysis-card {
+            background-color: #fff;
+            border-radius: 8px;
+            padding: 25px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        .analysis-title {
+            font-size: 24px;
+            font-weight: 600;
+            color: #6b4c3a;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+        .analysis-title i {
+            margin-right: 10px;
+            color: #8b6f5a;
+        }
+        .question {
+            margin-bottom: 20px;
+        }
+        .question-text {
+            font-size: 20px;
+            font-weight: 600;
+            color: #6b4c3a;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: flex-start;
+        }
+        .question-text i {
+            margin-right: 8px;
+            color: #8b6f5a;
+            font-size: 20px;
+            margin-top: 3px;
+        }
+        .student-name {
+            color: #8b6f5a;
+            font-weight: 600;
+            margin-right: 5px;
+        }
+        .answer {
+            font-size: 20px;
+            line-height: 1.4;
+            margin-left: 28px;
+        }
+        .answer strong {
+            color: #6b4c3a;
+            font-weight: 600;
+        }
+        .image-container {
+            margin-top: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .image-container img {
+            max-width: 100%;
+            max-height: 180px;
+            border-radius: 4px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+    </style>
+</head>
+<body>
+    <div class="slide">
+        <div class="header">
+            <h1 class="title">Análisis de Poema 1: La Introducción</h1>
+            <p class="subtitle">"Bajo la espina crece la noble rosa flor"</p>
+        </div>
+        <div class="content">
+            <div class="poem-section">
+                <div class="poem-card">
+                    <h2 class="poem-title">
+                        <i class="material-icons">menu_book</i>
+                        Texto Original
+                    </h2>
+                    <div class="poem-text">
+                        "Bajo la espina crece la noble rosa flor,<br>
+                        entre las espinas nace la rosa con valor;<br>
+                        así este libro, feo por fuera, mas de gran sabor,<br>
+                        contiene en sí saber de mucho gran primor.<br><br>
+                        
+                        Como so mala capa yace buen bebedor,<br>
+                        así, so mal tabardo, está el Buen Amor."
+                    </div>
+                    
+                    <div class="glossary">
+                        <h3 class="glossary-title">
+                            <i class="material-icons">translate</i>
+                            Glosario
+                        </h3>
+                        <div class="glossary-item">
+                            <div class="glossary-term">Espina:</div>
+                            <div class="glossary-definition">Dificultad, obstáculo</div>
+                        </div>
+                        <div class="glossary-item">
+                            <div class="glossary-term">Rosa:</div>
+                            <div class="glossary-definition">Belleza, valor</div>
+                        </div>
+                        <div class="glossary-item">
+                            <div class="glossary-term">Primor:</div>
+                            <div class="glossary-definition">Calidad, excelencia</div>
+                        </div>
+                        <div class="glossary-item">
+                            <div class="glossary-term">Tabardo:</div>
+                            <div class="glossary-definition">Prenda de vestir exterior</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="analysis-section">
+                <div class="analysis-card">
+                    <h2 class="analysis-title">
+                        <i class="material-icons">psychology</i>
+                        Análisis Guiado
+                    </h2>
+                    
+                    <div class="question">
+                        <div class="question-text">
+                            <i class="material-icons">help_outline</i>
+                            <span class="student-name">JAMIE:</span> ¿Qué metáfora usa? ¿Qué significa?
+                        </div>
+                        <div class="answer">
+                            <strong>Belleza en la dificultad.</strong> La rosa (belleza, valor) crece entre espinas (obstáculos, dificultades).
+                        </div>
+                    </div>
+                    
+                    <div class="question">
+                        <div class="question-text">
+                            <i class="material-icons">help_outline</i>
+                            <span class="student-name">ETHAN:</span> ¿Cómo se relaciona con el libro?
+                        </div>
+                        <div class="answer">
+                            <strong>El valor está escondido.</strong> El libro parece "feo por fuera" pero contiene "saber de mucho gran primor".
+                        </div>
+                    </div>
+                    
+                    <div class="question">
+                        <div class="question-text">
+                            <i class="material-icons">help_outline</i>
+                            <span class="student-name">ANNALISE:</span> ¿Qué contradicciones observas?
+                        </div>
+                        <div class="answer">
+                            <strong>Apariencia vs. contenido.</strong> Libro "feo por fuera" con "gran sabor" dentro, como "mala capa" con "buen bebedor".
+                        </div>
+                    </div>
+                    
+                    <div class="question">
+                        <div class="question-text">
+                            <i class="material-icons">help_outline</i>
+                            <span class="student-name">LYDIA y RACHEL:</span> ¿Qué "saber" podría haber dentro?
+                        </div>
+                        <div class="answer">
+                            Crítica social, reflexión sobre naturaleza humana, ambigüedad entre lo sagrado y lo profano.
+                        </div>
+                    </div>
+                    
+                    <div class="image-container">
+                        <img src="https://sfile.chatglm.cn/images-ppt/48153af3a718.jpg" alt="Ilustración medieval de una rosa entre espinas">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

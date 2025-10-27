@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>¡Al tribunal! El Arcipreste es culpable de...</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Crimson+Text:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Crimson Text', serif;
+            color: #3a2a1a;
+            background-color: #f5f0e6;
+        }
+        .slide {
+            width: 1280px;
+            min-height: 720px;
+            position: relative;
+            overflow: hidden;
+            background-color: #f5f0e6;
+            display: flex;
+            flex-direction: column;
+        }
+        .header {
+            padding: 40px 70px 20px;
+        }
+        .title {
+            font-family: 'Cinzel', serif;
+            font-size: 40px;
+            font-weight: 700;
+            color: #6b4c3a;
+            margin-bottom: 10px;
+        }
+        .content {
+            flex-grow: 1;
+            display: flex;
+            padding: 0 70px 40px;
+            gap: 30px;
+        }
+        .left-section {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        .right-section {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        .instructions-card {
+            background-color: #e6d7c3;
+            border-radius: 8px;
+            padding: 25px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        .instructions-title {
+            font-size: 24px;
+            font-weight: 600;
+            color: #6b4c3a;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+        .instructions-title i {
+            margin-right: 10px;
+            color: #8b6f5a;
+            font-size: 24px;
+        }
+        .instructions-text {
+            font-size: 20px;
+            line-height: 1.5;
+            margin-bottom: 15px;
+        }
+        .instructions-text strong {
+            color: #6b4c3a;
+            font-weight: 600;
+        }
+        .teams-container {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+        .team-card {
+            flex: 1;
+            background-color: #fff;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            display: flex;
+            flex-direction: column;
+        }
+        .team-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        .team-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: #8b6f5a;
+            color: #f5f0e6;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-right: 15px;
+        }
+        .team-title {
+            font-size: 22px;
+            font-weight: 600;
+            color: #6b4c3a;
+        }
+        .team-members {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 15px;
+        }
+        .team-member {
+            background-color: #f0e6d9;
+            color: #6b4c3a;
+            padding: 5px 10px;
+            border-radius: 15px;
+            font-size: 18px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+        }
+        .team-member i {
+            font-size: 16px;
+            margin-right: 5px;
+        }
+        .team-list {
+            list-style: none;
+        }
+        .team-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 12px;
+            font-size: 20px;
+        }
+        .team-item i {
+            margin-right: 8px;
+            margin-top: 3px;
+            font-size: 18px;
+        }
+        .prosecution-item i {
+            color: #a0522d;
+            margin-right: 8px;
+            margin-top: 3px;
+            font-size: 18px;
+        }
+        .defense-item i {
+            color: #4682b4;
+            margin-right: 8px;
+            margin-top: 3px;
+            font-size: 18px;
+        }
+        .team-item i {
+            color: #8b6f5a;
+            margin-right: 8px;
+            margin-top: 3px;
+            font-size: 18px;
+        }
+        .judge-card {
+            background-color: #f0e6d9;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        .judge-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: #8b6f5a;
+            color: #f5f0e6;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-right: 15px;
+        }
+        .judge-icon i {
+            font-size: 30px;
+        }
+        .judge-info {
+            flex-grow: 1;
+        }
+        .judge-title {
+            font-size: 22px;
+            font-weight: 600;
+            color: #6b4c3a;
+            margin-bottom: 8px;
+        }
+        .judge-description {
+            font-size: 20px;
+            line-height: 1.4;
+        }
+        }
+        .timeline-card {
+            background-color: #fff;
+            border-radius: 8px;
+            padding: 25px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        .timeline-title {
+            font-size: 24px;
+            font-weight: 600;
+            color: #6b4c3a;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+        .timeline-title i {
+            margin-right: 10px;
+            color: #8b6f5a;
+            font-size: 24px;
+        }
+        .steps-container {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        .step-item {
+            display: flex;
+            align-items: flex-start;
+        }
+        .step-number {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background-color: #8b6f5a;
+            color: #f5f0e6;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-weight: 600;
+            margin-right: 15px;
+            flex-shrink: 0;
+        }
+        .step-text {
+            font-size: 20px;
+            line-height: 1.4;
+        }
+        .step-text strong {
+            color: #6b4c3a;
+            font-weight: 600;
+        }
+        .image-container {
+            margin-top: auto;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .image-container img {
+            max-width: 100%;
+            max-height: 200px;
+            border-radius: 4px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+    </style>
+</head>
+<body>
+    <div class="slide">
+        <div class="header">
+            <h1 class="title">¡Al tribunal! El Arcipreste es culpable de...</h1>
+        </div>
+        <div class="content">
+            <div class="left-section">
+                <div class="instructions-card">
+                    <h2 class="instructions-title">
+                        <i class="material-icons">gavel</i>
+                        Instrucciones
+                    </h2>
+                    <div class="instructions-text">
+                        <p>Dividimos la clase en dos grupos:</p>
+                    </div>
+                    
+                    <div class="teams-container">
+                        <div class="team-card">
+                            <div class="team-header">
+                                <div class="team-icon prosecution-icon">
+                                    <i class="material-icons">gavel</i>
+                                </div>
+                                <h3 class="team-title">Fiscales</h3>
+                            </div>
+                            <div class="team-members">
+                                <div class="team-member"><i class="material-icons">person</i>ANNALISE</div>
+                                <div class="team-member"><i class="material-icons">person</i>LYDIA</div>
+                            </div>
+                            <ul class="team-list">
+                                <li class="team-item prosecution-item">
+                                    <i class="material-icons">arrow_right</i>
+                                    <span>Clérigo hipócrita</span>
+                                </li>
+                                <li class="team-item prosecution-item">
+                                    <i class="material-icons">arrow_right</i>
+                                    <span>Inmoral</span>
+                                </li>
+                                <li class="team-item prosecution-item">
+                                    <i class="material-icons">arrow_right</i>
+                                    <span>Mal ejemplo para fieles</span>
+                                </li>
+                                <li class="team-item prosecution-item">
+                                    <i class="material-icons">arrow_right</i>
+                                    <span>Basado en <span class="highlight">teocentrismo</span></span>
+                                </li>
+                            </ul>
+                        </div>
+                        
+                        <div class="team-card">
+                            <div class="team-header">
+                                <div class="team-icon defense-icon">
+                                    <i class="material-icons">balance</i>
+                                </div>
+                                <h3 class="team-title">Defensores</h3>
+                            </div>
+                            <div class="team-members">
+                                <div class="team-member"><i class="material-icons">person</i>JAMIE</div>
+                                <div class="team-member"><i class="material-icons">person</i>RACHEL</div>
+                            </div>
+                            <ul class="team-list">
+                                <li class="team-item defense-item">
+                                    <i class="material-icons">arrow_right</i>
+                                    <span>Crítica social brillante</span>
+                                </li>
+                                <li class="team-item defense-item">
+                                    <i class="material-icons">arrow_right</i>
+                                    <span>Obra de arte</span>
+                                </li>
+                                <li class="team-item defense-item">
+                                    <i class="material-icons">arrow_right</i>
+                                    <span>Libertad individual</span>
+                                </li>
+                                <li class="team-item defense-item">
+                                    <i class="material-icons">arrow_right</i>
+                                    <span>Basado en <span class="highlight">deseo individual</span></span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="judge-card">
+                        <div class="judge-icon">
+                            <div class="judge-icon">
+                                <i class="material-icons">account_balance</i>
+                            </div>
+                        </div>
+                        <div class="judge-info">
+                            <h3 class="judge-title">El Juez</h3>
+                            <p class="judge-description">
+                                ETHANAL hará preguntas a ambos y dará un veredicto final
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="right-section">
+                <div class="timeline-card">
+                    <h2 class="timeline-title">
+                        <i class="material-icons">schedule</i>
+                        Desarrollo del juicio
+                    </h2>
+                    
+                    <div class="steps-container">
+                        <div class="step-item">
+                            <div class="step-number">1</div>
+                            <div class="step-text">
+                                <strong>Preparación (5 min)</strong><br>
+                                Cada equipo prepara sus argumentos usando los poemas analizados
+                            </div>
+                        </div>
+                        <div class="step-item">
+                            <div class="step-number">2</div>
+                            <div class="step-text">
+                                <strong>Alegatos iniciales (2 min)</strong><br>
+                                Cada equipo presenta su postura principal
+                            </div>
+                        </div>
+                        <div class="step-item">
+                            <div class="step-number">3</div>
+                            <div class="step-text">
+                                <strong>Debate (3 min)</strong><br>
+                                Contrargumentos y refutaciones
+                            </div>
+                        </div>
+                        <div class="step-item">
+                            <div class="step-number">4</div>
+                            <div class="step-text">
+                                <strong>Veredicto del juez</strong><br>
+                                ETHANAL emite su decisión final con justificación
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="instructions">
+                        <p><strong>Objetivo:</strong> Explorar la dualidad del Arcipreste como reflejo de la transición ideológica del siglo XIV entre teocentrismo y antropocentrismo.</p>
+                    </div>
+                    
+                    <div class="image-container">
+                        <img src="https://sfile.chatglm.cn/images-ppt/d741a39943d7.jpg" alt="Ilustración de juicio medieval">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

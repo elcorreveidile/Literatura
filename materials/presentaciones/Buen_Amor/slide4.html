@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>¿Qué es el Libro de Buen Amor?</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Crimson+Text:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Crimson Text', serif;
+            color: #3a2a1a;
+            background-color: #f5f0e6;
+        }
+        .slide {
+            width: 1280px;
+            min-height: 720px;
+            position: relative;
+            overflow: hidden;
+            background-color: #f5f0e6;
+            display: flex;
+            flex-direction: column;
+        }
+        .header {
+            padding: 40px 70px 20px;
+        }
+        .title {
+            font-family: 'Cinzel', serif;
+            font-size: 40px;
+            font-weight: 700;
+            color: #6b4c3a;
+            margin-bottom: 10px;
+        }
+        .content {
+            flex-grow: 1;
+            display: flex;
+            padding: 0 70px 40px;
+            gap: 30px;
+        }
+        .left-section {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        .right-section {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        .description-card {
+            background-color: #e6d7c3;
+            border-radius: 8px;
+            padding: 25px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        .description-title {
+            font-size: 24px;
+            font-weight: 600;
+            color: #6b4c3a;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+        .description-title i {
+            margin-right: 10px;
+            color: #8b6f5a;
+        }
+        .description-text {
+            font-size: 20px;
+            line-height: 1.5;
+            margin-bottom: 20px;
+        }
+        .description-text strong {
+            color: #6b4c3a;
+            font-weight: 600;
+        }
+        .highlight {
+            background-color: rgba(201, 169, 126, 0.3);
+            padding: 2px 4px;
+            border-radius: 3px;
+        }
+        .structure-card {
+            background-color: #fff;
+            border-radius: 8px;
+            padding: 25px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        .structure-title {
+            font-size: 24px;
+            font-weight: 600;
+            color: #6b4c3a;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+        .structure-title i {
+            margin-right: 10px;
+            color: #8b6f5a;
+        }
+        .structure-list {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        .structure-item {
+            display: flex;
+            align-items: flex-start;
+        }
+        .structure-number {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background-color: #8b6f5a;
+            color: #f5f0e6;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-weight: 600;
+            margin-right: 15px;
+            flex-shrink: 0;
+        }
+        .structure-text {
+            font-size: 20px;
+            line-height: 1.4;
+        }
+        .structure-text strong {
+            color: #6b4c3a;
+            font-weight: 600;
+        }
+        .image-container {
+            margin-top: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .image-container img {
+            max-width: 100%;
+            max-height: 200px;
+            border-radius: 4px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+    </style>
+</head>
+<body>
+    <div class="slide">
+        <div class="header">
+            <h1 class="title">¿Qué es el Libro de Buen Amor?</h1>
+        </div>
+        <div class="content">
+            <div class="left-section">
+                <div class="description-card">
+                    <h2 class="description-title">
+                        <i class="material-icons">menu_book</i>
+                        Descripción general
+                    </h2>
+                    <div class="description-text">
+                        <p>Obra <span class="highlight">miscelánea</span> escrita por Juan Ruiz entre <strong>1330 y 1343</strong></p>
+                        <p>Combina:</p>
+                        <ul style="margin-left: 20px; margin-top: 10px; margin-bottom: 10px;">
+                            <li>Narración autobiográfica</li>
+                            <li>Poemas líricos</li>
+                            <li>Fábulas y alegorías</li>
+                            <li>Sermones moralizantes</li>
+                        </ul>
+                        <p>Estructura <span class="highlight">episódica y abierta</span> que permite múltiples interpretaciones</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="right-section">
+                <div class="structure-card">
+                    <h2 class="structure-title">
+                        <i class="material-icons">view_module</i>
+                        Elementos estructurales
+                    </h2>
+                    
+                    <div class="structure-list">
+                        <div class="structure-item">
+                            <div class="structure-number">1</div>
+                            <div class="structure-text">
+                                <strong>Preliminares</strong> - Introducción y propósito
+                            </div>
+                        </div>
+                        
+                        <div class="structure-item">
+                            <div class="structure-number">2</div>
+                            <div class="structure-text">
+                                <strong>Reflexiones sobre el amor</strong> - Teoría amorosa y consejos de Don Amor
+                            </div>
+                        </div>
+                        
+                        <div class="structure-item">
+                            <div class="structure-number">3</div>
+                            <div class="structure-text">
+                                <strong>Experiencias amorosas</strong> - Aventuras del Arcipreste
+                            </div>
+                        </div>
+                        
+                        <div class="structure-item">
+                            <div class="structure-number">4</div>
+                            <div class="structure-text">
+                                <strong>Batalla de don Carnal y doña Cuaresma</strong>
+                            </div>
+                        </div>
+                        
+                        <div class="structure-item">
+                            <div class="structure-number">5</div>
+                            <div class="structure-number">6</div>
+                            <div class="structure-text">
+                                <strong>Finales</strong> - Alabanza a la Virgen y composiciones jocosas
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="image-container">
+                        <img src="https://sfile.chatglm.cn/images-ppt/06e5c308bdb7.jpg" alt="Manuscrito medieval del Libro de Buen Amor">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

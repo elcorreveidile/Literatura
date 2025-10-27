@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>El Arcipreste: Un hombre de su tiempo... y de todos los tiempos</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Crimson+Text:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Crimson Text', serif;
+            color: #3a2a1a;
+            background-color: #f5f0e6;
+        }
+        .slide {
+            width: 1280px;
+            min-height: 720px;
+            position: relative;
+            overflow: hidden;
+            background-color: #f5f0e6;
+            display: flex;
+            flex-direction: column;
+        }
+        .header {
+            padding: 40px 70px 20px;
+        }
+        .title {
+            font-family: 'Cinzel', serif;
+            font-size: 40px;
+            font-weight: 700;
+            color: #6b4c3a;
+            margin-bottom: 10px;
+        }
+        .content {
+            flex-grow: 1;
+            display: flex;
+            padding: 0 70px 40px;
+            gap: 30px;
+        }
+        .left-section {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        .right-section {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        .summary-card {
+            background-color: #e6d7c3;
+            border-radius: 8px;
+            padding: 25px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        .summary-title {
+            font-size: 24px;
+            font-weight: 600;
+            color: #6b4c3a;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+        .summary-title i {
+            margin-right: 10px;
+            color: #8b6f5a;
+            font-size: 24px;
+        }
+        .key-ideas {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        .key-idea {
+            display: flex;
+            align-items: flex-start;
+        }
+        .key-idea i {
+            color: #8b6f5a;
+            margin-right: 10px;
+            margin-top: 3px;
+            font-size: 20px;
+        }
+        .key-idea-text {
+            font-size: 20px;
+            line-height: 1.4;
+        }
+        .key-idea-text strong {
+            color: #6b4c3a;
+            font-weight: 600;
+        }
+        .connection-card {
+            background-color: #f0e6d9;
+            border-radius: 8px;
+            padding: 25px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+        }
+        .connection-title {
+            font-size: 24px;
+            font-weight: 600;
+            color: #6b4c3a;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+        .connection-title i {
+            margin-right: 10px;
+            color: #8b6f5a;
+            font-size: 24px;
+        }
+        .connection-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 15px;
+        }
+        .connection-item i {
+            color: #8b6f5a;
+            margin-right: 10px;
+            margin-top: 3px;
+            font-size: 20px;
+        }
+        .connection-text {
+            font-size: 20px;
+            line-height: 1.4;
+        }
+        .connection-text strong {
+            color: #6b4c3a;
+            font-weight: 600;
+        }
+        .reflection-card {
+            background-color: #f0e6d9;
+            border-radius: 8px;
+            padding: 25px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+        }
+        .reflection-title {
+            font-size: 24px;
+            font-weight: 600;
+            color: #6b4c3a;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+        .reflection-title i {
+            margin-right: 10px;
+            color: #8b6f5a;
+            font-size: 24px;
+        }
+        .reflection-text {
+            font-size: 20px;
+            line-height: 1.5;
+            font-style: italic;
+        }
+        .reflection-text strong {
+            color: #6b4c3a;
+            font-weight: 600;
+        }
+        .image-container {
+            margin-top: auto;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .image-container img {
+            max-width: 100%;
+            max-height: 200px;
+            border-radius: 4px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+    </style>
+</head>
+<body>
+    <div class="slide">
+        <div class="header">
+            <h1 class="title">Juan Ruiz, Arcipreste de Hita: ¿Santo o Pícaro?</h1>
+            <p class="subtitle">Un análisis ideológico del Libro de Buen Amor (siglo XIV)</p>
+        </div>
+        <div class="content">
+            <div class="left-section">
+                <div class="summary-card">
+                    <h2 class="summary-title">
+                        <i class="material-icons">summarize</i>
+                        Ideas clave
+                    </h2>
+                    
+                    <div class="key-ideas">
+                        <div class="key-idea">
+                            <i class="material-icons">arrow_right</i>
+                            <div class="key-idea-text">
+                                <strong>Transición feudal-burguesa</strong> • Cambio social y económico del siglo XIV
+                            </div>
+                        </div>
+                        <div class="key-idea">
+                            <i class="material-icons">arrow_right</i>
+                            <div class="key-idea-text">
+                                <strong>Lucha entre fe y deseo</strong> • Teocentrismo vs. antropocentrismo
+                            </div>
+                        </div>
+                        <div class="key-idea">
+                            <i class="material-icons">arrow_right</i>
+                            <div class="key-idea-text">
+                                <strong>Democratización de la palabra</strong> • Castellano para todos, no solo eruditos
+                            </div>
+                        </div>
+                        <div class="key-idea">
+                            <i class="material-icons">arrow_right</i>
+                            <div class="key-idea-text">
+                                <strong>Obra abierta</strong> • No dogmática, no dogmática
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="reflection-card">
+                    <h2 class="reflection-title">
+                        <i class="material-icons">psychology</i>
+                        Reflexión final
+                    </h2>
+                    
+                    <div class="reflection-text">
+                        <p>El Libro de Buen Amor no nos da respuestas fáciles. Nos muestra las <span class="highlight">contradicciones de ser humano</span>.</p>
+                        <p>Más de 700 años después, todavía podemos debatir sobre él. ¿Es un libro santo o un libro pecador? La respuesta, como en la vida, es: <strong>sí, es las dos cosas</strong>.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="right-section">
+                <div class="quote-card">
+                    <h2 class="quote-title">
+                        <i class="material-icons">format_quote</i>
+                        Cita final
+                    </h2>
+                    
+                    <div class="quote-text">
+                        "Ande de mano en mano, téngalo quien pidiere, cual pelota entre niñas, tómelo quien pudiere."
+                    </div>
+                    
+                    <div class="quote-author">
+                        — Juan Ruiz, Arcipreste de Hita
+                    </div>
+                    
+                    <div class="key-ideas">
+                        <div class="key-idea">
+                            <i class="material-icons">arrow_right</i>
+                            <strong>Legado</strong> • Obra viva que sigue siendo reinterpretada
+                        </div>
+                        <div class="key-idea">
+                            <i class="material-icons">arrow_right</i>
+                            <strong>Relevancia</strong> • Reflexiones atemporales y humanas
+                        </div>
+                        <div class="key-idea">
+                            <i class="material-icons">arrow_right</i>
+                            <strong>Modernidad literaria</strong> • Anticipa la modernidad
+                        </div>
+                    </div>
+                    
+                    <div class="image-container">
+                        <img src="https://sfile.chatglm.cn/images-ppt/a37b9022ff83.jpg" alt="Ilustración del Libro de Buen Amor">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

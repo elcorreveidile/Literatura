@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personajes Principales del Libro de Buen Amor</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Crimson+Text:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: ' <span class="highlight">Crimson Text</span>, serif;
+            color: #3a2a1a;
+            background-color: #f5f0e6;
+        }
+        .slide {
+            width: 1280px;
+            min-height: 720px;
+            position: relative;
+            overflow: hidden;
+            background-color: #f5f0e6;
+            display: flex;
+            flex-direction: column;
+        }
+        .header {
+            padding: 40px 70px 20px;
+        }
+        .title {
+            font-family: 'Cinzel', serif;
+            font-size: 40px;
+            font-weight: 700;
+            color: #6b4c3a;
+            margin-bottom: 10px;
+        }
+        .content {
+            flex-grow: 1;
+            display: flex;
+            padding: 0 70px 40px;
+        }
+        .characters-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            flex-grow: 1;
+        }
+        .character-card {
+            background-color: #fff;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            display: flex;
+            flex-direction: column;
+        }
+        .character-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        .character-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: #8b6f5a;
+            color: #f5f0e6;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-right: 15px;
+        }
+        .character-name {
+            font-size: 22px;
+            font-weight: 600;
+            color: #6b4c3a;
+        }
+        .character-description {
+            font-size: 20px;
+            line-height: 1.4;
+            flex-grow: 1;
+        }
+        .character-description strong {
+            color: #6b4c3a;
+            font-weight: 600;
+        }
+        .highlight {
+            background-color: rgba(201, 169, 126, 0.3);
+            padding: 2px 4px;
+            border-radius: 3px;
+        }
+        .image-container {
+            margin-top: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .image-container img {
+            max-width: 100%;
+            max-height: 200px;
+            border-radius: 4px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+    </style>
+</head>
+<body>
+    <div class="slide">
+        <div class="header">
+            <h1 class="title">Personajes Principales del Libro de Buen Amor</h1>
+        </div>
+        <div class="content">
+            <div class="characters-grid">
+                <div class="character-card">
+                    <div class="character-header">
+                        <div class="character-icon">
+                            <i class="material-icons">person</i>
+                        </div>
+                        <h3 class="character-name">El Arcipreste</h3>
+                    </div>
+                    <div class="character-description">
+                        <p><strong>Narrador y protagonista</strong></p>
+                        <p>Clérigo <span class="highlight">contradictorio</span> que busca el amor y el placer</p>
+                        <p>Representa la transición entre lo sagrado y lo profano</p>
+                    </div>
+                </div>
+                
+                <div class="character-card">
+                    <div class="character-header">
+                        <div class="character-icon">
+                            <i class="material-icons">favorite</i>
+                        </div>
+                        <h3 class="character-name">Don Amor</h3>
+                    </div>
+                    <div class="character-description">
+                        <p><strong>Personificación del amor</strong></p>
+                        <p>Da <span class="highlight">consejos</span> al Arcipreste sobre cómo conquistar mujeres</p>
+                        <p>Autoridad cuestionada que puede ser embustero</p>
+                    </div>
+                </div>
+                
+                <div class="character-card">
+                    <div class="character-header">
+                        <div class="character-icon">
+                            <i class="material-icons">elderly_woman</i>
+                        </div>
+                        <h3 class="character-name">Trotaconventos</h3>
+                    </div>
+                    <div class="character-description">
+                        <p><strong>Vieja alcahueta</strong></p>
+                        <p>Ayuda al Arcipreste en sus <span class="highlight">conquistas amorosas</span></p>
+                        <p>Antecedente directo de La Celestina</p>
+                    </div>
+                </div>
+                
+                <div class="character-card">
+                    <div class="character-header">
+                        <div class="character-icon">
+                            <i class="material-icons">face</i>
+                        </div>
+                        <h3 class="character-name">Don Melón</h3>
+                    </div>
+                    <div class="character-description">
+                        <p><strong>Transformación del Arcipreste</strong></p>
+                        <p>Nombre que usa en sus <span class="highlight">aventuras amorosas</span></p>
+                        <p>Conquista a doña Endrina con ayuda de Trotaconventos</p>
+                    </div>
+                </div>
+                
+                <div class="character-card">
+                    <div class="character-header">
+                        <div class="character-icon">
+                            <i class="material-icons">face_3</i>
+                        </div>
+                        <h3 class="character-name">Doña Endrina</h3>
+                    </div>
+                    <div class="character-description">
+                        <p><strong>Joven conquistada</strong></p>
+                        <p>Representa la <span class="highlight">mujer ideal</span> según los consejos de Don Amor</p>
+                        <p>Finalmente se casa con don Melón</p>
+                    </div>
+                </div>
+                
+                <div class="character-card">
+                    <div class="character-header">
+                        <div class="character-icon">
+                            <i class="material-icons">face_6</i>
+                        </div>
+                        <h3 class="character-name">Aldara</h3>
+                    </div>
+                    <div class="character-description">
+                        <p><strong>Serrana fea de Tablada</strong></p>
+                        <p>Descripción <span class="highlight">extremadamente detallada</span> y poco halagadora</p>
+                        <p>Representa la fealdad y el fracaso amoroso</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="image-container">
+                <img src="https://sfile.chatglm.cn/images-ppt/42cd0d037afe.jpg" alt="Ilustración medieval del Libro de Buen Amor">
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+ </html>

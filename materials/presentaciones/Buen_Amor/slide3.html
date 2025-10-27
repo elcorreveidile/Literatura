@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>¿Quién fue Juan Ruiz?</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Crimson+Text:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Crimson Text', serif;
+            color: #3a2a1a;
+            background-color: #f5f0e6;
+        }
+        .slide {
+            width: 1280px;
+            min-height: 720px;
+            position: relative;
+            overflow: hidden;
+            background-color: #f5f0e6;
+            display: flex;
+            flex-direction: column;
+        }
+        .header {
+            padding: 40px 70px 20px;
+        }
+        .title {
+            font-family: 'Cinzel', serif;
+            font-size: 40px;
+            font-width: 700;
+            color: #6b4c3a;
+            margin-bottom: 10px;
+        }
+        .content {
+            flex-grow: 1;
+            display: flex;
+            padding: 0 70px 40px;
+            gap: 30px;
+        }
+        .bio-section {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        .bio-card {
+            background-color: #e6d7c3;
+            border-radius: 8px;
+            padding: 25px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        .bio-title {
+            font-size: 24px;
+            font-weight: 600;
+            color: #6b4c3a;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+        .bio-title i {
+            margin-right: 10px;
+            color: #8b6f5a;
+        }
+        .bio-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 15px;
+        }
+        .bio-item i {
+            color: #8b6f5a;
+            margin-right: 10px;
+            margin-top: 3px;
+        }
+        .bio-text {
+            font-size: 20px;
+            line-height: 1.4;
+        }
+        .bio-text strong {
+            color: #6b4c3a;
+            font-weight: 600;
+        }
+        .highlight {
+            background-color: rgba(201, 169, 126, 0.3);
+            padding: 2px 4px;
+            border-radius: 3px;
+        }
+        .map-section {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        .map-container {
+            background-color: #fff;
+            border-radius: 8px;
+            padding: 25px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        .map-title {
+            font-size: 24px;
+            font-weight: 600;
+            color: #6b4c3a;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+        .map-title i {
+            margin-right: 10px;
+            color: #8b6f5a;
+        }
+        .map-image {
+            flex-grow: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 15px;
+            position: relative;
+        }
+        .map-image img {
+            max-width: 100%;
+            max-height: 300px;
+            border-radius: 4px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .context-box {
+            background-color: #f0e6d9;
+            border-radius: 8px;
+            padding: 15px;
+            margin-top: 10px;
+        }
+        .context-title {
+            font-size: 20px;
+            font-weight: 600;
+            color: #6b4c3a;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+        .context-title i {
+            margin-right: 8px;
+            color: #8b6f5a;
+            font-size: 20px;
+        }
+        .context-text {
+            font-size: 20px;
+            line-height: 1.4;
+        }
+        .context-text strong {
+            color: #6b4c3a;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+    <div class="slide">
+        <div class="header">
+            <h1 class="title">¿Quién fue Juan Ruiz?</h1>
+        </div>
+        <div class="content">
+            <div class="bio-section">
+                <div class="bio-card">
+                    <h2 class="bio-title">
+                        <i class="material-icons">person</i>
+                        Datos biográficos
+                    </h2>
+                    <div class="bio-item">
+                        <i class="material-icons">event</i>
+                        <div class="bio-text"><strong>Nacimiento:</strong> c. 1283 en Alcalá de Henares</div>
+                    </div>
+                    <div class="bio-item">
+                        <i class="material-icons">event</i>
+                        <div class="bio-text"><strong>Fallecimiento:</strong> c. 1350</div>
+                    </div>
+                    <div class="bio-item">
+                        <i class="material-icons">work</i>
+                        <div class="bio-text"><strong>Profesión:</strong> Clérigo y poeta</div>
+                    </div>
+                    <div class="bio-item">
+                        <i class="material-icons">location_city</i>
+                        <div class="bio-text"><strong>Cargo:</strong> Arcipreste de Hita</div>
+                    </div>
+                    <div class="bio-item">
+                        <i class="material-icons">gavel</i>
+                        <div class="bio-text"><strong>Encarcelamiento:</strong> Preso por orden del arzobispo de Toledo Gil de Albornoz</div>
+                    </div>
+                    <div class="bio-item">
+                        <i class="material-icons">menu_book</i>
+                        <div class="bio-text"><strong>Obra principal:</strong> Libro de Buen Amor</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="map-section">
+                <div class="map-container">
+                    <h2 class="map-title">
+                        <i class="material-icons">map</i>
+                        Contexto geográfico
+                    </h2>
+                    <div class="map-image">
+                        <img src="https://sfile.chatglm.cn/images-ppt/e63fbb80ed9a.jpg" alt="Mapa de la zona central de España">
+                    </div>
+                    
+                    <div class="context-box">
+                        <h3 class="context-title">
+                            <i class="material-icons">lightbulb</i>
+                            Clave para el análisis
+                        </h3>
+                        <div class="context-text">
+                            <p>Esta región era una <span class="highlight">zona de mucho movimiento</span> con una <span class="highlight">creciente burguesía comercial</span>.</p>
+                            <p>La transición del <strong>orden feudal</strong> a una <strong>sociedad más urbana y comercial</strong> es fundamental para entender la ideología del Libro de Buen Amor.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
