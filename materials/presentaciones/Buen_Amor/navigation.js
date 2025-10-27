@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
     // --- CONFIGURACIÓN DE LA PRESENTACIÓN ---
     // <-- ¡IMPORTANTE! Ajusta este número al total de tus diapositivas
-    const totalSlides = 24; 
+    const totalSlides = 14; 
 
     // --- DETECCIÓN DE DIAPOSITIVA ACTUAL ---
     const currentSlideMatch = window.location.pathname.match(/\/?slide(\d+)\.html/);
