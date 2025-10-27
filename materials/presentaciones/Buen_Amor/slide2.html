@@ -16,15 +16,21 @@
             font-family: 'Crimson Text', serif;
             color: #3a2a1a;
             background-color: #f5f0e6;
+            overflow: hidden;
+            display: flex; /* Cambiado a flex para alinear slide y menú */
         }
         .slide {
-            width: 1280px;
-            min-height: 720px;
+            width: 1000px; /* Reducido para hacer espacio al menú */
+            height: 100vh;
             position: relative;
-            overflow: hidden;
-            background-color: #f5f0e6;
+            background-image: url('https://sfile.chatglm.cn/images-ppt/f71869bec81e.jpg');
+            background-size: cover;
+            background-position: center;
             display: flex;
             flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            flex-shrink: 0; /* Evita que el slide se encoja */
         }
         .header {
             padding: 40px 70px 20px;
