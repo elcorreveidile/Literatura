@@ -1,1 +1,132 @@
-
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contexto histórico</title>
+    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Source Sans Pro', sans-serif;
+            color: #333;
+        }
+        .slide {
+            width: 1280px;
+            min-height: 720px;
+            position: relative;
+            overflow: hidden;
+            background-color: #f8f5f2;
+            display: flex;
+            flex-direction: column;
+        }
+        .header {
+            padding: 40px 70px 20px;
+        }
+        .title {
+            font-size: 40px;
+            font-weight: 700;
+            color: #4a5568;
+            margin-bottom: 10px;
+        }
+        .content {
+            display: flex;
+            flex-grow: 1;
+            padding: 0 70px 40px;
+        }
+        .text-content {
+            flex: 1;
+            padding-right: 30px;
+        }
+        .image-content {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .image-container {
+            width: 100%;
+            height: 400px;
+            overflow: hidden;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        .image-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .event-list {
+            list-style: none;
+            margin-top: 20px;
+        }
+        .event-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 20px;
+        }
+        .event-year {
+            font-size: 24px;
+            font-weight: 700;
+            color: #718096;
+            margin-right: 15px;
+            min-width: 70px;
+        }
+        .event-description {
+            font-size: 20px;
+            line-height: 1.5;
+            color: #4a5568;
+        }
+        .highlight {
+            color: #805ad5;
+            font-weight: 600;
+        }
+        .intro-text {
+            font-size: 20px;
+            line-height: 1.5;
+            color: #4a5568;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="slide">
+        <div class="header">
+            <h1 class="title">Contexto histórico: La transición a una nueva era</h1>
+        </div>
+        <div class="content">
+            <div class="text-content">
+                <p class="intro-text">El <span class="highlight">Renacimiento</span> en España fue un período de grandes cambios que transformaron la sociedad, la cultura y la literatura.</p>
+                <ul class="event-list">
+                    <li class="event-item">
+                        <div class="event-year">1469</div>
+                        <div class="event-description">Unión de los reinos de <span class="highlight">Castilla y Aragón</span> con el matrimonio de Isabel y Fernando</div>
+                    </li>
+                    <li class="event-item">
+                        <div class="event-year">1492</div>
+                        <div class="event-description">Toma de Granada - fin de la <span class="highlight">Reconquista</span></div>
+                    </li>
+                    <li class="event-item">
+                        <div class="event-year">1492</div>
+                        <div class="event-description"><span class="highlight">Descubrimiento de América</span> por Cristóbal Colón</div>
+                    </li>
+                    <li class="event-item">
+                        <div class="event-year">1492</div>
+                        <div class="event-description">Expulsión de los judíos y fin de la convivencia de tres culturas</div>
+                    </li>
+                </ul>
+            </div>
+            <div class="image-content">
+                <div class="image-container">
+                    <img src="https://sfile.chatglm.cn/images-ppt/5f33ffa24afa.jpg" alt="Transición de la Edad Media al Renacimiento">
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
