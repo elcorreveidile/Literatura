@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Juan Boscán</title>
+    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Source Sans Pro', sans-serif;
+            color: #333;
+        }
+        .slide {
+            width: 1280px;
+            min-height: 720px;
+            position: relative;
+            overflow: hidden;
+            background-color: #f8f5f2;
+            display: flex;
+            flex-direction: column;
+        }
+        .header {
+            padding: 40px 70px 20px;
+        }
+        .title {
+            font-size: 40px;
+            font-weight: 700;
+            color: #4a5568;
+            margin-bottom: 10px;
+        }
+        .content {
+            display: flex;
+            flex-grow: 1;
+            padding: 0 70px 40px;
+        }
+        .text-content {
+            flex: 1.2;
+            padding-right: 30px;
+            display: flex;
+            flex-direction: column;
+        }
+        .image-content {
+            flex: 0.8;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            gap: 20px;
+        }
+        .image-container {
+            width: 100%;
+            height: 300px;
+            overflow: hidden;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        .image-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .quote {
+            background-color: rgba(128, 90, 213, 0.1);
+            padding: 20px;
+            border-radius: 8px;
+            font-style: italic;
+            color: #4a5568;
+            font-size: 18px;
+            line-height: 1.5;
+            position: relative;
+        }
+        .quote::before {
+            content: """;
+            font-size: 60px;
+            color: rgba(128, 90, 213, 0.3);
+            position: absolute;
+            top: -10px;
+            left: 10px;
+        }
+        .section {
+            margin-bottom: 20px;
+        }
+        .section-title {
+            font-size: 24px;
+            font-weight: 600;
+            color: #805ad5;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+        .section-title i {
+            margin-right: 10px;
+        }
+        .feature-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+        .feature-item {
+            background-color: rgba(128, 90, 213, 0.1);
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 18px;
+            color: #4a5568;
+            display: flex;
+            align-items: center;
+        }
+        .feature-item i {
+            font-size: 18px;
+            margin-right: 5px;
+            color: #805ad5;
+        }
+        .highlight {
+            color: #805ad5;
+            font-weight: 600;
+        }
+        .info-box {
+            background-color: rgba(128, 90, 213, 0.05);
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+        }
+        .info-title {
+            font-size: 20px;
+            font-weight: 600;
+            color: #805ad5;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+        .info-title i {
+            margin-right: 8px;
+        }
+        .info-content {
+            font-size: 18px;
+            color: #4a5568;
+            line-height: 1.5;
+        }
+        .year-badge {
+            display: inline-flex;
+            align-items: center;
+            background-color: #805ad5;
+            color: white;
+            padding: 4px 10px;
+            border-radius: 15px;
+            font-size: 16px;
+            font-weight: 600;
+            margin-right: 8px;
+        }
+    </style>
+</head>
+<body>
+    <div class="slide">
+        <div class="header">
+            <h1 class="title">Juan Boscán: El innovador de la poesía española</h1>
+        </div>
+        <div class="content">
+            <div class="text-content">
+                <div class="section">
+                    <div class="section-title">
+                        <i class="material-icons">person</i>
+                        Vida
+                    </div>
+                    <div class="info-box">
+                        <div class="info-content">
+                            <span class="year-badge">1487</span>Nace en Barcelona<br>
+                            <span class="year-badge">Noble</span>Soldado, traductor y humanista<br>
+                            <span class="year-badge">1542</span>Fallece en Barcelona
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="section">
+                    <div class="section-title">
+                        <i class="material-icons">auto_stories</i>
+                        Obra
+                    </div>
+                    <div class="feature-list">
+                        <div class="feature-item"><i class="material-icons">format_quote</i>Primer sonetista castellano</div>
+                        <div class="feature-item"><i class="material-icons">format_quote</i>Tercetos y octavas reales</div>
+                        <div class="feature-item"><i class="material-icons">translate</i>Traductor de "El Cortesano"</div>
+                        <div class="feature-item"><i class="material-icons">menu_book</i>70 sonetos</div>
+                    </div>
+                </div>
+                
+                <div class="section">
+                    <div class="section-title">
+                        <i class="material-icons">lightbulb</i>
+                        Contribuciones
+                    </div>
+                    <div class="info-box">
+                        <div class="info-content">
+                            • Introduce la <span class="highlight">métrica italiana</span> en España<br>
+                            • Estilo <span class="highlight">sobrio y racional</span><br>
+                            • Publica sus obras junto con las de Garcilaso (1543)<br>
+                            • Amigo y mentor de Garcilaso de la Vega
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="image-content">
+                <div class="image-container">
+                    <img src="https://sfile.chatglm.cn/images-ppt/fbdc6fc6592a.jpg" alt="Portada de las obras de Boscán y Garcilaso">
+                </div>
+                <div class="quote">
+                    "Yo no nací sino para quereros; mi alma os ha cortado a su medida; por hábito del alma misma os quiero."
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
