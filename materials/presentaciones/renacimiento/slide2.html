@@ -6,91 +6,106 @@
     <title>Contexto histórico</title>
     <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;600;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <style>
+     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
         body {
-            font-family: 'Source Sans Pro', sans-serif;
-            color: #333;
+            font-family: 'Crimson Text', serif;
+            color: #3a2a1a;
+            background-color: #f5f0e6;
+            overflow: hidden;
+            display: flex; /* Cambiado a flex para alinear slide y menú */
         }
         .slide {
-            width: 1280px;
-            min-height: 720px;
+            width: 1000px; /* Reducido para hacer espacio al menú */
+            height: 100vh;
             position: relative;
-            overflow: hidden;
-            background-color: #f8f5f2;
+            background-image: url('https://sfile.chatglm.cn/images-ppt/f71869bec81e.jpg');
+            background-size: cover;
+            background-position: center;
             display: flex;
             flex-direction: column;
-        }
-        .header {
-            padding: 40px 70px 20px;
-        }
-        .title {
-            font-size: 40px;
-            font-weight: 700;
-            color: #4a5568;
-            margin-bottom: 10px;
-        }
-        .content {
-            display: flex;
-            flex-grow: 1;
-            padding: 0 70px 40px;
-        }
-        .text-content {
-            flex: 1;
-            padding-right: 30px;
-        }
-        .image-content {
-            flex: 1;
-            display: flex;
-            align-items: center;
             justify-content: center;
+            align-items: center;
+            flex-shrink: 0; /* Evita que el slide se encoja */
         }
-        .image-container {
-            width: 100%;
-            height: 400px;
-            overflow: hidden;
-            border-radius: 8px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-        }
-        .image-container img {
+        .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
             width: 100%;
             height: 100%;
-            object-fit: cover;
-        }
-        .event-list {
-            list-style: none;
-            margin-top: 20px;
-        }
-        .event-item {
+            background-color: rgba(58, 42, 26, 0.7);
             display: flex;
-            align-items: flex-start;
-            margin-bottom: 20px;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 0 100px;
         }
-        .event-year {
-            font-size: 24px;
+        .title {
+            font-family: 'Cinzel', serif;
+            font-size: 60px;
             font-weight: 700;
-            color: #718096;
-            margin-right: 15px;
-            min-width: 70px;
-        }
-        .event-description {
-            font-size: 20px;
-            line-height: 1.5;
-            color: #4a5568;
-        }
-        .highlight {
-            color: #805ad5;
-            font-weight: 600;
-        }
-        .intro-text {
-            font-size: 20px;
-            line-height: 1.5;
-            color: #4a5568;
+            color: #f5f0e6;
+            text-align: center;
             margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+        .subtitle {
+            font-size: 24px;
+            color: #e6d7c3;
+            text-align: center;
+            max-width: 800px;
+        }
+        .decorative-line {
+            width: 200px;
+            height: 2px;
+            background-color: #c9a97e;
+            margin: 30px 0;
+        }
+
+        /* --- ESTILOS PARA EL MENÚ LATERAL (SIEMPRE VISIBLE) --- */
+        .side-menu {
+            width: 280px;
+            height: 100vh;
+            background-color: rgba(58, 42, 26, 0.95);
+            color: #f5f0e6;
+            z-index: 2000;
+            padding-top: 20px;
+            overflow-y: auto;
+            box-shadow: -2px 0 5px rgba(0,0,0,0.2);
+            flex-shrink: 0; /* Evita que el menú se encoja */
+        }
+        .menu-content h3 {
+            padding: 0 20px;
+            margin-bottom: 15px;
+            font-family: 'Cinzel', serif;
+            font-size: 1.2em;
+            color: #c9a97e;
+        }
+        #menuList {
+            list-style: none;
+            padding: 0;
+        }
+        #menuList li a {
+            display: block;
+            padding: 12px 20px;
+            color: #e6d7c3;
+            text-decoration: none;
+            font-size: 15px;
+            transition: background-color 0.2s, color 0.2s;
+            border-bottom: 1px solid rgba(201, 169, 126, 0.2);
+        }
+        #menuList li a:hover {
+            background-color: rgba(201, 169, 126, 0.2);
+        }
+        #menuList li a.active {
+            background-color: #c9a97e;
+            color: #3a2a1a;
+            font-weight: bold;
         }
     </style>
 </head>
@@ -128,5 +143,27 @@
             </div>
         </div>
     </div>
+
+    <!-- ======================================= -->
+    <!-- ====== CÓDIGO DE NAVEGACIÓN AÑADIDO ===== -->
+    <!-- ======================================= -->
+
+    <!-- Menú Lateral de Navegación (SIEMPRE VISIBLE) -->
+    <div id="sideMenu" class="side-menu">
+        <div class="menu-content">
+            <h3>Índice</h3>
+            <ul id="menuList"></ul>
+        </div>
+    </div>
+
+    <!-- Navegación Inferior (Anterior/Siguiente) -->
+    <div class="navigation" style="position: fixed; bottom: 20px; left: 0; width: 1000px; text-align: center; z-index: 1000;">
+        <button id="prevBtn" style="font-size: 1em; padding: 10px 20px; margin: 0 10px; cursor: pointer;">← Anterior</button>
+        <button id="nextBtn" style="font-size: 1em; padding: 10px 20px; margin: 0 10px; cursor: pointer;">Siguiente →</button>
+    </div>
+
+    <!-- Cargar el script de navegación -->
+    <script src="navigation.js"></script>
+
 </body>
 </html>
