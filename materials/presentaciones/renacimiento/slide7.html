@@ -6,202 +6,106 @@
     <title>Análisis de poema de Boscán</title>
     <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;600;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <style>
+      <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
         body {
-            font-family: 'Source Sans Pro', sans-serif;
-            color: #333;
+            font-family: 'Crimson Text', serif;
+            color: #3a2a1a;
+            background-color: #f5f0e6;
+            overflow: hidden;
+            display: flex; /* Cambiado a flex para alinear slide y menú */
         }
         .slide {
-            width: 1280px;
-            min-height: 720px;
+            width: 1000px; /* Reducido para hacer espacio al menú */
+            height: 100vh;
             position: relative;
-            overflow: hidden;
-            background-color: #f8f5f2;
+            background-image: url('https://sfile.chatglm.cn/images-ppt/f71869bec81e.jpg');
+            background-size: cover;
+            background-position: center;
             display: flex;
             flex-direction: column;
-        }
-        .header {
-            padding: 40px 70px 20px;
-        }
-        .title {
-            font-size: 40px;
-            font-weight: 700;
-            color: #4a5568;
-            margin-bottom: 10px;
-        }
-        .content {
-            display: flex;
-            flex-grow: 1;
-            padding: 0 70px 40px;
-        }
-        .left-content {
-            flex: 1.2;
-            padding-right: 30px;
-            display: flex;
-            flex-direction: column;
-        }
-        .right-content {
-            flex: 0.8;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-        }
-        .poem-container {
-            background-color: rgba(128, 90, 213, 0.05);
-            padding: 25px;
-            border-radius: 8px;
-            margin-bottom: 20px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-        }
-        .poem-title {
-            font-size: 22px;
-            font-weight: 600;
-            color: #805ad5;
-            margin-bottom: 15px;
-            display: flex;
-            align-items: center;
-        }
-        .poem-title i {
-            margin-right: 10px;
-        }
-        .poem-text {
-            font-size: 20px;
-            line-height: 1.6;
-            color: #4a5568;
-            font-style: italic;
-            text-align: center;
-        }
-        .vocabulary-container {
-            background-color: rgba(128, 90, 213, 0.05);
-            padding: 20px;
-            border-radius: 8px;
-            margin-bottom: 20px;
-        }
-        .vocabulary-title {
-            font-size: 22px;
-            font-weight: 600;
-            color: #805ad5;
-            margin-bottom: 15px;
-            display: flex;
-            align-items: center;
-        }
-        .vocabulary-title i {
-            margin-right: 10px;
-        }
-        .vocabulary-list {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 15px;
-        }
-        .vocabulary-item {
-            background-color: rgba(128, 90, 213, 0.1);
-            padding: 8px 15px;
-            border-radius: 20px;
-            font-size: 18px;
-            color: #4a5568;
-            display: flex;
-            align-items: center;
-        }
-        .vocabulary-item i {
-            font-size: 18px;
-            margin-right: 5px;
-            color: #805ad5;
-        }
-        .questions-container {
-            background-color: rgba(128, 90, 213, 0.05);
-            padding: 20px;
-            border-radius: 8px;
-            margin-bottom: 20px;
-            flex-grow: 1;
-        }
-        .questions-title {
-            font-size: 22px;
-            font-weight: 600;
-            color: #805ad5;
-            margin-bottom: 15px;
-            display: flex;
-            align-items: center;
-        }
-        .questions-title i {
-            margin-right: 10px;
-        }
-        .question-list {
-            list-style: none;
-        }
-        .question-item {
-            display: flex;
-            align-items: flex-start;
-            margin-bottom: 15px;
-        }
-        .question-number {
-            background-color: #805ad5;
-            color: white;
-            width: 28px;
-            height: 28px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
             justify-content: center;
-            font-weight: 600;
-            margin-right: 12px;
-            flex-shrink: 0;
+            align-items: center;
+            flex-shrink: 0; /* Evita que el slide se encoja */
         }
-        .question-text {
-            font-size: 20px;
-            color: #4a5568;
-            line-height: 1.5;
-        }
-        .highlight {
-            color: #805ad5;
-            font-weight: 600;
-        }
-        .image-container {
-            width: 100%;
-            height: 300px;
-            overflow: hidden;
-            border-radius: 8px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-            margin-bottom: 20px;
-        }
-        .image-container img {
+        .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
             width: 100%;
             height: 100%;
-            object-fit: cover;
+            background-color: rgba(58, 42, 26, 0.7);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 0 100px;
         }
-        .activity-box {
-            background-color: rgba(128, 90, 213, 0.1);
-            padding: 20px;
-            border-radius: 8px;
+        .title {
+            font-family: 'Cinzel', serif;
+            font-size: 60px;
+            font-weight: 700;
+            color: #f5f0e6;
+            text-align: center;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
         }
-        .activity-title {
-            font-size: 22px;
-            font-weight: 600;
-            color: #805ad5;
+        .subtitle {
+            font-size: 24px;
+            color: #e6d7c3;
+            text-align: center;
+            max-width: 800px;
+        }
+        .decorative-line {
+            width: 200px;
+            height: 2px;
+            background-color: #c9a97e;
+            margin: 30px 0;
+        }
+
+        /* --- ESTILOS PARA EL MENÚ LATERAL (SIEMPRE VISIBLE) --- */
+        .side-menu {
+            width: 280px;
+            height: 100vh;
+            background-color: rgba(58, 42, 26, 0.95);
+            color: #f5f0e6;
+            z-index: 2000;
+            padding-top: 20px;
+            overflow-y: auto;
+            box-shadow: -2px 0 5px rgba(0,0,0,0.2);
+            flex-shrink: 0; /* Evita que el menú se encoja */
+        }
+        .menu-content h3 {
+            padding: 0 20px;
             margin-bottom: 15px;
-            display: flex;
-            align-items: center;
+            font-family: 'Cinzel', serif;
+            font-size: 1.2em;
+            color: #c9a97e;
         }
-        .activity-title i {
-            margin-right: 10px;
+        #menuList {
+            list-style: none;
+            padding: 0;
         }
-        .activity-text {
-            font-size: 20px;
-            color: #4a5568;
-            line-height: 1.5;
+        #menuList li a {
+            display: block;
+            padding: 12px 20px;
+            color: #e6d7c3;
+            text-decoration: none;
+            font-size: 15px;
+            transition: background-color 0.2s, color 0.2s;
+            border-bottom: 1px solid rgba(201, 169, 126, 0.2);
         }
-        .feature-item {
-            display: flex;
-            align-items: center;
-            margin-bottom: 10px;
+        #menuList li a:hover {
+            background-color: rgba(201, 169, 126, 0.2);
         }
-        .feature-item i {
-            color: #805ad5;
-            margin-right: 10px;
+        #menuList li a.active {
+            background-color: #c9a97e;
+            color: #3a2a1a;
+            font-weight: bold;
         }
     </style>
 </head>
@@ -301,5 +205,27 @@
             </div>
         </div>
     </div>
+
+    <!-- ======================================= -->
+    <!-- ====== CÓDIGO DE NAVEGACIÓN AÑADIDO ===== -->
+    <!-- ======================================= -->
+
+    <!-- Menú Lateral de Navegación (SIEMPRE VISIBLE) -->
+    <div id="sideMenu" class="side-menu">
+        <div class="menu-content">
+            <h3>Índice</h3>
+            <ul id="menuList"></ul>
+        </div>
+    </div>
+
+    <!-- Navegación Inferior (Anterior/Siguiente) -->
+    <div class="navigation" style="position: fixed; bottom: 20px; left: 0; width: 1000px; text-align: center; z-index: 1000;">
+        <button id="prevBtn" style="font-size: 1em; padding: 10px 20px; margin: 0 10px; cursor: pointer;">← Anterior</button>
+        <button id="nextBtn" style="font-size: 1em; padding: 10px 20px; margin: 0 10px; cursor: pointer;">Siguiente →</button>
+    </div>
+
+    <!-- Cargar el script de navegación -->
+    <script src="navigation.js"></script>
+
 </body>
 </html>
