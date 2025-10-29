@@ -12,25 +12,18 @@
             padding: 0;
             box-sizing: border-box;
         }
-       body {
-            font-family: 'Crimson Text', serif;
-            color: #3a2a1a;
-            background-color: #f5f0e6;
-            overflow: hidden;
-            display: flex; /* Cambiado a flex para alinear slide y menú */
+        body {
+            font-family: 'Source Sans Pro', sans-serif;
+            color: #333;
         }
         .slide {
-            width: 1000px; /* Reducido para hacer espacio al menú */
-            height: 100vh;
+            width: 1280px;
+            min-height: 720px;
             position: relative;
-            background-image: url('https://sfile.chatglm.cn/images-ppt/f71869bec81e.jpg');
-            background-size: cover;
-            background-position: center;
+            overflow: hidden;
+            background-color: #f8f5f2;
             display: flex;
             flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            flex-shrink: 0; /* Evita que el slide se encoja */
         }
         .header {
             padding: 40px 70px 20px;
@@ -45,6 +38,7 @@
             display: flex;
             flex-grow: 1;
             padding: 0 70px 40px;
+            padding-right: 90px; /* Added space for navigation */
         }
         .text-content {
             flex: 1;
@@ -99,46 +93,42 @@
             color: #4a5568;
             margin-bottom: 20px;
         }
-     /* --- ESTILOS PARA EL MENÚ LATERAL (SIEMPRE VISIBLE) --- */
-.side-menu {
-    width: 280px;
-    height: 100vh;
-    background-color: rgba(58, 42, 26, 0.95);
-    color: #f5f0e6;
-    z-index: 2000;
-    padding-top: 20px;
-    overflow-y: auto;
-    box-shadow: -2px 0 5px rgba(0,0,0,0.2);
-    flex-shrink: 0;
-}
-.menu-content h3 {
-    padding: 0 20px;
-    margin-bottom: 15px;
-    font-family: 'Cinzel', serif;
-    font-size: 1.2em;
-    color: #c9a97e;
-}
-#menuList {
-    list-style: none;
-    padding: 0;
-}
-#menuList li a {
-    display: block;
-    padding: 12px 20px;
-    color: #e6d7c3;
-    text-decoration: none;
-    font-size: 15px;
-    transition: background-color 0.2s, color 0.2s;
-    border-bottom: 1px solid rgba(201, 169, 126, 0.2);
-}
-#menuList li a:hover {
-    background-color: rgba(201, 169, 126, 0.2);
-}
-#menuList li a.active {
-    background-color: #c9a97e;
-    color: #3a2a1a;
-    font-weight: bold;
-}
+        .navigation {
+            position: absolute;
+            right: 0;
+            top: 0;
+            height: 100%;
+            width: 60px;
+            background-color: rgba(41, 50, 65, 0.85);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px 0;
+            z-index: 100;
+        }
+        .nav-item {
+            width: 40px;
+            height: 40px;
+            margin: 8px 0;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .nav-item:hover {
+            background-color: rgba(255, 255, 255, 0.4);
+            transform: scale(1.1);
+        }
+        .nav-item.active {
+            background-color: #805ad5;
+            transform: scale(1.15);
+        }
     </style>
 </head>
 <body>
@@ -174,15 +164,22 @@
                 </div>
             </div>
         </div>
+        <div class="navigation">
+            <div class="nav-item">1</div>
+            <div class="nav-item active">2</div>
+            <div class="nav-item">3</div>
+            <div class="nav-item">4</div>
+            <div class="nav-item">5</div>
+            <div class="nav-item">6</div>
+            <div class="nav-item">7</div>
+            <div class="nav-item">8</div>
+            <div class="nav-item">9</div>
+            <div class="nav-item">10</div>
+            <div class="nav-item">11</div>
+            <div class="nav-item">12</div>
+            <div class="nav-item">13</div>
+            <div class="nav-item">14</div>
+        </div>
     </div>
-
-    <!-- Navegación Inferior (Anterior/Siguiente) -->
-    <div class="navigation" style="position: fixed; bottom: 20px; left: 0; width: 1000px; text-align: center; z-index: 1000;">
-        <button id="prevBtn" style="font-size: 1em; padding: 10px 20px; margin: 0 10px; cursor: pointer;">← Anterior</button>
-        <button id="nextBtn" style="font-size: 1em; padding: 10px 20px; margin: 0 10px; cursor: pointer;">Siguiente →</button>
-    </div>
-
-    <!-- Cargar el script de navegación -->
-    <script src="navigation.js"></script>
 </body>
 </html>
