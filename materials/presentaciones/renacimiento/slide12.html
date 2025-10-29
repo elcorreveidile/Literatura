@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>De la Edad Media al Renacimiento: cambios fundamentales</title>
+    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Source Sans Pro', sans-serif;
+            color: #333;
+        }
+        .slide {
+            width: 1280px;
+            min-height: 720px;
+            position: relative;
+            overflow: hidden;
+            background-color: #f8f5f2;
+            display: flex;
+            flex-direction: column;
+        }
+        .header {
+            padding: 40px 70px 20px;
+        }
+        .title {
+            font-size: 40px;
+            font-weight: 700;
+            color: #4a5568;
+            margin-bottom: 10px;
+        }
+        .content {
+            display: flex;
+            flex-grow: 1;
+            padding: 0 70px 40px;
+        }
+        .changes-container {
+            flex: 1.2;
+            padding-right: 30px;
+            display: flex;
+            flex-direction: column;
+        }
+        .image-container {
+            flex: 0.8;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        .changes-box {
+            background-color: rgba(128, 90, 213, 0.05);
+            padding: 25px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            flex-grow: 1;
+        }
+        .changes-title {
+            font-size: 24px;
+            font-weight: 600;
+            color: #805ad5;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+        }
+        .changes-title i {
+            margin-right: 12px;
+            font-size: 28px;
+        }
+        .changes-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+        .change-item {
+            display: flex;
+            align-items: flex-start;
+        }
+        .change-icon {
+            background-color: rgba(128, 90, 213, 0.1);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 12px;
+            flex-shrink: 0;
+        }
+        .change-icon i {
+            color: #805ad5;
+            font-size: 22px;
+        }
+        .change-text {
+            font-size: 20px;
+            color: #4a5568;
+            line-height: 1.4;
+        }
+        .highlight {
+            color: #805ad5;
+            font-weight: 600;
+        }
+        .image-box {
+            width: 100%;
+            height: 380px;
+            overflow: hidden;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+        }
+        .image-box img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .activity-box {
+            background-color: rgba(128, 90, 213, 0.1);
+            padding: 20px;
+            border-radius: 8px;
+        }
+        .activity-title {
+            font-size: 22px;
+            font-weight: 600;
+            color: #805ad5;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+        .activity-title i {
+            margin-right: 10px;
+        }
+        .activity-text {
+            font-size: 20px;
+            color: #4a5568;
+            line-height: 1.5;
+        }
+        .feature-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 12px;
+        }
+        .feature-item i {
+            color: #805ad5;
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="slide">
+        <div class="header">
+            <h1 class="title">De la Edad Media al Renacimiento: cambios fundamentales</h1>
+        </div>
+        <div class="content">
+            <div class="changes-container">
+                <div class="changes-box">
+                    <div class="changes-title">
+                        <i class="material-icons">compare_arrows</i>
+                        Transformación cultural y social
+                    </div>
+                    <div class="changes-grid">
+                        <div class="change-item">
+                            <div class="change-icon">
+                                <i class="material-icons">visibility</i>
+                            </div>
+                            <div class="change-text">
+                                <span class="highlight">Teocentrismo</span> → <span class="highlight">Antropocentrismo</span>
+                            </div>
+                        </div>
+                        <div class="change-item">
+                            <div class="change-icon">
+                                <i class="material-icons">menu_book</i>
+                            </div>
+                            <div class="change-text">
+                                Literatura <span class="highlight">religiosa</span> → Celebración de la <span class="highlight">vida terrenal</span>
+                            </div>
+                        </div>
+                        <div class="change-item">
+                            <div class="change-icon">
+                                <i class="material-icons">people</i>
+                            </div>
+                            <div class="change-text">
+                                Sociedad <span class="highlight">feudal</span> → Crecimiento de la <span class="highlight">burguesía</span>
+                            </div>
+                        </div>
+                        <div class="change-item">
+                            <div class="change-icon">
+                                <i class="material-icons">brush</i>
+                            </div>
+                            <div class="change-text">
+                                Arte <span class="highlight">anónimo</span> → Valoración de la <span class="highlight">individualidad</span>
+                            </div>
+                        </div>
+                        <div class="change-item">
+                            <div class="change-icon">
+                                <i class="material-icons">school</i>
+                            </div>
+                            <div class="change-text">
+                                Educación <span class="highlight">limitada</span> → <span class="highlight">Expansión</span> del conocimiento
+                            </div>
+                        </div>
+                        <div class="change-item">
+                            <div class="change-icon">
+                                <i class="material-icons">nature</i>
+                            </div>
+                            <div class="change-text">
+                                Naturaleza <span class="highlight">temida</span> → Naturaleza <span class="highlight">idealizada</span>
+                            </div>
+                        </div>
+                        <div class="change-item">
+                            <div class="change-icon">
+                                <i class="material-icons">explore</i>
+                            </div>
+                            <div class="change-text">
+                                Ciencia <span class="highlight">limitada</span> → <span class="highlight">Exploración</span> de nuevos mundos
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="image-container">
+                <div class="image-box">
+                    <img src="https://sfile.chatglm.cn/images-ppt/c52fb37d2978.jpg" alt="Transición de la Edad Media al Renacimiento">
+                </div>
+                
+                <div class="activity-box">
+                    <div class="activity-title">
+                        <i class="material-icons">psychology</i>
+                        Actividad
+                    </div>
+                    <div class="activity-text">
+                        <div class="feature-item">
+                            <i class="material-icons">check_circle</i>
+                            <span>¿Qué cambios son más <span class="highlight">importantes</span> para la literatura?</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="material-icons">check_circle</i>
+                            <span>¿Cómo influyen estos cambios en Boscán y Garcilaso?</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="material-icons">check_circle</i>
+                            <span>¿Qué cambio te parece más <span class="highlight">relevante</span> hoy?</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
