@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comparación: Boscán vs Garcilaso</title>
+    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Source Sans Pro', sans-serif;
+            color: #333;
+        }
+        .slide {
+            width: 1280px;
+            min-height: 720px;
+            position: relative;
+            overflow: hidden;
+            background-color: #f8f5f2;
+            display: flex;
+            flex-direction: column;
+        }
+        .header {
+            padding: 40px 70px 20px;
+        }
+        .title {
+            font-size: 40px;
+            font-weight: 700;
+            color: #4a5568;
+            margin-bottom: 10px;
+        }
+        .content {
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+            padding: 0 70px 40px;
+        }
+        .comparison-table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+            margin-bottom: 30px;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+        .comparison-table th {
+            background-color: rgba(128, 90, 213, 0.15);
+            padding: 15px;
+            text-align: left;
+            font-size: 22px;
+            font-weight: 600;
+            color: #805ad5;
+        }
+        .comparison-table td {
+            padding: 15px;
+            font-size: 20px;
+            color: #4a5568;
+            border-bottom: 1px solid rgba(128, 90, 213, 0.1);
+        }
+        .comparison-table tr:last-child td {
+            border-bottom: none;
+        }
+        .comparison-table .aspect {
+            background-color: rgba(128, 90, 213, 0.05);
+            font-weight: 600;
+            color: #805ad5;
+            width: 25%;
+        }
+        .highlight {
+            color: #805ad5;
+            font-weight: 600;
+        }
+        .activity-container {
+            background-color: rgba(128, 90, 213, 0.05);
+            padding: 25px;
+            border-radius: 8px;
+            margin-bottom: 25px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        .activity-title {
+            font-size: 24px;
+            font-weight: 600;
+            color: #805ad5;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+        }
+        .activity-title i {
+            margin-right: 12px;
+            font-size: 28px;
+        }
+        .activity-instructions {
+            font-size: 20px;
+            color: #4a5568;
+            line-height: 1.5;
+            margin-bottom: 20px;
+        }
+        .questions-container {
+            display: flex;
+            gap: 30px;
+            flex-grow: 1;
+        }
+        .question-box {
+            flex: 1;
+            background-color: rgba(128, 90, 213, 0.1);
+            padding: 20px;
+            border-radius: 8px;
+            display: flex;
+            flex-direction: column;
+        }
+        .question-title {
+            font-size: 22px;
+            font-weight: 600;
+            color: #805ad5;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+        .question-title i {
+            margin-right: 10px;
+        }
+        .question-list {
+            list-style: none;
+        }
+        .question-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 15px;
+        }
+        .question-number {
+            background-color: #805ad5;
+            color: white;
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            margin-right: 12px;
+            flex-shrink: 0;
+        }
+        .question-text {
+            font-size: 20px;
+            color: #4a5568;
+            line-height: 1.5;
+        }
+        .feature-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 12px;
+        }
+        .feature-item i {
+            color: #805ad5;
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="slide">
+        <div class="header">
+            <h1 class="title">Comparación: Boscán vs Garcilaso</h1>
+        </div>
+        <div class="content">
+            <table class="comparison-table">
+                <thead>
+                    <tr>
+                        <th>Aspecto</th>
+                        <th>Boscán (Soneto LXXIV)</th>
+                        <th>Garcilaso (Soneto XIII)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="aspect">Tema principal</td>
+                        <td>Pérdida y memoria</td>
+                        <td>Mito de Dafne y Apolo</td>
+                    </tr>
+                    <tr>
+                        <td class="aspect">Tono emocional</td>
+                        <td>Melancolía, nostalgia</td>
+                        <td>Dramatismo, admiración</td>
+                    </tr>
+                    <tr>
+                        <td class="aspect">Uso de metáforas</td>
+                        <td>Recuerdos como "prendas"</td>
+                        <td>Transformación en árbol</td>
+                    </tr>
+                    <tr>
+                        <td class="aspect">Estructura métrica</td>
+                        <td>Soneto tradicional</td>
+                        <td>Soneto con elementos narrativos</td>
+                    </tr>
+                    <tr>
+                        <td class="aspect">Estilo</td>
+                        <td>Sobrio, racional</td>
+                        <td>Emotivo, imaginativo</td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <div class="activity-container">
+                <div class="activity-title">
+                    <i class="material-icons">groups</i>
+                    Actividad en parejas
+                </div>
+                <div class="activity-instructions">
+                    Discutan con su compañero y <span class="highlight">completen la tabla</span> comparando los dos poemas analizados. Luego, respondan a las siguientes preguntas:
+                </div>
+                
+                <div class="questions-container">
+                    <div class="question-box">
+                        <div class="question-title">
+                            <i class="material-icons">psychology</i>
+                            Preguntas de reflexión
+                        </div>
+                        <ul class="question-list">
+                            <li class="question-item">
+                                <div class="question-number">1</div>
+                                <div class="question-text">¿Qué poeta te gusta más y <span class="highlight">por qué</span>?</div>
+                            </li>
+                            <li class="question-item">
+                                <div class="question-number">2</div>
+                                <div class="question-text">¿Cómo reflejan estos poemas la <span class="highlight">transición</span> de la Edad Media al Renacimiento?</div>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <div class="question-box">
+                        <div class="question-title">
+                            <i class="material-icons">lightbulb</i>
+                            Ideas clave
+                        </div>
+                        <div class="feature-item">
+                            <i class="material-icons">arrow_right</i>
+                            <span>Boscán: estilo más <span class="highlight">racional</span></span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="material-icons">arrow_right</i>
+                            <span>Garcilaso: estilo más <span class="highlight">emotivo</span></span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="material-icons">arrow_right</i>
+                            <span>Ambos: introducen la <span class="highlight">métrica italiana</span></span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="material-icons">arrow_right</i>
+                            <span>Ambos: temas <span class="highlight">humanistas</span></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
