@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Análisis de poema de Garcilaso</title>
+    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Source Sans Pro', sans-serif;
+            color: #333;
+        }
+        .slide {
+            width: 1280px;
+            min-height: 720px;
+            position: relative;
+            overflow: hidden;
+            background-color: #f8f5f2;
+            display: flex;
+            flex-direction: column;
+        }
+        .header {
+            padding: 40px 70px 20px;
+        }
+        .title {
+            font-size: 40px;
+            font-weight: 700;
+            color: #4a5568;
+            margin-bottom: 10px;
+        }
+        .content {
+            display: flex;
+            flex-grow: 1;
+            padding: 0 70px 40px;
+        }
+        .left-content {
+            flex: 1.2;
+            padding-right: 30px;
+            display: flex;
+            flex-direction: column;
+        }
+        .right-content {
+            flex: 0.8;
+            display: flex;
+            flex-direction: column;
+        }
+        .poem-container {
+            background-color: rgba(128, 90, 213, 0.05);
+            padding: 25px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+        .poem-title {
+            font-size: 22px;
+            font-weight: 600;
+            color: #805ad5;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+        .poem-title i {
+            margin-right: 10px;
+        }
+        .poem-text {
+            font-size: 20px;
+            line-height: 1.6;
+            color: #4a5568;
+            font-style: italic;
+            text-align: center;
+        }
+        .vocabulary-container {
+            background-color: rgba(128, 90, 213, 0.05);
+            padding: 20px;
+            border-radius: 8px;
+            flex-grow: 1;
+        }
+        .vocabulary-title {
+            font-size: 22px;
+            font-weight: 600;
+            color: #805ad5;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+        .vocabulary-title i {
+            margin-right: 10px;
+        }
+        .vocabulary-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+        .vocabulary-item {
+            background-color: rgba(128, 90, 213, 0.1);
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 18px;
+            color: #4a5568;
+            display: flex;
+            align-items: center;
+        }
+        .vocabulary-item i {
+            font-size: 18px;
+            margin-right: 5px;
+            color: #805ad5;
+        }
+        .questions-container {
+            background-color: rgba(128, 90, 213, 0.05);
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 5px;
+            flex-grow: 1;
+        }
+        .questions-title {
+            font-size: 22px;
+            font-weight: 600;
+            color: #805ad5;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+        .questions-title i {
+            margin-right: 10px;
+        }
+        .question-list {
+            list-style: none;
+        }
+        .question-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 15px;
+        }
+        .question-number {
+            background-color: #805ad5;
+            color: white;
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            margin-right: 12px;
+            flex-shrink: 0;
+        }
+        .question-text {
+            font-size: 20px;
+            color: #4a5568;
+            line-height: 1.5;
+        }
+        .highlight {
+            color: #805ad5;
+            font-weight: 600;
+        }
+        .activity-box {
+            background-color: rgba(128, 90, 213, 0.1);
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            flex-grow: 1;
+        }
+        .activity-title {
+            font-size: 22px;
+            font-weight: 600;
+            color: #805ad5;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+        .activity-title i {
+            margin-right: 10px;
+        }
+        .activity-text {
+            font-size: 20px;
+            color: #4a5568;
+            line-height: 1.5;
+        }
+        .feature-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        .feature-item i {
+            color: #805ad5;
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="slide">
+        <div class="header">
+            <h1 class="title">Análisis: Soneto XIII de Garcilaso</h1>
+        </div>
+        <div class="content">
+            <div class="left-content">
+                <div class="poem-container">
+                    <div class="poem-title">
+                        <i class="material-icons">format_quote</i>
+                        Soneto XIII
+                    </div>
+                    <div class="poem-text">
+                        A Dafne ya los brazos le crecían,<br>
+                        y en luengos ramos vueltos se mostraba;<br>
+                        en verdes hojas vi que se tornaban<br>
+                        los cabellos que el oro escurecían.<br><br>
+                        
+                        De áspera corteza se cubrían<br>
+                        los tiernos miembros, que aún bullendo estaban:<br>
+                        los blancos pies en tierra se hincaban,<br>
+                        y en torcidas raíces se volvían.<br><br>
+                        
+                        Aquel que fue la causa de tal daño,<br>
+                        a fuerza de llorar, crecer hacía<br>
+                        este árbol que con lágrimas regaba.<br><br>
+                        
+                        ¡Oh miserable estado! ¡oh mal tamaño!<br>
+                        ¡Que con llorarla crezca cada día<br>
+                        la causa y la razón porque lloraba!
+                    </div>
+                </div>
+                
+                <div class="activity-box">
+                    <div class="activity-title">
+                        <i class="material-icons">assignment</i>
+                        Actividad
+                    </div>
+                    <div class="activity-text">
+                        <div class="feature-item">
+                            <i class="material-icons">check_circle</i>
+                            <span>Identifica el uso de la <span class="highlight">mitología</span></span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="material-icons">check_circle</i>
+                            <span>Busca <span class="highlight">metáforas</span> y figuras literarias</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="material-icons">check_circle</i>
+                            <span>Compara el estilo con el de Boscán</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="right-content">
+                <div class="questions-container">
+                    <div class="questions-title">
+                        <i class="material-icons">help_outline</i>
+                        Preguntas para el análisis
+                    </div>
+                    <ul class="question-list">
+                        <li class="question-item">
+                            <div class="question-number">1</div>
+                            <div class="question-text">¿Qué <span class="highlight">mito griego</span> aparece en este poema?</div>
+                        </li>
+                        <li class="question-item">
+                            <div class="question-number">2</div>
+                            <div class="question-text">¿Qué <span class="highlight">emociones</span> expresa el poeta?</div>
+                        </li>
+                        <li class="question-item">
+                            <div class="question-number">3</div>
+                            <div class="question-text">¿Qué características del <span class="highlight">Renacimiento</span> ves en este poema?</div>
+                        </li>
+                    </ul>
+                </div>
+                
+                <div class="vocabulary-container">
+                    <div class="vocabulary-title">
+                        <i class="material-icons">school</i>
+                        Vocabulario clave
+                    </div>
+                    <div class="vocabulary-list">
+                        <div class="vocabulary-item"><i class="material-icons">bookmark</i>Prendas: recuerdos</div>
+                        <div class="vocabulary-item"><i class="material-icons">bookmark</i>Ramos: ramas</div>
+                        <div class="vocabulary-item"><i class="material-icons">bookmark</i>Escurecían: oscurecían</div>
+                        <div class="vocabulary-item"><i class="material-icons">bookmark</i>Áspera: rugosa</div>
+                        <div class="vocabulary-item"><i class="material-icons">bookmark</i>Tamaño: situación</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
