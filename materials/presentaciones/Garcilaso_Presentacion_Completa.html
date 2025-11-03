@@ -1,0 +1,830 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Garcilaso de la Vega - Presentación Completa</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            color: #333;
+        }
+
+        .presentation-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            width: 100%;
+        }
+
+        .slide {
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            padding: 40px;
+            margin-bottom: 20px;
+            min-height: 600px;
+            display: none;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .slide.active {
+            display: block;
+            animation: slideIn 0.5s ease-out;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .slide-number {
+            position: absolute;
+            bottom: 20px;
+            right: 30px;
+            font-size: 14px;
+            color: #999;
+            font-weight: 600;
+        }
+
+        .slide-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            color: #2c3e50;
+            margin-bottom: 30px;
+            text-align: center;
+            border-bottom: 3px solid #667eea;
+            padding-bottom: 15px;
+        }
+
+        .slide-content {
+            display: flex;
+            gap: 30px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .slide-text {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .slide-image {
+            flex: 1;
+            min-width: 300px;
+            background: linear-gradient(45deg, #f8f9fa, #e9ecef);
+            border-radius: 10px;
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-style: italic;
+            color: #666;
+            text-align: center;
+            min-height: 300px;
+        }
+
+        .quote {
+            background: #f8f9fa;
+            border-left: 4px solid #667eea;
+            padding: 20px;
+            margin: 20px 0;
+            font-style: italic;
+            color: #555;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .navigation {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 15px;
+            background: white;
+            padding: 15px 25px;
+            border-radius: 50px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            z-index: 1000;
+        }
+
+        .nav-btn {
+            background: #667eea;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            font-size: 14px;
+        }
+
+        .nav-btn:hover {
+            background: #5a6fd8;
+            transform: translateY(-2px);
+        }
+
+        .nav-btn:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .slide-indicator {
+            background: #667eea;
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        .highlight-box {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 25px;
+            border-radius: 12px;
+            margin: 20px 0;
+            box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
+        }
+
+        .timeline {
+            position: relative;
+            padding: 20px 0;
+        }
+
+        .timeline-item {
+            position: relative;
+            padding-left: 40px;
+            margin-bottom: 25px;
+            border-left: 3px solid #667eea;
+        }
+
+        .timeline-item:before {
+            content: '';
+            position: absolute;
+            left: -8px;
+            top: 5px;
+            width: 13px;
+            height: 13px;
+            border-radius: 50%;
+            background: #667eea;
+            border: 3px solid white;
+            box-shadow: 0 0 0 3px #667eea;
+        }
+
+        .timeline-date {
+            font-weight: 700;
+            color: #667eea;
+            margin-bottom: 5px;
+        }
+
+        .poetry-box {
+            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+            padding: 30px;
+            border-radius: 12px;
+            margin: 20px 0;
+            border-left: 5px solid #764ba2;
+        }
+
+        .poetry-text {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.1rem;
+            line-height: 1.8;
+            text-align: center;
+            color: #2c3e50;
+            font-style: italic;
+        }
+
+        .key-point {
+            background: #fff3cd;
+            border: 2px solid #ffc107;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+            font-weight: 600;
+        }
+
+        .bibliography {
+            background: #f8f9fa;
+            padding: 25px;
+            border-radius: 12px;
+            margin: 20px 0;
+        }
+
+        .bibliography h4 {
+            color: #667eea;
+            margin-bottom: 15px;
+            font-family: 'Playfair Display', serif;
+        }
+
+        .bibliography ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .bibliography li {
+            padding: 8px 0;
+            border-bottom: 1px solid #dee2e6;
+            font-size: 14px;
+        }
+
+        .bibliography li:last-child {
+            border-bottom: none;
+        }
+
+        @media (max-width: 768px) {
+            .slide {
+                padding: 20px;
+                min-height: auto;
+            }
+
+            .slide-title {
+                font-size: 1.8rem;
+            }
+
+            .slide-content {
+                flex-direction: column;
+            }
+
+            .navigation {
+                bottom: 20px;
+                padding: 10px 15px;
+                gap: 10px;
+            }
+
+            .nav-btn {
+                padding: 8px 15px;
+                font-size: 12px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="presentation-container">
+        <!-- Slide 1: Portada -->
+        <div class="slide active">
+            <h1 class="slide-title">Garcilaso de la Vega</h1>
+            <div class="slide-content">
+                <div class="slide-text">
+                    <div class="highlight-box">
+                        <h2 style="margin-bottom: 15px;">El Príncipe de los Poetas Españoles</h2>
+                        <p style="font-size: 1.2rem; margin-bottom: 10px;">1501 - 1536</p>
+                        <p>Poeta, soldado y cortesano del Renacimiento español</p>
+                    </div>
+                    <div class="quote" style="margin-top: 30px; font-size: 1.1rem;">
+                        "Aqueste mi cantar, que va ligero,<br>
+                        por las ondas del mar navegando,<br>
+                        va buscando a mi dueña verdadera."
+                    </div>
+                </div>
+                <div class="slide-image">
+                    <div>
+                        <strong>Retrato imaginario de Garcilaso</strong><br>
+                        Miniatura renacentista<br>
+                        <small>Artista desconocido, siglo XVI</small>
+                    </div>
+                </div>
+            </div>
+            <div class="slide-number">1 / 12</div>
+        </div>
+
+        <!-- Slide 2: Biografía -->
+        <div class="slide">
+            <h1 class="slide-title">Biografía y Contexto Histórico</h1>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-date">1501</div>
+                    <strong>Nacimiento en Toledo</strong>
+                    <p>Hijo de Garcilaso Pérez de Vargas y Sancha de Guzmán. Noble familia toledana con conexiones cortesanas.</p>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">1520s</div>
+                    <strong>Servicio militar</strong>
+                    <p>Participa en la Guerra de las Comunidades de Castilla al lado de Carlos V.</p>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">1526</div>
+                    <strong>Matrimonio con Elena de Zúñiga</strong>
+                    <p>Se casa con una dama de la corte, lo que consolida su posición social.</p>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">1530s</div>
+                    <strong>Carrera diplomática y militar</strong>
+                    <p>Sirve como embajador y participa en campañas militares, especialmente en Italia.</p>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">14 de octubre de 1536</div>
+                    <strong>Muerte en Niza</strong>
+                    <p>Fallece a causa de las heridas recibidas en el asalto a la fortaleza de Le Muy.</p>
+                </div>
+            </div>
+            <div class="slide-number">2 / 12</div>
+        </div>
+
+        <!-- Slide 3: Encuentro con Boscán -->
+        <div class="slide">
+            <h1 class="slide-title">El Encuentro Decisivo con Boscán</h1>
+            <div class="slide-content">
+                <div class="slide-text">
+                    <div class="key-point">
+                        <strong>1526 - La Alhambra de Granada</strong>
+                    </div>
+                    <div class="quote">
+                        "En el tiempo que la corte estuvo en Granada, habiendo yo caído enfermo de una calentura, fue a visitarme Juan Boscán, y tratamos en varias cosas de poesía..."
+                    </div>
+                    <h3 style="margin: 20px 0 15px 0; color: #667eea;">La Propuesta Transformadora</h3>
+                    <p><strong>Boscán:</strong> "Garcilaso, ¿por qué no probáis de escribir en lengua castellana las sonetos y otras artes de poetas italianos?"</p>
+                    <p><strong>Garcilaso:</strong> Acepta el desafío y comienza la renovación poética española.</p>
+                    <div class="highlight-box" style="margin-top: 20px;">
+                        <h4 style="margin-bottom: 10px;">Consecuencias del Encuentro</h4>
+                        <ul style="list-style: none; padding-left: 0;">
+                            <li>✓ Introducción del endecasílabo italiano</li>
+                            <li>✓ Adopción del soneto petrarquista</li>
+                            <li>✓ Creación de la lira española</li>
+                            <li>✓ Renovación de la poesía pastoril</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="slide-image">
+                    <div>
+                        <strong>La Alhambra de Granada</strong><br>
+                        Lugar del encuentro histórico<br>
+                        Patio de los Leones<br>
+                        <small>Palacio nazarí, siglo XIV</small>
+                    </div>
+                </div>
+            </div>
+            <div class="slide-number">3 / 12</div>
+        </div>
+
+        <!-- Slide 4: Influencia Italiana -->
+        <div class="slide">
+            <h1 class="slide-title">La Influencia Italiana</h1>
+            <div class="slide-content">
+                <div class="slide-text">
+                    <h3 style="color: #667eea; margin-bottom: 15px;">Fuentes de Inspiración</h3>
+                    <div class="timeline">
+                        <div class="timeline-item">
+                            <div class="timeline-date">Petrarca</div>
+                            <strong>Canzoniere</strong>
+                            <p>Sonetos y madrigales. El amor no correspondido como tema central.</p>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-date">Sannazaro</div>
+                            <strong>Arcadia</strong>
+                            <p>Poesía pastoral. Diálogos entre pastores en paisajes idealizados.</p>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-date">Ariosto</div>
+                            <strong>Orlando Furioso</strong>
+                            <p>Mezcla de caballerías y amor. Estructura octava real.</p>
+                        </div>
+                    </div>
+                    <div class="key-point" style="margin-top: 20px;">
+                        <strong>Adaptación, no imitación</strong><br>
+                        Garcilaso no copia, sino que hispaniza las formas italianas
+                    </div>
+                </div>
+                <div class="slide-image">
+                    <div>
+                        <strong>Petrarca y Laura</strong><br>
+                        Ilustración renacentista<br>
+                        <small>Manuscrito del Canzoniere</small><br><br>
+                        <strong>Jacopo Sannazaro</strong><br>
+                        Retrato del autor de Arcadia<br>
+                        <small>Pintura renacentista italiana</small>
+                    </div>
+                </div>
+            </div>
+            <div class="slide-number">4 / 12</div>
+        </div>
+
+        <!-- Slide 5: Las Églogas -->
+        <div class="slide">
+            <h1 class="slide-title">Las Églogas - Poesía Pastoril</h1>
+            <div class="poetry-box">
+                <div class="poetry-text">
+                    <strong>Égloga I</strong><br>
+                    Salicio: "¡Oh dulces prendas por mi mal halladas,<br>
+                    dulces y alegres cuando Dios quería!<br>
+                    ¡Dulces cuando yo las tenía!"
+                </div>
+            </div>
+            <div class="slide-content" style="margin-top: 30px;">
+                <div class="slide-text">
+                    <h3 style="color: #667eea; margin-bottom: 15px;">Características de las Églogas</h3>
+                    <ul style="line-height: 1.8;">
+                        <li><strong>Ambiente:</strong> Naturaleza idealizada, locus amoenus</li>
+                        <li><strong>Personajes:</strong> Pastores con nombres griegos (Salicio, Nemoroso, Elisa)</li>
+                        <li><strong>Temas:</strong> Amor no correspondido, muerte, exilio</li>
+                        <li><strong>Estructura:</strong> Diálogo poético, metros italianos</li>
+                    </ul>
+                    <div class="key-point" style="margin-top: 15px;">
+                        <strong>Égloga III - La más autobiográfica</strong><br>
+                        Contiene el famoso soneto "A la flor de Gnido"
+                    </div>
+                </div>
+                <div class="slide-image">
+                    <div>
+                        <strong>Paisaje pastoril renacentista</strong><br>
+                        Idealización de la naturaleza<br>
+                        Pastores y ninfas<br>
+                        <small>Pintura del siglo XVI</small>
+                    </div>
+                </div>
+            </div>
+            <div class="slide-number">5 / 12</div>
+        </div>
+
+        <!-- Slide 6: El Soneto XIII -->
+        <div class="slide">
+            <h1 class="slide-title">Soneto XIII - "A la flor de Gnido"</h1>
+            <div class="poetry-box">
+                <div class="poetry-text">
+                    <strong>Fragmento corregido:</strong><br><br>
+                    Por ti el silencio de la selva umbrosa,<br>
+                    por ti la esquividad y apartamiento<br>
+                    del solitario monte me agradaba;<br>
+                    por ti la verde hierba, el fresco viento,<br>
+                    el blanco lirio y colorada rosa<br>
+                    y dulce primavera deseaba.<br><br>
+                    ¡Ay, cuánto me engañaba!<br>
+                    ¡Ay, cuán diferente era<br>
+                    y cuán de otra manera<br>
+                    lo que en tu falso pecho se escondía!
+                </div>
+            </div>
+            <div class="key-point" style="margin-top: 20px;">
+                <strong>Corrección textual importante:</strong><br>
+                "he de **cantar**" → "he de **contar**"<br>
+                La versión correcta es "contar" (narrar), no "cantar"
+            </div>
+            <div class="slide-number">6 / 12</div>
+        </div>
+
+        <!-- Slide 7: Innovaciones Métricas -->
+        <div class="slide">
+            <h1 class="slide-title">Innovaciones Métricas</h1>
+            <div class="slide-content">
+                <div class="slide-text">
+                    <h3 style="color: #667eea; margin-bottom: 15px;">Nuevas Formas Poéticas en España</h3>
+                    <div class="timeline">
+                        <div class="timeline-item">
+                            <div class="timeline-date">Endecasílabo Italiano</div>
+                            <strong>Ritmo 11-11-10-11</strong>
+                            <p>Adaptación del verso italiano al español. "El dulce lamentar"</p>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-date">Soneto Petrarquista</div>
+                            <strong>ABBA ABBA + CDE CDE</strong>
+                            <p>14 versos. Tema amoroso con volta en el sexteto.</p>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-date">Lira Garcilasiana</div>
+                            <strong>5a-7- 5a-7- 5b-7-</strong>
+                            <p>Inventada por Garcilaso. "A la flor de Gnido"</p>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-date">Silva</div>
+                            <strong>Combinación libre</strong>
+                            <p>Mezcla de endecasílabos y heptasílabos sin esquema fijo.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="slide-image">
+                    <div>
+                        <strong>Esquema métrico visual</strong><br>
+                        <p style="font-family: monospace; text-align: left; margin: 20px 0;">
+                        El-dul-ce-la-men-tar-de-dos-pas-tores- (11)<br>
+                        Sa-li-cio-jun-ta-men-te-y-Ne-mo-ro-so- (11)<br>
+                        he-de-con-tar-sus-que-jas-i-mi-tan-do- (11)<br>
+                        cu-yas-o-ve-jas-al-can-tar-sa-bro-so- (11)<br>
+                        es-ta-ban-muy-a-ten-tas-los-a-mo-res- (11)<br>
+                        de-pa-cer-ol-vi-da-das-es-cu-chan-do- (11)
+                        </p>
+                        <small>Ritmo del endecasílabo garcilasiano</small>
+                    </div>
+                </div>
+            </div>
+            <div class="slide-number">7 / 12</div>
+        </div>
+
+        <!-- Slide 8: Temas y Motivos -->
+        <div class="slide">
+            <h1 class="slide-title">Temas y Motivos Fundamentales</h1>
+            <div class="slide-content">
+                <div class="slide-text">
+                    <h3 style="color: #667eea; margin-bottom: 15px;">El Amor Cortés</h3>
+                    <p>Amor no correspondido, sufrimiento por la dama inaccesible. Influencia directa de Petrarca.</p>
+
+                    <h3 style="color: #667eea; margin: 20px 0 15px 0;">La Naturaleza</h3>
+                    <p>El locus amoenus como refugio y espejo del estado emocional. Personificación de elementos naturales.</p>
+
+                    <h3 style="color: #667eea; margin: 20px 0 15px 0;">El Exilio y la Melancolía</h3>
+                    <p>Ausencia de la patria, nostalgia. Reflejo de su propia experiencia diplomática y militar.</p>
+
+                    <h3 style="color: #667eea; margin: 20px 0 15px 0;">La Muerte</h3>
+                    <p>Temprana conciencia de la finitud. "Salid sin duelo, lágrimas, corriendo."</p>
+
+                    <div class="quote" style="margin-top: 20px;">
+                        "Cuando me parecía que me tenía<br>
+                        en la mano el gozo que mi bien sustenta,<br>
+                        faltó la pieza que me amparaba,<br>
+                        y así quedé de mi esperanza muerto."
+                    </div>
+                </div>
+                <div class="slide-image">
+                    <div>
+                        <strong>El Amor Cortés</strong><br>
+                        Caballero y su dama<br>
+                        Código amoroso medieval<br>
+                        <small>Iluminación del siglo XV</small><br><br>
+                        <strong>La Melancolía Renacentista</strong><br>
+                        El poeta pensativo<br>
+                        <small>Retrato del siglo XVI</small>
+                    </div>
+                </div>
+            </div>
+            <div class="slide-number">8 / 12</div>
+        </div>
+
+        <!-- Slide 9: Estilo y Lenguaje -->
+        <div class="slide">
+            <h1 class="slide-title">Estilo y Lenguaje Poético</h1>
+            <div class="slide-content">
+                <div class="slide-text">
+                    <h3 style="color: #667eea; margin-bottom: 15px;">Características del Estilo Garcilasiano</h3>
+
+                    <div class="key-point">
+                        <strong>Naturalidad y Sencillez</strong><br>
+                        Rechazo del artificio excesivo de la poesía medieval
+                    </div>
+
+                    <h4 style="margin: 20px 0 10px 0; color: #764ba2;">Recursos Estilísticos</h4>
+                    <ul style="line-height: 1.8;">
+                        <li><strong>Alusiones mitológicas:</strong> Ninfas, dioses, heroes clásicos</li>
+                        <li><strong>Metáforas sutiles:</strong> "el blanco lirio y colorada rosa"</li>
+                        <li><strong>Personificación:</strong> La naturaleza con vida propia</li>
+                        <li><strong>Bimembración:</strong> Estructuras paralelas para énfasis</li>
+                        <li><strong>Elipsis:</strong> Omisión elegante de elementos</li>
+                    </ul>
+
+                    <div class="poetry-box" style="margin-top: 20px;">
+                        <div class="poetry-text">
+                            "En medio del camino de esta vida<br>
+                            me encontré en una selva oscura"<br>
+                            <small>Ejemplo de naturalidad expresiva</small>
+                        </div>
+                    </div>
+                </div>
+                <div class="slide-image">
+                    <div>
+                        <strong>Manuscrito de Garcilaso</strong><br>
+                        Escritura renacentista<br>
+                        Caligrafía humanista<br>
+                        <small>Códice del siglo XVI</small><br><br>
+                        <strong>Estilo literario renacentista</strong><br>
+                        Claridad, armonía, equilibrio<br>
+                        <small>Principios del Humanismo</small>
+                    </div>
+                </div>
+            </div>
+            <div class="slide-number">9 / 12</div>
+        </div>
+
+        <!-- Slide 10: Influencia Posterior -->
+        <div class="slide">
+            <h1 class="slide-title">Influencia y Legado</h1>
+            <div class="slide-content">
+                <div class="slide-text">
+                    <h3 style="color: #667eea; margin-bottom: 15px;">El Modelo Garcilasiano</h3>
+                    <p>Garcilaso establece el paradigma poético que dominará la literatura española durante siglos.</p>
+
+                    <div class="timeline">
+                        <div class="timeline-item">
+                            <div class="timeline-date">Fray Luis de León</div>
+                            <strong>Poesía mística renacentista</strong>
+                            <p>Adapta las formas garcilasianas al tema religioso.</p>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-date">San Juan de la Cruz</div>
+                            <strong>Mística sublime</strong>
+                            <p>Usa el lirismo garcilasiano para expresar la unión divina.</p>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-date">Lope de Vega</div>
+                            <strong>Teatro y novela</strong>
+                            <p>La influencia se extiende más allá de la poesía lírica.</p>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-date">Góngora</div>
+                            <strong>Culteranismo</strong>
+                            <p>Parte del modelo garcilasiano para crear su propio estilo.</p>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-date">Quevedo</div>
+                            <strong>Conceptismo</strong>
+                            <p>Usa las formas clásicas con contenido barroco.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="slide-image">
+                    <div>
+                        <strong>Árbol genealógico de la poesía española</strong><br>
+                        Garcilaso en la raíz del Renacimiento<br>
+                        <small>Esquema de influencias literarias</small><br><br>
+                        <strong>El Siglo de Oro Español</strong><br>
+                        Cervantes, Lope, Quevedo, Góngora<br>
+                        <small>Todos deudores del modelo garcilasiano</small>
+                    </div>
+                </div>
+            </div>
+            <div class="slide-number">10 / 12</div>
+        </div>
+
+        <!-- Slide 11: Obra Completa -->
+        <div class="slide">
+            <h1 class="slide-title">Obra Completa</h1>
+            <div class="slide-content">
+                <div class="slide-text">
+                    <h3 style="color: #667eea; margin-bottom: 15px;">Producción Literaria (38 poemas)</h3>
+
+                    <div class="highlight-box">
+                        <h4 style="margin-bottom: 15px;">Églogas (3)</h4>
+                        <ul style="list-style: none; padding-left: 0;">
+                            <li>• Égloga I - Diálogo entre Salicio y Camila</li>
+                            <li>• Égloga II - Los cuatro pastores</li>
+                            <li>• Égloga III - Nemoroso y la muerte de Elisa</li>
+                        </ul>
+                    </div>
+
+                    <div class="highlight-box" style="margin-top: 15px; background: linear-gradient(135deg, #764ba2, #667eea);">
+                        <h4 style="margin-bottom: 15px;">Canciones (5)</h4>
+                        <ul style="list-style: none; padding-left: 0;">
+                            <li>• Canción I - A la flor de Gnido</li>
+                            <li>• Canción II - Mientras por competir</li>
+                            <li>• Canción III - Oyd, sonetos, los llantos</li>
+                            <li>• Canción IV - Por despecho y con saña</li>
+                            <li>• Canción V - Si de mi baja lira</li>
+                        </ul>
+                    </div>
+
+                    <div class="key-point" style="margin-top: 15px;">
+                        <strong>Sonetos (40) - Solo 38 auténticos</strong><br>
+                        Temas: amor, naturaleza, exilio, muerte
+                    </div>
+
+                    <div class="key-point" style="margin-top: 10px;">
+                        <strong>8 coplas de arte mayor</strong><br>
+                        Poemas octosilabos con estructura tradicional
+                    </div>
+
+                    <div class="key-point" style="margin-top: 10px;">
+                        <strong>4 elegías y 1 epístola</strong><br>
+                        Obras menores pero significativas
+                    </div>
+                </div>
+                <div class="slide-image">
+                    <div>
+                        <strong>Obra completa de Garcilaso</strong><br>
+                        Manuscrito de las Obras<br>
+                        <small>Edición príncipe, 1543</small><br><br>
+                        <strong>Las primeras ediciones</strong><br>
+                        Publicadas por Juan Brocense<br>
+                        <small>Toledo, siglo XVI</small><br><br>
+                        <strong>Influencia en la imprenta</strong><br>
+                        Difusión por toda España<br>
+                        <small>Renacimiento literario</small>
+                    </div>
+                </div>
+            </div>
+            <div class="slide-number">11 / 12</div>
+        </div>
+
+        <!-- Slide 12: Bibliografía y Conclusión -->
+        <div class="slide">
+            <h1 class="slide-title">Bibliografía y Conclusión</h1>
+            <div class="bibliography">
+                <h4>Ediciones Críticas Recomendadas</h4>
+                <ul>
+                    <li><strong>Obras de Garcilaso de la Vega.</strong> Edición de Elias L. Rivers. Cátedra, 2002.</li>
+                    <li><strong>Poesía completa.</strong> Edición de Rafael Lapesa. Castalia, 1985.</li>
+                    <li><strong>Obra poética.</strong> Edición de José María de Cossío. Espasa-Calpe, 1969.</li>
+                </ul>
+            </div>
+
+            <div class="bibliography">
+                <h4>Estudios Críticos</h4>
+                <ul>
+                    <li>Lapesa, Rafael. <strong>La trayectoria poética de Garcilaso.</strong> Gredos, 1985.</li>
+                    <li>Rivers, Elias L. <strong>Poética del Renacimiento.</strong> Barcelona, 1976.</li>
+                    <li>Alonso, Dámaso. <strong>Poesía española.</strong> Gredos, 1950.</li>
+                </ul>
+            </div>
+
+            <div class="highlight-box" style="margin: 30px 0;">
+                <h3 style="margin-bottom: 15px; text-align: center;">Conclusión</h3>
+                <p style="text-align: center; font-size: 1.1rem;">
+                    Garcilaso de la Vega no solo introdujo las formas italianas en España,<br>
+                    sino que creó un lenguaje poético nuevo, natural y elegante<br>
+                    que definiría el Renacimiento español y sentaría las bases<br>
+                    para el Siglo de Oro de nuestra literatura.
+                </p>
+                <div class="poetry-box" style="margin-top: 20px;">
+                    <div class="poetry-text">
+                        "Mas si del tiempo la fugitiva brea<br>
+                        ha de cortar mis más breves desvelos,<br>
+                        porque me vaya dellos alejando,<br>
+                        moriré sin que nadie se lo espere."
+                    </div>
+                </div>
+            </div>
+
+            <div class="slide-number">12 / 12</div>
+        </div>
+    </div>
+
+    <div class="navigation">
+        <button class="nav-btn" onclick="previousSlide()" id="prevBtn">← Anterior</button>
+        <span class="slide-indicator" id="slideIndicator">1 / 12</span>
+        <button class="nav-btn" onclick="nextSlide()" id="nextBtn">Siguiente →</button>
+    </div>
+
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const totalSlides = slides.length;
+
+        function showSlide(index) {
+            slides.forEach(slide => slide.classList.remove('active'));
+            slides[index].classList.add('active');
+
+            document.getElementById('slideIndicator').textContent = `${index + 1} / ${totalSlides}`;
+
+            document.getElementById('prevBtn').disabled = index === 0;
+            document.getElementById('nextBtn').disabled = index === totalSlides - 1;
+        }
+
+        function nextSlide() {
+            if (currentSlide < totalSlides - 1) {
+                currentSlide++;
+                showSlide(currentSlide);
+            }
+        }
+
+        function previousSlide() {
+            if (currentSlide > 0) {
+                currentSlide--;
+                showSlide(currentSlide);
+            }
+        }
+
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight') nextSlide();
+            if (e.key === 'ArrowLeft') previousSlide();
+        });
+
+        // Touch/swipe support for mobile
+        let touchStartX = 0;
+        let touchEndX = 0;
+
+        document.addEventListener('touchstart', (e) => {
+            touchStartX = e.changedTouches[0].screenX;
+        });
+
+        document.addEventListener('touchend', (e) => {
+            touchEndX = e.changedTouches[0].screenX;
+            handleSwipe();
+        });
+
+        function handleSwipe() {
+            if (touchEndX < touchStartX - 50) nextSlide();
+            if (touchEndX > touchStartX + 50) previousSlide();
+        }
+
+        // Initialize
+        showSlide(0);
+    </script>
+</body>
+</html>

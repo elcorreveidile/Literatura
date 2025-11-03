@@ -1,0 +1,155 @@
+GUÍA DE IMÁGENES PARA LA PRESENTACIÓN DE GARCILASO
+================================================
+
+IMÁGENES NECESARIAS Y DÓNDE ENCONTRARLAS:
+==========================================
+
+1. DIPOSITIVA 1: Retrato de Garcilaso
+   - Búsqueda: "Garcilaso de la Vega portrait" o "Retrato de Garcilaso"
+   - Fuentes: Wikimedia Commons, museos españoles
+   - Formato ideal: 400x500px, retrato renacentista
+   - NOTA: No existe retrato auténtico, usar representación artística apropiada
+
+2. DIPOSITIVA 2: Contexto histórico
+   - Toledo en el siglo XVI
+   - Carlos V y su corte
+   - Soldados renacentistas españoles
+   - Fuentes: Archivo General de Simancas, Prado Museum
+
+3. DIPOSITIVA 3: La Alhambra
+   - Patio de los Leones (lugar del encuentro)
+   - Generalife y jardines
+   - Interior palacio nazarí
+   - Búsqueda: "La Alhambra Patio de los Leones"
+   - Fuentes: Patronato de la Alhambra, Wikimedia
+
+4. DIPOSITIVA 4: Influencia italiana
+   - Petrarca (Francesco Petrarca portrait)
+   - Portada de "Canzoniere"
+   - Jacopo Sannazaro retrato
+   - Ariosto "Orlando Furioso" manuscrito
+   - Fuentes: Bibliotecas italianas, Wikimedia Commons
+
+5. DIPOSITIVA 5: Poesía pastoril
+   - Paisaje pastoral renacentista
+   - Pastores y ninfas (Botticelli, Giorgione)
+   - Arcadia idealizada
+   - Búsqueda: "Renaissance pastoral landscape painting"
+
+6. DIPOSITIVA 7: Métrica visual
+   - Manuscrito con notación musical
+   - Partituras renacentistas
+   - Esquemas rítmicos visuales
+   - Crear: Diseño gráfico simple con texto
+
+7. DIPOSITIVA 8: Temas literarios
+   - Amor cortés (iluminaciones medievales)
+   - Melancolía renacentista (Dürer, "Melencolia I")
+   - Exilio y viajes
+   - Fuentes: Metropolitan Museum, British Museum
+
+8. DIPOSITIVA 9: Estilo renacentista
+   - Manuscrito de Garcilaso original
+   - Caligrafía humanista
+   - Códices del siglo XVI
+   - Fuentes: Biblioteca Nacional de España
+
+9. DIPOSITIVA 10: Influencia posterior
+   - Fray Luis de León
+   - San Juan de la Cruz
+   - Lope de Vega, Cervantes
+   - Árbol genealógico literario (crear diagrama)
+
+10. DIPOSITIVA 11: Obras completas
+    - Portadas de primeras ediciones
+    - Manuscritos de "Obras de Garcilaso"
+    - Juan Brocense editor
+    - Fuentes: Biblioteca Histórica Marqués de Valdecilla
+
+FUENTES RECOMENDADAS DE IMÁGENES LIBRES:
+========================================
+
+1. Wikimedia Commons (https://commons.wikimedia.org)
+   - Buscar: "Garcilaso de la Vega", "Renaissance literature"
+   - Licencias: Dominio público, Creative Commons
+
+2. Biblioteca Digital Hispánica (http://bdh.bne.es)
+   - Manuscritos originales
+   - Primeras ediciones
+   - Caligrafía humanista
+
+3. Museo Nacional del Prado (https://www.museodelprado.es)
+   - Colección en línea
+   - Pintura renacentista española
+
+4. Metropolitan Museum of Art (https://www.metmuseum.org)
+   - Arte renacentista europeo
+   - Manuscritos iluminados
+
+5. British Museum (https://www.britishmuseum.org)
+   - Colección renacentista
+   - Documentos históricos
+
+GUÍA DE BÚSQUEDA ESPECÍFICA:
+=============================
+
+1. Para retratos: "[Nombre] portrait Renaissance"
+2. Para manuscritos: "[Autor] manuscript 16th century"
+3. Para paisajes: "Renaissance pastoral painting"
+4. Para lugares: "[Lugar] [Siglo] century painting/engraving"
+
+RECOMENDACIONES DE DERECHOS:
+===============================
+
+✅ USAR:
+- Dominio público (más de 70 años después de la muerte del autor)
+- Creative Commons (CC0, CC BY, CC BY-SA)
+- Bibliotecas digitales públicas
+- Museos con imágenes de alta resolución
+
+❌ EVITAR:
+- Imágenes con marca de agua
+- Fuentes sin licencia clara
+- Material protegido por derechos de autor actual
+
+INSTRUCCIONES PARA AÑADIR IMÁGENES:
+=================================
+
+1. Descargar las imágenes en formato JPG o PNG
+2. Redimensionar si es necesario (máx 800px de ancho)
+3. Colocar en la misma carpeta que la presentación
+4. Reemplazar las descripciones en el código HTML:
+
+   ANTES:
+   <div class="slide-image">
+       <div>Descripción de imagen...</div>
+   </div>
+
+   DESPUÉS:
+   <div class="slide-image">
+       <img src="nombre_imagen.jpg" alt="Descripción" style="max-width: 100%; border-radius: 10px;">
+   </div>
+
+EJEMPLOS DE BÚSQUEDA CONCRETAS:
+=============================
+
+1. "Garcilaso de la Vega portrait painting"
+2. "La Alhambra Patio de los Leones Granada"
+3. "Petrarca portrait Renaissance"
+4. "Renaissance pastoral landscape art"
+5. "16th century Spanish literature manuscript"
+6. "Fray Luis de León portrait"
+7. "Toledo 16th century painting"
+8. "Carlos V court Renaissance painting"
+
+RECURSOS ADICIONALES:
+========================
+
+- Google Arts & Culture
+- Europeana (bibliotecas europeas)
+- Digital Public Library of America
+- Biblioteca Nacional de España (catálogo digital)
+
+---
+Creado para facilitar la búsqueda de imágenes
+Presentación: Garcilaso_Presentacion_Completa.html
