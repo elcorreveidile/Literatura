@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>El Prólogo - Lazarillo de Tormes</title>
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:wght@400;600;700&family=Cinzel:wght@600;700&family=Source+Sans+Pro:wght@400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #8B4513;
+            --secondary-color: #D2691E;
+            --accent-color: #c9a97e;
+            --text-primary: #3a2a1a;
+            --text-secondary: #654321;
+            --background: linear-gradient(135deg, #2c1810 0%, #8B4513 50%, #A0522D 100%);
+            --content-bg: rgba(255, 248, 220, 0.95);
+            --shadow: 0 8px 32px rgba(0,0,0,0.3);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Crimson Text', serif;
+            color: var(--text-primary);
+            background: var(--background);
+            min-height: 100vh;
+            line-height: 1.6;
+        }
+
+        .container {
+            display: flex;
+            min-height: 100vh;
+        }
+
+        /* Sidebar Navigation */
+        .sidebar {
+            width: 320px;
+            background: rgba(58, 42, 26, 0.95);
+            padding: 2rem 0;
+            position: fixed;
+            height: 100vh;
+            overflow-y: auto;
+            z-index: 1000;
+            box-shadow: 2px 0 10px rgba(0,0,0,0.3);
+        }
+
+        .sidebar-header {
+            padding: 0 2rem 2rem;
+            border-bottom: 2px solid var(--accent-color);
+            margin-bottom: 2rem;
+        }
+
+        .sidebar-title {
+            font-family: 'Cinzel', serif;
+            font-size: 1.8rem;
+            color: var(--accent-color);
+            text-align: center;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+
+        .sidebar-subtitle {
+            font-size: 1rem;
+            color: #e6d7c3;
+            text-align: center;
+            font-style: italic;
+        }
+
+        .nav-menu {
+            list-style: none;
+        }
+
+        .nav-menu li {
+            margin-bottom: 0.5rem;
+        }
+
+        .nav-menu a {
+            display: block;
+            padding: 1rem 2rem;
+            color: #e6d7c3;
+            text-decoration: none;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            border-left: 3px solid transparent;
+        }
+
+        .nav-menu a:hover, .nav-menu a.active {
+            background-color: rgba(201, 169, 126, 0.2);
+            border-left-color: var(--accent-color);
+            color: var(--accent-color);
+        }
+
+        .nav-menu .current {
+            background-color: rgba(201, 169, 126, 0.3);
+            border-left-color: var(--accent-color);
+            color: var(--accent-color);
+            font-weight: 600;
+        }
+
+        /* Main Content */
+        .main-content {
+            flex: 1;
+            margin-left: 320px;
+            padding: 2rem;
+            max-width: calc(100% - 320px);
+        }
+
+        .content-section {
+            background: var(--content-bg);
+            border-radius: 20px;
+            padding: 3rem;
+            margin-bottom: 2rem;
+            box-shadow: var(--shadow);
+            border: 2px solid var(--primary-color);
+        }
+
+        .section-title {
+            font-family: 'Cinzel', serif;
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            text-align: center;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            width: 100px;
+            height: 3px;
+            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+            position: absolute;
+            bottom: -1rem;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .intro-text {
+            font-size: 1.2rem;
+            line-height: 1.8;
+            color: var(--text-secondary);
+            text-align: center;
+            margin-bottom: 3rem;
+            font-style: italic;
+        }
+
+        .prologue-content {
+            background: linear-gradient(135deg, rgba(255,248,220,0.9), rgba(255,240,220,0.9));
+            border: 2px solid var(--secondary-color);
+            border-radius: 15px;
+            padding: 2.5rem;
+            margin-bottom: 3rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            position: relative;
+        }
+
+        .quote-mark {
+            font-size: 6rem;
+            color: var(--primary-color);
+            opacity: 0.1;
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            font-family: Georgia, serif;
+        }
+
+        .prologue-text {
+            font-size: 1.3rem;
+            line-height: 1.9;
+            color: var(--text-primary);
+            margin-bottom: 2rem;
+            font-style: italic;
+            padding: 0 3rem;
+        }
+
+        .manifesto-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .manifesto-card {
+            background: rgba(255, 248, 220, 0.9);
+            border: 2px solid var(--secondary-color);
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .manifesto-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+        }
+
+        .manifesto-icon {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            text-align: center;
+            margin-bottom: 1rem;
+        }
+
+        .manifesto-title {
+            font-family: 'Cinzel', serif;
+            font-size: 1.4rem;
+            color: var(--primary-color);
+            text-align: center;
+            margin-bottom: 1rem;
+        }
+
+        .manifesto-content {
+            color: var(--text-secondary);
+            font-size: 1rem;
+        }
+
+        .manifesto-content ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .manifesto-content li {
+            position: relative;
+            padding-left: 25px;
+            margin-bottom: 0.5rem;
+        }
+
+        .manifesto-content li::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            color: var(--primary-color);
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        .innovation-section {
+            background: linear-gradient(135deg, rgba(139,69,19,0.1), rgba(160,82,45,0.1));
+            border-radius: 15px;
+            padding: 2.5rem;
+            margin-top: 3rem;
+            border: 2px solid var(--secondary-color);
+        }
+
+        .innovation-title {
+            font-family: 'Cinzel', serif;
+            font-size: 2rem;
+            color: var(--primary-color);
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .highlight {
+            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 3px 10px;
+            border-radius: 15px;
+            font-weight: 600;
+            display: inline-block;
+            margin: 2px;
+        }
+
+        /* Navigation Buttons */
+        .nav-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .nav-btn {
+            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 25px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(139, 69, 19, 0.3);
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .nav-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(139, 69, 19, 0.4);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .sidebar {
+                transform: translateX(-100%);
+                transition: transform 0.3s ease;
+            }
+
+            .sidebar.active {
+                transform: translateX(0);
+            }
+
+            .main-content {
+                margin-left: 0;
+                max-width: 100%;
+                padding: 1rem;
+            }
+
+            .content-section {
+                padding: 2rem 1.5rem;
+            }
+
+            .prologue-text {
+                font-size: 1.1rem;
+                padding: 0 1rem;
+            }
+
+            .manifesto-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .menu-toggle {
+                display: block;
+                position: fixed;
+                top: 1rem;
+                left: 1rem;
+                z-index: 1001;
+                background: var(--primary-color);
+                color: white;
+                border: none;
+                padding: 0.5rem;
+                border-radius: 5px;
+                cursor: pointer;
+            }
+        }
+
+        @media (min-width: 769px) {
+            .menu-toggle {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <button class="menu-toggle" onclick="toggleSidebar()">
+        <i class="material-icons">menu</i>
+    </button>
+
+    <div class="container">
+        <!-- Sidebar Navigation -->
+        <nav class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <h1 class="sidebar-title">Lazarillo de Tormes</h1>
+                <p class="sidebar-subtitle">Análisis literario completo</p>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html">📚 Inicio</a></li>
+                <li><a href="slide2.html">🏛️ Contexto histórico</a></li>
+                <li><a href="prologo.html" class="current">📜 Prólogo manifiesto</a></li>
+                <li><a href="tratados.html">👥 Tratados y amos</a></li>
+                <li><a href="temas.html">🎭 Temas principales</a></li>
+                <li><a href="lenguaje.html">✒️ Lenguaje y estilo</a></li>
+                <li><a href="picaresca.html">🎪 Novela picaresca</a></li>
+                <li><a href="legado.html">🏆 Influencia y legado</a></li>
+                <li><a href="fragmentos.html">📖 Fragmentos clave</a></li>
+                <li><a href="actividades.html">🎯 Actividades</a></li>
+            </ul>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <section class="content-section">
+                <h1 class="section-title">📜 El Prólogo como Manifiesto Literario</h1>
+
+                <p class="intro-text">
+                    El prólogo de <span class="highlight">Lazarillo de Tormes</span> no es una simple introducción,
+                    sino un <span class="highlight">manifiesto revolucionario</span> que justifica una nueva forma
+                    de entender la literatura y la verdad.
+                </p>
+
+                <div class="prologue-content">
+                    <div class="quote-mark">"</div>
+                    <div class="prologue-text">
+                        Yo por bien tengo que cosas tan señaladas, y por ventura nunca oídas ni vistas,
+                        vengan a noticia de muchos, y no se entierren en la sepultura del olvido;
+                        pues podría ser que alguno que las lea halle algo que le agrade,
+                        y a los que no agradaren, vengo a dar en el rostro con la verdad.
+                    </div>
+                </div>
+
+                <div class="manifesto-grid">
+                    <div class="manifesto-card">
+                        <div class="manifesto-icon">
+                            <i class="material-icons">gavel</i>
+                        </div>
+                        <h3 class="manifesto-title">Justificación de la Verdad</h3>
+                        <div class="manifesto-content">
+                            <ul>
+                                <li>Las cosas <span class="highlight">señaladas</span> merecen ser conocidas</li>
+                                <li>No deben <span class="highlight">enterrarse en el olvido</span></li>
+                                <li>La verdad es más importante que el agrado</li>
+                                <li>Afrontar la realidad sin mediaciones</li>
+                                <li>Responsabilidad del autor con la verdad</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="manifesto-card">
+                        <div class="manifesto-icon">
+                            <i class="material-icons">psychology</i>
+                        </div>
+                        <h3 class="manifesto-title">Vocación Auténtica</h3>
+                        <div class="manifesto-content">
+                            <ul>
+                                <li>Rechazo de la <span class="highlight">imitación servil</span></li>
+                                <li>Búsqueda de la <span class="highlight">originalidad</span> creativa</li>
+                                <li>No seguir modelos establecidos</li>
+                                <li>Creación desde la experiencia propia</li>
+                                <li>Autoridad basada en la autenticidad</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="manifesto-card">
+                        <div class="manifesto-icon">
+                            <i class="material-icons">visibility</i>
+                        </div>
+                        <h3 class="manifesto-title">Nueva Perspectiva</h3>
+                        <div class="manifesto-content">
+                            <ul>
+                                <li>Mostrar lo <span class="highlight">nunca oído ni visto</span></li>
+                                <li>Visión desde los <span class="highlight">márgenes sociales</span></li>
+                                <li>Historias de gente común y anónima</li>
+                                <li>Verdad de la vida cotidiana</li>
+                                <li>Ruptura con idealismos literarios</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="manifesto-card">
+                        <div class="manifesto-icon">
+                            <i class="material-icons">people</i>
+                        </div>
+                        <h3 class="manifesto-title">Diálogo con el Lector</h3>
+                        <div class="manifesto-content">
+                            <ul>
+                                <li>Lector <span class="highlight">activo y participativo</span></li>
+                                <li>Búsqueda del agrado pero también reflexión</li>
+                                <li>Respeto por la inteligencia del lector</li>
+                                <li>Invitación a encontrar valor personal</li>
+                                <li>Comunicación directa sin intermediarios</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="manifesto-card">
+                        <div class="manifesto-icon">
+                            <i class="material-icons">history_edu</i>
+                        </div>
+                        <h3 class="manifesto-title">Crítica de la Tradición</h3>
+                        <div class="manifesto-content">
+                            <ul>
+                                <li>Contra la <span class="highlight">literatura convencional</span></li>
+                                <li>Rechazo de tópicos y clichés</li>
+                                <li>Crítica de la imitación sin sentido</li>
+                                <li>Necesidad de <span class="highlight">renovación literaria</span></li>
+                                <li>Apuesta por la originalidad creadora</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="manifesto-card">
+                        <div class="manifesto-icon">
+                            <i class="material-icons">auto_stories</i>
+                        </div>
+                        <h3 class="manifesto-title">Función Social</h3>
+                        <div class="manifesto-content">
+                            <ul>
+                                <li>La literatura como <span class="highlight">testimonio</span></li>
+                                <li>Compromiso con la realidad histórica</li>
+                                <li>Construcción de memoria colectiva</li>
+                                <li>Reflejo crítico de la sociedad</li>
+                                <li>Instrumento de <span class="highlight">concienciación</span></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="innovation-section">
+                    <h2 class="innovation-title">🎯 Un Manifiesto Revolucionario</h2>
+                    <p style="font-size: 1.2rem; line-height: 1.8; color: var(--text-secondary); text-align: center; margin-bottom: 2rem;">
+                        El prólogo de Lazarillo constituye uno de los <span class="highlight">manifiestos literarios más importantes</span>
+                        de la literatura española. Anticipa conceptos modernos sobre la originalidad, la verdad literaria
+                        y la función social de la escritura. Establece un programa estético que rompe radicalmente
+                        con las convenciones renacentistas y abre el camino a una literatura más auténtica y comprometida
+                        con la realidad.
+                    </p>
+                    <p style="font-size: 1.1rem; line-height: 1.7; color: var(--text-secondary); text-align: center;">
+                        No es casualidad que una obra tan revolucionaria comenzara con un prólogo que
+                        <span class="highlight">justifica la necesidad de decir verdades incómodas</span> y mostrar
+                        realidades que otros prefieren ocultar. Este prólogo es tanto una defensa de la obra
+                        como una declaración de principios estéticos y éticos.
+                    </p>
+                </div>
+
+                <div class="nav-buttons">
+                    <a href="slide2.html" class="nav-btn">
+                        <i class="material-icons">arrow_back</i>
+                        ← Contexto histórico
+                    </a>
+                    <a href="tratados.html" class="nav-btn">
+                        Tratados y amos →
+                        <i class="material-icons">arrow_forward</i>
+                    </a>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script>
+        function toggleSidebar() {
+            const sidebar = document.getElementById('sidebar');
+            sidebar.classList.toggle('active');
+        }
+
+        // Close sidebar when clicking outside on mobile
+        document.addEventListener('click', function(event) {
+            const sidebar = document.getElementById('sidebar');
+            const menuToggle = document.querySelector('.menu-toggle');
+
+            if (window.innerWidth <= 768 &&
+                !sidebar.contains(event.target) &&
+                !menuToggle.contains(event.target) &&
+                sidebar.classList.contains('active')) {
+                sidebar.classList.remove('active');
+            }
+        });
+    </script>
+</body>
+</html>

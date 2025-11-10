@@ -1,0 +1,670 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tratados y Amos - Lazarillo de Tormes</title>
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:wght@400;600;700&family=Cinzel:wght@600;700&family=Source+Sans+Pro:wght@400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #8B4513;
+            --secondary-color: #D2691E;
+            --accent-color: #c9a97e;
+            --text-primary: #3a2a1a;
+            --text-secondary: #654321;
+            --background: linear-gradient(135deg, #2c1810 0%, #8B4513 50%, #A0522D 100%);
+            --content-bg: rgba(255, 248, 220, 0.95);
+            --shadow: 0 8px 32px rgba(0,0,0,0.3);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Crimson Text', serif;
+            color: var(--text-primary);
+            background: var(--background);
+            min-height: 100vh;
+            line-height: 1.6;
+        }
+
+        .container {
+            display: flex;
+            min-height: 100vh;
+        }
+
+        /* Sidebar Navigation */
+        .sidebar {
+            width: 320px;
+            background: rgba(58, 42, 26, 0.95);
+            padding: 2rem 0;
+            position: fixed;
+            height: 100vh;
+            overflow-y: auto;
+            z-index: 1000;
+            box-shadow: 2px 0 10px rgba(0,0,0,0.3);
+        }
+
+        .sidebar-header {
+            padding: 0 2rem 2rem;
+            border-bottom: 2px solid var(--accent-color);
+            margin-bottom: 2rem;
+        }
+
+        .sidebar-title {
+            font-family: 'Cinzel', serif;
+            font-size: 1.8rem;
+            color: var(--accent-color);
+            text-align: center;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+
+        .sidebar-subtitle {
+            font-size: 1rem;
+            color: #e6d7c3;
+            text-align: center;
+            font-style: italic;
+        }
+
+        .nav-menu {
+            list-style: none;
+        }
+
+        .nav-menu li {
+            margin-bottom: 0.5rem;
+        }
+
+        .nav-menu a {
+            display: block;
+            padding: 1rem 2rem;
+            color: #e6d7c3;
+            text-decoration: none;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            border-left: 3px solid transparent;
+        }
+
+        .nav-menu a:hover, .nav-menu a.active {
+            background-color: rgba(201, 169, 126, 0.2);
+            border-left-color: var(--accent-color);
+            color: var(--accent-color);
+        }
+
+        .nav-menu .current {
+            background-color: rgba(201, 169, 126, 0.3);
+            border-left-color: var(--accent-color);
+            color: var(--accent-color);
+            font-weight: 600;
+        }
+
+        /* Main Content */
+        .main-content {
+            flex: 1;
+            margin-left: 320px;
+            padding: 2rem;
+            max-width: calc(100% - 320px);
+        }
+
+        .content-section {
+            background: var(--content-bg);
+            border-radius: 20px;
+            padding: 3rem;
+            margin-bottom: 2rem;
+            box-shadow: var(--shadow);
+            border: 2px solid var(--primary-color);
+        }
+
+        .section-title {
+            font-family: 'Cinzel', serif;
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            text-align: center;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            width: 100px;
+            height: 3px;
+            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+            position: absolute;
+            bottom: -1rem;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .intro-text {
+            font-size: 1.2rem;
+            line-height: 1.8;
+            color: var(--text-secondary);
+            text-align: center;
+            margin-bottom: 3rem;
+            font-style: italic;
+        }
+
+        .tratados-timeline {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin: 3rem 0;
+            position: relative;
+            flex-wrap: wrap;
+            gap: 2rem;
+        }
+
+        .tratados-timeline::before {
+            content: '';
+            position: absolute;
+            top: 50px;
+            left: 50px;
+            right: 50px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+            z-index: 0;
+        }
+
+        .tratado-card {
+            background: linear-gradient(135deg, rgba(255,248,220,0.9), rgba(255,240,220,0.9));
+            border: 2px solid var(--secondary-color);
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            width: calc(25% - 20px);
+            min-width: 280px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .tratado-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+        }
+
+        .tratado-number {
+            position: absolute;
+            top: -15px;
+            left: -15px;
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 1.2rem;
+            font-family: 'Cinzel', serif;
+            box-shadow: 0 4px 10px rgba(139, 69, 19, 0.4);
+        }
+
+        .tratado-icon {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            text-align: center;
+            margin-bottom: 1rem;
+        }
+
+        .tratado-title {
+            font-family: 'Cinzel', serif;
+            font-size: 1.3rem;
+            color: var(--primary-color);
+            text-align: center;
+            margin-bottom: 0.5rem;
+        }
+
+        .tratado-master {
+            text-align: center;
+            font-weight: 600;
+            color: var(--text-secondary);
+            margin-bottom: 1rem;
+            font-size: 1rem;
+        }
+
+        .tratado-content {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+
+        .tratado-content ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .tratado-content li {
+            position: relative;
+            padding-left: 20px;
+            margin-bottom: 0.5rem;
+        }
+
+        .tratado-content li::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            color: var(--primary-color);
+            font-weight: bold;
+            font-size: 1.1rem;
+        }
+
+        .analysis-section {
+            background: linear-gradient(135deg, rgba(139,69,19,0.1), rgba(160,82,45,0.1));
+            border-radius: 15px;
+            padding: 2.5rem;
+            margin-top: 3rem;
+            border: 2px solid var(--secondary-color);
+        }
+
+        .analysis-title {
+            font-family: 'Cinzel', serif;
+            font-size: 2rem;
+            color: var(--primary-color);
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .analysis-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .analysis-card {
+            background: var(--content-bg);
+            border: 2px solid var(--primary-color);
+            border-radius: 10px;
+            padding: 1.5rem;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        }
+
+        .analysis-card-title {
+            font-family: 'Cinzel', serif;
+            color: var(--primary-color);
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .analysis-content {
+            color: var(--text-secondary);
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+
+        .highlight {
+            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 3px 10px;
+            border-radius: 15px;
+            font-weight: 600;
+            display: inline-block;
+            margin: 2px;
+        }
+
+        /* Navigation Buttons */
+        .nav-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .nav-btn {
+            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 25px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(139, 69, 19, 0.3);
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .nav-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(139, 69, 19, 0.4);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .sidebar {
+                transform: translateX(-100%);
+                transition: transform 0.3s ease;
+            }
+
+            .sidebar.active {
+                transform: translateX(0);
+            }
+
+            .main-content {
+                margin-left: 0;
+                max-width: 100%;
+                padding: 1rem;
+            }
+
+            .content-section {
+                padding: 2rem 1.5rem;
+            }
+
+            .tratados-timeline {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .tratados-timeline::before {
+                top: 50px;
+                bottom: 50px;
+                left: 50%;
+                right: auto;
+                width: 3px;
+                height: auto;
+            }
+
+            .tratado-card {
+                width: 100%;
+                max-width: 350px;
+                margin-bottom: 1rem;
+            }
+
+            .menu-toggle {
+                display: block;
+                position: fixed;
+                top: 1rem;
+                left: 1rem;
+                z-index: 1001;
+                background: var(--primary-color);
+                color: white;
+                border: none;
+                padding: 0.5rem;
+                border-radius: 5px;
+                cursor: pointer;
+            }
+        }
+
+        @media (min-width: 769px) {
+            .menu-toggle {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <button class="menu-toggle" onclick="toggleSidebar()">
+        <i class="material-icons">menu</i>
+    </button>
+
+    <div class="container">
+        <!-- Sidebar Navigation -->
+        <nav class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <h1 class="sidebar-title">Lazarillo de Tormes</h1>
+                <p class="sidebar-subtitle">Análisis literario completo</p>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html">📚 Inicio</a></li>
+                <li><a href="slide2.html">🏛️ Contexto histórico</a></li>
+                <li><a href="prologo.html">📜 Prólogo manifiesto</a></li>
+                <li><a href="tratados.html" class="current">👥 Tratados y amos</a></li>
+                <li><a href="temas.html">🎭 Temas principales</a></li>
+                <li><a href="lenguaje.html">✒️ Lenguaje y estilo</a></li>
+                <li><a href="picaresca.html">🎪 Novela picaresca</a></li>
+                <li><a href="legado.html">🏆 Influencia y legado</a></li>
+                <li><a href="fragmentos.html">📖 Fragmentos clave</a></li>
+                <li><a href="actividades.html">🎯 Actividades</a></li>
+            </ul>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <section class="content-section">
+                <h1 class="section-title">👥 Los Siete Tratados y Sus Amos</h1>
+
+                <p class="intro-text">
+                    La estructura de <span class="highlight">Lazarillo de Tormes</span> se organiza en siete tratados,
+                    cada uno dedicado a un amo diferente que representa un estamento social y un aspecto
+                    de la corrupción en la España del siglo XVI.
+                </p>
+
+                <div class="tratados-timeline">
+                    <div class="tratado-card">
+                        <div class="tratado-number">1</div>
+                        <div class="tratado-icon">
+                            <i class="material-icons">visibility_off</i>
+                        </div>
+                        <h3 class="tratado-title">El Ciego</h3>
+                        <div class="tratado-master">Primer amo</div>
+                        <div class="tratado-content">
+                            <ul>
+                                <li><span class="highlight">Educación inversa</span> inicial</li>
+                                <li>Aprendizaje de la astucia</li>
+                                <li>Lección: <span class="highlight">desconfianza</span></li>
+                                <li>Simboliza la ceguera espiritual</li>
+                                <li>Maestro cruel pero efectivo</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="tratado-card">
+                        <div class="tratado-number">2</div>
+                        <div class="tratado-icon">
+                            <i class="material-icons">church</i>
+                        </div>
+                        <h3 class="tratado-title">El Clérigo</h3>
+                        <div class="tratado-master">Segundo amo</div>
+                        <div class="tratado-content">
+                            <ul>
+                                <li>Representa la <span class="highlight">hipocresía religiosa</span></li>
+                                <li>Avara falsa piedad</li>
+                                <li>Guarda el pan mientras Lázaro muere de hambre</li>
+                                <li>Crítica directa al clero</li>
+                                <li>Simboliza la religión falsa</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="tratado-card">
+                        <div class="tratado-number">3</div>
+                        <div class="tratado-icon">
+                            <i class="material-icons">military_tech</i>
+                        </div>
+                        <h3 class="tratado-title">El Escudero</h3>
+                        <div class="tratado-master">Tercer amo</div>
+                        <div class="tratado-content">
+                            <ul>
+                                <li><span class="highlight">Nobleza empobrecida</span></li>
+                                <li>Orgullo sin recursos</li>
+                                <li>Mantiene apariencias nobiliarias</li>
+                                <li>Más digno que otros amos</li>
+                                <li>Crítica de la nobleza decadente</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="tratado-card">
+                        <div class="tratado-number">4</div>
+                        <div class="tratado-icon">
+                            <i class="material-icons">account_balance</i>
+                        </div>
+                        <h3 class="tratado-title">El Fraile</h3>
+                        <div class="tratado-master">Cuarto amo</div>
+                        <div class="tratado-content">
+                            <ul>
+                                <li><span class="highlight">Corrupción conventual</span></li>
+                                <li>Hábitos relajados</li>
+                                <li>Vida mundana y licenciosa</li>
+                                <li>Crítica de las órdenes religiosas</li>
+                                <li>Perversión de valores religiosos</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="tratado-card">
+                        <div class="tratado-number">5</div>
+                        <div class="tratado-icon">
+                            <i class="material-icons">church</i>
+                        </div>
+                        <h3 class="tratado-title">El Buldero</h3>
+                        <div class="tratado-master">Quinto amo</div>
+                        <div class="tratado-content">
+                            <ul>
+                                <li><span class="highlight">Estafador religioso</span></li>
+                                <li>Vende bulas falsas</li>
+                                <li>Finge milagros para ganar dinero</li>
+                                <li>Manipulación de la fe popular</li>
+                                <li>Comercio con lo sagrado</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="tratado-card">
+                        <div class="tratado-number">6</div>
+                        <div class="tratado-icon">
+                            <i class="material-icons">palette</i>
+                        </div>
+                        <h3 class="tratado-title">El Pintor</h3>
+                        <div class="tratado-master">Sexto amo</div>
+                        <div class="tratado-content">
+                            <ul>
+                                <li><span class="highlight">Arte y engaño</span></li>
+                                <li>Falsificación de pinturas</li>
+                                <li>Arte como herramienta de fraude</li>
+                                <li>Crítica de las apariencias</li>
+                                <li>Simboliza la falsedad artística</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="tratado-card">
+                        <div class="tratado-number">7</div>
+                        <div class="tratado-icon">
+                            <i class="material-icons">gavel</i>
+                        </div>
+                        <h3 class="tratado-title">El Alguacil</h3>
+                        <div class="tratado-master">Séptimo amo</div>
+                        <div class="tratado-content">
+                            <ul>
+                                <li><span class="highlight">Justicia corrupta</span></li>
+                                <li>Poder y prepotencia</li>
+                                <li>Final aparentemente feliz</li>
+                                <li>Lázaro alcanza <span class="highlight">estabilidad</span></li>
+                                <li>Ironía sobre el éxito social</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="analysis-section">
+                    <h2 class="analysis-title">📈 Análisis Estructural y Social</h2>
+
+                    <div class="analysis-grid">
+                        <div class="analysis-card">
+                            <h3 class="analysis-card-title">
+                                <i class="material-icons">architecture</i>
+                                Estructura Simbólica
+                            </h3>
+                            <div class="analysis-content">
+                                Los siete tratados representan una <span class="highlight">iniciación completa</span> en la vida picaresca. Cada amo enseña a Lázaro una lección diferente sobre la corrupción social, culminando en su "felicidad" a través de la <span class="highlight">aceptación del sistema</span> que antes criticaba.
+                            </div>
+                        </div>
+
+                        <div class="analysis-card">
+                            <h3 class="analysis-card-title">
+                                <i class="material-icons">trending_down</i>
+                                Degradación Social
+                            </h3>
+                            <div class="analysis-content">
+                                Los amos van descendiendo en la escala social y moral: desde un ciego (físicamente limitado pero psicológicamente lúcido) hasta un alguacil (poder establecido pero moralmente corrupto), mostrando la <span class="highlight">inversión de valores</span> en la sociedad.
+                            </div>
+                        </div>
+
+                        <div class="analysis-card">
+                            <h3 class="analysis-card-title">
+                                <i class="material-icons">school</i>
+                                Educación Picaresca
+                            </h3>
+                            <div class="analysis-content">
+                                Cada tratado es una <span class="highlight">lección de supervivencia</span>. Lázaro aprende: astucia (ciego), escepticismo (clérigo), dignidad falsa (escudero), corrupción (fraile), engaño (buldero), falsedad (pintor) y adaptación (alguacil).
+                            </div>
+                        </div>
+
+                        <div class="analysis-card">
+                            <h3 class="analysis-card-title">
+                                <i class="material-icons">theater_comedy</i>
+                                Teatro Social
+                            </h3>
+                            <div class="analysis-content">
+                                Los amos son <span class="highlight">arquetipos sociales</span> que representan las instituciones corruptas del siglo XVI. A través de ellos, la obra denuncia sistemáticamente todas las capas de la sociedad española del Renacimiento.
+                            </div>
+                        </div>
+
+                        <div class="analysis-card">
+                            <h3 class="analysis-card-title">
+                                <i class="material-icons">psychology</i>
+                                Evolución del Protagonista
+                            </h3>
+                            <div class="analysis-content">
+                                Lázaro evoluciona de víctima inocente a <span class="highlight">pícaro superviviente</span>,最终 adaptándose al sistema corrupto que inicialmente denunciaba. Su "felicidad" final es irónica y crítica de los valores sociales establecidos.
+                            </div>
+                        </div>
+
+                        <div class="analysis-card">
+                            <h3 class="analysis-card-title">
+                                <i class="material-icons">gavel</i>
+                                Crítica Institucional
+                            </h3>
+                            <div class="analysis-content">
+                                La obra ataca <span class="highlight">sistemáticamente</span>: la religión (clérigo, fraile, buldero), la nobleza (escudero), las artes (pintor), la justicia (alguacil) y la autoridad ciega (el ciego), mostrando una sociedad completamente corrupta.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="nav-buttons">
+                    <a href="prologo.html" class="nav-btn">
+                        <i class="material-icons">arrow_back</i>
+                        ← Prólogo manifiesto
+                    </a>
+                    <a href="temas.html" class="nav-btn">
+                        Temas principales →
+                        <i class="material-icons">arrow_forward</i>
+                    </a>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script>
+        function toggleSidebar() {
+            const sidebar = document.getElementById('sidebar');
+            sidebar.classList.toggle('active');
+        }
+
+        // Close sidebar when clicking outside on mobile
+        document.addEventListener('click', function(event) {
+            const sidebar = document.getElementById('sidebar');
+            const menuToggle = document.querySelector('.menu-toggle');
+
+            if (window.innerWidth <= 768 &&
+                !sidebar.contains(event.target) &&
+                !menuToggle.contains(event.target) &&
+                sidebar.classList.contains('active')) {
+                sidebar.classList.remove('active');
+            }
+        });
+    </script>
+</body>
+</html>
