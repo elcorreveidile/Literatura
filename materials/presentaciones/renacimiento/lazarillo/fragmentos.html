@@ -4,629 +4,98 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Fragmentos Clave - Lazarillo de Tormes</title>
-    <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:wght@400;600;700&family=Cinzel:wght@600;700&family=Source+Sans+Pro:wght@400;600&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:wght@400;600;700&family=Cinzel:wght@600;700&display=swap" rel="stylesheet">
     <style>
-        :root {
-            --primary-color: #8B4513;
-            --secondary-color: #D2691E;
-            --accent-color: #c9a97e;
-            --text-primary: #3a2a1a;
-            --text-secondary: #654321;
-            --background: linear-gradient(135deg, #2c1810 0%, #8B4513 50%, #A0522D 100%);
-            --content-bg: rgba(255, 248, 220, 0.95);
-            --shadow: 0 8px 32px rgba(0,0,0,0.3);
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Crimson Text', serif;
-            color: var(--text-primary);
-            background: var(--background);
-            min-height: 100vh;
-            line-height: 1.6;
-        }
-
-        .container {
-            display: flex;
-            min-height: 100vh;
-        }
-
-        /* Sidebar Navigation */
-        .sidebar {
-            width: 320px;
-            background: rgba(58, 42, 26, 0.95);
-            padding: 2rem 0;
-            position: fixed;
-            height: 100vh;
-            overflow-y: auto;
-            z-index: 1000;
-            box-shadow: 2px 0 10px rgba(0,0,0,0.3);
-        }
-
-        .sidebar-header {
-            padding: 0 2rem 2rem;
-            border-bottom: 2px solid var(--accent-color);
-            margin-bottom: 2rem;
-        }
-
-        .sidebar-title {
-            font-family: 'Cinzel', serif;
-            font-size: 1.8rem;
-            color: var(--accent-color);
-            text-align: center;
-            margin-bottom: 1rem;
-            line-height: 1.2;
-        }
-
-        .sidebar-subtitle {
-            font-size: 1rem;
-            color: #e6d7c3;
-            text-align: center;
-            font-style: italic;
-        }
-
-        .nav-menu {
-            list-style: none;
-        }
-
-        .nav-menu li {
-            margin-bottom: 0.5rem;
-        }
-
-        .nav-menu a {
-            display: block;
-            padding: 1rem 2rem;
-            color: #e6d7c3;
-            text-decoration: none;
-            font-size: 1rem;
-            transition: all 0.3s ease;
-            border-left: 3px solid transparent;
-        }
-
-        .nav-menu a:hover, .nav-menu a.active {
-            background-color: rgba(201, 169, 126, 0.2);
-            border-left-color: var(--accent-color);
-            color: var(--accent-color);
-        }
-
-        .nav-menu .current {
-            background-color: rgba(201, 169, 126, 0.3);
-            border-left-color: var(--accent-color);
-            color: var(--accent-color);
-            font-weight: 600;
-        }
-
-        /* Main Content */
-        .main-content {
-            flex: 1;
-            margin-left: 320px;
-            padding: 2rem;
-            max-width: calc(100% - 320px);
-        }
-
-        .content-section {
-            background: var(--content-bg);
-            border-radius: 20px;
-            padding: 3rem;
-            margin-bottom: 2rem;
-            box-shadow: var(--shadow);
-            border: 2px solid var(--primary-color);
-        }
-
-        .section-title {
-            font-family: 'Cinzel', serif;
-            font-size: 2.5rem;
-            color: var(--primary-color);
-            text-align: center;
-            margin-bottom: 3rem;
-            position: relative;
-        }
-
-        .section-title::after {
-            content: '';
-            width: 100px;
-            height: 3px;
-            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
-            position: absolute;
-            bottom: -1rem;
-            left: 50%;
-            transform: translateX(-50%);
-        }
-
-        .intro-text {
-            font-size: 1.2rem;
-            line-height: 1.8;
-            color: var(--text-secondary);
-            text-align: center;
-            margin-bottom: 3rem;
-            font-style: italic;
-        }
-
-        .fragments-container {
-            display: flex;
-            flex-direction: column;
-            gap: 2.5rem;
-        }
-
-        .fragment-card {
-            background: linear-gradient(135deg, rgba(255,248,220,0.9), rgba(255,240,220,0.9));
-            border: 2px solid var(--secondary-color);
-            border-radius: 15px;
-            padding: 2rem;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            position: relative;
-        }
-
-        .fragment-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
-        }
-
-        .fragment-header {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            margin-bottom: 1.5rem;
-            padding-bottom: 1rem;
-            border-bottom: 2px solid rgba(139, 69, 19, 0.2);
-        }
-
-        .fragment-icon {
-            width: 50px;
-            height: 50px;
-            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 1.5rem;
-            flex-shrink: 0;
-        }
-
-        .fragment-title {
-            font-family: 'Cinzel', serif;
-            color: var(--primary-color);
-            font-size: 1.5rem;
-            flex: 1;
-        }
-
-        .fragment-source {
-            font-size: 0.9rem;
-            color: var(--text-secondary);
-            font-style: italic;
-            text-align: right;
-        }
-
-        .fragment-text {
-            font-size: 1.1rem;
-            line-height: 1.8;
-            color: var(--text-primary);
-            margin-bottom: 1.5rem;
-            padding: 1.5rem;
-            background: rgba(255, 255, 255, 0.5);
-            border-left: 4px solid var(--primary-color);
-            border-radius: 5px;
-            font-style: italic;
-        }
-
-        .fragment-analysis {
-            background: rgba(139, 69, 19, 0.05);
-            border-radius: 10px;
-            padding: 1.5rem;
-        }
-
-        .analysis-title {
-            font-family: 'Cinzel', serif;
-            color: var(--primary-color);
-            font-size: 1.2rem;
-            margin-bottom: 1rem;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .analysis-content {
-            color: var(--text-secondary);
-            font-size: 1rem;
-            line-height: 1.7;
-        }
-
-        .analysis-content ul {
-            list-style: none;
-            padding-left: 0;
-        }
-
-        .analysis-content li {
-            position: relative;
-            padding-left: 25px;
-            margin-bottom: 0.5rem;
-        }
-
-        .analysis-content li::before {
-            content: '•';
-            position: absolute;
-            left: 0;
-            color: var(--primary-color);
-            font-weight: bold;
-            font-size: 1.2rem;
-        }
-
-        .highlight {
-            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
-            color: white;
-            padding: 3px 10px;
-            border-radius: 15px;
-            font-weight: 600;
-            display: inline-block;
-            margin: 2px;
-        }
-
-        .quote-mark {
-            font-size: 4rem;
-            color: var(--primary-color);
-            opacity: 0.2;
-            position: absolute;
-            top: 10px;
-            left: 15px;
-            font-family: Georgia, serif;
-        }
-
-        /* Navigation Buttons */
-        .nav-buttons {
-            display: flex;
-            justify-content: center;
-            gap: 2rem;
-            margin-top: 3rem;
-        }
-
-        .nav-btn {
-            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
-            color: white;
-            border: none;
-            padding: 1rem 2rem;
-            border-radius: 25px;
-            font-size: 1rem;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(139, 69, 19, 0.3);
-            text-decoration: none;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .nav-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(139, 69, 19, 0.4);
-        }
-
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            .sidebar {
-                transform: translateX(-100%);
-                transition: transform 0.3s ease;
-            }
-
-            .sidebar.active {
-                transform: translateX(0);
-            }
-
-            .main-content {
-                margin-left: 0;
-                max-width: 100%;
-                padding: 1rem;
-            }
-
-            .content-section {
-                padding: 2rem 1.5rem;
-            }
-
-            .fragment-header {
-                flex-direction: column;
-                text-align: center;
-                gap: 0.5rem;
-            }
-
-            .fragment-text {
-                font-size: 1rem;
-                padding: 1rem;
-            }
-
-            .menu-toggle {
-                display: block;
-                position: fixed;
-                top: 1rem;
-                left: 1rem;
-                z-index: 1001;
-                background: var(--primary-color);
-                color: white;
-                border: none;
-                padding: 0.5rem;
-                border-radius: 5px;
-                cursor: pointer;
-            }
-        }
-
-        @media (min-width: 769px) {
-            .menu-toggle {
-                display: none;
-            }
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        :root { --primary-color: #8B4513; --secondary-color: #D2691E; --accent-color: #c9a97e; --text-primary: #3a2a1a; --text-secondary: #654321; --text-light: #f8f5f0; --background: linear-gradient(135deg, #2c1810 0%, #8B4513 50%, #A0522D 100%); --content-bg: rgba(255, 248, 220, 0.95); --shadow: 0 8px 32px rgba(0,0,0,0.3); }
+        body { font-family: 'Crimson Text', serif; color: var(--text-primary); background: var(--background); min-height: 100vh; line-height: 1.6; }
+        header { background: rgba(44, 24, 16, 0.95); padding: 1rem 0; box-shadow: 0 4px 20px rgba(0,0,0,0.3); position: sticky; top: 0; z-index: 1000; }
+        .header-content { max-width: 1200px; margin: 0 auto; padding: 0 2rem; text-align: center; }
+        .main-title { font-family: 'Cinzel', serif; font-size: 2.5rem; color: var(--accent-color); margin-bottom: 1.5rem; text-shadow: 2px 2px 4px rgba(0,0,0,0.5); }
+        .main-subtitle { font-size: 1.2rem; color: var(--text-light); margin-bottom: 2rem; font-style: italic; }
+        nav ul { list-style: none; display: flex; justify-content: center; flex-wrap: wrap; gap: 0.5rem; }
+        nav a { display: block; padding: 0.6rem 1.2rem; background: linear-gradient(45deg, var(--primary-color), var(--secondary-color)); color: var(--text-light); text-decoration: none; border-radius: 25px; font-weight: 600; transition: all 0.3s ease; box-shadow: 0 4px 15px rgba(139, 69, 19, 0.3); font-size: 0.9rem; }
+        nav a:hover { transform: translateY(-2px); background: linear-gradient(45deg, var(--secondary-color), var(--primary-color)); }
+        nav a.active { background: linear-gradient(45deg, var(--accent-color), #b8986b); color: var(--text-primary); }
+        main { max-width: 1200px; margin: 0 auto; padding: 3rem 2rem; }
+        .content-section { background: var(--content-bg); border-radius: 20px; padding: 3rem; margin-bottom: 2rem; box-shadow: var(--shadow); border: 2px solid var(--primary-color); }
+        .section-title { font-family: 'Cinzel', serif; font-size: 2.5rem; color: var(--primary-color); text-align: center; margin-bottom: 3rem; }
+        .fragmentos-container { display: flex; flex-direction: column; gap: 2rem; }
+        .fragmento-card { background: rgba(255, 248, 220, 0.9); border: 2px solid var(--secondary-color); border-radius: 15px; padding: 2rem; box-shadow: 0 5px 15px rgba(0,0,0,0.2); transition: transform 0.3s ease; position: relative; }
+        .fragmento-card:hover { transform: translateY(-5px); }
+        .fragmento-number { position: absolute; top: -15px; left: -15px; width: 40px; height: 40px; background: linear-gradient(135deg, var(--primary-color), var(--secondary-color)); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; font-size: 1.2rem; font-family: 'Cinzel', serif; }
+        .fragmento-title { font-family: 'Cinzel', serif; font-size: 1.4rem; color: var(--primary-color); text-align: center; margin-bottom: 1rem; }
+        .fragmento-text { font-style: italic; color: var(--text-primary); font-size: 1.1rem; line-height: 1.8; margin-bottom: 1rem; padding: 1rem; background: rgba(255,255,255,0.5); border-left: 4px solid var(--primary-color); border-radius: 5px; }
+        .fragmento-analisis { color: var(--text-secondary); font-size: 1rem; line-height: 1.6; }
+        .highlight { background: linear-gradient(45deg, var(--primary-color), var(--secondary-color)); color: white; padding: 3px 10px; border-radius: 15px; font-weight: 600; display: inline-block; margin: 2px; }
+        .back-link { display: inline-block; margin-top: 2rem; padding: 1rem 2rem; background: linear-gradient(45deg, var(--primary-color), var(--secondary-color)); color: var(--text-light); text-decoration: none; border-radius: 25px; font-weight: 600; transition: all 0.3s ease; }
+        .back-link:hover { transform: translateY(-2px); }
+        footer { background: rgba(44, 24, 16, 0.95); color: var(--text-light); text-align: center; padding: 2rem; margin-top: 4rem; }
+        @media (max-width: 768px) { .main-title { font-size: 2rem; } .header-content { padding: 0 1rem; } main { padding: 2rem 1rem; } .content-section { padding: 2rem 1.5rem; } }
     </style>
 </head>
 <body>
-    <button class="menu-toggle" onclick="toggleSidebar()">
-        <i class="material-icons">menu</i>
-    </button>
-
-    <div class="container">
-        <!-- Sidebar Navigation -->
-        <nav class="sidebar" id="sidebar">
-            <div class="sidebar-header">
-                <h1 class="sidebar-title">Lazarillo de Tormes</h1>
-                <p class="sidebar-subtitle">Análisis literario completo</p>
+    <header>
+        <div class="header-content">
+            <h1 class="main-title">Lazarillo de Tormes</h1>
+            <p class="main-subtitle">La novela picaresca que revolucionó la literatura española</p>
+            <nav>
+                <ul>
+                    <li><a href="index.html">📚 Inicio</a></li><li><a href="contexto.html">🏛️ Contexto</a></li><li><a href="prologo.html">📜 Prólogo</a></li><li><a href="tratados.html">👥 Tratados</a></li><li><a href="temas.html">🎭 Temas</a></li><li><a href="lenguaje.html">✒️ Lenguaje</a></li><li><a href="picaresca.html">🎪 Picaresca</a></li><li><a href="legado.html">🏆 Legado</a></li><li><a href="fragmentos.html" class="active">📖 Fragmentos</a></li><li><a href="actividades.html">🎯 Actividades</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <main>
+        <section class="content-section">
+            <h2 class="section-title">📖 Fragmentos Clave</h2>
+            <div class="fragmentos-container">
+                <div class="fragmento-card">
+                    <div class="fragmento-number">1</div>
+                    <h3 class="fragmento-title">El Prólogo Manifiesto</h3>
+                    <div class="fragmento-text">
+                        "Yo por bien tengo que cosas tan señaladas, y por ventura nunca oídas ni vistas, vengan a noticia de muchos..."
+                    </div>
+                    <div class="fragmento-analisis">
+                        Justificación literaria revolucionaria que legitima la <span class="highlight">verdad del marginado</span> y democratiza la lectura.
+                    </div>
+                </div>
+                <div class="fragmento-card">
+                    <div class="fragmento-number">2</div>
+                    <h3 class="fragmento-title">La Lección del Ciego</h3>
+                    <div class="fragmento-text">
+                        "Yo te haré más hombre que veinte maestros... Toma, hijo, la beneficiencia de la cebolla y aprende a usarla bien."
+                    </div>
+                    <div class="fragmento-analisis">
+                        Primera lección de <span class="highlight">educación inversa</span> donde el sufrimiento enseña la astucia necesaria para sobrevivir.
+                    </div>
+                </div>
+                <div class="fragmento-card">
+                    <div class="fragmento-number">3</div>
+                    <h3 class="fragmento-title">La Realidad del Hambre</h3>
+                    <div class="fragmento-text">
+                        "Y consideraba yo que si con los hombres me había de haber, conmigo me había de desbastar; porque no me parece sino que con el hambre se pierden los más buenos juicios."
+                    </div>
+                    <div class="fragmento-analisis">
+                        El hambre como fuerza <span class="highlight">destructiva de la moral</span> y reflejo de la crisis económica real del siglo XVI.
+                    </div>
+                </div>
+                <div class="fragmento-card">
+                    <div class="fragmento-number">4</div>
+                    <h3 class="fragmento-title">La Felicidad Alcanzada</h3>
+                    <div class="fragmento-text">
+                        "Yo en la cumbre de toda buena fortuna... con esta mi mujer y oficio, estaba en la cumbre de toda buena dicha."
+                    </div>
+                    <div class="fragmento-analisis">
+                        Final <span class="highlight">irónico y ambiguo</span> donde la "felicidad" se logra mediante la sumisión al sistema corrupto.
+                    </div>
+                </div>
             </div>
-            <ul class="nav-menu">
-                <li><a href="index.html">📚 Inicio</a></li>
-                <li><a href="slide2.html">🏛️ Contexto histórico</a></li>
-                <li><a href="prologo.html">📜 Prólogo manifiesto</a></li>
-                <li><a href="tratados.html">👥 Tratados y amos</a></li>
-                <li><a href="temas.html">🎭 Temas principales</a></li>
-                <li><a href="lenguaje.html">✒️ Lenguaje y estilo</a></li>
-                <li><a href="picaresca.html">🎪 Novela picaresca</a></li>
-                <li><a href="legado.html">🏆 Influencia y legado</a></li>
-                <li><a href="fragmentos.html" class="current">📖 Fragmentos clave</a></li>
-                <li><a href="actividades.html">🎯 Actividades</a></li>
-            </ul>
-        </nav>
-
-        <!-- Main Content -->
-        <main class="main-content">
-            <section class="content-section">
-                <h1 class="section-title">📖 Fragmentos Clave</h1>
-
-                <p class="intro-text">
-                    Los pasajes más significativos de <span class="highlight">Lazarillo de Tormes</span>
-                    que revelan su genialidad literaria y su profunda crítica social. Cada fragmento va acompañado
-                    de su análisis para comprender mejor la obra maestra anónima.
-                </p>
-
-                <div class="fragments-container">
-                    <!-- Fragmento 1: El Prólogo -->
-                    <div class="fragment-card">
-                        <div class="quote-mark">"</div>
-                        <div class="fragment-header">
-                            <div class="fragment-icon">
-                                <i class="material-icons">edit</i>
-                            </div>
-                            <h3 class="fragment-title">El Prólogo Manifiesto</h3>
-                        </div>
-                        <div class="fragment-source">Prólogo - Carta a Vuestra Merced</div>
-                        <div class="fragment-text">
-                            "Yo por bien tengo que cosas tan señaladas, y por ventura nunca oídas ni vistas,
-                            vengan a noticia de muchos, y no se entierren en la sepultura del olvido;
-                            pues podría ser que alguno que las lea halle algo que le agrade..."
-                        </div>
-                        <div class="fragment-analysis">
-                            <h4 class="analysis-title">
-                                <i class="material-icons">psychology</i>
-                                Análisis
-                            </h4>
-                            <div class="analysis-content">
-                                <ul>
-                                    <li><span class="highlight">Justificación literaria</span> innovadora</li>
-                                    <li>El autor se posiciona como <span class="highlight">revelador de verdades</span></li>
-                                    <li>Crítica a la literatura convencional</li>
-                                    <li>Invitación a encontrar valor en lo humilde</li>
-                                    <li>Manifiesto estético revolucionario</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Fragmento 2: El Ciego -->
-                    <div class="fragment-card">
-                        <div class="quote-mark">"</div>
-                        <div class="fragment-header">
-                            <div class="fragment-icon">
-                                <i class="material-icons">visibility_off</i>
-                            </div>
-                            <h3 class="fragment-title">La Lección del Ciego</h3>
-                        </div>
-                        <div class="fragment-source">Tratado Primero - El ciego</div>
-                        <div class="fragment-text">
-                            "El ciego, con whom yo había ganado más en los quince días que viví con él
-                            que en toda mi vida, me dio la primera lección de la vida dura:
-                            'Yo te haré más hombre que veinte maestros', me dijo..."
-                        </div>
-                        <div class="fragment-analysis">
-                            <h4 class="analysis-title">
-                                <i class="material-icons">school</i>
-                                Análisis
-                            </h4>
-                            <div class="analysis-content">
-                                <ul>
-                                    <li><span class="highlight">Educación inversa</span> del pícaro</li>
-                                    <li>El ciego como primer <span class="highlight">maestro cruel</span></li>
-                                    <li>Aprendizaje por experiencia directa</li>
-                                    <li>Iniciación en la astucia y desconfianza</li>
-                                    <li>Crítica de la educación tradicional</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Fragmento 3: El Hambre -->
-                    <div class="fragment-card">
-                        <div class="quote-mark">"</div>
-                        <div class="fragment-header">
-                            <div class="fragment-icon">
-                                <i class="material-icons">restaurant</i>
-                            </div>
-                            <h3 class="fragment-title">La Realidad del Hambre</h3>
-                        </div>
-                        <div class="fragment-source">Tratado Segundo - El clérigo</div>
-                        <div class="fragment-text">
-                            "Y consideraba yo que si con los hombres me había de haber,
-                            conmigo me había de desbastar; porque no me parece sino que
-                            con el hambre se pierden los más buenos juicios."
-                        </div>
-                        <div class="fragment-analysis">
-                            <h4 class="analysis-title">
-                                <i class="material-icons">sentiment_very_dissatisfied</i>
-                                Análisis
-                            </h4>
-                            <div class="analysis-content">
-                                <ul>
-                                    <li>El hambre como <span class="highlight">fuerza destructora</span></li>
-                                    <li>Reflejo de la <span class="highlight">crisis económica</span> real</li>
-                                    <li>Crítica de la hipocresía religiosa</li>
-                                    <li>Psicología del marginado por necesidad</li>
-                                    <li>Realismo sin idealismos</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Fragmento 4: El Escudero -->
-                    <div class="fragment-card">
-                        <div class="quote-mark">"</div>
-                        <div class="fragment-header">
-                            <div class="fragment-icon">
-                                <i class="material-icons">military_tech</i>
-                            </div>
-                            <h3 class="fragment-title">La Pobreza del Escudero</h3>
-                        </div>
-                        <div class="fragment-source">Tratado Tercero - El escudero</div>
-                        <div class="fragment-text">
-                            "Yo le hice reverencia y él me hizo una gran cortesía,
-                            y díjome: 'Señor, esta es mi casa; aunque pequeña,
-                            es limpia y honesta'. Yo me quedé admirado de su gran honra,
-                            viendo su gran necesidad."
-                        </div>
-                        <div class="fragment-analysis">
-                            <h4 class="analysis-title">
-                                <i class="material-icons">theater_comedy</i>
-                                Análisis
-                            </h4>
-                            <div class="analysis-content">
-                                <ul>
-                                    <li>Crítica de la <span class="highlight">nobleza empobrecida</span></li>
-                                    <li>Las apariencias sobre la realidad</li>
-                                    <li>La <span class="highlight">dignidad humillada</span></li>
-                                    <li>Parodia de los valores nobiliarios</li>
-                                    <li>Comedia trágica social</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Fragmento 5: El Buldero -->
-                    <div class="fragment-card">
-                        <div class="quote-mark">"</div>
-                        <div class="fragment-header">
-                            <div class="fragment-icon">
-                                <i class="material-icons">church</i>
-                            </div>
-                            <h3 class="fragment-title">La Estafa del Buldero</h3>
-                        </div>
-                        <div class="fragment-source">Tratado Quinto - El buldero</div>
-                        <div class="fragment-text">
-                            "Y el buldero, con grande voz, comenzó a decir:
-                            '¡Oh milagro! ¡Oh gran milagro! ¡Gloria sea a Dios
-                            que ha hecho este portento!' Y la gente,
-                            con grande devoción, comenzaba a dar dinero."
-                        </div>
-                        <div class="fragment-analysis">
-                            <h4 class="analysis-title">
-                                <i class="material-icons">gavel</i>
-                                Análisis
-                            </h4>
-                            <div class="analysis-content">
-                                <ul>
-                                    <li>Denuncia de la <span class="highlight">corrupción clerical</span></li>
-                                    <li>Crítica de la religiosidad superficial</li>
-                                    <li>Manipulación de la <span class="highlight">fe popular</span></li>
-                                    <li>Cínica explotación de la devoción</li>
-                                    <li>Reflexión sobre la hipocresía religiosa</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Fragmento 6: La Felicidad Alcanzada -->
-                    <div class="fragment-card">
-                        <div class="quote-mark">"</div>
-                        <div class="fragment-header">
-                            <div class="fragment-icon">
-                                <i class="material-icons">home</i>
-                            </div>
-                            <h3 class="fragment-title">La Felicidad Conseguida</h3>
-                        </div>
-                        <div class="fragment-source">Tratado Séptimo - El alguacil</div>
-                        <div class="fragment-text">
-                            "En este tiempo estaba en mi prosperidad y en la cumbre
-                            de toda buena fortuna. Pues, señores, con esta mi mujer
-                            y oficio, estaba en la cumbre de toda buena dicha."
-                        </div>
-                        <div class="fragment-analysis">
-                            <h4 class="analysis-title">
-                                <i class="material-icons">sentiment_very_satisfied</i>
-                                Análisis
-                            </h4>
-                            <div class="analysis-content">
-                                <ul>
-                                    <li><span class="highlight">Feliz final irónico</span> y ambiguo</li>
-                                    <li>La felicidad en la <span class="highlight">sumisión</span></li>
-                                    <li>Crítica de valores sociales establecidos</li>
-                                    <li>Adaptación del pícaro al sistema</li>
-                                    <li>Comentario sobre la moral convencional</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="nav-buttons">
-                    <a href="legado.html" class="nav-btn">
-                        <i class="material-icons">arrow_back</i>
-                        ← Influencia y legado
-                    </a>
-                    <a href="actividades.html" class="nav-btn">
-                        Actividades →
-                        <i class="material-icons">arrow_forward</i>
-                    </a>
-                </div>
-            </section>
-        </main>
-    </div>
-
-    <script>
-        function toggleSidebar() {
-            const sidebar = document.getElementById('sidebar');
-            sidebar.classList.toggle('active');
-        }
-
-        // Close sidebar when clicking outside on mobile
-        document.addEventListener('click', function(event) {
-            const sidebar = document.getElementById('sidebar');
-            const menuToggle = document.querySelector('.menu-toggle');
-
-            if (window.innerWidth <= 768 &&
-                !sidebar.contains(event.target) &&
-                !menuToggle.contains(event.target) &&
-                sidebar.classList.contains('active')) {
-                sidebar.classList.remove('active');
-            }
-        });
-    </script>
+            <div style="text-align: center;">
+                <a href="index.html" class="back-link">← Volver a Inicio</a>
+            </div>
+        </section>
+    </main>
+    <footer><p class="footer-text">Una obra maestra que sigue vigente después de casi 500 años</p><div class="footer-badge">📚 Clase de literatura española - Siglo de Oro</div></footer>
 </body>
 </html>

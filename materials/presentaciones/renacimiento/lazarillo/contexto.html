@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Prólogo Manifiesto - Lazarillo de Tormes</title>
+    <title>Contexto Histórico - Lazarillo de Tormes</title>
     <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:wght@400;600;700&family=Cinzel:wght@600;700&display=swap" rel="stylesheet">
     <style>
         * {
@@ -142,45 +142,52 @@
             font-style: italic;
         }
 
-        .prologue-quote {
-            background: linear-gradient(135deg, rgba(255,248,220,0.9), rgba(255,240,220,0.9));
-            border: 2px solid var(--secondary-color);
+        .timeline {
+            background: rgba(139, 69, 19, 0.1);
             border-radius: 15px;
-            padding: 3rem;
+            padding: 2rem;
             margin-bottom: 3rem;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-            position: relative;
             text-align: center;
         }
 
-        .quote-mark {
-            font-size: 6rem;
+        .timeline h3 {
+            font-family: 'Cinzel', serif;
             color: var(--primary-color);
-            opacity: 0.1;
-            position: absolute;
-            top: 20px;
-            left: 30px;
-            font-family: Georgia, serif;
-        }
-
-        .prologue-text {
-            font-size: 1.4rem;
-            line-height: 1.9;
-            color: var(--text-primary);
-            font-style: italic;
+            font-size: 1.8rem;
             margin-bottom: 2rem;
-            position: relative;
-            z-index: 1;
         }
 
-        .manifesto-grid {
+        .timeline-events {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+        }
+
+        .timeline-event {
+            background: var(--content-bg);
+            border: 2px solid var(--primary-color);
+            border-radius: 10px;
+            padding: 1.5rem;
+            min-width: 200px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        }
+
+        .timeline-event strong {
+            color: var(--primary-color);
+            font-size: 1.1rem;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .context-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 2rem;
             margin-bottom: 3rem;
         }
 
-        .manifesto-card {
+        .context-card {
             background: rgba(255, 248, 220, 0.9);
             border: 2px solid var(--secondary-color);
             border-radius: 15px;
@@ -189,7 +196,7 @@
             transition: transform 0.3s ease;
         }
 
-        .manifesto-card:hover {
+        .context-card:hover {
             transform: translateY(-5px);
         }
 
@@ -212,6 +219,26 @@
             color: var(--text-secondary);
             font-size: 1.1rem;
             line-height: 1.6;
+        }
+
+        .card-content ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .card-content li {
+            position: relative;
+            padding-left: 25px;
+            margin-bottom: 0.5rem;
+        }
+
+        .card-content li::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            color: var(--primary-color);
+            font-weight: bold;
+            font-size: 1.2rem;
         }
 
         .highlight {
@@ -287,10 +314,6 @@
                 padding: 2rem 1.5rem;
             }
 
-            .prologue-text {
-                font-size: 1.2rem;
-            }
-
             nav ul {
                 gap: 0.5rem;
             }
@@ -298,6 +321,11 @@
             nav a {
                 padding: 0.6rem 1rem;
                 font-size: 0.9rem;
+            }
+
+            .timeline-events {
+                flex-direction: column;
+                align-items: center;
             }
         }
     </style>
@@ -311,8 +339,8 @@
             <nav>
                 <ul>
                     <li><a href="index.html">📚 Inicio</a></li>
-                    <li><a href="contexto.html">🏛️ Contexto Histórico</a></li>
-                    <li><a href="prologo.html" class="active">📜 Prólogo Manifiesto</a></li>
+                    <li><a href="contexto.html" class="active">🏛️ Contexto Histórico</a></li>
+                    <li><a href="prologo.html">📜 Prólogo Manifiesto</a></li>
                     <li><a href="tratados.html">👥 Tratados y Amos</a></li>
                     <li><a href="temas.html">🎭 Temas Principales</a></li>
                     <li><a href="lenguaje.html">✒️ Lenguaje y Estilo</a></li>
@@ -327,82 +355,137 @@
 
     <main>
         <section class="content-section">
-            <h2 class="section-title">📜 El Prólogo como Manifiesto Literario</h2>
+            <h2 class="section-title">🏛️ Contexto Histórico: España en el Siglo XVI</h2>
 
             <p class="intro-text">
-                El prólogo de <span class="highlight">Lazarillo de Tormes</span> no es una simple introducción,
-                sino un <span class="highlight">manifiesto revolucionario</span> que justifica una nueva forma
-                de entender la literatura y la verdad.
+                Para comprender <span class="highlight">Lazarillo de Tormes</span> es fundamental conocer la España del siglo XVI,
+                un período de contradicciones entre el esplendor imperial y la profunda crisis social que dio origen a esta obra revolucionaria.
             </p>
 
-            <div class="prologue-quote">
-                <div class="quote-mark">"</div>
-                <div class="prologue-text">
-                    Yo por bien tengo que cosas tan señaladas, y por ventura nunca oídas ni vistas,
-                    vengan a noticia de muchos, y no se entierren en la sepultura del olvido;
-                    pues podría ser que alguno que las lea halle algo que le agrade,
-                    y a los que no agradaren, vengo a dar en el rostro con la verdad.
+            <div class="timeline">
+                <h3>📅 Cronología Clave</h3>
+                <div class="timeline-events">
+                    <div class="timeline-event">
+                        <strong>1516-1556</strong>
+                        <span>Reinado de Carlos I</span>
+                    </div>
+                    <div class="timeline-event">
+                        <strong>1521</strong>
+                        <span>Guerra de las Comunidades</span>
+                    </div>
+                    <div class="timeline-event">
+                        <strong>1554</strong>
+                        <span>Publicación de Lazarillo</span>
+                    </div>
+                    <div class="timeline-event">
+                        <strong>1556-1598</strong>
+                        <span>Reinado de Felipe II</span>
+                    </div>
                 </div>
             </div>
 
-            <div class="manifesto-grid">
-                <div class="manifesto-card">
-                    <div class="card-icon">📖</div>
-                    <h3 class="card-title">Justificación de la Verdad</h3>
+            <div class="context-grid">
+                <div class="context-card">
+                    <div class="card-icon">👑</div>
+                    <h3 class="card-title">Contexto Político</h3>
                     <div class="card-content">
-                        <p>Las cosas <span class="highlight">señaladas</span> merecen ser conocidas y no deben <span class="highlight">enterrarse en el olvido</span>. La verdad es más importante que el agrado del lector.</p>
+                        <ul>
+                            <li><span class="highlight">Imperio español</span> más extenso</li>
+                            <li><span class="highlight">Monarquía autoritaria</span> centralizada</li>
+                            <li>Guerras constantes en Europa</li>
+                            <li>Carga fiscal sobre el pueblo</li>
+                            <li>Burocracia creciente y corrupta</li>
+                        </ul>
                     </div>
                 </div>
 
-                <div class="manifesto-card">
-                    <div class="card-icon">✨</div>
-                    <h3 class="card-title">Vocación Auténtica</h3>
+                <div class="context-card">
+                    <div class="card-icon">⛪</div>
+                    <h3 class="card-title">Contexto Religioso</h3>
                     <div class="card-content">
-                        <p>Rechazo de la <span class="highlight">imitación servil</span> y búsqueda de la <span class="highlight">originalidad</span>. No seguir modelos establecidos, crear desde la experiencia propia.</p>
+                        <ul>
+                            <li><span class="highlight">Contrarreforma</span> católica</li>
+                            <li>Inquisición española activa</li>
+                            <li>Conflictos religiosos en Europa</li>
+                            <li>Clero con gran poder social</li>
+                            <li>Crisis de valores religiosos</li>
+                        </ul>
                     </div>
                 </div>
 
-                <div class="manifesto-card">
-                    <div class="card-icon">👁️</div>
-                    <h3 class="card-title">Nueva Perspectiva</h3>
+                <div class="context-card">
+                    <div class="card-icon">💰</div>
+                    <h3 class="card-title">Crisis Económica</h3>
                     <div class="card-content">
-                        <p>Mostrar lo <span class="highlight">nunca oído ni visto</span>, la vida de los marginados. Visión desde los <span class="highlight">márgenes sociales</span> sin idealismos.</p>
+                        <ul>
+                            <li>Inflación por metales de América</li>
+                            <li><span class="highlight">Empobrecimiento</span> general</li>
+                            <li>Creciente número de <span class="highlight">pícaros</span></li>
+                            <li>Desigualdad social extrema</li>
+                            <li>Deudas de la corona</li>
+                        </ul>
                     </div>
                 </div>
 
-                <div class="manifesto-card">
-                    <div class="card-icon">🤝</div>
-                    <h3 class="card-title">Diálogo con el Lector</h3>
+                <div class="context-card">
+                    <div class="card-icon">📚</div>
+                    <h3 class="card-title">Contexto Literario</h3>
                     <div class="card-content">
-                        <p>Lector <span class="highlight">activo y participativo</span>, busca el agrado pero también la reflexión. Respeto por la inteligencia del lector.</p>
+                        <ul>
+                            <li>Libros de caballerías populares</li>
+                            <li>Poesía renacentista idealista</li>
+                            <li>Necesidad de <span class="highlight">realismo</span> literario</li>
+                            <li>Surgimiento de la crítica social</li>
+                            <li>Humanismo erasmista y crítico</li>
+                        </ul>
                     </div>
                 </div>
 
-                <div class="manifesto-card">
-                    <div class="card-icon">🎭</div>
-                    <h3 class="card-title">Crítica de la Tradición</h3>
+                <div class="context-card">
+                    <div class="card-icon">👥</div>
+                    <h3 class="card-title">Sociedad Jerárquica</h3>
                     <div class="card-content">
-                        <p>Contra la <span class="highlight">literatura convencional</span> y los tópicos. Necesidad de <span class="highlight">renovación literaria</span> y apuesta por la originalidad.</p>
+                        <ul>
+                            <li>Nobleza sin recursos económicos</li>
+                            <li>Clero con poder y riqueza</li>
+                            <li><span class="highlight">Pueblo marginado</span></li>
+                            <li>Rigidez estamental</li>
+                            <li>Ascenso social imposible</li>
+                        </ul>
                     </div>
                 </div>
 
-                <div class="manifesto-card">
+                <div class="context-card">
                     <div class="card-icon">🌍</div>
-                    <h3 class="card-title">Función Social</h3>
+                    <h3 class="card-title">España Imperial</h3>
                     <div class="card-content">
-                        <p>La literatura como <span class="highlight">testimonio</span> y <span class="highlight">concienciación</span>. Reflejo crítico de la sociedad y construcción de memoria colectiva.</p>
+                        <ul>
+                            <li>"Imperio en el que nunca se pone el sol"</li>
+                            <li>Guerras en Europa y América</li>
+                            <li><span class="highlight">Contradicción</span> entre esplendor y crisis</li>
+                            <li>Gasto militar desmedido</li>
+                            <li>Aislamiento internacional</li>
+                        </ul>
                     </div>
                 </div>
             </div>
 
-            <div style="background: linear-gradient(135deg, rgba(139,69,19,0.1), rgba(160,82,45,0.1)); border-radius: 15px; padding: 2.5rem; margin-top: 3rem; border: 2px solid var(--secondary-color); text-align: center;">
-                <h3 style="font-family: 'Cinzel', serif; color: var(--primary-color); font-size: 1.8rem; margin-bottom: 1.5rem;">🎯 Un Manifiesto Revolucionario</h3>
-                <p style="font-size: 1.2rem; line-height: 1.8; color: var(--text-secondary); margin-bottom: 1rem;">
-                    El prólogo de Lazarillo constituye uno de los <span class="highlight">manifiestos literarios más importantes</span> de la literatura española.
-                </p>
-                <p style="font-size: 1.1rem; line-height: 1.7; color: var(--text-secondary);">
-                    Establece un programa estético que rompe radicalmente con las convenciones renacentistas y abre el camino a una literatura más auténtica y comprometida con la realidad.
-                </p>
+            <div class="context-grid" style="margin-top: 3rem;">
+                <div class="context-card" style="grid-column: 1 / -1;">
+                    <div class="card-icon">🎭</div>
+                    <h3 class="card-title">El Nacimiento de la Crítica Social</h3>
+                    <div class="card-content">
+                        <p style="text-align: center; font-size: 1.2rem; margin-bottom: 1rem;">
+                            En este contexto de <span class="highlight">profundas contradicciones sociales</span>,
+                            <span class="highlight">Lazarillo de Tormes</span> surge como una respuesta literaria a la realidad.
+                        </p>
+                        <p style="text-align: center; font-size: 1.1rem; line-height: 1.7;">
+                            La obra refleja el descontento popular, la crisis de valores y la necesidad de una literatura
+                            que mire la realidad sin idealismos. Es el <span class="highlight">nacimiento de la novela moderna</span>
+                            como instrumento de crítica social y testimonio de su tiempo.
+                        </p>
+                    </div>
+                </div>
             </div>
 
             <div style="text-align: center;">
