@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
     // --- CONFIGURACIÓN DE LA PRESENTACIÓN DE LAZARILLO ---
-    const totalSlides = 12; // 12 diapositivas sobre Lazarillo
+    const totalSlides = 15; // 15 diapositivas sobre Lazarillo
 
     // --- DETECCIÓN DE DIAPOSITIVA ACTUAL ---
     const currentSlideMatch = window.location.pathname.match(/\/?slide(\d+)\.html/);

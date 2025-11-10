@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Introducción: El nacimiento de la novela picaresca</title>
+    <title>El Prólogo: Manifiesto de la nueva literatura moderna</title>
     <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:wght@400;600;700&family=Cinzel:wght@600;700&family=Source+Sans+Pro:wght@400;600&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <style>
@@ -31,8 +31,7 @@
             justify-content: center;
             align-items: center;
             flex-shrink: 0;
-            background: linear-gradient(135deg, rgba(44, 24, 16, 0.95), rgba(139, 69, 19, 0.9)),
-                        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800"><defs><pattern id="parchment" patternUnits="userSpaceOnUse" width="100" height="100"><rect width="100" height="100" fill="%23F5E6D3"/><path d="M0,50 Q25,30 50,50 T100,50" stroke="%23D2691E" stroke-width="0.5" fill="none" opacity="0.3"/></pattern></defs><rect width="1200" height="800" fill="url(%23parchment)"/></svg>');
+            background: linear-gradient(135deg, rgba(44, 24, 16, 0.95), rgba(139, 69, 19, 0.9));
             background-size: cover;
             background-position: center;
         }
@@ -53,7 +52,7 @@
         }
         .title {
             font-family: 'Cinzel', serif;
-            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-size: clamp(2rem, 4vw, 3rem);
             font-weight: 700;
             text-align: center;
             margin-bottom: 2rem;
@@ -63,24 +62,24 @@
             max-width: 90%;
         }
         .subtitle {
-            font-size: clamp(1.2rem, 2.5vw, 1.8rem);
+            font-size: clamp(1.1rem, 2vw, 1.5rem);
             font-weight: 400;
             text-align: center;
             color: #e8ddc7;
             max-width: 800px;
             line-height: 1.4;
-            margin-bottom: 2.5rem;
+            margin-bottom: 2rem;
             font-style: italic;
         }
-        .content-grid {
+        .manifesto-container {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
             gap: 2rem;
             max-width: 1200px;
             width: 100%;
             margin-bottom: 2rem;
         }
-        .content-box {
+        .manifesto-box {
             background: rgba(248, 245, 240, 0.95);
             border: 2px solid #8B4513;
             border-radius: 12px;
@@ -89,24 +88,46 @@
             backdrop-filter: blur(10px);
             transition: transform 0.3s ease;
         }
-        .content-box:hover {
+        .manifesto-box:hover {
             transform: translateY(-5px);
         }
-        .content-box h3 {
+        .manifesto-box h3 {
             font-family: 'Cinzel', serif;
             color: #8B4513;
-            font-size: 1.5rem;
+            font-size: 1.3rem;
             margin-bottom: 1.5rem;
             text-align: center;
             border-bottom: 2px solid rgba(139, 69, 19, 0.3);
             padding-bottom: 0.8rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
         }
-        .content-box p {
+        .manifesto-box p {
             color: #4a3728;
-            font-size: 1.1rem;
+            font-size: 1rem;
             line-height: 1.6;
             margin-bottom: 1rem;
             text-align: justify;
+        }
+        .manifesto-box ul {
+            list-style: none;
+            padding: 0;
+        }
+        .manifesto-box li {
+            color: #4a3728;
+            font-size: 1rem;
+            line-height: 1.5;
+            margin-bottom: 0.8rem;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+        .manifesto-box li::before {
+            content: "▸";
+            color: #8B4513;
+            position: absolute;
+            left: 0;
         }
         .highlight {
             background: linear-gradient(135deg, #8B4513, #A0522D);
@@ -119,16 +140,25 @@
             font-size: 0.9rem;
             box-shadow: 0 2px 8px rgba(139, 69, 19, 0.4);
         }
-        .level {
-            margin-top: 2rem;
-            font-size: 1.2rem;
-            padding: 1rem 2rem;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 30px;
-            color: #f8f5f0;
-            border: 2px solid rgba(255, 255, 255, 0.2);
-            backdrop-filter: blur(10px);
-            text-align: center;
+        .quote-box {
+            background: rgba(201, 169, 126, 0.15);
+            border-left: 4px solid #8B4513;
+            padding: 1.5rem;
+            margin: 1rem 0;
+            border-radius: 8px;
+            font-style: italic;
+            color: #5a4738;
+            position: relative;
+        }
+        .quote-box::before {
+            content: """;
+            font-size: 3rem;
+            color: #8B4513;
+            opacity: 0.3;
+            position: absolute;
+            top: -10px;
+            left: 10px;
+            font-family: 'Cinzel', serif;
         }
         /* --- ESTILOS PARA EL MENÚ LATERAL --- */
         .side-menu {
@@ -239,30 +269,72 @@
 <body>
     <div class="slide">
         <div class="overlay">
-            <h1 class="title">Lazarillo de Tormes</h1>
-            <p class="subtitle">El origen de la novela picaresca y la crítica social en el Renacimiento español</p>
+            <h1 class="title">El Prólogo: Manifiesto de la Nueva Literatura</h1>
+            <p class="subtitle">Un texto revolucionario que justifica el valor del individuo común y democratiza la lectura</p>
 
-            <div class="content-grid">
-                <div class="content-box">
-                    <h3>📖 Una obra revolucionaria</h3>
-                    <p>Publicada anónimamente en <span class="highlight">1554</span>, esta obra rompió con todas las convenciones literarias:</p>
-                    <p>✓ Introduce el <span class="highlight">realismo crudo</span> de la vida cotidiana</p>
-                    <p>✓ Presenta a un <span class="highlight">anti-héroe</span> de clase baja</p>
-                    <p>✓ Crea la <span class="highlight">novela picaresca</span>, nuevo género literario</p>
-                    <p>✓ Critica <span class="highlight">satíricamente</span> la sociedad y religión</p>
+            <div class="manifesto-container">
+                <div class="manifesto-box">
+                    <h3>
+                        <i class="material-icons">person</i>
+                        Reivindicación del individuo común
+                    </h3>
+                    <p>Lázaro justifica por qué decide contar su vida con un tono humilde que esconde una <span class="highlight">reivindicación radical</span>:</p>
+                    <ul>
+                        <li>Valora la <span class="highlight">experiencia personal</span> frente a la tradición heroica medieval</li>
+                        <li>El <span class="highlight">individuo ordinario</span> tiene historia digna de ser contada</li>
+                        <li>Rompe con la literatura de <span class="highlight">héroes y nobles</span></li>
+                        <li>Defiende que la vida de un <span class="highlight">pobre</span> merece ser literatura</li>
+                    </ul>
                 </div>
 
-                <div class="content-box">
-                    <h3>🎭 Innovación narrativa</h3>
-                    <p>Una obra que cambia fundamentalmente la literatura española:</p>
-                    <p>✓ Narración en <span class="highlight">primera persona</span> autobiográfica</p>
-                    <p>✓ Lenguaje <span class="highlight">coloquial</span> y directo</p>
-                    <p>✓ Estructura por <span class="highlight">tratados</span> o capítulos</p>
-                    <p>✓ Crítica social con <span class="highlight">ironía</span> mordaz</p>
+                <div class="manifesto-box">
+                    <h3>
+                        <i class="material-icons">menu_book</i>
+                        Reflexión sobre la lectura
+                    </h3>
+                    <div class="quote-box">
+                        "Yo por cierto tengo en mí el espíritu y la voluntad de contar las cosas de mi vida"
+                    </div>
+                    <p>Cita a <span class="highlight">Plinio y Cicerón</span> para afirmar que todo libro tiene algo bueno:</p>
+                    <ul>
+                        <li><span class="highlight">Democratiza la lectura</span>: todo texto ofrece valor</li>
+                        <li>Anticipa el <span class="highlight">humanismo crítico</span> y pensamiento independiente</li>
+                        <li>Invita al lector a <span class="highlight">buscar lo valioso</span> en cualquier obra</li>
+                    </ul>
+                </div>
+
+                <div class="manifesto-box">
+                    <h3>
+                        <i class="material-icons">military_tech</i>
+                        El deseo de fama y honra
+                    </h3>
+                    <p>Equipara el trabajo del escritor con el del soldado:</p>
+                    <ul>
+                        <li>Ambos buscan la <span class="highlight">honra</span>, no material sino de reconocimiento</li>
+                        <li>Cita clave: <span class="highlight">"la honra cría las artes"</span></li>
+                        <li>El escritor también es <span class="highlight">héroe</span> en su campo</li>
+                        <li>Legitima la <span class="highlight">ambición literaria</span> como noble</li>
+                    </ul>
+                    <div class="quote-box">
+                        "Aunque sea en grosero estilo, las cosas tan señaladas que en él se cuentan"
+                    </div>
+                </div>
+
+                <div class="manifesto-box">
+                    <h3>
+                        <i class="material-icons">auto_stories</i>
+                        Ideas literarias revolucionarias
+                    </h3>
+                    <p>El prólogo establece los principios de una nueva literatura:</p>
+                    <ul>
+                        <li>✓ La literatura ya no necesita <span class="highlight">héroes</span></li>
+                        <li>✓ No requiere <span class="highlight">lenguaje elevado</span> ni culto</li>
+                        <li>✓ Puede contar la <span class="highlight">vida real</span> de personas comunes</li>
+                        <li>✓ El <span class="highlight">estilo "grosero"</span> es válido y auténtico</li>
+                        <li>✓ La <span class="highlight">experiencia vivida</span> es fuente literaria</li>
+                    </ul>
                 </div>
             </div>
-
-            <div class="level">📚 Clase de literatura española - Siglo de Oro</div>
         </div>
     </div>
 
@@ -276,6 +348,10 @@
 
     <!-- Navegación Flotante -->
     <div class="floating-nav">
+        <button id="prevBtn" class="nav-btn">
+            ←
+            <span class="nav-tooltip">Anterior diapositiva</span>
+        </button>
         <button id="nextBtn" class="nav-btn">
             →
             <span class="nav-tooltip">Siguiente diapositiva</span>
