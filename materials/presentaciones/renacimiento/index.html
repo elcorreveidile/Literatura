@@ -32,6 +32,87 @@
             border-radius: 5px;
             transition: background-color 0.3s;
         }
+        .presentations-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+            max-width: 800px;
+        }
+
+        .presentation-card {
+            display: block;
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+            text-decoration: none;
+            color: #333;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .presentation-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+            border-color: #007BFF;
+        }
+
+        .presentation-card.featured {
+            border: 2px solid #28a745;
+            background: linear-gradient(135deg, #ffffff, #f0fff4);
+        }
+
+        .presentation-card.featured:hover {
+            border-color: #28a745;
+            background: linear-gradient(135deg, #ffffff, #e8f5e8);
+        }
+
+        .card-icon {
+            font-size: 48px;
+            text-align: center;
+            margin-bottom: 15px;
+        }
+
+        .presentation-card h3 {
+            font-size: 1.4em;
+            margin-bottom: 10px;
+            color: #333;
+            text-align: center;
+        }
+
+        .presentation-card p {
+            color: #666;
+            text-align: center;
+            line-height: 1.4;
+            margin: 0;
+        }
+
+        .badge {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: #28a745;
+            color: white;
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: bold;
+        }
+
+        .start-button {
+            display: inline-block;
+            padding: 15px 30px;
+            font-size: 1.2em;
+            color: white;
+            background-color: #007BFF;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
         .start-button:hover {
             background-color: #0056b3;
         }
@@ -40,9 +121,23 @@
 <body>
 
     <div class="container">
-        <h1>¡Bienvenido a mi Presentación!</h1>
-        <p>Haz clic en el botón para comenzar.</p>
-        <a href="slide1.html" class="start-button">Comenzar Presentación</a>
+        <h1>📚 Presentaciones del Renacimiento</h1>
+        <p>Selecciona una presentación para comenzar:</p>
+
+        <div class="presentations-grid">
+            <a href="slide1.html" class="presentation-card">
+                <div class="card-icon">🏛️</div>
+                <h3>Renacimiento General</h3>
+                <p>Visión general del Renacimiento español</p>
+            </a>
+
+            <a href="lazarillo/index.html" class="presentation-card featured">
+                <div class="card-icon">📖</div>
+                <h3>Lazarillo de Tormes</h3>
+                <p>La novela picaresca y su impacto literario</p>
+                <div class="badge">NUEVO</div>
+            </a>
+        </div>
     </div>
 
 </body>

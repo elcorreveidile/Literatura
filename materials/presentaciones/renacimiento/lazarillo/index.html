@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>La vida de Lazarillo de Tormes</title>
+    <style>
+        /* Estilos inspirados en el Renacimiento español */
+        body {
+            font-family: 'Crimson Text', serif;
+            background: linear-gradient(135deg, #8B4513 0%, #D2691E 50%, #CD853F 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            overflow: hidden;
+        }
+        .container {
+            text-align: center;
+            background-color: rgba(255, 248, 220, 0.95);
+            padding: 60px;
+            border-radius: 15px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            border: 3px solid #8B4513;
+            max-width: 800px;
+            position: relative;
+        }
+        .container::before {
+            content: "";
+            position: absolute;
+            top: -10px;
+            left: -10px;
+            right: -10px;
+            bottom: -10px;
+            background: linear-gradient(45deg, #8B4513, #D2691E, #CD853F, #8B4513);
+            border-radius: 20px;
+            z-index: -1;
+        }
+        h1 {
+            color: #8B4513;
+            font-size: 3em;
+            margin-bottom: 20px;
+            font-weight: 700;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+            font-family: 'Cinzel', serif;
+        }
+        .subtitle {
+            color: #654321;
+            font-size: 1.5em;
+            margin-bottom: 15px;
+            font-style: italic;
+        }
+        .author {
+            color: #8B4513;
+            font-size: 1.2em;
+            margin-bottom: 30px;
+            font-weight: 600;
+        }
+        .description {
+            color: #654321;
+            font-size: 1.1em;
+            line-height: 1.6;
+            margin-bottom: 40px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .start-button {
+            display: inline-block;
+            padding: 18px 40px;
+            font-size: 1.3em;
+            color: #fff;
+            background: linear-gradient(45deg, #8B4513, #D2691E);
+            text-decoration: none;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(139, 69, 19, 0.3);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border: 2px solid #8B4513;
+        }
+        .start-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(139, 69, 19, 0.4);
+            background: linear-gradient(45deg, #D2691E, #8B4513);
+        }
+        .decorative-line {
+            width: 200px;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, #8B4513, transparent);
+            margin: 20px auto;
+        }
+        .year {
+            display: inline-block;
+            background-color: #8B4513;
+            color: #fff;
+            padding: 8px 20px;
+            border-radius: 25px;
+            font-size: 1em;
+            margin-top: 20px;
+            font-weight: 600;
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:wght@400;600;700&family=Cinzel:wght@600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <div class="container">
+        <h1>La vida de Lazarillo de Tormes</h1>
+        <p class="subtitle">y de sus fortunas y adversidades</p>
+        <div class="decorative-line"></div>
+        <p class="author">Anónimo (1554)</p>
+        <p class="description">
+            Una obra maestra de la literatura española que revolucionó la narrativa europea
+            y dio origen a un nuevo género literario: la novela picaresca.
+        </p>
+        <a href="slide1.html" class="start-button">Comenzar Viaje</a>
+        <div class="year">Siglo de Oro Español</div>
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Introducción: El nacimiento de la novela picaresca</title>
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:wght@400;600;700&family=Cinzel:wght@600;700&family=Source+Sans+Pro:wght@400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Crimson Text', serif;
+            color: #3a2a1a;
+            background: linear-gradient(135deg, #8B4513 0%, #D2691E 50%, #CD853F 100%);
+            overflow: hidden;
+            display: flex;
+        }
+        .slide {
+            width: 1000px;
+            height: 100vh;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            flex-shrink: 0;
+            background: linear-gradient(rgba(139, 69, 19, 0.8), rgba(205, 133, 63, 0.8)),
+                        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800"><defs><pattern id="parchment" patternUnits="userSpaceOnUse" width="100" height="100"><rect width="100" height="100" fill="%23F5E6D3"/><path d="M0,50 Q25,30 50,50 T100,50" stroke="%23D2691E" stroke-width="0.5" fill="none" opacity="0.3"/></pattern></defs><rect width="1200" height="800" fill="url(%23parchment)"/></svg>');
+            background-size: cover;
+            background-position: center;
+        }
+        .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(58, 42, 26, 0.85);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 0 70px;
+        }
+        .title {
+            font-family: 'Cinzel', serif;
+            font-size: 60px;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 30px;
+            color: #f5f5f5;
+            line-height: 1.2;
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.5);
+        }
+        .subtitle {
+            font-size: 28px;
+            font-weight: 400;
+            text-align: center;
+            color: #e0e0e0;
+            max-width: 900px;
+            line-height: 1.5;
+            margin-bottom: 40px;
+            font-style: italic;
+        }
+        .content-box {
+            background: rgba(255, 248, 220, 0.95);
+            border: 3px solid #8B4513;
+            border-radius: 15px;
+            padding: 40px;
+            max-width: 900px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+            margin-bottom: 40px;
+        }
+        .content-box h3 {
+            font-family: 'Cinzel', serif;
+            color: #8B4513;
+            font-size: 24px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        .content-box p {
+            color: #654321;
+            font-size: 20px;
+            line-height: 1.6;
+            margin-bottom: 15px;
+            text-align: justify;
+        }
+        .highlight {
+            background: linear-gradient(45deg, #8B4513, #D2691E);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-weight: 600;
+            display: inline-block;
+            margin: 5px;
+        }
+        .level {
+            margin-top: 30px;
+            font-size: 20px;
+            padding: 15px 30px;
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 30px;
+            color: #f5f5f5;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+        }
+        /* --- ESTILOS PARA EL MENÚ LATERAL --- */
+        .side-menu {
+            width: 280px;
+            height: 100vh;
+            background-color: rgba(58, 42, 26, 0.95);
+            color: #f5f0e6;
+            z-index: 2000;
+            padding-top: 20px;
+            overflow-y: auto;
+            box-shadow: -2px 0 5px rgba(0,0,0,0.2);
+            flex-shrink: 0;
+        }
+        .menu-content h3 {
+            padding: 0 20px;
+            margin-bottom: 15px;
+            font-family: 'Cinzel', serif;
+            font-size: 1.2em;
+            color: #c9a97e;
+        }
+        #menuList {
+            list-style: none;
+            padding: 0;
+        }
+        #menuList li a {
+            display: block;
+            padding: 12px 20px;
+            color: #e6d7c3;
+            text-decoration: none;
+            font-size: 15px;
+            transition: background-color 0.2s, color 0.2s;
+            border-bottom: 1px solid rgba(201, 169, 126, 0.2);
+        }
+        #menuList li a:hover {
+            background-color: rgba(201, 169, 126, 0.2);
+        }
+        #menuList li a.active {
+            background-color: #c9a97e;
+            color: #3a2a1a;
+            font-weight: bold;
+        }
+        .navigation {
+            position: fixed;
+            bottom: 20px;
+            left: 0;
+            width: 1000px;
+            text-align: center;
+            z-index: 1000;
+        }
+        .navigation button {
+            font-size: 1em;
+            padding: 12px 25px;
+            margin: 0 10px;
+            cursor: pointer;
+            background: linear-gradient(45deg, #8B4513, #D2691E);
+            color: white;
+            border: none;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(139, 69, 19, 0.3);
+        }
+        .navigation button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(139, 69, 19, 0.4);
+        }
+    </style>
+</head>
+<body>
+    <div class="slide">
+        <div class="overlay">
+            <h1 class="title">Lazarillo de Tormes</h1>
+            <p class="subtitle">El origen de la novela picaresca y la crítica social en el Renacimiento español</p>
+
+            <div class="content-box">
+                <h3>Una obra revolucionaria</h3>
+                <p>Publicada anónimamente en <span class="highlight">1554</span>, esta obra rompió con todas las convenciones literarias de su tiempo:</p>
+                <p>• Introduce el <span class="highlight">realismo crudo</span> de la vida cotidiana</p>
+                <p>• Presenta a un <span class="highlight">anti-héroe</span> de clase baja</p>
+                <p>• Crea la <span class="highlight">novela picaresca</span>, un nuevo género literario</p>
+                <p>• Critica <span class="highlight">satíricamente</span> la sociedad y la religión</p>
+            </div>
+
+            <div class="level">Clase de literatura española - Siglo de Oro</div>
+        </div>
+    </div>
+
+    <!-- Menú Lateral de Navegación -->
+    <div id="sideMenu" class="side-menu">
+        <div class="menu-content">
+            <h3>Índice</h3>
+            <ul id="menuList"></ul>
+        </div>
+    </div>
+
+    <!-- Navegación Inferior -->
+    <div class="navigation">
+        <button id="nextBtn">Siguiente →</button>
+    </div>
+
+    <!-- Cargar el script de navegación -->
+    <script src="navigation.js"></script>
+</body>
+</html>

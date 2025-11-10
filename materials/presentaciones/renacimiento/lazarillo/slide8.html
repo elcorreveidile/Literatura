@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>La novela picaresca: nuevo género literario</title>
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:wght@400;600;700&family=Cinzel:wght@600;700&family=Source+Sans+Pro:wght@400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Crimson Text', serif;
+            color: #3a2a1a;
+            background: linear-gradient(135deg, #8B4513 0%, #D2691E 50%, #CD853F 100%);
+            overflow: hidden;
+            display: flex;
+        }
+        .slide {
+            width: 1000px;
+            height: 100vh;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            flex-shrink: 0;
+            background: linear-gradient(rgba(139, 69, 19, 0.8), rgba(205, 133, 63, 0.8));
+        }
+        .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(58, 42, 26, 0.85);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 40px 70px;
+        }
+        .title {
+            font-family: 'Cinzel', serif;
+            font-size: 48px;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 30px;
+            color: #f5f5f5;
+            line-height: 1.2;
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.5);
+        }
+        .genre-container {
+            display: flex;
+            gap: 30px;
+            max-width: 900px;
+            margin-bottom: 25px;
+            width: 100%;
+        }
+        .genre-main {
+            flex: 1.2;
+            background: rgba(255, 248, 220, 0.95);
+            border: 3px solid #8B4513;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+        }
+        .genre-side {
+            flex: 0.8;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        .genre-main h3 {
+            font-family: 'Cinzel', serif;
+            color: #8B4513;
+            font-size: 24px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        .characteristics-list {
+            list-style: none;
+            padding: 0;
+        }
+        .characteristics-list li {
+            color: #654321;
+            font-size: 18px;
+            line-height: 1.5;
+            margin-bottom: 15px;
+            padding-left: 30px;
+            position: relative;
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+        }
+        .characteristics-list li i {
+            color: #8B4513;
+            font-size: 20px;
+            position: absolute;
+            left: 0;
+        }
+        .highlight {
+            background: linear-gradient(45deg, #8B4513, #D2691E);
+            color: white;
+            padding: 3px 10px;
+            border-radius: 15px;
+            font-weight: 600;
+            display: inline-block;
+            margin: 2px;
+        }
+        .genre-card {
+            background: rgba(255, 248, 220, 0.95);
+            border: 3px solid #8B4513;
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+            transition: transform 0.3s ease;
+            flex: 1;
+        }
+        .genre-card:hover {
+            transform: translateY(-5px);
+        }
+        .genre-card h3 {
+            font-family: 'Cinzel', serif;
+            color: #8B4513;
+            font-size: 22px;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .genre-card ul {
+            list-style: none;
+            padding: 0;
+        }
+        .genre-card li {
+            color: #654321;
+            font-size: 17px;
+            line-height: 1.4;
+            margin-bottom: 10px;
+            padding-left: 25px;
+            position: relative;
+        }
+        .genre-card li::before {
+            content: "▸";
+            color: #8B4513;
+            position: absolute;
+            left: 10px;
+        }
+        .evolution-timeline {
+            background: rgba(255, 248, 220, 0.95);
+            border: 3px solid #8B4513;
+            border-radius: 15px;
+            padding: 25px;
+            margin-top: 20px;
+            max-width: 900px;
+            width: 100%;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+        }
+        .evolution-title {
+            font-family: 'Cinzel', serif;
+            font-size: 24px;
+            font-weight: bold;
+            color: #8B4513;
+            margin-bottom: 20px;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+        .timeline-events {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: relative;
+            padding: 20px 0;
+        }
+        .timeline-events::before {
+            content: "";
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #8B4513, #D2691E, #CD853F);
+            z-index: 1;
+        }
+        .timeline-event {
+            position: relative;
+            z-index: 2;
+            background: rgba(255, 248, 220, 0.95);
+            border: 2px solid #8B4513;
+            border-radius: 10px;
+            padding: 12px;
+            text-align: center;
+            min-width: 140px;
+            box-shadow: 0 4px 15px rgba(139, 69, 19, 0.2);
+        }
+        .timeline-year {
+            font-weight: bold;
+            color: #8B4513;
+            font-size: 16px;
+            margin-bottom: 5px;
+            font-family: 'Cinzel', serif;
+        }
+        .timeline-work {
+            font-size: 14px;
+            color: #654321;
+            line-height: 1.3;
+        }
+        /* --- ESTILOS PARA EL MENÚ LATERAL --- */
+        .side-menu {
+            width: 280px;
+            height: 100vh;
+            background-color: rgba(58, 42, 26, 0.95);
+            color: #f5f0e6;
+            z-index: 2000;
+            padding-top: 20px;
+            overflow-y: auto;
+            box-shadow: -2px 0 5px rgba(0,0,0,0.2);
+            flex-shrink: 0;
+        }
+        .menu-content h3 {
+            padding: 0 20px;
+            margin-bottom: 15px;
+            font-family: 'Cinzel', serif;
+            font-size: 1.2em;
+            color: #c9a97e;
+        }
+        #menuList {
+            list-style: none;
+            padding: 0;
+        }
+        #menuList li a {
+            display: block;
+            padding: 12px 20px;
+            color: #e6d7c3;
+            text-decoration: none;
+            font-size: 15px;
+            transition: background-color 0.2s, color 0.2s;
+            border-bottom: 1px solid rgba(201, 169, 126, 0.2);
+        }
+        #menuList li a:hover {
+            background-color: rgba(201, 169, 126, 0.2);
+        }
+        #menuList li a.active {
+            background-color: #c9a97e;
+            color: #3a2a1a;
+            font-weight: bold;
+        }
+        .navigation {
+            position: fixed;
+            bottom: 20px;
+            left: 0;
+            width: 1000px;
+            text-align: center;
+            z-index: 1000;
+        }
+        .navigation button {
+            font-size: 1em;
+            padding: 12px 25px;
+            margin: 0 10px;
+            cursor: pointer;
+            background: linear-gradient(45deg, #8B4513, #D2691E);
+            color: white;
+            border: none;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(139, 69, 19, 0.3);
+        }
+        .navigation button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(139, 69, 19, 0.4);
+        }
+    </style>
+</head>
+<body>
+    <div class="slide">
+        <div class="overlay">
+            <h1 class="title">La novela picaresca: nuevo género literario</h1>
+
+            <div class="genre-container">
+                <div class="genre-main">
+                    <h3>🎭 Características fundamentales de la novela picaresca</h3>
+                    <ul class="characteristics-list">
+                        <li>
+                            <i class="material-icons">person</i>
+                            <span><span class="highlight">Pícaro protagonista</span>: anti-héroe de origen humilde, astuto y superviviente</span>
+                        </li>
+                        <li>
+                            <i class="material-icons">auto_stories</i>
+                            <span><span class="highlight">Narración autobiográfica</span> en primera persona, voz del propio pícaro</span>
+                        </li>
+                        <li>
+                            <i class="material-icons">public</i>
+                            <span><span class="highlight">Realismo crudo</span>: descripción detallada de la vida marginada</span>
+                        </li>
+                        <li>
+                            <i class="material-icons">sync_alt</i>
+                            <span><span class="highlight">Estructura itinerante</span>: servicio a varios amos, aprendizaje constante</span>
+                        </li>
+                        <li>
+                            <i class="material-icons">psychology</i>
+                            <span><span class="highlight">Intención moralizante</span>: crítica social, aunque aparentemente amoral</span>
+                        </li>
+                        <li>
+                            <i class="material-icons">gavel</i>
+                            <span><span class="highlight">Crítica social</span>: denuncia de la corrupción y desigualdad</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="genre-side">
+                    <div class="genre-card">
+                        <h3>
+                            <i class="material-icons">compare</i>
+                            Contra modelos
+                        </h3>
+                        <ul>
+                            <li>Novela de <span class="highlight">caballerías</span></li>
+                            <li>Poesía <span class="highlight">idealista</span></li>
+                            <li>Narrativa <span class="highlight">cortesana</span></li>
+                            <li>Prosa <span class="highlight">moralizante</span></li>
+                        </ul>
+                    </div>
+
+                    <div class="genre-card">
+                        <h3>
+                            <i class="material-icons">trending_up</i>
+                            Innovación
+                        </h3>
+                        <ul>
+                            <li>Voz del <span class="highlight">pueblo</span></li>
+                            <li>Lenguaje <span class="highlight">coloquial</span></li>
+                            <li>Realismo <span class="highlight">extremo</span></li>
+                            <li>Crítica <span class="highlight">social</span></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="evolution-timeline">
+                <h3 class="evolution-title">
+                    <i class="material-icons">history</i>
+                    Evolución de la novela picaresca
+                </h3>
+                <div class="timeline-events">
+                    <div class="timeline-event">
+                        <div class="timeline-year">1554</div>
+                        <div class="timeline-work"><strong>Lazarillo</strong><br>Género naciente</div>
+                    </div>
+
+                    <div class="timeline-event">
+                        <div class="timeline-year">1599</div>
+                        <div class="timeline-work"><strong>Guzmán</strong><br>Alonso de Alcalá</div>
+                    </div>
+
+                    <div class="timeline-event">
+                        <div class="timeline-year">1604</div>
+                        <div class="timeline-work"><strong>Guzmán</strong><br>Alemán (I parte)</div>
+                    </div>
+
+                    <div class="timeline-event">
+                        <div class="timeline-year">1625</div>
+                        <div class="timeline-work"><strong>Buscón</strong><br>Quevedo</div>
+                    </div>
+
+                    <div class="timeline-event">
+                        <div class="timeline-year">1627</div>
+                        <div class="timeline-work"><strong>Guzmán</strong><br>Alemán (II parte)</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Menú Lateral de Navegación -->
+    <div id="sideMenu" class="side-menu">
+        <div class="menu-content">
+            <h3>Índice</h3>
+            <ul id="menuList"></ul>
+        </div>
+    </div>
+
+    <!-- Navegación Inferior -->
+    <div class="navigation">
+        <button id="prevBtn">← Anterior</button>
+        <button id="nextBtn">Siguiente →</button>
+    </div>
+
+    <!-- Cargar el script de navegación -->
+    <script src="navigation.js"></script>
+</body>
+</html>

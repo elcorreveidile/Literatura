@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Estructura y narrativa de la obra</title>
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:wght@400;600;700&family=Cinzel:wght@600;700&family=Source+Sans+Pro:wght@400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Crimson Text', serif;
+            color: #3a2a1a;
+            background: linear-gradient(135deg, #8B4513 0%, #D2691E 50%, #CD853F 100%);
+            overflow: hidden;
+            display: flex;
+        }
+        .slide {
+            width: 1000px;
+            height: 100vh;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            flex-shrink: 0;
+            background: linear-gradient(rgba(139, 69, 19, 0.8), rgba(205, 133, 63, 0.8));
+        }
+        .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(58, 42, 26, 0.85);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 40px 70px;
+        }
+        .title {
+            font-family: 'Cinzel', serif;
+            font-size: 48px;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 30px;
+            color: #f5f5f5;
+            line-height: 1.2;
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.5);
+        }
+        .structure-container {
+            display: flex;
+            gap: 30px;
+            max-width: 900px;
+            margin-bottom: 30px;
+            width: 100%;
+        }
+        .structure-left {
+            flex: 1.2;
+            background: rgba(255, 248, 220, 0.95);
+            border: 3px solid #8B4513;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+        }
+        .structure-right {
+            flex: 0.8;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        .structure-left h3 {
+            font-family: 'Cinzel', serif;
+            color: #8B4513;
+            font-size: 24px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        .tractado-item {
+            background: rgba(139, 69, 19, 0.1);
+            border-left: 4px solid #8B4513;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 5px;
+            transition: transform 0.2s ease;
+        }
+        .tractado-item:hover {
+            transform: translateX(5px);
+            background: rgba(139, 69, 19, 0.15);
+        }
+        .tractado-number {
+            font-family: 'Cinzel', serif;
+            font-size: 20px;
+            font-weight: bold;
+            color: #8B4513;
+            margin-bottom: 8px;
+        }
+        .tractado-master {
+            font-size: 18px;
+            font-weight: 600;
+            color: #654321;
+            margin-bottom: 5px;
+        }
+        .tractado-description {
+            font-size: 16px;
+            color: #654321;
+            line-height: 1.4;
+        }
+        .narrative-card {
+            background: rgba(255, 248, 220, 0.95);
+            border: 3px solid #8B4513;
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+            height: 100%;
+        }
+        .narrative-card h3 {
+            font-family: 'Cinzel', serif;
+            color: #8B4513;
+            font-size: 22px;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .narrative-card ul {
+            list-style: none;
+            padding: 0;
+        }
+        .narrative-card li {
+            color: #654321;
+            font-size: 18px;
+            line-height: 1.5;
+            margin-bottom: 12px;
+            padding-left: 25px;
+            position: relative;
+        }
+        .narrative-card li::before {
+            content: "▸";
+            color: #8B4513;
+            position: absolute;
+            left: 8px;
+        }
+        .highlight {
+            background: linear-gradient(45deg, #8B4513, #D2691E);
+            color: white;
+            padding: 3px 10px;
+            border-radius: 15px;
+            font-weight: 600;
+            display: inline-block;
+            margin: 2px;
+        }
+        .quote-box {
+            background: rgba(255, 248, 220, 0.95);
+            border: 3px solid #8B4513;
+            border-radius: 15px;
+            padding: 20px;
+            margin-top: 20px;
+            text-align: center;
+            font-style: italic;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+        }
+        .quote-box p {
+            color: #654321;
+            font-size: 18px;
+            line-height: 1.5;
+            margin-bottom: 10px;
+        }
+        .quote-box .quote-author {
+            color: #8B4513;
+            font-size: 16px;
+            font-weight: 600;
+            text-align: right;
+        }
+        /* --- ESTILOS PARA EL MENÚ LATERAL --- */
+        .side-menu {
+            width: 280px;
+            height: 100vh;
+            background-color: rgba(58, 42, 26, 0.95);
+            color: #f5f0e6;
+            z-index: 2000;
+            padding-top: 20px;
+            overflow-y: auto;
+            box-shadow: -2px 0 5px rgba(0,0,0,0.2);
+            flex-shrink: 0;
+        }
+        .menu-content h3 {
+            padding: 0 20px;
+            margin-bottom: 15px;
+            font-family: 'Cinzel', serif;
+            font-size: 1.2em;
+            color: #c9a97e;
+        }
+        #menuList {
+            list-style: none;
+            padding: 0;
+        }
+        #menuList li a {
+            display: block;
+            padding: 12px 20px;
+            color: #e6d7c3;
+            text-decoration: none;
+            font-size: 15px;
+            transition: background-color 0.2s, color 0.2s;
+            border-bottom: 1px solid rgba(201, 169, 126, 0.2);
+        }
+        #menuList li a:hover {
+            background-color: rgba(201, 169, 126, 0.2);
+        }
+        #menuList li a.active {
+            background-color: #c9a97e;
+            color: #3a2a1a;
+            font-weight: bold;
+        }
+        .navigation {
+            position: fixed;
+            bottom: 20px;
+            left: 0;
+            width: 1000px;
+            text-align: center;
+            z-index: 1000;
+        }
+        .navigation button {
+            font-size: 1em;
+            padding: 12px 25px;
+            margin: 0 10px;
+            cursor: pointer;
+            background: linear-gradient(45deg, #8B4513, #D2691E);
+            color: white;
+            border: none;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(139, 69, 19, 0.3);
+        }
+        .navigation button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(139, 69, 19, 0.4);
+        }
+    </style>
+</head>
+<body>
+    <div class="slide">
+        <div class="overlay">
+            <h1 class="title">Estructura y narrativa de la obra</h1>
+
+            <div class="structure-container">
+                <div class="structure-left">
+                    <h3>📖 Los tres tratados</h3>
+
+                    <div class="tractado-item">
+                        <div class="tractado-number">Tratado I</div>
+                        <div class="tractado-master">El ciego</div>
+                        <div class="tractado-description">
+                            • Nacimiento y origen humilde<br>
+                            • Aprendizaje del <span class="highlight">engaño</span> y supervivencia<br>
+                            • Lección fundamental: "más sabe el diablo por viejo que por diablo"
+                        </div>
+                    </div>
+
+                    <div class="tractado-item">
+                        <div class="tractado-number">Tratado II</div>
+                        <div class="tractado-master">El clérigo</div>
+                        <div class="tractado-description">
+                            • Maestro <span class="highlight">avaricioso</span> y cruel<br>
+                            • Simulación de enfermedades<br>
+                            • Crítica al clero corrupto y egoísta
+                        </div>
+                    </div>
+
+                    <div class="tractado-item">
+                        <div class="tractado-number">Tratado III</div>
+                        <div class="tractado-master">El escudero</div>
+                        <div class="tractado-description">
+                            • Noble <span class="highlight">empobrecido</span> pero vanidoso<br>
+                            • Mantenimiento de las apariencias<br>
+                            • Inversión de roles: sirviente alimenta a amo
+                        </div>
+                    </div>
+                </div>
+
+                <div class="structure-right">
+                    <div class="narrative-card">
+                        <h3>
+                            <i class="material-icons">auto_stories</i>
+                            Innovación narrativa
+                        </h3>
+                        <ul>
+                            <li><span class="highlight">Autobiografía</span> ficticia</li>
+                            <li>Voz del <span class="highlight">anti-héroe</span> protagonista</li>
+                            <li>Lenguaje coloquial y directo</li>
+                            <li>Estructura epistolar (carta)</li>
+                            <li>Realismo crudo y detallado</li>
+                        </ul>
+                    </div>
+
+                    <div class="narrative-card">
+                        <h3>
+                            <i class="material-icons">psychology</i>
+                            Recursos literarios
+                        </h3>
+                        <ul>
+                            <li><span class="highlight">Ironía</span> y sarcasmo</li>
+                            <li>Sátira social y religiosa</li>
+                            <li>Diálogo directo y natural</li>
+                            <li>Contraste apariencia-realidad</li>
+                            <li>Símbolos: el vino, el pan, la hambre</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="quote-box">
+                <p>"Yo le serví casi ocho años; y al cabo dellos, con mucha hambre y trabajo, me vine a esta ciudad de Toledo, donde di con vuestra merced, a quien sirvo y adoro."</p>
+                <div class="quote-author">— Lázaro, al final del Tratado III</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Menú Lateral de Navegación -->
+    <div id="sideMenu" class="side-menu">
+        <div class="menu-content">
+            <h3>Índice</h3>
+            <ul id="menuList"></ul>
+        </div>
+    </div>
+
+    <!-- Navegación Inferior -->
+    <div class="navigation">
+        <button id="prevBtn">← Anterior</button>
+        <button id="nextBtn">Siguiente →</button>
+    </div>
+
+    <!-- Cargar el script de navegación -->
+    <script src="navigation.js"></script>
+</body>
+</html>

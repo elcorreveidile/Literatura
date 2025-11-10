@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>El misterio del autor anónimo</title>
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:wght@400;600;700&family=Cinzel:wght@600;700&family=Source+Sans+Pro:wght@400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Crimson Text', serif;
+            color: #3a2a1a;
+            background: linear-gradient(135deg, #8B4513 0%, #D2691E 50%, #CD853F 100%);
+            overflow: hidden;
+            display: flex;
+        }
+        .slide {
+            width: 1000px;
+            height: 100vh;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            flex-shrink: 0;
+            background: linear-gradient(rgba(139, 69, 19, 0.8), rgba(205, 133, 63, 0.8));
+        }
+        .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(58, 42, 26, 0.85);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 40px 70px;
+        }
+        .title {
+            font-family: 'Cinzel', serif;
+            font-size: 48px;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 30px;
+            color: #f5f5f5;
+            line-height: 1.2;
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.5);
+        }
+        .mystery-container {
+            display: flex;
+            gap: 40px;
+            max-width: 900px;
+            margin-bottom: 30px;
+            align-items: stretch;
+        }
+        .mystery-left {
+            flex: 1;
+            background: rgba(255, 248, 220, 0.95);
+            border: 3px solid #8B4513;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .mystery-right {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        .author-card {
+            background: rgba(255, 248, 220, 0.95);
+            border: 3px solid #8B4513;
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+            transition: transform 0.3s ease;
+        }
+        .author-card:hover {
+            transform: translateY(-5px);
+        }
+        .author-card h3 {
+            font-family: 'Cinzel', serif;
+            color: #8B4513;
+            font-size: 22px;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .author-card p {
+            color: #654321;
+            font-size: 18px;
+            line-height: 1.5;
+            margin-bottom: 10px;
+        }
+        .mystery-left h3 {
+            font-family: 'Cinzel', serif;
+            color: #8B4513;
+            font-size: 24px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        .mystery-left ul {
+            list-style: none;
+            padding: 0;
+        }
+        .mystery-left li {
+            color: #654321;
+            font-size: 18px;
+            line-height: 1.5;
+            margin-bottom: 15px;
+            padding-left: 25px;
+            position: relative;
+        }
+        .mystery-left li::before {
+            content: "❖";
+            color: #8B4513;
+            position: absolute;
+            left: 0;
+        }
+        .highlight {
+            background: linear-gradient(45deg, #8B4513, #D2691E);
+            color: white;
+            padding: 3px 10px;
+            border-radius: 15px;
+            font-weight: 600;
+            display: inline-block;
+            margin: 2px;
+        }
+        .question-mark {
+            font-size: 120px;
+            color: #8B4513;
+            text-align: center;
+            margin-bottom: 20px;
+            font-weight: bold;
+            opacity: 0.3;
+            font-family: 'Cinzel', serif;
+        }
+        .evidence-box {
+            background: rgba(139, 69, 19, 0.1);
+            border-left: 4px solid #8B4513;
+            padding: 15px;
+            margin-top: 15px;
+            border-radius: 5px;
+        }
+        .evidence-box h4 {
+            color: #8B4513;
+            font-size: 18px;
+            margin-bottom: 10px;
+            font-family: 'Cinzel', serif;
+        }
+        .evidence-box p {
+            color: #654321;
+            font-size: 16px;
+            font-style: italic;
+        }
+        /* --- ESTILOS PARA EL MENÚ LATERAL --- */
+        .side-menu {
+            width: 280px;
+            height: 100vh;
+            background-color: rgba(58, 42, 26, 0.95);
+            color: #f5f0e6;
+            z-index: 2000;
+            padding-top: 20px;
+            overflow-y: auto;
+            box-shadow: -2px 0 5px rgba(0,0,0,0.2);
+            flex-shrink: 0;
+        }
+        .menu-content h3 {
+            padding: 0 20px;
+            margin-bottom: 15px;
+            font-family: 'Cinzel', serif;
+            font-size: 1.2em;
+            color: #c9a97e;
+        }
+        #menuList {
+            list-style: none;
+            padding: 0;
+        }
+        #menuList li a {
+            display: block;
+            padding: 12px 20px;
+            color: #e6d7c3;
+            text-decoration: none;
+            font-size: 15px;
+            transition: background-color 0.2s, color 0.2s;
+            border-bottom: 1px solid rgba(201, 169, 126, 0.2);
+        }
+        #menuList li a:hover {
+            background-color: rgba(201, 169, 126, 0.2);
+        }
+        #menuList li a.active {
+            background-color: #c9a97e;
+            color: #3a2a1a;
+            font-weight: bold;
+        }
+        .navigation {
+            position: fixed;
+            bottom: 20px;
+            left: 0;
+            width: 1000px;
+            text-align: center;
+            z-index: 1000;
+        }
+        .navigation button {
+            font-size: 1em;
+            padding: 12px 25px;
+            margin: 0 10px;
+            cursor: pointer;
+            background: linear-gradient(45deg, #8B4513, #D2691E);
+            color: white;
+            border: none;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(139, 69, 19, 0.3);
+        }
+        .navigation button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(139, 69, 19, 0.4);
+        }
+    </style>
+</head>
+<body>
+    <div class="slide">
+        <div class="overlay">
+            <h1 class="title">El misterio del autor anónimo</h1>
+
+            <div class="mystery-container">
+                <div class="mystery-left">
+                    <div class="question-mark">?</div>
+                    <h3>¿Por qué el anonimato?</h3>
+                    <ul>
+                        <li><span class="highlight">Peligro de la Inquisición</span> - crítica a clérigos</li>
+                        <li>Sátira <span class="highlight">subversiva</span> del poder establecido</li>
+                        <li>Temor a represalias por <span class="highlight">herejía</span></li>
+                        <li>Protección de la identidad personal y familiar</li>
+                        <li>Estrategia literaria para dar <span class="highlight">autenticidad</span></li>
+                    </ul>
+
+                    <div class="evidence-box">
+                        <h4>📜 Evidencia histórica</h4>
+                        <p>"Yo por cierto tengo en mí el espíritu y la voluntad de contar las cosas de mi vida..." - Prólogo</p>
+                    </div>
+                </div>
+
+                <div class="mystery-right">
+                    <div class="author-card">
+                        <h3>
+                            <i class="material-icons">school</i>
+                            Juan de Valdés (c.1500-1541)
+                        </h3>
+                        <p>Humanista y erasmista español</p>
+                        <p>• Ideas reformistas y críticas con la Iglesia</p>
+                        <p>• Murió antes de la publicación (1554)</p>
+                        <p>• Estilo similar al de la obra</p>
+                    </div>
+
+                    <div class="author-card">
+                        <h3>
+                            <i class="material-icons">person</i>
+                            Alfonso de Valdés (c.1490-1532)
+                        </h3>
+                        <p>Secretario imperial de Carlos V</p>
+                        <p>• Diálogo de Mercurio y Carón (1529)</p>
+                        <p>• Crítico con la nobleza y clero</p>
+                        <p>• Influencia erasmista evidente</p>
+                    </div>
+
+                    <div class="author-card">
+                        <h3>
+                            <i class="material-icons">groups</i>
+                            Otras posibilidades
+                        </h3>
+                        <p>• <span class="highlight">Sebastián de Horozco</span> (humanista toledano)</p>
+                        <p>• <span class="highlight">Juan Arce de Otálora</span> (jurista leonés)</p>
+                        <p>• Autor converso (judeocristiano)</p>
+                        <p>• Escritor desfavorecido socialmente</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Menú Lateral de Navegación -->
+    <div id="sideMenu" class="side-menu">
+        <div class="menu-content">
+            <h3>Índice</h3>
+            <ul id="menuList"></ul>
+        </div>
+    </div>
+
+    <!-- Navegación Inferior -->
+    <div class="navigation">
+        <button id="prevBtn">← Anterior</button>
+        <button id="nextBtn">Siguiente →</button>
+    </div>
+
+    <!-- Cargar el script de navegación -->
+    <script src="navigation.js"></script>
+</body>
+</html>
