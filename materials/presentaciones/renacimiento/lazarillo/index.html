@@ -4,121 +4,863 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>La vida de Lazarillo de Tormes</title>
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:wght@400;600;700&family=Cinzel:wght@600;700&family=Source+Sans+Pro:wght@400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <style>
-        /* Estilos inspirados en el Renacimiento español */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        :root {
+            --primary-dark: #2c1810;
+            --primary-medium: #8B4513;
+            --primary-light: #A0522D;
+            --text-light: #f8f5f0;
+            --text-medium: #e8ddc7;
+            --bg-card: rgba(248, 245, 240, 0.95);
+            --border-color: #8B4513;
+            --accent: #c9a97e;
+        }
+
         body {
             font-family: 'Crimson Text', serif;
-            background: linear-gradient(135deg, #8B4513 0%, #D2691E 50%, #CD853F 100%);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-            overflow: hidden;
+            color: #3a2a1a;
+            background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary-medium) 50%, var(--primary-light) 100%);
+            min-height: 100vh;
+            overflow-x: hidden;
         }
+
         .container {
+            display: flex;
+            min-height: 100vh;
+        }
+
+        /* --- MENÚ LATERAL FIJO --- */
+        .sidebar {
+            width: 320px;
+            background: linear-gradient(180deg, rgba(44, 24, 16, 0.98), rgba(139, 69, 19, 0.95));
+            color: var(--text-light);
+            position: fixed;
+            left: 0;
+            top: 0;
+            height: 100vh;
+            overflow-y: auto;
+            z-index: 1000;
+            box-shadow: 4px 0 15px rgba(0,0,0,0.3);
+            padding: 2rem 1rem;
+            backdrop-filter: blur(10px);
+        }
+
+        .sidebar-header {
             text-align: center;
-            background-color: rgba(255, 248, 220, 0.95);
-            padding: 60px;
-            border-radius: 15px;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
-            border: 3px solid #8B4513;
-            max-width: 800px;
-            position: relative;
+            margin-bottom: 2rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 2px solid var(--accent);
         }
-        .container::before {
-            content: "";
-            position: absolute;
-            top: -10px;
-            left: -10px;
-            right: -10px;
-            bottom: -10px;
-            background: linear-gradient(45deg, #8B4513, #D2691E, #CD853F, #8B4513);
-            border-radius: 20px;
-            z-index: -1;
-        }
-        h1 {
-            color: #8B4513;
-            font-size: 3em;
-            margin-bottom: 20px;
-            font-weight: 700;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+
+        .sidebar-title {
             font-family: 'Cinzel', serif;
+            font-size: 1.5rem;
+            color: var(--accent);
+            margin-bottom: 0.5rem;
         }
-        .subtitle {
-            color: #654321;
-            font-size: 1.5em;
-            margin-bottom: 15px;
+
+        .sidebar-subtitle {
+            font-size: 0.9rem;
+            color: var(--text-medium);
             font-style: italic;
         }
-        .author {
-            color: #8B4513;
-            font-size: 1.2em;
-            margin-bottom: 30px;
-            font-weight: 600;
+
+        .nav-menu {
+            list-style: none;
         }
-        .description {
-            color: #654321;
-            font-size: 1.1em;
-            line-height: 1.6;
-            margin-bottom: 40px;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
+
+        .nav-item {
+            margin-bottom: 0.5rem;
         }
-        .start-button {
-            display: inline-block;
-            padding: 18px 40px;
-            font-size: 1.3em;
-            color: #fff;
-            background: linear-gradient(45deg, #8B4513, #D2691E);
+
+        .nav-link {
+            display: block;
+            padding: 1rem;
+            color: var(--text-medium);
             text-decoration: none;
-            border-radius: 50px;
+            font-size: 0.95rem;
             transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(139, 69, 19, 0.3);
+            border-radius: 8px;
+            border: 1px solid transparent;
+        }
+
+        .nav-link:hover {
+            background: rgba(201, 169, 126, 0.2);
+            border-color: rgba(201, 169, 126, 0.4);
+            transform: translateX(-5px);
+        }
+
+        .nav-link.active {
+            background: linear-gradient(135deg, var(--accent), #b8986b);
+            color: var(--primary-dark);
+            font-weight: bold;
+            border-color: var(--accent);
+            box-shadow: 0 4px 12px rgba(201, 169, 126, 0.3);
+        }
+
+        /* --- CONTENIDO PRINCIPAL --- */
+        .main-content {
+            margin-left: 320px;
+            flex: 1;
+            padding: 3rem 2rem;
+            max-width: 1400px;
+        }
+
+        /* --- SECCIONES --- */
+        .section {
+            margin-bottom: 4rem;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 0.8s ease forwards;
+        }
+
+        .section:nth-child(1) { animation-delay: 0.2s; }
+        .section:nth-child(2) { animation-delay: 0.4s; }
+        .section:nth-child(3) { animation-delay: 0.6s; }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-title {
+            font-family: 'Cinzel', serif;
+            font-size: clamp(2rem, 4vw, 3.5rem);
+            color: var(--text-light);
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .section-subtitle {
+            font-size: clamp(1.1rem, 2vw, 1.6rem);
+            color: var(--text-medium);
+            font-style: italic;
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.5;
+        }
+
+        /* --- GRID DE CONTENIDO --- */
+        .content-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .content-card {
+            background: var(--bg-card);
+            border: 2px solid var(--border-color);
+            border-radius: 15px;
+            padding: 2.5rem;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+            backdrop-filter: blur(10px);
+            transition: transform 0.3s ease;
+            height: 100%;
+        }
+
+        .content-card:hover {
+            transform: translateY(-8px);
+        }
+
+        .card-header {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 2px solid rgba(139, 69, 19, 0.3);
+        }
+
+        .card-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--primary-medium), var(--primary-light));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-light);
+            font-size: 1.8rem;
+            flex-shrink: 0;
+        }
+
+        .card-title {
+            font-family: 'Cinzel', serif;
+            color: var(--border-color);
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .card-content {
+            color: #4a3728;
+            font-size: 1.1rem;
+            line-height: 1.7;
+        }
+
+        .card-content ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .card-content li {
+            margin-bottom: 1rem;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .card-content li::before {
+            content: "▸";
+            color: var(--border-color);
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+        }
+
+        .highlight {
+            background: linear-gradient(135deg, var(--primary-medium), var(--primary-light));
+            color: white;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
             font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            border: 2px solid #8B4513;
-        }
-        .start-button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(139, 69, 19, 0.4);
-            background: linear-gradient(45deg, #D2691E, #8B4513);
-        }
-        .decorative-line {
-            width: 200px;
-            height: 3px;
-            background: linear-gradient(90deg, transparent, #8B4513, transparent);
-            margin: 20px auto;
-        }
-        .year {
             display: inline-block;
-            background-color: #8B4513;
-            color: #fff;
-            padding: 8px 20px;
-            border-radius: 25px;
-            font-size: 1em;
-            margin-top: 20px;
+            margin: 0.3rem;
+            font-size: 0.9rem;
+            box-shadow: 0 2px 8px rgba(139, 69, 19, 0.4);
+        }
+
+        /* --- SECCIÓN ESPECIAL --- */
+        .special-section {
+            background: var(--bg-card);
+            border: 2px solid var(--border-color);
+            border-radius: 20px;
+            padding: 3rem;
+            margin: 3rem 0;
+            text-align: center;
+            box-shadow: 0 12px 40px rgba(0,0,0,0.4);
+        }
+
+        .special-title {
+            font-family: 'Cinzel', serif;
+            color: var(--border-color);
+            font-size: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            text-align: left;
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+        }
+
+        .feature-icon {
+            color: var(--border-color);
+            font-size: 1.5rem;
+            flex-shrink: 0;
+            margin-top: 0.3rem;
+        }
+
+        .feature-text {
+            color: #4a3728;
+            font-size: 1rem;
+            line-height: 1.5;
+        }
+
+        .feature-text strong {
+            color: var(--border-color);
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        /* --- FOOTER --- */
+        .footer {
+            text-align: center;
+            padding: 3rem 2rem;
+            margin-top: 4rem;
+            border-top: 2px solid rgba(201, 169, 126, 0.3);
+        }
+
+        .footer-text {
+            color: var(--text-medium);
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+        }
+
+        .footer-badge {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 1rem 2rem;
+            border-radius: 30px;
+            color: var(--text-light);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
             font-weight: 600;
+        }
+
+        /* --- RESPONSIVE --- */
+        @media (max-width: 1024px) {
+            .sidebar {
+                transform: translateX(-100%);
+                transition: transform 0.3s ease;
+            }
+
+            .sidebar.active {
+                transform: translateX(0);
+            }
+
+            .main-content {
+                margin-left: 0;
+                padding: 2rem 1rem;
+            }
+
+            .menu-toggle {
+                display: block;
+                position: fixed;
+                top: 1rem;
+                left: 1rem;
+                z-index: 1001;
+                background: linear-gradient(135deg, var(--primary-medium), var(--primary-light));
+                border: none;
+                color: var(--text-light);
+                padding: 0.8rem;
+                border-radius: 50%;
+                cursor: pointer;
+                box-shadow: 0 4px 15px rgba(139, 69, 19, 0.4);
+            }
+        }
+
+        @media (min-width: 1025px) {
+            .menu-toggle {
+                display: none;
+            }
+        }
+
+        /* --- SCROLLBAR PERSONALIZADA --- */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: rgba(44, 24, 16, 0.2);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(135deg, var(--primary-medium), var(--primary-light));
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: linear-gradient(135deg, var(--primary-light), var(--primary-medium));
         }
     </style>
-    <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:wght@400;600;700&family=Cinzel:wght@600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-
     <div class="container">
-        <h1>La vida de Lazarillo de Tormes</h1>
-        <p class="subtitle">y de sus fortunas y adversidades</p>
-        <div class="decorative-line"></div>
-        <p class="author">Anónimo (1554)</p>
-        <p class="description">
-            Una obra maestra de la literatura española que revolucionó la narrativa europea
-            y dio origen a un nuevo género literario: la novela picaresca.
-        </p>
-        <a href="slide1.html" class="start-button">Comenzar Viaje</a>
-        <div class="year">Siglo de Oro Español</div>
+        <!-- MENÚ LATERAL -->
+        <nav class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <h1 class="sidebar-title">Lazarillo de Tormes</h1>
+                <p class="sidebar-subtitle">La novela picaresca que revolucionó la literatura</p>
+            </div>
+
+            <ul class="nav-menu">
+                <li class="nav-item">
+                    <a href="#introduccion" class="nav-link active">📖 Introducción</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#contexto" class="nav-link">🏛️ Contexto Histórico</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#prologo" class="nav-link">✍️ El Prólogo</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#tratados" class="nav-link">👥 Tratados y Amos</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#temas" class="nav-link">🎭 Temas Principales</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#lenguaje" class="nav-link">📝 Lenguaje y Estilo</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#picaresca" class="nav-link">📚 Novela Picaresca</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#legado" class="nav-link">🌟 Influencia y Legado</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#fragmentos" class="nav-link">📄 Fragmentos Clave</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#actividades" class="nav-link">🎓 Actividades</a>
+                </li>
+            </ul>
+        </nav>
+
+        <!-- BOTÓN MENÚ MÓVIL -->
+        <button class="menu-toggle" id="menuToggle">
+            <i class="material-icons">menu</i>
+        </button>
+
+        <!-- CONTENIDO PRINCIPAL -->
+        <main class="main-content">
+            <!-- SECCIÓN 1: INTRODUCCIÓN -->
+            <section id="introduccion" class="section">
+                <div class="section-header">
+                    <h1 class="section-title">La vida de Lazarillo de Tormes</h1>
+                    <p class="section-subtitle">El origen de la novela picaresca y la crítica social en el Renacimiento español</p>
+                </div>
+
+                <div class="content-grid">
+                    <div class="content-card">
+                        <div class="card-header">
+                            <div class="card-icon">
+                                <i class="material-icons">auto_stories</i>
+                            </div>
+                            <h2 class="card-title">Una obra revolucionaria</h2>
+                        </div>
+                        <div class="card-content">
+                            <ul>
+                                <li>Publicada anónimamente en <span class="highlight">1554</span>, rompiendo con todas las convenciones literarias</li>
+                                <li>Introduce el <span class="highlight">realismo crudo</span> de la vida cotidiana</li>
+                                <li>Presenta a un <span class="highlight">anti-héroe</span> de clase baja como protagonista</li>
+                                <li>Crea la <span class="highlight">novela picaresca</span>, un nuevo género literario</li>
+                                <li>Crítica <span class="highlight">satíricamente</span> la sociedad y la religión</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="content-card">
+                        <div class="card-header">
+                            <div class="card-icon">
+                                <i class="material-icons">psychology</i>
+                            </div>
+                            <h2 class="card-title">Innovación narrativa</h2>
+                        </div>
+                        <div class="card-content">
+                            <ul>
+                                <li>Narración en <span class="highlight">primera persona</span> autobiográfica</li>
+                                <li>Lenguaje <span class="highlight">coloquial</span> y directo del pueblo</li>
+                                <li>Estructura por <span class="highlight">tratados</span> que marcan el aprendizaje</li>
+                                <li>Crítica social con <span class="highlight">ironía</span> y sarcasmo mordaz</li>
+                                <li>Voz del <span class="highlight">marginado</span> que cuestiona el orden establecido</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SECCIÓN ESPECIAL: CARACTERÍSTICAS -->
+            <div class="special-section">
+                <h2 class="special-title">🎭 Características Fundamentales</h2>
+                <div class="features-grid">
+                    <div class="feature-item">
+                        <i class="material-icons feature-icon">person</i>
+                        <div class="feature-text">
+                            <strong>Anti-héroe pícaro</strong>
+                            Protagonista de origen humilde, astuto y superviviente
+                        </div>
+                    </div>
+                    <div class="feature-item">
+                        <i class="material-icons feature-icon">visibility_off</i>
+                        <div class="feature-text">
+                            <strong>Autor anónimo</strong>
+                            Protección ante la Inquisición y crítica religiosa
+                        </div>
+                    </div>
+                    <div class="feature-item">
+                        <i class="material-icons feature-icon">gavel</i>
+                        <div class="feature-text">
+                            <strong>Crítica social</strong>
+                            Denuncia de hipocresía clerical y desigualdad
+                        </div>
+                    </div>
+                    <div class="feature-item">
+                        <i class="material-icons feature-icon">restaurant</i>
+                        <div class="feature-text">
+                            <strong>Hambre como motor</strong>
+                            La supervivencia como fuerza narrativa principal
+                        </div>
+                    </div>
+                    <div class="feature-item">
+                        <i class="material-icons feature-icon">school</i>
+                        <div class="feature-text">
+                            <strong>Educación inversa</strong>
+                            Aprendizaje del engaño en lugar de la moral
+                        </div>
+                    </div>
+                    <div class="feature-item">
+                        <i class="material-icons feature-icon">compare</i>
+                        <div class="feature-text">
+                            <strong>Apariencia vs realidad</strong>
+                            Crítica de las fachadas sociales y religiosas
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SECCIÓN 2: CONTEXTO HISTÓRICO -->
+            <section id="contexto" class="section">
+                <div class="section-header">
+                    <h2 class="section-title">🏛️ Contexto Histórico: España en el siglo XVI</h2>
+                    <p class="section-subtitle">El escenario social y político que dio forma a la novela picaresca</p>
+                </div>
+
+                <div class="content-grid">
+                    <div class="content-card">
+                        <div class="card-header">
+                            <div class="card-icon">
+                                <i class="material-icons">account_balance</i>
+                            </div>
+                            <h2 class="card-title">Contexto político</h2>
+                        </div>
+                        <div class="card-content">
+                            <ul>
+                                <li><span class="highlight">Imperio español</span> más extenso bajo Carlos I y Felipe II</li>
+                                <li><span class="highlight">Monarquía autoritaria</span> fuertemente centralizada</li>
+                                <li>Guerras constantes en Europa y América</li>
+                                <li>Carga fiscal pesada sobre el pueblo</li>
+                                <li>Guerra de las Comunidades (1520-1521)</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="content-card">
+                        <div class="card-header">
+                            <div class="card-icon">
+                                <i class="material-icons">church</i>
+                            </div>
+                            <h2 class="card-title">Contexto religioso</h2>
+                        </div>
+                        <div class="card-content">
+                            <ul>
+                                <li><span class="highlight">Contrarreforma</span> católica contra el protestantismo</li>
+                                <li>Inquisición española extremadamente activa</li>
+                                <li>Conflictos religiosos en toda Europa</li>
+                                <li>Clero con enorme poder social y económico</li>
+                                <li>Control ideológico sobre la población</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="content-card">
+                        <div class="card-header">
+                            <div class="card-icon">
+                                <i class="material-icons">trending_down</i>
+                            </div>
+                            <h2 class="card-title">Crisis económica</h2>
+                        </div>
+                        <div class="card-content">
+                            <ul>
+                                <li>Inflación masiva por metales de América</li>
+                                <li><span class="highlight">Empobrecimiento general</span> de la población</li>
+                                <li>Creciente número de <span class="highlight">pícaros</span> y marginados</li>
+                                <li>Desigualdad social extrema</li>
+                                <li>Crisis agrícola y comercial</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="content-card">
+                        <div class="card-header">
+                            <div class="card-icon">
+                                <i class="material-icons">menu_book</i>
+                            </div>
+                            <h2 class="card-title">Contexto literario</h2>
+                        </div>
+                        <div class="card-content">
+                            <ul>
+                                <li>Libros de caballerías extremadamente populares</li>
+                                <li>Poesía renacentista idealista y cortesana</li>
+                                <li>Necesidad de <span class="highlight">realismo literario</span></li>
+                                <li>Surgimiento de la crítica social</li>
+                                <li>Búsqueda de nuevas formas narrativas</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SECCIÓN 3: PRÓLOGO -->
+            <section id="prologo" class="section">
+                <div class="section-header">
+                    <h2 class="section-title">✍️ El Prólogo: Manifiesto de la Nueva Literatura</h2>
+                    <p class="section-subtitle">Un texto revolucionario que justifica el valor del individuo común y democratiza la lectura</p>
+                </div>
+
+                <div class="content-grid">
+                    <div class="content-card">
+                        <div class="card-header">
+                            <div class="card-icon">
+                                <i class="material-icons">person</i>
+                            </div>
+                            <h2 class="card-title">Reivindicación del individuo común</h2>
+                        </div>
+                        <div class="card-content">
+                            <ul>
+                                <li>Valora la <span class="highlight">experiencia personal</span> frente a la tradición heroica medieval</li>
+                                <li>El <span class="highlight">individuo ordinario</span> tiene historia digna de ser contada</li>
+                                <li>Rompe con la literatura de <span class="highlight">héroes y nobles</span></li>
+                                <li>Defiende que la vida de un <span class="highlight">pobre</span> merece ser literatura</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="content-card">
+                        <div class="card-header">
+                            <div class="card-icon">
+                                <i class="material-icons">menu_book</i>
+                            </div>
+                            <h2 class="card-title">Reflexión sobre la lectura</h2>
+                        </div>
+                        <div class="card-content">
+                            <ul>
+                                <li>Cita a <span class="highlight">Plinio y Cicerón</span> para afirmar que todo libro tiene algo bueno</li>
+                                <li><span class="highlight">Democratiza la lectura</span>: todo texto ofrece valor</li>
+                                <li>Anticipa el <span class="highlight">humanismo crítico</span> y pensamiento independiente</li>
+                                <li>Invita al lector a <span class="highlight">buscar lo valioso</span> en cualquier obra</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="content-card">
+                        <div class="card-header">
+                            <div class="card-icon">
+                                <i class="material-icons">military_tech</i>
+                            </div>
+                            <h2 class="card-title">El deseo de fama y honra</h2>
+                        </div>
+                        <div class="card-content">
+                            <ul>
+                                <li>Equipara el trabajo del escritor con el del soldado</li>
+                                <li>Ambos buscan la <span class="highlight">honra</span>, no material sino de reconocimiento</li>
+                                <li>Cita clave: <span class="highlight">"la honra cría las artes"</span></li>
+                                <li>El escritor también es <span class="highlight">héroe</span> en su campo</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="content-card">
+                        <div class="card-header">
+                            <div class="card-icon">
+                                <i class="material-icons">auto_stories</i>
+                            </div>
+                            <h2 class="card-title">Ideas literarias revolucionarias</h2>
+                        </div>
+                        <div class="card-content">
+                            <ul>
+                                <li>✓ La literatura ya no necesita <span class="highlight">héroes</span></li>
+                                <li>✓ No requiere <span class="highlight">lenguaje elevado</span> ni culto</li>
+                                <li>✓ Puede contar la <span class="highlight">vida real</span> de personas comunes</li>
+                                <li>✓ El <span class="highlight">estilo "grosero"</span> es válido y auténtico</li>
+                                <li>✓ La <span class="highlight">experiencia vivida</span> es fuente literaria</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SECCIÓN 4: TRATADOS Y AMOS -->
+            <section id="tratados" class="section">
+                <div class="section-header">
+                    <h2 class="section-title">👥 Los Tratados y Amos: El Viaje Formativo</h2>
+                    <p class="section-subtitle">Siete etapas de aprendizaje que transforman a Lázaro en pícaro experto</p>
+                </div>
+
+                <div class="content-grid">
+                    <div class="content-card">
+                        <div class="card-header">
+                            <div class="card-icon">I</div>
+                            <h2 class="card-title">El ciego</h2>
+                        </div>
+                        <div class="card-content">
+                            <ul>
+                                <li>Primer amo y <span class="highlight">maestro del engaño</span></li>
+                                <li>Lección fundamental: <span class="highlight">"más sabe el diablo por viejo que por diablo"</span></li>
+                                <li>Aprendizaje de la <span class="highlight">supervivencia</span> callejera</li>
+                                <li>Tormento con las <span class="highlight">uvas</span> - primera venganza</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="content-card">
+                        <div class="card-header">
+                            <div class="card-icon">II</div>
+                            <h2 class="card-title">El clérigo de Maqueda</h2>
+                        </div>
+                        <div class="card-content">
+                            <ul>
+                                <li>Amo <span class="highlight">extremadamente avaro</span> y cruel</li>
+                                <li>Guarda el pan en <span class="highlight">arca con llave</span></li>
+                                <li>Lázaro sufre <span class="highlight">hambre extrema</span></li>
+                                <li>Simula enfermedades para <span class="highlight">robar pan</span></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="content-card">
+                        <div class="card-header">
+                            <div class="card-icon">III</div>
+                            <h2 class="card-title">El escudero</h2>
+                        </div>
+                        <div class="card-content">
+                            <ul>
+                                <li>Noble <span class="highlight">empobrecido</span> pero vanidoso</li>
+                                <li>Mantiene <span class="highlight">apariencias</span> de riqueza</li>
+                                <li><span class="highlight">Inversión de roles</span>: Lázaro lo alimenta</li>
+                                <li>Crítica a la nobleza en <span class="highlight">decadencia</span></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="content-card">
+                        <div class="card-header">
+                            <div class="card-icon">IV</div>
+                            <h2 class="card-title">El fraile mercedario</h2>
+                        </div>
+                        <div class="card-content">
+                            <ul>
+                                <li>Fraile que <span class="highlight">usa hábito</span> para seducir</li>
+                                <li>Le encarga <span class="highlight">recados</span> y le paga con favores</li>
+                                <li>Primer contacto con la <span class="highlight">vida sexual</span></li>
+                                <li>Crítica a la <span class="highlight">lujuria clerical</span></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="content-card">
+                        <div class="card-header">
+                            <div class="card-icon">V</div>
+                            <h2 class="card-title">El buldero</h2>
+                        </div>
+                        <div class="card-content">
+                            <ul>
+                                <li>Estafador que <span class="highlight">finge milagros</span></li>
+                                <li>Vende <span class="highlight">reliquias falsas</span></li>
+                                <li>Lázaro es su <span class="highlight">ayudante</span> en engaños</li>
+                                <li>Crítica a la <span class="highlight">superstición</span> popular</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="content-card">
+                        <div class="card-header">
+                            <div class="card-icon">VI</div>
+                            <h2 class="card-title">El maestro de pintar</h2>
+                        </div>
+                        <div class="card-content">
+                            <ul>
+                                <li>Maestro que <span class="highlight">vende su arte</span></li>
+                                <li>Lázaro trabaja como <span class="highlight">aguador</span></li>
+                                <li>Primer trabajo <span class="highlight">honrado</span> y estable</li>
+                                <li>Gana <span class="highlight">dinero propio</span></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="content-card">
+                        <div class="card-header">
+                            <div class="card-icon">VII</div>
+                            <h2 class="card-title">El alguacil</h2>
+                        </div>
+                        <div class="card-content">
+                            <ul>
+                                <li>Trabaja como <span class="highlight">alguacil</span> en Toledo</li>
+                                <li>Consigue <span class="highlight">oficio estable</span></li>
+                                <li>Reconocimiento <span class="highlight">social</span></li>
+                                <li>Casa propia y <span class="highlight">estabilidad</span></li>
+                                <li>"Yo en la <span class="highlight">cumbre</span> de toda buena fortuna"</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- FOOTER -->
+            <footer class="footer">
+                <p class="footer-text">Una obra maestra que sigue vigente después de casi 500 años</p>
+                <div class="footer-badge">
+                    📚 Clase de literatura española - Siglo de Oro
+                </div>
+            </footer>
+        </main>
     </div>
 
+    <script>
+        // Navegación suave al hacer click en los enlaces
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+
+                // Quitar clase active de todos los enlaces
+                document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
+                // Añadir clase active al enlace clickeado
+                this.classList.add('active');
+
+                // Scroll suave a la sección
+                const targetId = this.getAttribute('href');
+                const targetSection = document.querySelector(targetId);
+                if (targetSection) {
+                    targetSection.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+
+                // Cerrar menú móvil si está abierto
+                if (window.innerWidth <= 1024) {
+                    document.getElementById('sidebar').classList.remove('active');
+                }
+            });
+        });
+
+        // Toggle del menú móvil
+        document.getElementById('menuToggle').addEventListener('click', function() {
+            document.getElementById('sidebar').classList.toggle('active');
+        });
+
+        // Actualizar navegación activa al hacer scroll
+        window.addEventListener('scroll', function() {
+            const sections = document.querySelectorAll('.section');
+            const navLinks = document.querySelectorAll('.nav-link');
+
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (scrollY >= (sectionTop - 200)) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === '#' + current) {
+                    link.classList.add('active');
+                }
+            });
+        });
+    </script>
 </body>
 </html>
