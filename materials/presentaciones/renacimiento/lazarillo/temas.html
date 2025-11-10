@@ -1,0 +1,640 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Temas Principales - Lazarillo de Tormes</title>
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:wght@400;600;700&family=Cinzel:wght@600;700&family=Source+Sans+Pro:wght@400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        :root {
+            --primary-dark: #2c1810;
+            --primary-medium: #8B4513;
+            --primary-light: #A0522D;
+            --text-light: #f8f5f0;
+            --text-medium: #e8ddc7;
+            --bg-card: rgba(248, 245, 240, 0.95);
+            --border-color: #8B4513;
+            --accent: #c9a97e;
+        }
+
+        body {
+            font-family: 'Crimson Text', serif;
+            color: #3a2a1a;
+            background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary-medium) 50%, var(--primary-light) 100%);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        .container {
+            display: flex;
+            min-height: 100vh;
+        }
+
+        /* --- MENÚ LATERAL FIJO --- */
+        .sidebar {
+            width: 320px;
+            background: linear-gradient(180deg, rgba(44, 24, 16, 0.98), rgba(139, 69, 19, 0.95));
+            color: var(--text-light);
+            position: fixed;
+            left: 0;
+            top: 0;
+            height: 100vh;
+            overflow-y: auto;
+            z-index: 1000;
+            box-shadow: 4px 0 15px rgba(0,0,0,0.3);
+            padding: 2rem 1rem;
+            backdrop-filter: blur(10px);
+        }
+
+        .sidebar-header {
+            text-align: center;
+            margin-bottom: 2rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 2px solid var(--accent);
+        }
+
+        .sidebar-title {
+            font-family: 'Cinzel', serif;
+            font-size: 1.5rem;
+            color: var(--accent);
+            margin-bottom: 0.5rem;
+        }
+
+        .sidebar-subtitle {
+            font-size: 0.9rem;
+            color: var(--text-medium);
+            font-style: italic;
+        }
+
+        .nav-menu {
+            list-style: none;
+        }
+
+        .nav-item {
+            margin-bottom: 0.5rem;
+        }
+
+        .nav-link {
+            display: block;
+            padding: 1rem;
+            color: var(--text-medium);
+            text-decoration: none;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+            border-radius: 8px;
+            border: 1px solid transparent;
+        }
+
+        .nav-link:hover {
+            background: rgba(201, 169, 126, 0.2);
+            border-color: rgba(201, 169, 126, 0.4);
+            transform: translateX(-5px);
+        }
+
+        .nav-link.active {
+            background: linear-gradient(135deg, var(--accent), #b8986b);
+            color: var(--primary-dark);
+            font-weight: bold;
+            border-color: var(--accent);
+            box-shadow: 0 4px 12px rgba(201, 169, 126, 0.3);
+        }
+
+        .back-link {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 1rem;
+            color: var(--text-medium);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            border-radius: 8px;
+            border: 1px solid transparent;
+            margin-bottom: 1rem;
+        }
+
+        .back-link:hover {
+            background: rgba(201, 169, 126, 0.2);
+            transform: translateX(-5px);
+        }
+
+        /* --- CONTENIDO PRINCIPAL --- */
+        .main-content {
+            margin-left: 320px;
+            flex: 1;
+            padding: 3rem 2rem;
+            max-width: 1400px;
+        }
+
+        /* --- SECCIONES --- */
+        .section {
+            margin-bottom: 4rem;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 0.8s ease forwards;
+        }
+
+        .section:nth-child(1) { animation-delay: 0.2s; }
+        .section:nth-child(2) { animation-delay: 0.4s; }
+        .section:nth-child(3) { animation-delay: 0.6s; }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-title {
+            font-family: 'Cinzel', serif;
+            font-size: clamp(2rem, 4vw, 3.5rem);
+            color: var(--text-light);
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .section-subtitle {
+            font-size: clamp(1.1rem, 2vw, 1.6rem);
+            color: var(--text-medium);
+            font-style: italic;
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.5;
+        }
+
+        /* --- GRID DE CONTENIDO --- */
+        .themes-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .theme-card {
+            background: var(--bg-card);
+            border: 2px solid var(--border-color);
+            border-radius: 15px;
+            padding: 2.5rem;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+            backdrop-filter: blur(10px);
+            transition: transform 0.3s ease;
+            height: 100%;
+        }
+
+        .theme-card:hover {
+            transform: translateY(-8px);
+        }
+
+        .card-header {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 2px solid rgba(139, 69, 19, 0.3);
+        }
+
+        .card-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--primary-medium), var(--primary-light));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-light);
+            font-size: 1.8rem;
+            flex-shrink: 0;
+        }
+
+        .card-title {
+            font-family: 'Cinzel', serif;
+            color: var(--border-color);
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .card-content {
+            color: #4a3728;
+            font-size: 1.1rem;
+            line-height: 1.7;
+        }
+
+        .card-content ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .card-content li {
+            margin-bottom: 1rem;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .card-content li::before {
+            content: "▸";
+            color: var(--border-color);
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+        }
+
+        .highlight {
+            background: linear-gradient(135deg, var(--primary-medium), var(--primary-light));
+            color: white;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-weight: 600;
+            display: inline-block;
+            margin: 0.3rem;
+            font-size: 0.9rem;
+            box-shadow: 0 2px 8px rgba(139, 69, 19, 0.4);
+        }
+
+        /* --- SECCIÓN ESPECIAL --- */
+        .quote-section {
+            background: var(--bg-card);
+            border: 2px solid var(--border-color);
+            border-radius: 20px;
+            padding: 3rem;
+            margin: 3rem 0;
+            text-align: center;
+            box-shadow: 0 12px 40px rgba(0,0,0,0.4);
+        }
+
+        .quote-title {
+            font-family: 'Cinzel', serif;
+            color: var(--border-color);
+            font-size: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .quote-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .quote-item {
+            background: rgba(139, 69, 19, 0.1);
+            border-left: 4px solid var(--border-color);
+            padding: 1.5rem;
+            border-radius: 8px;
+            text-align: left;
+            transition: transform 0.3s ease;
+        }
+
+        .quote-item:hover {
+            transform: translateY(-5px);
+            background: rgba(139, 69, 19, 0.15);
+        }
+
+        .quote-text {
+            font-style: italic;
+            color: #5a4738;
+            font-size: 1.1rem;
+            line-height: 1.5;
+            margin-bottom: 1rem;
+            position: relative;
+            padding-left: 2rem;
+        }
+
+        .quote-text::before {
+            content: """;
+            font-size: 2rem;
+            color: var(--border-color);
+            opacity: 0.5;
+            position: absolute;
+            left: 0;
+            top: -0.5rem;
+            font-family: 'Cinzel', serif;
+        }
+
+        .quote-author {
+            color: var(--border-color);
+            font-weight: bold;
+            font-size: 0.9rem;
+            text-align: right;
+        }
+
+        /* --- FOOTER --- */
+        .footer {
+            text-align: center;
+            padding: 3rem 2rem;
+            margin-top: 4rem;
+            border-top: 2px solid rgba(201, 169, 126, 0.3);
+        }
+
+        .footer-text {
+            color: var(--text-medium);
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+        }
+
+        .footer-badge {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 1rem 2rem;
+            border-radius: 30px;
+            color: var(--text-light);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            font-weight: 600;
+        }
+
+        /* --- RESPONSIVE --- */
+        @media (max-width: 1024px) {
+            .sidebar {
+                transform: translateX(-100%);
+                transition: transform 0.3s ease;
+            }
+
+            .sidebar.active {
+                transform: translateX(0);
+            }
+
+            .main-content {
+                margin-left: 0;
+                padding: 2rem 1rem;
+            }
+
+            .menu-toggle {
+                display: block;
+                position: fixed;
+                top: 1rem;
+                left: 1rem;
+                z-index: 1001;
+                background: linear-gradient(135deg, var(--primary-medium), var(--primary-light));
+                border: none;
+                color: var(--text-light);
+                padding: 0.8rem;
+                border-radius: 50%;
+                cursor: pointer;
+                box-shadow: 0 4px 15px rgba(139, 69, 19, 0.4);
+            }
+        }
+
+        @media (min-width: 1025px) {
+            .menu-toggle {
+                display: none;
+            }
+        }
+
+        /* --- SCROLLBAR PERSONALIZADA --- */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: rgba(44, 24, 16, 0.2);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(135deg, var(--primary-medium), var(--primary-light));
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: linear-gradient(135deg, var(--primary-light), var(--primary-medium));
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- MENÚ LATERAL FIJO -->
+        <nav class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <h1 class="sidebar-title">Lazarillo de Tormes</h1>
+                <p class="sidebar-subtitle">La novela picaresca que revolucionó la literatura</p>
+            </div>
+
+            <a href="index.html" class="back-link">
+                <i class="material-icons">arrow_back</i>
+                ← Volver al inicio
+            </a>
+
+            <ul class="nav-menu">
+                <li class="nav-item">
+                    <a href="index.html" class="nav-link">📖 Introducción</a>
+                </li>
+                <li class="nav-item">
+                    <a href="contexto.html" class="nav-link">🏛️ Contexto Histórico</a>
+                </li>
+                <li class="nav-item">
+                    <a href="prologo.html" class="nav-link">✍️ El Prólogo</a>
+                </li>
+                <li class="nav-item">
+                    <a href="tratados.html" class="nav-link">👥 Tratados y Amos</a>
+                </li>
+                <li class="nav-item">
+                    <a href="temas.html" class="nav-link active">🎭 Temas Principales</a>
+                </li>
+                <li class="nav-item">
+                    <a href="lenguaje.html" class="nav-link">📝 Lenguaje y Estilo</a>
+                </li>
+                <li class="nav-item">
+                    <a href="picaresca.html" class="nav-link">📚 Novela Picaresca</a>
+                </li>
+                <li class="nav-item">
+                    <a href="legado.html" class="nav-link">🌟 Influencia y Legado</a>
+                </li>
+                <li class="nav-item">
+                    <a href="fragmentos.html" class="nav-link">📄 Fragmentos Clave</a>
+                </li>
+                <li class="nav-item">
+                    <a href="actividades.html" class="nav-link">🎓 Actividades</a>
+                </li>
+            </ul>
+        </nav>
+
+        <!-- BOTÓN MENÚ MÓVIL -->
+        <button class="menu-toggle" id="menuToggle">
+            <i class="material-icons">menu</i>
+        </button>
+
+        <!-- CONTENIDO PRINCIPAL -->
+        <main class="main-content">
+            <!-- SECCIÓN PRINCIPAL -->
+            <section class="section">
+                <div class="section-header">
+                    <h1 class="section-title">🎭 Temas Principales y Crítica Social</h1>
+                    <p class="section-subtitle">Los temas fundamentales que definen la novela picaresca y su crítica a la sociedad del siglo XVI</p>
+                </div>
+
+                <div class="themes-grid">
+                    <div class="theme-card">
+                        <div class="card-header">
+                            <div class="card-icon">
+                                <i class="material-icons">restaurant</i>
+                            </div>
+                            <h2 class="card-title">El hambre</h2>
+                        </div>
+                        <div class="card-content">
+                            <ul>
+                                <li><span class="highlight">Motor principal</span> de la acción narrativa</li>
+                                <li>Símbolo de <span class="highlight">pobreza extrema</span> y marginación social</li>
+                                <li>Fuerza que <span class="highlight">motiva</span> todas las acciones de Lázaro</li>
+                                <li>Crítica a la <span class="highlight">desigualdad social</span> del Renacimiento</li>
+                                <li>Condición <span class="highlight">existencial</span> del pueblo llano</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="theme-card">
+                        <div class="card-header">
+                            <div class="card-icon">
+                                <i class="material-icons">psychology</i>
+                            </div>
+                            <h2 class="card-title">El engaño</h2>
+                        </div>
+                        <div class="card-content">
+                            <ul>
+                                <li><span class="highlight">Habilidad esencial</span> para la supervivencia</li>
+                                <li>El pícaro aprende a <span class="highlight">manipular</span> la realidad</li>
+                                <li>Inversión de <span class="highlight">valores morales</span> tradicionales</li>
+                                <li>El engaño como <span class="highlight">arma de defensa</span> contra el poder</li>
+                                <li>Crítica a la <span class="highlight">hipocresía</span> social y religiosa</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="theme-card">
+                        <div class="card-header">
+                            <div class="card-icon">
+                                <i class="material-icons">visibility_off</i>
+                            </div>
+                            <h2 class="card-title">Apariencia vs Realidad</h2>
+                        </div>
+                        <div class="card-content">
+                            <ul>
+                                <li>El escudero: <span class="highlight">noble pobre</span> con apariencias de riqueza</li>
+                                <li>El clérigo: <span class="highlight">santidad falsa</span> con avaricia real</li>
+                                <li>El fraile: <span class="highlight">piedad fingida</span> con lujuria verdadera</li>
+                                <li>Crítica de las <span class="highlight">fachadas sociales</span> y religiosas</li>
+                                <li>La sociedad como <span class="highlight">teatro de apariencias</span></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="theme-card">
+                        <div class="card-header">
+                            <div class="card-icon">
+                                <i class="material-icons">church</i>
+                            </div>
+                            <h2 class="card-title">Crítica religiosa</h2>
+                        </div>
+                        <div class="card-content">
+                            <ul>
+                                <li>Clérigo <span class="highlight">avaricioso</span> que niega el pan al hambriento</li>
+                                <li>Fraile <span class="highlight">lujurioso</span> que usa el hábito para seducir</li>
+                                <li>Buldero <span class="highlight">falso milagrero</span> que explota la fe popular</li>
+                                <li>Denuncia de la <span class="highlight">corrupción eclesiástica</span></li>
+                                <li>Reflexión sobre la <span class="highlight">verdadera piedad</span> vs. la hipocresía</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="theme-card">
+                        <div class="card-header">
+                            <div class="card-icon">
+                                <i class="material-icons">school</i>
+                            </div>
+                            <h2 class="card-title">Educación inversa</h2>
+                        </div>
+                        <div class="card-content">
+                            <ul>
+                                <li>Lázaro aprende el <span class="highlight">mal</span> en lugar del bien</li>
+                                <li>Los amos le enseñan a <span class="highlight">delinquir</span> y engañar</li>
+                                <li>Inversión del <span class="highlight">proceso educativo</span> tradicional</li>
+                                <li>El <span class="highlight">aprendizaje</span> ocurre en la calle, no en la escuela</li>
+                                <li>Crítica al <span class="highlight">sistema educativo</span> formal y elitista</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="theme-card">
+                        <div class="card-header">
+                            <div class="card-icon">
+                                <i class="material-icons">public</i>
+                            </div>
+                            <h2 class="card-title">Orden social</h2>
+                        </div>
+                        <div class="card-content">
+                            <ul>
+                                <li>Crítica a la <span class="highlight">nobleza en decadencia</span></li>
+                                <li>Injusticia y <span class="highlight">desigualdad</span> estructural</li>
+                                <li>Poder basado en <span class="highlight">apariencias</span> y no en méritos</li>
+                                <li>Sociedad sin <span class="highlight">valores reales</span> ni ética</li>
+                                <li>Reflexión sobre la <span class="highlight">movilidad social</span> imposible</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SECCIÓN DE CITAS -->
+            <section class="section">
+                <div class="quote-section">
+                    <h2 class="quote-title">💭 Frases clave que definen los temas</h2>
+                    <div class="quote-grid">
+                        <div class="quote-item">
+                            <p class="quote-text">Yo le serví casi ocho años; y al cabo dellos, con mucha hambre y trabajo, me vine a esta ciudad de Toledo, donde di con vuestra merced, a quien sirvo y adoro, y tengo por mayor ventura.</p>
+                            <p class="quote-author">— Lázaro, al final del Tratado III</p>
+                        </div>
+
+                        <div class="quote-item">
+                            <p class="quote-text">Consideraba mi amo, viendo su buen continente y buen talante, y holgaba de mi ventura. ¡Tal me parece que los males y peligros pasados me estaban en provecho!</p>
+                            <p class="quote-author">— Lázaro, reflexionando sobre el escudero</p>
+                        </div>
+
+                        <div class="quote-item">
+                            <p class="quote-text">Era tan miserable hombre, que no le daba Dios entendimiento para conocer cómo se le podía ir y venir su vida.</p>
+                            <p class="quote-author">— Lázaro, sobre el buldero</p>
+                        </div>
+
+                        <div class="quote-item">
+                            <p class="quote-text">Yo, por cierto, tengo en mí el espíritu y la voluntad de contar las cosas de mi vida.</p>
+                            <p class="quote-author">— Lázaro, en el prólogo</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- FOOTER -->
+            <footer class="footer">
+                <p class="footer-text">Los temas de Lazarillo trascienden su época y siguen siendo relevantes en la crítica social contemporánea</p>
+                <div class="footer-badge">
+                    📚 Clase de literatura española - Siglo de Oro
+                </div>
+            </footer>
+        </main>
+    </div>
+
+    <script>
+        // Toggle del menú móvil
+        document.getElementById('menuToggle').addEventListener('click', function() {
+            document.getElementById('sidebar').classList.toggle('active');
+        });
+
+        // Cerrar menú móvil al hacer click en un enlace
+        document.querySelectorAll('.nav-link, .back-link').forEach(link => {
+            link.addEventListener('click', function() {
+                if (window.innerWidth <= 1024) {
+                    document.getElementById('sidebar').classList.remove('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

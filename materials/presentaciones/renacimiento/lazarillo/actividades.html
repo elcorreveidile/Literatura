@@ -1,0 +1,798 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Actividades - Lazarillo de Tormes</title>
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:wght@400;600;700&family=Cinzel:wght@600;700&family=Source+Sans+Pro:wght@400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #8B4513;
+            --secondary-color: #D2691E;
+            --accent-color: #c9a97e;
+            --text-primary: #3a2a1a;
+            --text-secondary: #654321;
+            --background: linear-gradient(135deg, #2c1810 0%, #8B4513 50%, #A0522D 100%);
+            --content-bg: rgba(255, 248, 220, 0.95);
+            --shadow: 0 8px 32px rgba(0,0,0,0.3);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Crimson Text', serif;
+            color: var(--text-primary);
+            background: var(--background);
+            min-height: 100vh;
+            line-height: 1.6;
+        }
+
+        .container {
+            display: flex;
+            min-height: 100vh;
+        }
+
+        /* Sidebar Navigation */
+        .sidebar {
+            width: 320px;
+            background: rgba(58, 42, 26, 0.95);
+            padding: 2rem 0;
+            position: fixed;
+            height: 100vh;
+            overflow-y: auto;
+            z-index: 1000;
+            box-shadow: 2px 0 10px rgba(0,0,0,0.3);
+        }
+
+        .sidebar-header {
+            padding: 0 2rem 2rem;
+            border-bottom: 2px solid var(--accent-color);
+            margin-bottom: 2rem;
+        }
+
+        .sidebar-title {
+            font-family: 'Cinzel', serif;
+            font-size: 1.8rem;
+            color: var(--accent-color);
+            text-align: center;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+
+        .sidebar-subtitle {
+            font-size: 1rem;
+            color: #e6d7c3;
+            text-align: center;
+            font-style: italic;
+        }
+
+        .nav-menu {
+            list-style: none;
+        }
+
+        .nav-menu li {
+            margin-bottom: 0.5rem;
+        }
+
+        .nav-menu a {
+            display: block;
+            padding: 1rem 2rem;
+            color: #e6d7c3;
+            text-decoration: none;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            border-left: 3px solid transparent;
+        }
+
+        .nav-menu a:hover, .nav-menu a.active {
+            background-color: rgba(201, 169, 126, 0.2);
+            border-left-color: var(--accent-color);
+            color: var(--accent-color);
+        }
+
+        .nav-menu .current {
+            background-color: rgba(201, 169, 126, 0.3);
+            border-left-color: var(--accent-color);
+            color: var(--accent-color);
+            font-weight: 600;
+        }
+
+        /* Main Content */
+        .main-content {
+            flex: 1;
+            margin-left: 320px;
+            padding: 2rem;
+            max-width: calc(100% - 320px);
+        }
+
+        .content-section {
+            background: var(--content-bg);
+            border-radius: 20px;
+            padding: 3rem;
+            margin-bottom: 2rem;
+            box-shadow: var(--shadow);
+            border: 2px solid var(--primary-color);
+        }
+
+        .section-title {
+            font-family: 'Cinzel', serif;
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            text-align: center;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            width: 100px;
+            height: 3px;
+            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+            position: absolute;
+            bottom: -1rem;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .intro-text {
+            font-size: 1.2rem;
+            line-height: 1.8;
+            color: var(--text-secondary);
+            text-align: center;
+            margin-bottom: 3rem;
+            font-style: italic;
+        }
+
+        .activities-container {
+            display: flex;
+            flex-direction: column;
+            gap: 2.5rem;
+        }
+
+        .activity-card {
+            background: linear-gradient(135deg, rgba(255,248,220,0.9), rgba(255,240,220,0.9));
+            border: 2px solid var(--secondary-color);
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .activity-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+        }
+
+        .activity-header {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid rgba(139, 69, 19, 0.2);
+        }
+
+        .activity-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.8rem;
+            flex-shrink: 0;
+        }
+
+        .activity-title {
+            font-family: 'Cinzel', serif;
+            color: var(--primary-color);
+            font-size: 1.5rem;
+            flex: 1;
+        }
+
+        .activity-level {
+            display: inline-block;
+            padding: 0.3rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: white;
+        }
+
+        .level-basic {
+            background: linear-gradient(45deg, #4CAF50, #66BB6A);
+        }
+
+        .level-intermediate {
+            background: linear-gradient(45deg, #FF9800, #FFB74D);
+        }
+
+        .level-advanced {
+            background: linear-gradient(45deg, #f44336, #EF5350);
+        }
+
+        .activity-content {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            line-height: 1.7;
+            margin-bottom: 1.5rem;
+        }
+
+        .activity-instructions {
+            background: rgba(139, 69, 19, 0.05);
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .instructions-title {
+            font-family: 'Cinzel', serif;
+            color: var(--primary-color);
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .instructions-content {
+            color: var(--text-secondary);
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+
+        .instructions-content ol {
+            padding-left: 1.5rem;
+        }
+
+        .instructions-content li {
+            margin-bottom: 0.5rem;
+        }
+
+        .activity-example {
+            background: rgba(210, 105, 30, 0.05);
+            border-left: 4px solid var(--secondary-color);
+            border-radius: 5px;
+            padding: 1rem;
+            margin-top: 1rem;
+        }
+
+        .example-title {
+            font-weight: 600;
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .example-content {
+            font-style: italic;
+            color: var(--text-secondary);
+        }
+
+        .quiz-container {
+            background: rgba(255, 255, 255, 0.7);
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin-top: 1rem;
+        }
+
+        .quiz-question {
+            font-weight: 600;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+
+        .quiz-options {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .quiz-option {
+            background: rgba(255, 255, 255, 0.8);
+            border: 2px solid rgba(139, 69, 19, 0.2);
+            border-radius: 8px;
+            padding: 0.8rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .quiz-option:hover {
+            background: rgba(139, 69, 19, 0.1);
+            border-color: var(--primary-color);
+        }
+
+        .quiz-option input {
+            margin-right: 0.5rem;
+        }
+
+        .creative-input {
+            width: 100%;
+            min-height: 100px;
+            background: rgba(255, 255, 255, 0.9);
+            border: 2px solid rgba(139, 69, 19, 0.2);
+            border-radius: 8px;
+            padding: 1rem;
+            font-family: 'Crimson Text', serif;
+            font-size: 1rem;
+            line-height: 1.6;
+            resize: vertical;
+        }
+
+        .creative-input:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            background: white;
+        }
+
+        .submit-btn {
+            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 25px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(139, 69, 19, 0.3);
+            margin-top: 1rem;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(139, 69, 19, 0.4);
+        }
+
+        .highlight {
+            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 3px 10px;
+            border-radius: 15px;
+            font-weight: 600;
+            display: inline-block;
+            margin: 2px;
+        }
+
+        /* Navigation Buttons */
+        .nav-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .nav-btn {
+            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 25px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(139, 69, 19, 0.3);
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .nav-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(139, 69, 19, 0.4);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .sidebar {
+                transform: translateX(-100%);
+                transition: transform 0.3s ease;
+            }
+
+            .sidebar.active {
+                transform: translateX(0);
+            }
+
+            .main-content {
+                margin-left: 0;
+                max-width: 100%;
+                padding: 1rem;
+            }
+
+            .content-section {
+                padding: 2rem 1.5rem;
+            }
+
+            .activity-header {
+                flex-direction: column;
+                text-align: center;
+                gap: 1rem;
+            }
+
+            .menu-toggle {
+                display: block;
+                position: fixed;
+                top: 1rem;
+                left: 1rem;
+                z-index: 1001;
+                background: var(--primary-color);
+                color: white;
+                border: none;
+                padding: 0.5rem;
+                border-radius: 5px;
+                cursor: pointer;
+            }
+        }
+
+        @media (min-width: 769px) {
+            .menu-toggle {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <button class="menu-toggle" onclick="toggleSidebar()">
+        <i class="material-icons">menu</i>
+    </button>
+
+    <div class="container">
+        <!-- Sidebar Navigation -->
+        <nav class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <h1 class="sidebar-title">Lazarillo de Tormes</h1>
+                <p class="sidebar-subtitle">Análisis literario completo</p>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html">📚 Inicio</a></li>
+                <li><a href="slide2.html">🏛️ Contexto histórico</a></li>
+                <li><a href="prologo.html">📜 Prólogo manifiesto</a></li>
+                <li><a href="tratados.html">👥 Tratados y amos</a></li>
+                <li><a href="temas.html">🎭 Temas principales</a></li>
+                <li><a href="lenguaje.html">✒️ Lenguaje y estilo</a></li>
+                <li><a href="picaresca.html">🎪 Novela picaresca</a></li>
+                <li><a href="legado.html">🏆 Influencia y legado</a></li>
+                <li><a href="fragmentos.html">📖 Fragmentos clave</a></li>
+                <li><a href="actividades.html" class="current">🎯 Actividades</a></li>
+            </ul>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <section class="content-section">
+                <h1 class="section-title">🎯 Actividades Interactivas</h1>
+
+                <p class="intro-text">
+                    Pon a prueba tus conocimientos sobre <span class="highlight">Lazarillo de Tormes</span>
+                    con estas actividades diseñadas para profundizar tu comprensión de esta obra maestra
+                    de la literatura española del Siglo de Oro.
+                </p>
+
+                <div class="activities-container">
+                    <!-- Actividad 1: Quiz de Comprensión -->
+                    <div class="activity-card">
+                        <div class="activity-header">
+                            <div class="activity-icon">
+                                <i class="material-icons">quiz</i>
+                            </div>
+                            <h3 class="activity-title">Quiz de Comprensión</h3>
+                            <span class="activity-level level-basic">Básico</span>
+                        </div>
+
+                        <div class="activity-content">
+                            Evalúa tu comprensión de los elementos fundamentales de la obra y su contexto histórico.
+                        </div>
+
+                        <div class="activity-instructions">
+                            <h4 class="instructions-title">
+                                <i class="material-icons">lightbulb</i>
+                                Instrucciones
+                            </h4>
+                            <div class="instructions-content">
+                                <ol>
+                                    <li>Lee cada pregunta detenidamente</li>
+                                    <li>Selecciona la respuesta correcta</li>
+                                    <li>Reflexiona sobre por qué esa respuesta es correcta</li>
+                                    <li>Verifica tus conocimientos con el texto</li>
+                                </ol>
+                            </div>
+                        </div>
+
+                        <div class="quiz-container">
+                            <div class="quiz-question">1. ¿En qué año se publicó Lazarillo de Tormes?</div>
+                            <div class="quiz-options">
+                                <label class="quiz-option">
+                                    <input type="radio" name="q1" value="a"> 1545
+                                </label>
+                                <label class="quiz-option">
+                                    <input type="radio" name="q1" value="b"> 1554
+                                </label>
+                                <label class="quiz-option">
+                                    <input type="radio" name="q1" value="c"> 1564
+                                </label>
+                                <label class="quiz-option">
+                                    <input type="radio" name="q1" value="d"> 1574
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="quiz-container">
+                            <div class="quiz-question">2. ¿Cuántos tratados componen la obra completa?</div>
+                            <div class="quiz-options">
+                                <label class="quiz-option">
+                                    <input type="radio" name="q2" value="a"> 5 tratados
+                                </label>
+                                <label class="quiz-option">
+                                    <input type="radio" name="q2" value="b"> 6 tratados
+                                </label>
+                                <label class="quiz-option">
+                                    <input type="radio" name="q2" value="c"> 7 tratados
+                                </label>
+                                <label class="quiz-option">
+                                    <input type="radio" name="q2" value="d"> 8 tratados
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="quiz-container">
+                            <div class="quiz-question">3. ¿Quién es el primer amo de Lázaro?</div>
+                            <div class="quiz-options">
+                                <label class="quiz-option">
+                                    <input type="radio" name="q3" value="a"> El clérigo
+                                </label>
+                                <label class="quiz-option">
+                                    <input type="radio" name="q3" value="b"> El escudero
+                                </label>
+                                <label class="quiz-option">
+                                    <input type="radio" name="q3" value="c"> El ciego
+                                </label>
+                                <label class="quiz-option">
+                                    <input type="radio" name="q3" value="d"> El buldero
+                                </label>
+                            </div>
+                        </div>
+
+                        <button class="submit-btn" onclick="checkQuizAnswers()">Verificar respuestas</button>
+                    </div>
+
+                    <!-- Actividad 2: Análisis de Personajes -->
+                    <div class="activity-card">
+                        <div class="activity-header">
+                            <div class="activity-icon">
+                                <i class="material-icons">people</i>
+                            </div>
+                            <h3 class="activity-title">Análisis de Personajes</h3>
+                            <span class="activity-level level-intermediate">Intermedio</span>
+                        </div>
+
+                        <div class="activity-content">
+                            Analiza en profundidad la psicología y función de los personajes principales de la obra.
+                        </div>
+
+                        <div class="activity-instructions">
+                            <h4 class="instructions-title">
+                                <i class="material-icons">psychology</i>
+                                Instrucciones
+                            </h4>
+                            <div class="instructions-content">
+                                <ol>
+                                    <li>Elige un personaje (Lázaro o alguno de sus amos)</li>
+                                    <li>Describe su psicología y motivaciones</li>
+                                    <li>Analiza su función crítica en la obra</li>
+                                    <li>Relaciónalo con el contexto social de la época</li>
+                                </ol>
+                            </div>
+                        </div>
+
+                        <div class="activity-example">
+                            <div class="example-title">Ejemplo de análisis:</div>
+                            <div class="example-content">
+                                "El ciego representa la primera lección dura de Lázaro: que la ceguera física
+                                puede coexistir con una lucidez despiadada para sobrevivir. Su crueldad es una
+                                forma de enseñanza inversa..."
+                            </div>
+                        </div>
+
+                        <textarea class="creative-input" placeholder="Escribe aquí tu análisis de personaje..."></textarea>
+                        <button class="submit-btn">Guardar análisis</button>
+                    </div>
+
+                    <!-- Actividad 3: Creación Literaria -->
+                    <div class="activity-card">
+                        <div class="activity-header">
+                            <div class="activity-icon">
+                                <i class="material-icons">create</i>
+                            </div>
+                            <h3 class="activity-title">Creación de un Nuevo Tratado</h3>
+                            <span class="activity-level level-advanced">Avanzado</span>
+                        </div>
+
+                        <div class="activity-content">
+                            Imagina que Lázaro tuvo un octavo amo y escribe un nuevo capítulo siguiendo el estilo de la obra.
+                        </div>
+
+                        <div class="activity-instructions">
+                            <h4 class="instructions-title">
+                                <i class="material-icons">edit</i>
+                                Instrucciones
+                            </h4>
+                            <div class="instructions-content">
+                                <ol>
+                                    <li>Inventa un nuevo amo para Lázaro</li>
+                                    <li>Mantén el estilo picaresco y el tono irónico</li>
+                                    <li>Incluye crítica social a alguna institución</li>
+                                    <li>Usa lenguaje del siglo XVI</li>
+                                    <li>Termina con una "lección" para Lázaro</li>
+                                </ol>
+                            </div>
+                        </div>
+
+                        <div class="activity-example">
+                            <div class="example-title">Ideas para nuevos amos:</div>
+                            <div class="example-content">
+                                • Un médico charlatán que cura con pócimas milagrosas<br>
+                                • Un mercader ambicioso que trafica con reliquias falsas<br>
+                                • Un letrado corrupto que vende justicia a los ricos<br>
+                                • Un poeta pobre que vive de encargos aduladores
+                            </div>
+                        </div>
+
+                        <textarea class="creative-input" placeholder="Escribe aquí tu nuevo tratado..." style="min-height: 200px;"></textarea>
+                        <button class="submit-btn">Compartir mi tratado</button>
+                    </div>
+
+                    <!-- Actividad 4: Debate Ético -->
+                    <div class="activity-card">
+                        <div class="activity-header">
+                            <div class="activity-icon">
+                                <i class="material-icons">forum</i>
+                            </div>
+                            <h3 class="activity-title">Debate Ético</h3>
+                            <span class="activity-level level-intermediate">Intermedio</span>
+                        </div>
+
+                        <div class="activity-content">
+                            Reflexiona sobre las cuestiones morales y éticas que plantea la obra.
+                        </div>
+
+                        <div class="activity-instructions">
+                            <h4 class="instructions-title">
+                                <i class="material-icons">balance</i>
+                                Preguntas para el debate
+                            </h4>
+                            <div class="instructions-content">
+                                <ol>
+                                    <li>¿Es justificable la supervivencia de Lázaro a través del engaño?</li>
+                                    <li>¿La obra critica realmente la sociedad o solo la describe?</li>
+                                    <li>¿Lázaro es víctima o verdugo en su historia?</li>
+                                    <li>¿Es el final feliz una traición a su carácter?</li>
+                                    <li>¿Sigue siendo relevante la crítica social hoy?</li>
+                                </ol>
+                            </div>
+                        </div>
+
+                        <textarea class="creative-input" placeholder="Expresa tu opinión sobre alguna de estas preguntas..."></textarea>
+                        <button class="submit-btn">Participar en el debate</button>
+                    </div>
+
+                    <!-- Actividad 5: Contexto Histórico -->
+                    <div class="activity-card">
+                        <div class="activity-header">
+                            <div class="activity-icon">
+                                <i class="material-icons">history</i>
+                            </div>
+                            <h3 class="activity-title">Investigación Histórica</h3>
+                            <span class="activity-level level-basic">Básico</span>
+                        </div>
+
+                        <div class="activity-content">
+                            Investiga y relaciona la obra con su contexto histórico del siglo XVI español.
+                        </div>
+
+                        <div class="activity-instructions">
+                            <h4 class="instructions-title">
+                                <i class="material-icons">search</i>
+                                Temas de investigación
+                            </h4>
+                            <div class="instructions-content">
+                                <ul>
+                                    <li>La situación de los <span class="highlight">pícaros</span> en la sociedad</li>
+                                    <li>El poder y corrupción de la <span class="highlight">Iglesia</span></li>
+                                    <li>La crisis económica del <span class="highlight">Imperio español</span></li>
+                                    <li>La Inquisición y la <span class="highlight">censura literaria</span></li>
+                                    <li>El contraste entre idealismo y <span class="highlight">realismo</span></li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <textarea class="creative-input" placeholder="Describe tus hallazgos sobre el contexto histórico..."></textarea>
+                        <button class="submit-btn">Compartir investigación</button>
+                    </div>
+                </div>
+
+                <div class="nav-buttons">
+                    <a href="fragmentos.html" class="nav-btn">
+                        <i class="material-icons">arrow_back</i>
+                        ← Fragmentos clave
+                    </a>
+                    <a href="index.html" class="nav-btn">
+                        <i class="material-icons">home</i>
+                        Página principal
+                    </a>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script>
+        function toggleSidebar() {
+            const sidebar = document.getElementById('sidebar');
+            sidebar.classList.toggle('active');
+        }
+
+        // Close sidebar when clicking outside on mobile
+        document.addEventListener('click', function(event) {
+            const sidebar = document.getElementById('sidebar');
+            const menuToggle = document.querySelector('.menu-toggle');
+
+            if (window.innerWidth <= 768 &&
+                !sidebar.contains(event.target) &&
+                !menuToggle.contains(event.target) &&
+                sidebar.classList.contains('active')) {
+                sidebar.classList.remove('active');
+            }
+        });
+
+        function checkQuizAnswers() {
+            const answers = {
+                q1: 'b', // 1554
+                q2: 'c', // 7 tratados
+                q3: 'c'  // El ciego
+            };
+
+            let correct = 0;
+            let total = 3;
+
+            for (let i = 1; i <= total; i++) {
+                const question = document.querySelector(`input[name="q${i}"]:checked`);
+                if (question && question.value === answers[`q${i}`]) {
+                    correct++;
+                    question.parentElement.style.background = 'rgba(76, 175, 80, 0.2)';
+                    question.parentElement.style.borderColor = '#4CAF50';
+                } else if (question) {
+                    question.parentElement.style.background = 'rgba(244, 67, 54, 0.2)';
+                    question.parentElement.style.borderColor = '#f44336';
+                }
+            }
+
+            if (correct === total) {
+                alert('¡Excelente! Has respondido correctamente todas las preguntas.');
+            } else {
+                alert(`Has respondido correctamente ${correct} de ${total} preguntas. ¡Sigue estudiando!`);
+            }
+        }
+
+        // Add functionality to save user input
+        document.querySelectorAll('.submit-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                if (!this.textContent.includes('Verificar')) {
+                    const input = this.parentElement.querySelector('textarea, input[type="text"]');
+                    if (input && input.value.trim()) {
+                        alert('¡Gracias por tu participación! Tu respuesta ha sido guardada.');
+                        input.value = '';
+                    } else {
+                        alert('Por favor, completa la actividad antes de enviar.');
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,685 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Influencia y Legado - Lazarillo de Tormes</title>
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:wght@400;600;700&family=Cinzel:wght@600;700&family=Source+Sans+Pro:wght@400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #8B4513;
+            --secondary-color: #D2691E;
+            --accent-color: #c9a97e;
+            --text-primary: #3a2a1a;
+            --text-secondary: #654321;
+            --background: linear-gradient(135deg, #2c1810 0%, #8B4513 50%, #A0522D 100%);
+            --content-bg: rgba(255, 248, 220, 0.95);
+            --shadow: 0 8px 32px rgba(0,0,0,0.3);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Crimson Text', serif;
+            color: var(--text-primary);
+            background: var(--background);
+            min-height: 100vh;
+            line-height: 1.6;
+        }
+
+        .container {
+            display: flex;
+            min-height: 100vh;
+        }
+
+        /* Sidebar Navigation */
+        .sidebar {
+            width: 320px;
+            background: rgba(58, 42, 26, 0.95);
+            padding: 2rem 0;
+            position: fixed;
+            height: 100vh;
+            overflow-y: auto;
+            z-index: 1000;
+            box-shadow: 2px 0 10px rgba(0,0,0,0.3);
+        }
+
+        .sidebar-header {
+            padding: 0 2rem 2rem;
+            border-bottom: 2px solid var(--accent-color);
+            margin-bottom: 2rem;
+        }
+
+        .sidebar-title {
+            font-family: 'Cinzel', serif;
+            font-size: 1.8rem;
+            color: var(--accent-color);
+            text-align: center;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+
+        .sidebar-subtitle {
+            font-size: 1rem;
+            color: #e6d7c3;
+            text-align: center;
+            font-style: italic;
+        }
+
+        .nav-menu {
+            list-style: none;
+        }
+
+        .nav-menu li {
+            margin-bottom: 0.5rem;
+        }
+
+        .nav-menu a {
+            display: block;
+            padding: 1rem 2rem;
+            color: #e6d7c3;
+            text-decoration: none;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            border-left: 3px solid transparent;
+        }
+
+        .nav-menu a:hover, .nav-menu a.active {
+            background-color: rgba(201, 169, 126, 0.2);
+            border-left-color: var(--accent-color);
+            color: var(--accent-color);
+        }
+
+        .nav-menu .current {
+            background-color: rgba(201, 169, 126, 0.3);
+            border-left-color: var(--accent-color);
+            color: var(--accent-color);
+            font-weight: 600;
+        }
+
+        /* Main Content */
+        .main-content {
+            flex: 1;
+            margin-left: 320px;
+            padding: 2rem;
+            max-width: calc(100% - 320px);
+        }
+
+        .content-section {
+            background: var(--content-bg);
+            border-radius: 20px;
+            padding: 3rem;
+            margin-bottom: 2rem;
+            box-shadow: var(--shadow);
+            border: 2px solid var(--primary-color);
+        }
+
+        .section-title {
+            font-family: 'Cinzel', serif;
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            text-align: center;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            width: 100px;
+            height: 3px;
+            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+            position: absolute;
+            bottom: -1rem;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .intro-text {
+            font-size: 1.2rem;
+            line-height: 1.8;
+            color: var(--text-secondary);
+            text-align: center;
+            margin-bottom: 3rem;
+            font-style: italic;
+        }
+
+        .legacy-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .legacy-card {
+            background: linear-gradient(135deg, rgba(255,248,220,0.9), rgba(255,240,220,0.9));
+            border: 2px solid var(--secondary-color);
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .legacy-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+        }
+
+        .legacy-icon {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            text-align: center;
+            margin-bottom: 1rem;
+        }
+
+        .legacy-title {
+            font-family: 'Cinzel', serif;
+            font-size: 1.4rem;
+            color: var(--primary-color);
+            text-align: center;
+            margin-bottom: 1rem;
+        }
+
+        .legacy-content {
+            color: var(--text-secondary);
+            font-size: 1rem;
+        }
+
+        .legacy-content ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .legacy-content li {
+            position: relative;
+            padding-left: 25px;
+            margin-bottom: 0.5rem;
+        }
+
+        .legacy-content li::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            color: var(--primary-color);
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        .influence-section {
+            background: linear-gradient(135deg, rgba(139,69,19,0.1), rgba(160,82,45,0.1));
+            border-radius: 15px;
+            padding: 2.5rem;
+            margin-top: 3rem;
+            border: 2px solid var(--secondary-color);
+        }
+
+        .influence-title {
+            font-family: 'Cinzel', serif;
+            font-size: 2rem;
+            color: var(--primary-color);
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .influence-timeline {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 2rem 0;
+            position: relative;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .influence-timeline::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+            z-index: 0;
+        }
+
+        .timeline-item {
+            background: var(--content-bg);
+            border: 2px solid var(--primary-color);
+            border-radius: 10px;
+            padding: 1rem;
+            text-align: center;
+            z-index: 1;
+            position: relative;
+            min-width: 150px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        }
+
+        .influence-year {
+            font-family: 'Cinzel', serif;
+            font-weight: 700;
+            color: var(--primary-color);
+            font-size: 1.1rem;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .influence-work {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            font-style: italic;
+        }
+
+        .influence-author {
+            font-size: 0.8rem;
+            color: var(--text-primary);
+            font-weight: 600;
+        }
+
+        .quote-section {
+            background: linear-gradient(135deg, rgba(210,105,30,0.1), rgba(139,69,19,0.1));
+            border-radius: 15px;
+            padding: 2.5rem;
+            margin: 3rem 0;
+            text-align: center;
+            border: 2px solid var(--secondary-color);
+        }
+
+        .quote-title {
+            font-family: 'Cinzel', serif;
+            font-size: 1.8rem;
+            color: var(--primary-color);
+            margin-bottom: 2rem;
+        }
+
+        .quote-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .quote-card {
+            background: var(--content-bg);
+            border: 2px solid var(--primary-color);
+            border-radius: 10px;
+            padding: 1.5rem;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            position: relative;
+        }
+
+        .quote-text {
+            font-style: italic;
+            color: var(--text-secondary);
+            margin-bottom: 1rem;
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+
+        .quote-author {
+            font-weight: 600;
+            color: var(--primary-color);
+            text-align: right;
+            font-size: 0.9rem;
+        }
+
+        .quote-text::before {
+            content: '"';
+            font-size: 3rem;
+            color: var(--primary-color);
+            opacity: 0.3;
+            position: absolute;
+            top: 10px;
+            left: 15px;
+        }
+
+        .highlight {
+            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 3px 10px;
+            border-radius: 15px;
+            font-weight: 600;
+            display: inline-block;
+            margin: 2px;
+        }
+
+        /* Navigation Buttons */
+        .nav-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .nav-btn {
+            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 25px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(139, 69, 19, 0.3);
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .nav-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(139, 69, 19, 0.4);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .sidebar {
+                transform: translateX(-100%);
+                transition: transform 0.3s ease;
+            }
+
+            .sidebar.active {
+                transform: translateX(0);
+            }
+
+            .main-content {
+                margin-left: 0;
+                max-width: 100%;
+                padding: 1rem;
+            }
+
+            .content-section {
+                padding: 2rem 1.5rem;
+            }
+
+            .legacy-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .influence-timeline {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .influence-timeline::before {
+                top: 0;
+                bottom: 0;
+                left: 50%;
+                right: auto;
+                width: 3px;
+                height: auto;
+            }
+
+            .timeline-item {
+                margin-bottom: 1rem;
+            }
+
+            .menu-toggle {
+                display: block;
+                position: fixed;
+                top: 1rem;
+                left: 1rem;
+                z-index: 1001;
+                background: var(--primary-color);
+                color: white;
+                border: none;
+                padding: 0.5rem;
+                border-radius: 5px;
+                cursor: pointer;
+            }
+        }
+
+        @media (min-width: 769px) {
+            .menu-toggle {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <button class="menu-toggle" onclick="toggleSidebar()">
+        <i class="material-icons">menu</i>
+    </button>
+
+    <div class="container">
+        <!-- Sidebar Navigation -->
+        <nav class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <h1 class="sidebar-title">Lazarillo de Tormes</h1>
+                <p class="sidebar-subtitle">Análisis literario completo</p>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html">📚 Inicio</a></li>
+                <li><a href="slide2.html">🏛️ Contexto histórico</a></li>
+                <li><a href="prologo.html">📜 Prólogo manifiesto</a></li>
+                <li><a href="tratados.html">👥 Tratados y amos</a></li>
+                <li><a href="temas.html">🎭 Temas principales</a></li>
+                <li><a href="lenguaje.html">✒️ Lenguaje y estilo</a></li>
+                <li><a href="picaresca.html">🎪 Novela picaresca</a></li>
+                <li><a href="legado.html" class="current">🏆 Influencia y legado</a></li>
+                <li><a href="fragmentos.html">📖 Fragmentos clave</a></li>
+                <li><a href="actividades.html">🎯 Actividades</a></li>
+            </ul>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <section class="content-section">
+                <h1 class="section-title">🏆 Influencia y Legado</h1>
+
+                <p class="intro-text">
+                    Descubre cómo <span class="highlight">Lazarillo de Tormes</span> transformó la literatura universal
+                    y su impacto perdura hasta nuestros días como una obra revolucionaria que cambió para siempre
+                    la forma de contar historias.
+                </p>
+
+                <div class="legacy-grid">
+                    <div class="legacy-card">
+                        <div class="legacy-icon">
+                            <i class="material-icons">auto_stories</i>
+                        </div>
+                        <h3 class="legacy-title">Revolución Narrativa</h3>
+                        <div class="legacy-content">
+                            <ul>
+                                <li>Creación del <span class="highlight">género picaresco</span></li>
+                                <li>Primera novela <span class="highlight">moderna europea</span></li>
+                                <li>Narrador en primera persona fidedigno</li>
+                                <li>Realismo psicológico innovador</li>
+                                <li>Estructura episódica influyente</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="legacy-card">
+                        <div class="legacy-icon">
+                            <i class="material-icons">psychology</i>
+                        </div>
+                        <h3 class="legacy-title">Voz de los Marginados</h3>
+                        <div class="legacy-content">
+                            <ul>
+                                <li>Protagonista <span class="highlight">humilde y realista</span></li>
+                                <li>Visión desde la perspectiva del pobre</li>
+                                <li>Denuncia de injusticias sociales</li>
+                                <li>Legitimación de la <span class="highlight">crítica social</span></li>
+                                <li>Héroes anti-heroicos posteriores</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="legacy-card">
+                        <div class="legacy-icon">
+                            <i class="material-icons">language</i>
+                        </div>
+                        <h3 class="legacy-title">Innovación Lingüística</h3>
+                        <div class="legacy-content">
+                            <ul>
+                                <li>Lenguaje <span class="highlight">coloquial y popular</span></li>
+                                <li>Ironía y humor corrosivo</li>
+                                <li>Doble sentido y ambigüedad</li>
+                                <li>Voz auténtica del pueblo</li>
+                                <li>Estilo directo y sin artificios</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="legacy-card">
+                        <div class="legacy-icon">
+                            <i class="material-icons">gavel</i>
+                        </div>
+                        <h3 class="legacy-title">Crítica Social</h3>
+                        <div class="legacy-content">
+                            <ul>
+                                <li>Denuncia de <span class="highlight">instituciones corruptas</span></li>
+                                <li>Crítica del clero y nobleza</li>
+                                <li>Reflejo de la crisis social</li>
+                                <li>Inversión de valores morales</li>
+                                <li>Conciencia social literaria</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="legacy-card">
+                        <div class="legacy-icon">
+                            <i class="material-icons">public</i>
+                        </div>
+                        <h3 class="legacy-title">Impacto Internacional</h3>
+                        <div class="legacy-content">
+                            <ul>
+                                <li>Influencia en <span class="highlight">literatura europea</span></li>
+                                <li>Traducciones a múltiples idiomas</li>
+                                <li>Modelo para novela picaresca europea</li>
+                                <li>Principios narrativos universales</li>
+                                <li>Legado en novela moderna occidental</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="legacy-card">
+                        <div class="legacy-icon">
+                            <i class="material-icons">school</i>
+                        </div>
+                        <h3 class="legacy-title">Valor Académico</h3>
+                        <div class="legacy-content">
+                            <ul>
+                                <li>Obra <span class="highlight">fundamental del canon</span></li>
+                                <li>Estudio obligado en literatura</li>
+                                <li>Análisis crítico continuo</li>
+                                <li>Referencia historiográfica</li>
+                                <li>Fuente de investigación permanente</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="influence-section">
+                    <h2 class="influence-title">📈 Evolución de la Influencia Literaria</h2>
+
+                    <div class="influence-timeline">
+                        <div class="timeline-item">
+                            <span class="influence-year">1554</span>
+                            <span class="influence-work">Publicación inicial</span>
+                            <span class="influence-author">Revolución inmediata</span>
+                        </div>
+
+                        <div class="timeline-item">
+                            <span class="influence-year">1599</span>
+                            <span class="influence-work">Guzmán de Alfarache</span>
+                            <span class="influence-author">Mateo Alemán</span>
+                        </div>
+
+                        <div class="timeline-item">
+                            <span class="influence-year">1722</span>
+                            <span class="influence-work">Moll Flanders</span>
+                            <span class="influence-author">Daniel Defoe</span>
+                        </div>
+
+                        <div class="timeline-item">
+                            <span class="influence-year">1838</span>
+                            <span class="influence-work">Oliver Twist</span>
+                            <span class="influence-author">Charles Dickens</span>
+                        </div>
+
+                        <div class="timeline-item">
+                            <span class="influence-year">1942</span>
+                            <span class="influence-work">El extranjero</span>
+                            <span class="influence-author">Albert Camus</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="quote-section">
+                    <h2 class="quote-title">💭 Opiniones sobre su Legado</h2>
+
+                    <div class="quote-grid">
+                        <div class="quote-card">
+                            <p class="quote-text">
+                                La primera novela moderna y una de las obras maestras de la literatura universal,
+                                que inauguró un nuevo camino en la narrativa occidental.
+                            </p>
+                            <p class="quote-author">— Francisco Rico</p>
+                        </div>
+
+                        <div class="quote-card">
+                            <p class="quote-text">
+                                Una obra que dio voz a los sin voz y revolucionó la forma de entender
+                                la relación entre literatura y sociedad.
+                            </p>
+                            <p class="quote-author">— Carlos Fuentes</p>
+                        </div>
+
+                        <div class="quote-card">
+                            <p class="quote-text">
+                                El nacimiento de la novela moderna europea, con un protagonista
+                                que marca el inicio del individuo en la literatura.
+                            </p>
+                            <p class="quote-author">— Mikhail Bajtín</p>
+                        </div>
+
+                        <div class="quote-card">
+                            <p class="quote-text">
+                                Una obra maestra de la ironía y la crítica social que sigue
+                                vigente después de casi cinco siglos.
+                            </p>
+                            <p class="quote-author">— Harold Bloom</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="nav-buttons">
+                    <a href="picaresca.html" class="nav-btn">
+                        <i class="material-icons">arrow_back</i>
+                        ← Novela picaresca
+                    </a>
+                    <a href="fragmentos.html" class="nav-btn">
+                        Fragmentos clave →
+                        <i class="material-icons">arrow_forward</i>
+                    </a>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script>
+        function toggleSidebar() {
+            const sidebar = document.getElementById('sidebar');
+            sidebar.classList.toggle('active');
+        }
+
+        // Close sidebar when clicking outside on mobile
+        document.addEventListener('click', function(event) {
+            const sidebar = document.getElementById('sidebar');
+            const menuToggle = document.querySelector('.menu-toggle');
+
+            if (window.innerWidth <= 768 &&
+                !sidebar.contains(event.target) &&
+                !menuToggle.contains(event.target) &&
+                sidebar.classList.contains('active')) {
+                sidebar.classList.remove('active');
+            }
+        });
+    </script>
+</body>
+</html>
