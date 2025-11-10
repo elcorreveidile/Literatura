@@ -6,6 +6,7 @@
     <title>Actividades Interactivas - Lazarillo de Tormes</title>
     <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:wght@400;600;700&family=Cinzel:wght@600;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         :root { --primary-color: #8B4513; --secondary-color: #D2691E; --accent-color: #c9a97e; --text-primary: #3a2a1a; --text-secondary: #654321; --text-light: #f8f5f0; --background: linear-gradient(135deg, #2c1810 0%, #8B4513 50%, #A0522D 100%); --content-bg: rgba(255, 248, 220, 0.95); --shadow: 0 8px 32px rgba(0,0,0,0.3); }
@@ -280,73 +281,86 @@
                 <textarea class="text-editor" id="creative-text" placeholder="Escribe aquí tu nuevo tratado..." oninput="updateWordCount()"></textarea>
                 <div class="word-count" id="word-count">Palabras: 0</div>
 
-                <div style="text-align: center; margin-top: 2rem;">
-                    <button class="submit-btn" onclick="saveCreativeWriting()">Guardar Mi Tratado</button>
-                    <div id="creative-result" style="margin-top: 1rem;"></div>
+                <div style="text-align: center; margin-top: 2rem; display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+                    <button class="submit-btn" onclick="saveCreativeWriting()">💾 Guardar</button>
+                    <button class="submit-btn" onclick="generatePDF('creative')" style="background: linear-gradient(45deg, #f44336, #e91e63);">📄 Generar PDF</button>
                 </div>
+                <div id="creative-result" style="margin-top: 1rem;"></div>
             </div>
 
             <!-- Debate Ético -->
             <div id="debate" class="tab-content">
-                <div class="debate-container">
-                    <h3 class="debate-question">💭 Pregunta 1: ¿Es justificable que Lázaro sobreviva mediante el engaño?</h3>
-                    <div class="debate-options">
-                        <div class="debate-option" onclick="toggleDebateResponse('q1-yes')">
-                            <input type="radio" name="q1" id="q1-yes">
-                            <label for="q1-yes">Sí, es justificable por necesidad extrema</label>
-                        </div>
-                        <div class="debate-response" id="q1-yes-response">
-                            <p><strong>Argumentación:</strong> En una sociedad corrupta donde las vías legítimas de supervivencia están cerradas, el engaño se convierte en una estrategia de supervivencia necesaria. El hambre y la marginación justifican acciones que en otras circunstancias serían inaceptables.</p>
-                        </div>
-                        <div class="debate-option" onclick="toggleDebateResponse('q1-no')">
-                            <input type="radio" name="q1" id="q1-no">
-                            <label for="q1-no">No, el engaño siempre es incorrecto</label>
-                        </div>
-                        <div class="debate-response" id="q1-no-response">
-                            <p><strong>Argumentación:</strong> El fin no justifica los medios. Aunque la situación sea difícil, el engaño corrompe la moral del individuo y perpetúa un ciclo de deshonestidad que termina dañando a la sociedad en general.</p>
-                        </div>
-                    </div>
+                <div style="background: rgba(255, 255, 255, 0.8); border-radius: 15px; padding: 2rem; margin-bottom: 2rem;">
+                    <h3 style="font-family: 'Cinzel', serif; color: var(--primary-color); margin-bottom: 1rem; text-align: center;">💭 Reflexión Ética: No hay respuestas correctas</h3>
+                    <p style="text-align: center; font-size: 1.1rem; line-height: 1.7; color: var(--text-secondary);">
+                        Las siguientes preguntas no tienen respuestas únicas. Tu opinión es valiosa y válida.
+                        El objetivo es <span class="highlight">reflexionar críticamente</span> sobre las complejidades morales de la obra.
+                    </p>
                 </div>
 
                 <div class="debate-container">
-                    <h3 class="debate-question">💭 Pregunta 2: ¿Lázaro es víctima o verdugo en su historia?</h3>
-                    <div class="debate-options">
-                        <div class="debate-option" onclick="toggleDebateResponse('q2-victim')">
-                            <input type="radio" name="q2" id="q2-victim">
-                            <label for="q2-victim">Es principalmente víctima del sistema</label>
-                        </div>
-                        <div class="debate-response" id="q2-victim-response">
-                            <p><strong>Argumentación:</strong> Lázaro es producto de una sociedad injusta que lo margin desde su nacimiento. Sus acciones son respuestas de supervivencia a un sistema corrupto que lo explota sistemáticamente.</p>
-                        </div>
-                        <div class="debate-option" onclick="toggleDebateResponse('q2-villain')">
-                            <input type="radio" name="q2" id="q2-villain">
-                            <label for="q2-villain">Se convierte en verdugo del sistema</label>
-                        </div>
-                        <div class="debate-response" id="q2-villain-response">
-                            <p><strong>Argumentación:</strong> Al final, Lázaro adopta los valores corruptos que inicialmente criticaba. Se integra en el sistema que lo oprimió, perpetuando las injusticias que sufrió.</p>
-                        </div>
+                    <h3 class="debate-question">💭 Pregunta 1: Supervivencia vs. Moralidad</h3>
+                    <div style="margin-bottom: 1.5rem;">
+                        <p><strong>¿Es moralmente aceptable que Lázaro sobreviva mediante el engaño cuando enfrenta el hambre y la marginación?</strong></p>
                     </div>
+
+                    <div style="background: rgba(139, 69, 19, 0.05); border-radius: 10px; padding: 1.5rem; margin-bottom: 1rem;">
+                        <h4 style="color: var(--primary-color); margin-bottom: 1rem;">🤔 Puntos para reflexionar:</h4>
+                        <ul style="list-style: none; padding: 0;">
+                            <li style="margin-bottom: 0.8rem;">• <strong>Contexto extremo:</strong> ¿Hay situaciones donde la supervivencia justifica medios cuestionables?</li>
+                            <li style="margin-bottom: 0.8rem;">• <strong>Circunstancias vs. Principios:</strong> ¿Cómo cambian nuestros principios morales en situaciones límite?</li>
+                            <li style="margin-bottom: 0.8rem;">• <strong>Responsabilidad individual vs. sistémica:</strong> ¿Hasta qué punto es Lázaro responsable de sus acciones vs. producto de su entorno?</li>
+                            <li>• <strong>Dilemas reales:</strong> ¿Conoces situaciones históricas o actuales donde las personas hayan enfrentado dilemas similares?</li>
+                        </ul>
+                    </div>
+
+                    <textarea class="text-editor" id="debate1-response" placeholder="Escribe aquí tu reflexión personal sobre este dilema moral..." style="min-height: 150px; font-style: italic; background: rgba(255,255,255,0.9);"></textarea>
                 </div>
 
                 <div class="debate-container">
-                    <h3 class="debate-question">💭 Pregunta 3: ¿El final "feliz" es irónico o sincero?</h3>
-                    <div class="debate-options">
-                        <div class="debate-option" onclick="toggleDebateResponse('q3-ironic')">
-                            <input type="radio" name="q3" id="q3-ironic">
-                            <label for="q3-ironic">Es completamente irónico</label>
-                        </div>
-                        <div class="debate-response" id="q3-ironic-response">
-                            <p><strong>Argumentación:</strong> La "felicidad" de Lázaro consiste en aceptar la corrupción y vivir una vida inmoral. Es una crítica mordaz sobre lo que la sociedad considera éxito.</p>
-                        </div>
-                        <div class="debate-option" onclick="toggleDebateResponse('q3-sincere')">
-                            <input type="radio" name="q3" id="q3-sincere">
-                            <label for="q3-sincere">Tiene elements sinceros</label>
-                        </div>
-                        <div class="debate-response" id="q3-sincere-response">
-                            <p><strong>Argumentación:</strong> Aunque crítico, el final muestra una adaptación realista a las circunstancias. Lázaro encuentra estabilidad, aunque sea mediante compromisos morales.</p>
-                        </div>
+                    <h3 class="debate-question">💭 Pregunta 2: Víctima, Verdugo o Ambos?</h3>
+                    <div style="margin-bottom: 1.5rem;">
+                        <p><strong>¿Lázaro es principalmente víctima de un sistema corrupto, o se convierte también en verdugo al perpetuar sus valores?</strong></p>
                     </div>
+
+                    <div style="background: rgba(139, 69, 19, 0.05); border-radius: 10px; padding: 1.5rem; margin-bottom: 1rem;">
+                        <h4 style="color: var(--primary-color); margin-bottom: 1rem;">🤔 Puntos para reflexionar:</h4>
+                        <ul style="list-style: none; padding: 0;">
+                            <li style="margin-bottom: 0.8rem;">• <strong>Evolución del personaje:</strong> ¿Cómo cambia Lázaro a lo largo de la obra?</li>
+                            <li style="margin-bottom: 0.8rem;">• <strong>Círculo de perpetuación:</strong> ¿Termina reproduciendo el sistema que lo oprimió?</li>
+                            <li style="margin-bottom: 0.8rem;">• <strong>Ambigüedad moral:</strong> ¿Puede ser ambas cosas simultáneamente?</li>
+                            <li>• <strong>Reflexión personal:</strong> ¿Has sentido que la presión social te haya hecho actuar en contra de tus valores?</li>
+                        </ul>
+                    </div>
+
+                    <textarea class="text-editor" id="debate2-response" placeholder="Desarrolla aquí tu análisis sobre la naturaleza moral de Lázaro..." style="min-height: 150px; font-style: italic; background: rgba(255,255,255,0.9);"></textarea>
                 </div>
+
+                <div class="debate-container">
+                    <h3 class="debate-question">💭 Pregunta 3: El Significado del "Final Feliz"</h3>
+                    <div style="margin-bottom: 1.5rem;">
+                        <p><strong>¿Qué interpretación tienes del final donde Lázaro dice estar "en la cumbre de toda buena fortuna"?</strong></p>
+                    </div>
+
+                    <div style="background: rgba(139, 69, 19, 0.05); border-radius: 10px; padding: 1.5rem; margin-bottom: 1rem;">
+                        <h4 style="color: var(--primary-color); margin-bottom: 1rem;">🤔 Puntos para reflexionar:</h4>
+                        <ul style="list-style: none; padding: 0;">
+                            <li style="margin-bottom: 0.8rem;">• <strong>Satisfacción vs. Compromiso:</strong> ¿Qué ha sacrificado Lázaro para lograr su "felicidad"?</li>
+                            <li style="margin-bottom: 0.8rem;">• <strong>Crítica social:</strong> ¿Qué nos dice este final sobre los valores de la sociedad?</li>
+                            <li style="margin-bottom: 0.8rem;">• <strong>Ironía literaria:</strong> ¿Cómo funciona la ironía en este final?</li>
+                            <li style="margin-bottom: 0.8rem;">• <strong>Relación con actualidad:</strong> ¿Vemos situaciones similares en la sociedad actual?</li>
+                            <li>• <strong>Tu perspectiva:</strong> ¿Crees que Lázaro es feliz al final? ¿Por qué?</li>
+                        </ul>
+                    </div>
+
+                    <textarea class="text-editor" id="debate3-response" placeholder="Comparte tu interpretación del final de la obra..." style="min-height: 150px; font-style: italic; background: rgba(255,255,255,0.9);"></textarea>
+                </div>
+
+                <div style="text-align: center; margin-top: 2rem;">
+                    <button class="submit-btn" onclick="saveDebateReflections()">💾 Guardar Reflexiones</button>
+                    <button class="submit-btn" onclick="generatePDF('debate')" style="background: linear-gradient(45deg, #f44336, #e91e63);">📄 Generar PDF</button>
+                </div>
+                <div id="debate-result" style="margin-top: 1rem;"></div>
             </div>
 
             <!-- Investigación Histórica -->
@@ -381,9 +395,10 @@
 
                 <div class="activity-container">
                     <h4 style="font-family: 'Cinzel', serif; color: var(--primary-color); margin-bottom: 1rem;">✍️ Escribe tu investigación</h4>
-                    <textarea class="text-editor" placeholder="Desarrolla aquí tu investigación histórica..." style="min-height: 250px;"></textarea>
-                    <div style="text-align: center; margin-top: 2rem;">
-                        <button class="submit-btn" onclick="saveResearch()">Guardar Investigación</button>
+                    <textarea class="text-editor" id="research-text" placeholder="Desarrolla aquí tu investigación histórica..." style="min-height: 250px;"></textarea>
+                    <div style="text-align: center; margin-top: 2rem; display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+                        <button class="submit-btn" onclick="saveResearch()">💾 Guardar</button>
+                        <button class="submit-btn" onclick="generatePDF('research')" style="background: linear-gradient(45deg, #f44336, #e91e63);">📄 Generar PDF</button>
                     </div>
                 </div>
             </div>
@@ -427,9 +442,10 @@
 
                 <div class="activity-container">
                     <h4 style="font-family: 'Cinzel', serif; color: var(--primary-color); margin-bottom: 1rem;">🎪 Prepara tu Representación</h4>
-                    <textarea class="text-editor" placeholder="Escribe aquí tu guion de dramatización..." style="min-height: 200px;"></textarea>
-                    <div style="text-align: center; margin-top: 2rem;">
-                        <button class="submit-btn" onclick="saveDramaScript()">Guardar Guion</button>
+                    <textarea class="text-editor" id="drama-text" placeholder="Escribe aquí tu guion de dramatización..." style="min-height: 200px;"></textarea>
+                    <div style="text-align: center; margin-top: 2rem; display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+                        <button class="submit-btn" onclick="saveDramaScript()">💾 Guardar</button>
+                        <button class="submit-btn" onclick="generatePDF('drama')" style="background: linear-gradient(45deg, #f44336, #e91e63);">📄 Generar PDF</button>
                     </div>
                 </div>
             </div>
@@ -536,18 +552,152 @@
         }
 
         function saveResearch() {
-            // Simple save function for research
-            alert('Tu investigación ha sido guardada. ¡Excelente trabajo de investigación histórica!');
+            const text = document.getElementById('research-text').value;
+            if (text.trim().length > 0) {
+                const resultDiv = document.getElementById('research-result');
+                if (!resultDiv) {
+                    const container = document.querySelector('#research .activity-container:last-child');
+                    const newDiv = document.createElement('div');
+                    newDiv.id = 'research-result';
+                    container.appendChild(newDiv);
+                }
+                document.getElementById('research-result').innerHTML = `<div style="background: rgba(76, 175, 80, 0.1); color: #2E7D32; padding: 1rem; border-radius: 10px; border: 2px solid #4CAF50;">
+                    <h4>✅ ¡Investigación guardada!</h4>
+                    <p>Tu investigación histórica ha sido guardada (${text.trim().split(/\s+/).filter(w => w.length > 0).length} palabras). ¡Excelente trabajo académico!</p>
+                </div>`;
+            }
         }
 
         function saveDramaScript() {
-            // Simple save function for drama script
-            alert('Tu guion de dramatización ha sido guardado. ¡Prepara tu representación!');
+            const text = document.getElementById('drama-text').value;
+            if (text.trim().length > 0) {
+                const resultDiv = document.getElementById('drama-result');
+                if (!resultDiv) {
+                    const container = document.querySelector('#drama .activity-container:last-child');
+                    const newDiv = document.createElement('div');
+                    newDiv.id = 'drama-result';
+                    container.appendChild(newDiv);
+                }
+                document.getElementById('drama-result').innerHTML = `<div style="background: rgba(76, 175, 80, 0.1); color: #2E7D32; padding: 1rem; border-radius: 10px; border: 2px solid #4CAF50;">
+                    <h4>✅ ¡Guion guardado!</h4>
+                    <p>Tu guion de dramatización ha sido guardado (${text.trim().split(/\s+/).filter(w => w.length > 0).length} palabras). ¡Prepara tu representación!</p>
+                </div>`;
+            }
         }
 
-        function toggleDebateResponse(responseId) {
-            const response = document.getElementById(responseId);
-            response.classList.toggle('active');
+        function saveDebateReflections() {
+            const responses = {
+                q1: document.getElementById('debate1-response').value,
+                q2: document.getElementById('debate2-response').value,
+                q3: document.getElementById('debate3-response').value
+            };
+
+            const totalWords = Object.values(responses).reduce((sum, text) => sum + text.trim().split(/\s+/).filter(w => w.length > 0).length, 0);
+
+            if (totalWords > 0) {
+                const resultDiv = document.getElementById('debate-result');
+                resultDiv.innerHTML = `<div style="background: rgba(76, 175, 80, 0.1); color: #2E7D32; padding: 1rem; border-radius: 10px; border: 2px solid #4CAF50;">
+                    <h4>✅ ¡Reflexiones guardadas!</h4>
+                    <p>Tus reflexiones éticas han sido guardadas (${totalWords} palabras totales). ¡Tu análisis crítico es muy valioso!</p>
+                    <p><em>Recuerda: No hay respuestas correctas en dilemas morales. Tu perspectiva única enriquece el debate.</em></p>
+                </div>`;
+            }
+        }
+
+        function generatePDF(type) {
+            let content = '';
+            let filename = '';
+
+            switch(type) {
+                case 'creative':
+                    content = document.getElementById('creative-text').value;
+                    filename = 'nuevo_tratado_lazarillo.pdf';
+                    break;
+                case 'research':
+                    content = document.getElementById('research-text').value;
+                    filename = 'investigacion_historica_lazarillo.pdf';
+                    break;
+                case 'drama':
+                    content = document.getElementById('drama-text').value;
+                    filename = 'guion_dramatizacion_lazarillo.pdf';
+                    break;
+                case 'debate':
+                    content = 'Reflexiones Éticas sobre Lazarillo de Tormes\n\n' +
+                              '1. Sobre Supervivencia vs. Moralidad:\n' + document.getElementById('debate1-response').value + '\n\n' +
+                              '2. Sobre Víctima vs. Verdugo:\n' + document.getElementById('debate2-response').value + '\n\n' +
+                              '3. Sobre el Final "Feliz":\n' + document.getElementById('debate3-response').value;
+                    filename = 'reflexiones_eticas_lazarillo.pdf';
+                    break;
+            }
+
+            if (content.trim().length === 0) {
+                alert('Por favor, escribe algo antes de generar el PDF.');
+                return;
+            }
+
+            // Usar jsPDF para generar el PDF
+            const { jsPDF } = window.jspdf;
+            const doc = new jsPDF();
+
+            // Configurar el documento
+            doc.setFontSize(12);
+            doc.text('Lazarillo de Tormes - Actividades', 105, 20, { align: 'center' });
+            doc.setFontSize(11);
+            doc.text(`Generado el ${new Date().toLocaleDateString('es-ES')}`, 105, 30, { align: 'center' });
+            doc.text(''.repeat(50), 20, 40);
+
+            // Dividir el contenido en líneas
+            const lines = content.split('\n');
+            let yPosition = 50;
+
+            lines.forEach(line => {
+                if (yPosition > 270) {
+                    doc.addPage();
+                    yPosition = 20;
+                }
+
+                // Manejar líneas largas
+                const words = line.split(' ');
+                let currentLine = '';
+
+                words.forEach(word => {
+                    const testLine = currentLine + (currentLine ? ' ' : '') + word;
+                    const textWidth = doc.getTextWidth(testLine);
+
+                    if (textWidth > 180) {
+                        if (currentLine) {
+                            doc.text(currentLine, 20, yPosition);
+                            yPosition += 7;
+                        }
+                        currentLine = word;
+                    } else {
+                        currentLine = testLine;
+                    }
+                });
+
+                if (currentLine) {
+                    doc.text(currentLine, 20, yPosition);
+                    yPosition += 7;
+                }
+            });
+
+            // Descargar el PDF
+            doc.save(filename);
+
+            // Mostrar confirmación
+            const resultDiv = document.getElementById(`${type}-result`);
+            if (resultDiv) {
+                resultDiv.innerHTML = `<div style="background: rgba(244, 67, 54, 0.1); color: #C62828; padding: 1rem; border-radius: 10px; border: 2px solid #f44336;">
+                    <h4>📄 PDF Generado</h4>
+                    <p>Se ha descargado el archivo "${filename}" con tu contenido. ¡Comparte tus ideas!</p>
+                </div>`;
+
+                // Ocultar el mensaje después de 5 segundos
+                setTimeout(() => {
+                    resultDiv.style.opacity = '0';
+                    setTimeout(() => resultDiv.style.display = 'none', 1000);
+                }, 5000);
+            }
         }
     </script>
 </body>
