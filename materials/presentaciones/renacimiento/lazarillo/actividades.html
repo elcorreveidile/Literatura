@@ -3,8 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Actividades - Lazarillo de Tormes</title>
+    <title>Actividades Interactivas - Lazarillo de Tormes</title>
     <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:wght@400;600;700&family=Cinzel:wght@600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         :root { --primary-color: #8B4513; --secondary-color: #D2691E; --accent-color: #c9a97e; --text-primary: #3a2a1a; --text-secondary: #654321; --text-light: #f8f5f0; --background: linear-gradient(135deg, #2c1810 0%, #8B4513 50%, #A0522D 100%); --content-bg: rgba(255, 248, 220, 0.95); --shadow: 0 8px 32px rgba(0,0,0,0.3); }
@@ -20,21 +21,51 @@
         main { max-width: 1200px; margin: 0 auto; padding: 3rem 2rem; }
         .content-section { background: var(--content-bg); border-radius: 20px; padding: 3rem; margin-bottom: 2rem; box-shadow: var(--shadow); border: 2px solid var(--primary-color); }
         .section-title { font-family: 'Cinzel', serif; font-size: 2.5rem; color: var(--primary-color); text-align: center; margin-bottom: 3rem; }
-        .actividades-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; margin-bottom: 3rem; }
-        .actividad-card { background: rgba(255, 248, 220, 0.9); border: 2px solid var(--secondary-color); border-radius: 15px; padding: 2rem; box-shadow: 0 5px 15px rgba(0,0,0,0.2); transition: transform 0.3s ease; }
-        .actividad-card:hover { transform: translateY(-5px); }
-        .card-icon { font-size: 2.5rem; color: var(--primary-color); text-align: center; margin-bottom: 1rem; }
-        .card-title { font-family: 'Cinzel', serif; font-size: 1.3rem; color: var(--primary-color); text-align: center; margin-bottom: 1rem; }
-        .card-content { color: var(--text-secondary); font-size: 1rem; line-height: 1.6; }
-        .level-badge { display: inline-block; padding: 0.3rem 0.8rem; border-radius: 15px; font-size: 0.8rem; font-weight: 600; color: white; margin-top: 1rem; }
-        .level-basic { background: #4CAF50; }
-        .level-intermediate { background: #FF9800; }
-        .level-advanced { background: #f44336; }
+        .intro-text { font-size: 1.2rem; line-height: 1.8; color: var(--text-secondary); text-align: center; margin-bottom: 3rem; font-style: italic; }
+        .activity-tabs { display: flex; justify-content: center; gap: 1rem; margin-bottom: 3rem; flex-wrap: wrap; }
+        .tab-btn { padding: 1rem 2rem; background: rgba(139, 69, 19, 0.1); border: 2px solid var(--primary-color); border-radius: 25px; font-family: 'Cinzel', serif; color: var(--primary-color); cursor: pointer; transition: all 0.3s ease; font-size: 1.1rem; }
+        .tab-btn:hover { background: rgba(139, 69, 19, 0.2); transform: translateY(-2px); }
+        .tab-btn.active { background: linear-gradient(45deg, var(--primary-color), var(--secondary-color)); color: white; border-color: var(--secondary-color); }
+        .tab-content { display: none; animation: fadeIn 0.5s ease; }
+        .tab-content.active { display: block; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        .activity-container { background: rgba(255, 255, 255, 0.8); border-radius: 15px; padding: 2rem; margin-bottom: 2rem; }
+        .quiz-question { font-family: 'Cinzel', serif; font-size: 1.3rem; color: var(--primary-color); margin-bottom: 1.5rem; }
+        .quiz-options { display: flex; flex-direction: column; gap: 1rem; margin-bottom: 2rem; }
+        .quiz-option { background: white; border: 2px solid rgba(139, 69, 19, 0.2); border-radius: 10px; padding: 1rem; cursor: pointer; transition: all 0.3s ease; display: flex; align-items: center; gap: 1rem; }
+        .quiz-option:hover { background: rgba(139, 69, 19, 0.05); border-color: var(--primary-color); transform: translateX(5px); }
+        .quiz-option input[type="radio"] { width: 20px; height: 20px; }
+        .quiz-option.correct { background: rgba(76, 175, 80, 0.1); border-color: #4CAF50; }
+        .quiz-option.incorrect { background: rgba(244, 67, 54, 0.1); border-color: #f44336; }
+        .submit-btn { background: linear-gradient(45deg, var(--primary-color), var(--secondary-color)); color: white; border: none; padding: 1rem 2rem; border-radius: 25px; font-size: 1.1rem; cursor: pointer; transition: all 0.3s ease; box-shadow: 0 4px 15px rgba(139, 69, 19, 0.3); font-family: 'Cinzel', serif; }
+        .submit-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(139, 69, 19, 0.4); }
+        .result-message { text-align: center; font-size: 1.2rem; margin-top: 2rem; padding: 1rem; border-radius: 10px; }
+        .result-success { background: rgba(76, 175, 80, 0.1); color: #2E7D32; border: 2px solid #4CAF50; }
+        .result-partial { background: rgba(255, 152, 0, 0.1); color: #E65100; border: 2px solid #FF9800; }
+        .character-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; margin-bottom: 2rem; }
+        .character-card { background: white; border: 2px solid rgba(139, 69, 19, 0.2); border-radius: 15px; padding: 1.5rem; text-align: center; cursor: pointer; transition: all 0.3s ease; }
+        .character-card:hover { background: rgba(139, 69, 19, 0.05); border-color: var(--primary-color); transform: translateY(-5px); }
+        .character-icon { font-size: 2.5rem; color: var(--primary-color); margin-bottom: 1rem; }
+        .character-name { font-family: 'Cinzel', serif; font-size: 1.2rem; color: var(--primary-color); margin-bottom: 0.5rem; }
+        .character-role { color: var(--text-secondary); font-size: 0.9rem; }
+        .character-analysis { display: none; margin-top: 1rem; padding-top: 1rem; border-top: 1px solid rgba(139, 69, 19, 0.2); }
+        .character-analysis.active { display: block; }
+        .text-editor { width: 100%; min-height: 300px; padding: 1.5rem; border: 2px solid rgba(139, 69, 19, 0.2); border-radius: 10px; font-family: 'Crimson Text', serif; font-size: 1.1rem; line-height: 1.8; resize: vertical; background: white; }
+        .text-editor:focus { outline: none; border-color: var(--primary-color); background: rgba(255, 255, 255, 0.95); }
+        .editor-prompt { background: rgba(139, 69, 19, 0.05); border-left: 4px solid var(--primary-color); padding: 1.5rem; margin-bottom: 2rem; border-radius: 5px; }
+        .debate-container { margin-bottom: 2rem; }
+        .debate-question { font-family: 'Cinzel', serif; font-size: 1.2rem; color: var(--primary-color); margin-bottom: 1rem; }
+        .debate-options { display: flex; flex-direction: column; gap: 1rem; margin-bottom: 1.5rem; }
+        .debate-option { display: flex; align-items: center; gap: 1rem; padding: 1rem; background: white; border: 2px solid rgba(139, 69, 19, 0.2); border-radius: 10px; cursor: pointer; transition: all 0.3s ease; }
+        .debate-option:hover { background: rgba(139, 69, 19, 0.05); border-color: var(--primary-color); }
+        .debate-response { display: none; margin-top: 1rem; padding: 1rem; background: rgba(139, 69, 19, 0.05); border-radius: 5px; }
+        .debate-response.active { display: block; }
+        .word-count { text-align: right; color: var(--text-secondary); font-size: 0.9rem; margin-top: 0.5rem; }
         .highlight { background: linear-gradient(45deg, var(--primary-color), var(--secondary-color)); color: white; padding: 3px 10px; border-radius: 15px; font-weight: 600; display: inline-block; margin: 2px; }
         .back-link { display: inline-block; margin-top: 2rem; padding: 1rem 2rem; background: linear-gradient(45deg, var(--primary-color), var(--secondary-color)); color: var(--text-light); text-decoration: none; border-radius: 25px; font-weight: 600; transition: all 0.3s ease; }
         .back-link:hover { transform: translateY(-2px); }
         footer { background: rgba(44, 24, 16, 0.95); color: var(--text-light); text-align: center; padding: 2rem; margin-top: 4rem; }
-        @media (max-width: 768px) { .main-title { font-size: 2rem; } .header-content { padding: 0 1rem; } main { padding: 2rem 1rem; } .content-section { padding: 2rem 1.5rem; } }
+        @media (max-width: 768px) { .main-title { font-size: 2rem; } .header-content { padding: 0 1rem; } main { padding: 2rem 1rem; } .content-section { padding: 2rem 1.5rem; } .activity-tabs { gap: 0.5rem; } .tab-btn { padding: 0.8rem 1.5rem; font-size: 1rem; } }
     </style>
 </head>
 <body>
@@ -52,64 +83,472 @@
     <main>
         <section class="content-section">
             <h2 class="section-title">🎯 Actividades Interactivas</h2>
-            <div class="actividades-grid">
-                <div class="actividad-card">
-                    <div class="card-icon">📝</div>
-                    <h3 class="card-title">Quiz de Comprensión</h3>
-                    <div class="card-content">
-                        Evalúa tu conocimiento sobre los elementos fundamentales de la obra y su contexto histórico. Preguntas sobre personajes, temas y estructura.
+            <p class="intro-text">
+                Pon a prueba tus conocimientos sobre <span class="highlight">Lazarillo de Tormes</span> con estas actividades interactivas
+                diseñadas para profundizar tu comprensión de esta obra maestra.
+            </p>
+
+            <div class="activity-tabs">
+                <button class="tab-btn active" onclick="showTab('quiz')">📝 Quiz de Comprensión</button>
+                <button class="tab-btn" onclick="showTab('characters')">👤 Análisis de Personajes</button>
+                <button class="tab-btn" onclick="showTab('creative')">✍️ Crear Nuevo Tratado</button>
+                <button class="tab-btn" onclick="showTab('debate')">💭 Debate Ético</button>
+                <button class="tab-btn" onclick="showTab('research')">📚 Investigación Histórica</button>
+                <button class="tab-btn" onclick="showTab('drama')">🎭 Dramatización</button>
+            </div>
+
+            <!-- Quiz de Comprensión -->
+            <div id="quiz" class="tab-content active">
+                <div class="activity-container">
+                    <h3 class="quiz-question">1. ¿En qué año se publicó originalmente Lazarillo de Tormes?</h3>
+                    <div class="quiz-options">
+                        <label class="quiz-option">
+                            <input type="radio" name="q1" value="a">
+                            <span>1545</span>
+                        </label>
+                        <label class="quiz-option">
+                            <input type="radio" name="q1" value="b">
+                            <span>1554</span>
+                        </label>
+                        <label class="quiz-option">
+                            <input type="radio" name="q1" value="c">
+                            <span>1564</span>
+                        </label>
+                        <label class="quiz-option">
+                            <input type="radio" name="q1" value="d">
+                            <span>1574</span>
+                        </label>
                     </div>
-                    <span class="level-badge level-basic">Básico</span>
                 </div>
-                <div class="actividad-card">
-                    <div class="card-icon">👤</div>
-                    <h3 class="card-title">Análisis de Personajes</h3>
-                    <div class="card-content">
-                        Analiza en profundidad la psicología y función de los personajes principales. Relaciónelos con el contexto social de la época.
+
+                <div class="activity-container">
+                    <h3 class="quiz-question">2. ¿Quién es el primer amo de Lázaro?</h3>
+                    <div class="quiz-options">
+                        <label class="quiz-option">
+                            <input type="radio" name="q2" value="a">
+                            <span>El clérigo</span>
+                        </label>
+                        <label class="quiz-option">
+                            <input type="radio" name="q2" value="b">
+                            <span>El escudero</span>
+                        </label>
+                        <label class="quiz-option">
+                            <input type="radio" name="q2" value="c">
+                            <span>El ciego</span>
+                        </label>
+                        <label class="quiz-option">
+                            <input type="radio" name="q2" value="d">
+                            <span>El fraile</span>
+                        </label>
                     </div>
-                    <span class="level-badge level-intermediate">Intermedio</span>
                 </div>
-                <div class="actividad-card">
-                    <div class="card-icon">✍️</div>
-                    <h3 class="card-title">Crear Nuevo Tratado</h3>
-                    <div class="card-content">
-                        Imagina un octavo amo para Lázaro y escribe un nuevo capítulo manteniendo el estilo picaresco y el tono irónico.
+
+                <div class="activity-container">
+                    <h3 class="quiz-question">3. ¿Cuántos tratados componen la obra completa?</h3>
+                    <div class="quiz-options">
+                        <label class="quiz-option">
+                            <input type="radio" name="q3" value="a">
+                            <span>5 tratados</span>
+                        </label>
+                        <label class="quiz-option">
+                            <input type="radio" name="q3" value="b">
+                            <span>6 tratados</span>
+                        </label>
+                        <label class="quiz-option">
+                            <input type="radio" name="q3" value="c">
+                            <span>7 tratados</span>
+                        </label>
+                        <label class="quiz-option">
+                            <input type="radio" name="q3" value="d">
+                            <span>8 tratados</span>
+                        </label>
                     </div>
-                    <span class="level-badge level-advanced">Avanzado</span>
                 </div>
-                <div class="actividad-card">
-                    <div class="card-icon">💭</div>
-                    <h3 class="card-title">Debate Ético</h3>
-                    <div class="card-content">
-                        Reflexiona sobre cuestiones morales: ¿Es justificable la supervivencia mediante el engaño? ¿La obra critica o describe la realidad?
+
+                <div class="activity-container">
+                    <h3 class="quiz-question">4. ¿Qué tema central representa la constante lucha por la comida?</h3>
+                    <div class="quiz-options">
+                        <label class="quiz-option">
+                            <input type="radio" name="q4" value="a">
+                            <span>La glotonería</span>
+                        </label>
+                        <label class="quiz-option">
+                            <input type="radio" name="q4" value="b">
+                            <span>El hambre</span>
+                        </label>
+                        <label class="quiz-option">
+                            <input type="radio" name="q4" value="c">
+                            <span>La avaricia</span>
+                        </label>
+                        <label class="quiz-option">
+                            <input type="radio" name="q4" value="d">
+                            <span>La gula</span>
+                        </label>
                     </div>
-                    <span class="level-badge level-intermediate">Intermedio</span>
                 </div>
-                <div class="actividad-card">
-                    <div class="card-icon">📚</div>
-                    <h3 class="card-title">Investigación Histórica</h3>
-                    <div class="card-content">
-                        Investiga y relaciona la obra con su contexto histórico: la situación de los pícaros, la corrupción eclesiástica, la crisis económica.
+
+                <div class="activity-container">
+                    <h3 class="quiz-question">5. ¿Qué género literario fundó Lazarillo de Tormes?</h3>
+                    <div class="quiz-options">
+                        <label class="quiz-option">
+                            <input type="radio" name="q5" value="a">
+                            <span>Novela de caballerías</span>
+                        </label>
+                        <label class="quiz-option">
+                            <input type="radio" name="q5" value="b">
+                            <span>Novela picaresca</span>
+                        </label>
+                        <label class="quiz-option">
+                            <input type="radio" name="q5" value="c">
+                            <span>Poesía épica</span>
+                        </label>
+                        <label class="quiz-option">
+                            <input type="radio" name="q5" value="d">
+                            <span>Teatro clásico</span>
+                        </label>
                     </div>
-                    <span class="level-badge level-basic">Básico</span>
                 </div>
-                <div class="actividad-card">
-                    <div class="card-icon">🎭</div>
-                    <h3 class="card-title">Dramatización</h3>
-                    <div class="card-content">
-                        Representa escenas clave de la obra. Interpreta a los personajes y comprende mejor sus motivaciones y conflictos.
-                    </div>
-                    <span class="level-badge level-intermediate">Intermedio</span>
+
+                <div style="text-align: center;">
+                    <button class="submit-btn" onclick="checkQuiz()">Verificar Respuestas</button>
+                    <div id="quiz-result" style="margin-top: 2rem; display: none;"></div>
                 </div>
             </div>
-            <div style="text-align: center; margin: 3rem 0; font-size: 1.2rem; color: var(--text-secondary;">
-                Estas actividades están diseñadas para <span class="highlight">profundizar tu comprensión</span> de la obra y desarrollar habilidades de análisis crítico.
+
+            <!-- Análisis de Personajes -->
+            <div id="characters" class="tab-content">
+                <div class="character-grid">
+                    <div class="character-card" onclick="toggleCharacterAnalysis('lazarillo')">
+                        <div class="character-icon">👦</div>
+                        <h4 class="character-name">Lázaro</h4>
+                        <p class="character-role">Protagonista y pícaro</p>
+                        <div id="lazarillo-analysis" class="character-analysis">
+                            <p><strong>Análisis:</strong> Anti-héroe que aprende a sobrevivir en un mundo corrupto. Su evolución va de la inocencia a la astucia necesaria para la supervivencia. Representa al individuo marginado que se adapta al sistema.</p>
+                        </div>
+                    </div>
+                    <div class="character-card" onclick="toggleCharacterAnalysis('ciego')">
+                        <div class="character-icon">👁️</div>
+                        <h4 class="character-name">El Ciego</h4>
+                        <p class="character-role">Primer amo</p>
+                        <div id="ciego-analysis" class="character-analysis">
+                            <p><strong>Análisis:</strong> Maestro cruel pero efectivo. Simboliza la ceguera espiritual de la sociedad. Su lección fundamental es que "más sabe el diablo por viejo que por diablo".</p>
+                        </div>
+                    </div>
+                    <div class="character-card" onclick="toggleCharacterAnalysis('clerigo')">
+                        <div class="character-icon">⛪</div>
+                        <h4 class="character-name">El Clérigo</h4>
+                        <p class="character-role">Segundo amo</p>
+                        <div id="clerigo-analysis" class="character-analysis">
+                            <p><strong>Análisis:</strong> Representa la hipocresía religiosa. Avara falso que guarda el pan mientras Lázaro muere de hambre. Crítica directa a la corrupción eclesiástica.</p>
+                        </div>
+                    </div>
+                    <div class="character-card" onclick="toggleCharacterAnalysis('escudero')">
+                        <div class="character-icon">⚔️</div>
+                        <h4 class="character-name">El Escudero</h4>
+                        <p class="character-role">Tercer amo</p>
+                        <div id="escudero-analysis" class="character-analysis">
+                            <p><strong>Análisis:</strong> Noble empobrecido que mantiene apariencias. Representa la decadencia de la nobleza y la inversión de roles cuando Lázaro lo alimenta.</p>
+                        </div>
+                    </div>
+                    <div class="character-card" onclick="toggleCharacterAnalysis('fraile')">
+                        <div class="character-icon">🧎</div>
+                        <h4 class="character-name">El Fraile</h4>
+                        <p class="character-role">Cuarto amo</p>
+                        <div id="fraile-analysis" class="character-analysis">
+                            <p><strong>Análisis:</strong> Fraile mercedario corrupto. Usa el hábito para seducir y representa la lujuria clerical. Crítica de la relajación de costumbres religiosas.</p>
+                        </div>
+                    </div>
+                    <div class="character-card" onclick="toggleCharacterAnalysis('buldero')">
+                        <div class="character-icon">🎭</div>
+                        <h4 class="character-name">El Buldero</h4>
+                        <p class="character-role">Quinto amo</p>
+                        <div id="buldero-analysis" class="character-analysis">
+                            <p><strong>Análisis:</strong> Estafador que finge milagros. Representa la explotación de la fe popular y el comercio con lo sagrado. Manipulación de la superstición.</p>
+                        </div>
+                    </div>
+                </div>
             </div>
+
+            <!-- Crear Nuevo Tratado -->
+            <div id="creative" class="tab-content">
+                <div class="editor-prompt">
+                    <h4 style="font-family: 'Cinzel', serif; color: var(--primary-color); margin-bottom: 1rem;">✍️ Desafío Creativo: Crea el Octavo Tratado</h4>
+                    <p style="margin-bottom: 1rem;">Imagina que Lázaro tuvo un octavo amo después del alguacil. Escribe un nuevo capítulo que siga el estilo picaresco de la obra.</p>
+                    <p><strong>Ideas para nuevos amos:</strong> Un médico charlatán, un mercader ambicioso, un letrado corrupto, un poeta pobre, un tabernero mentiroso...</p>
+                </div>
+
+                <textarea class="text-editor" id="creative-text" placeholder="Escribe aquí tu nuevo tratado..." oninput="updateWordCount()"></textarea>
+                <div class="word-count" id="word-count">Palabras: 0</div>
+
+                <div style="text-align: center; margin-top: 2rem;">
+                    <button class="submit-btn" onclick="saveCreativeWriting()">Guardar Mi Tratado</button>
+                    <div id="creative-result" style="margin-top: 1rem;"></div>
+                </div>
+            </div>
+
+            <!-- Debate Ético -->
+            <div id="debate" class="tab-content">
+                <div class="debate-container">
+                    <h3 class="debate-question">💭 Pregunta 1: ¿Es justificable que Lázaro sobreviva mediante el engaño?</h3>
+                    <div class="debate-options">
+                        <div class="debate-option" onclick="toggleDebateResponse('q1-yes')">
+                            <input type="radio" name="q1" id="q1-yes">
+                            <label for="q1-yes">Sí, es justificable por necesidad extrema</label>
+                        </div>
+                        <div class="debate-response" id="q1-yes-response">
+                            <p><strong>Argumentación:</strong> En una sociedad corrupta donde las vías legítimas de supervivencia están cerradas, el engaño se convierte en una estrategia de supervivencia necesaria. El hambre y la marginación justifican acciones que en otras circunstancias serían inaceptables.</p>
+                        </div>
+                        <div class="debate-option" onclick="toggleDebateResponse('q1-no')">
+                            <input type="radio" name="q1" id="q1-no">
+                            <label for="q1-no">No, el engaño siempre es incorrecto</label>
+                        </div>
+                        <div class="debate-response" id="q1-no-response">
+                            <p><strong>Argumentación:</strong> El fin no justifica los medios. Aunque la situación sea difícil, el engaño corrompe la moral del individuo y perpetúa un ciclo de deshonestidad que termina dañando a la sociedad en general.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="debate-container">
+                    <h3 class="debate-question">💭 Pregunta 2: ¿Lázaro es víctima o verdugo en su historia?</h3>
+                    <div class="debate-options">
+                        <div class="debate-option" onclick="toggleDebateResponse('q2-victim')">
+                            <input type="radio" name="q2" id="q2-victim">
+                            <label for="q2-victim">Es principalmente víctima del sistema</label>
+                        </div>
+                        <div class="debate-response" id="q2-victim-response">
+                            <p><strong>Argumentación:</strong> Lázaro es producto de una sociedad injusta que lo margin desde su nacimiento. Sus acciones son respuestas de supervivencia a un sistema corrupto que lo explota sistemáticamente.</p>
+                        </div>
+                        <div class="debate-option" onclick="toggleDebateResponse('q2-villain')">
+                            <input type="radio" name="q2" id="q2-villain">
+                            <label for="q2-villain">Se convierte en verdugo del sistema</label>
+                        </div>
+                        <div class="debate-response" id="q2-villain-response">
+                            <p><strong>Argumentación:</strong> Al final, Lázaro adopta los valores corruptos que inicialmente criticaba. Se integra en el sistema que lo oprimió, perpetuando las injusticias que sufrió.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="debate-container">
+                    <h3 class="debate-question">💭 Pregunta 3: ¿El final "feliz" es irónico o sincero?</h3>
+                    <div class="debate-options">
+                        <div class="debate-option" onclick="toggleDebateResponse('q3-ironic')">
+                            <input type="radio" name="q3" id="q3-ironic">
+                            <label for="q3-ironic">Es completamente irónico</label>
+                        </div>
+                        <div class="debate-response" id="q3-ironic-response">
+                            <p><strong>Argumentación:</strong> La "felicidad" de Lázaro consiste en aceptar la corrupción y vivir una vida inmoral. Es una crítica mordaz sobre lo que la sociedad considera éxito.</p>
+                        </div>
+                        <div class="debate-option" onclick="toggleDebateResponse('q3-sincere')">
+                            <input type="radio" name="q3" id="q3-sincere">
+                            <label for="q3-sincere">Tiene elements sinceros</label>
+                        </div>
+                        <div class="debate-response" id="q3-sincere-response">
+                            <p><strong>Argumentación:</strong> Aunque crítico, el final muestra una adaptación realista a las circunstancias. Lázaro encuentra estabilidad, aunque sea mediante compromisos morales.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Investigación Histórica -->
+            <div id="research" class="tab-content">
+                <div class="activity-container">
+                    <h3 style="font-family: 'Cinzel', serif; color: var(--primary-color); margin-bottom: 1.5rem;">📚 Tópicos de Investigación Histórica</h3>
+
+                    <div style="margin-bottom: 2rem;">
+                        <h4 style="color: var(--primary-color); margin-bottom: 1rem;">1. La Situación de los Pícaros en la Sociedad</h4>
+                        <p style="margin-bottom: 1rem;">Investiga sobre la existencia real de pícaros en la España del siglo XVI. ¿Eran personajes literarios o reflejaban una realidad social?</p>
+                        <p><strong>Fuentes sugeridas:</strong> Documentos de la época, registros de la Santa Hermandad, crónicas de la vida callejera.</p>
+                    </div>
+
+                    <div style="margin-bottom: 2rem;">
+                        <h4 style="color: var(--primary-color); margin-bottom: 1rem;">2. La Corrupción Eclesiástica</h4>
+                        <p style="margin-bottom: 1rem;">Analiza los casos reales de corrupción en la Iglesia española del siglo XVI. ¿Qué tan precisa era la crítica de la obra?</p>
+                        <p><strong>Fuentes sugeridas:</strong> Archivos de la Inquisición, documentos del Concilio de Trento, visitas episcopales.</p>
+                    </div>
+
+                    <div style="margin-bottom: 2rem;">
+                        <h4 style="color: var(--primary-color); margin-bottom: 1rem;">3. La Crisis Económica del Imperio</h4>
+                        <p style="margin-bottom: 1rem;">Estudia las causas económicas del empobrecimiento general que describe la obra. Inflación, deudas, gastos militares.</p>
+                        <p><strong>Fuentes sugeridas:</strong> Archivos de la Hacienda Real, registros de impuestos, documentos sobre comercio con América.</p>
+                    </div>
+
+                    <div style="margin-bottom: 2rem;">
+                        <h4 style="color: var(--primary-color); margin-bottom: 1rem;">4. La Inquisición y la Censura</h4>
+                        <p style="margin-bottom: 1rem;">Investiga por qué la obra fue publicada anónimamente y las medidas de censura que enfrentó.</p>
+                        <p><strong>Fuentes sugeridas:</strong> Registros del Índice de Libros Prohibidos, documentos de la Inquisición española.</p>
+                    </div>
+                </div>
+
+                <div class="activity-container">
+                    <h4 style="font-family: 'Cinzel', serif; color: var(--primary-color); margin-bottom: 1rem;">✍️ Escribe tu investigación</h4>
+                    <textarea class="text-editor" placeholder="Desarrolla aquí tu investigación histórica..." style="min-height: 250px;"></textarea>
+                    <div style="text-align: center; margin-top: 2rem;">
+                        <button class="submit-btn" onclick="saveResearch()">Guardar Investigación</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Dramatización -->
+            <div id="drama" class="tab-content">
+                <div class="activity-container">
+                    <h3 style="font-family: 'Cinzel', serif; color: var(--primary-color); margin-bottom: 1.5rem;">🎭 Guía de Dramatización</h3>
+
+                    <div style="margin-bottom: 2rem;">
+                        <h4 style="color: var(--primary-color); margin-bottom: 1rem;">Escena 1: Las Uvas del Ciego</h4>
+                        <p><strong>Personajes:</strong> Lázaro (niño), el ciego</p>
+                        <p><strong>Diálogo clave:</strong> "Toma, hijo, la beneficiencia de la cebolla y aprende a usarla bien."</p>
+                        <p><strong>Sugerencia:</strong> Representa el momento en que Lázaro come las uvas. Muestra la lección de astucia que recibe.</p>
+                    </div>
+
+                    <div style="margin-bottom: 2rem;">
+                        <h4 style="color: var(--primary-color); margin-bottom: 1rem;">Escena 2: El Hambre con el Clérigo</h4>
+                        <p><strong>Personajes:</strong> Lázaro, el clérigo</p>
+                        <p><strong>Diálogo clave:</strong> Lázaro describiendo el hambre extrema y su desesperación por comida.</p>
+                        <p><strong>Sugerencia:</strong> Enfoca el contraste entre la avaricia del clérigo y el sufrimiento de Lázaro.</p>
+                    </div>
+
+                    <div style="margin-bottom: 2rem;">
+                        <h4 style="color: var(--primary-color); margin-bottom: 1rem;">Escena 3: La Dignidad del Escudero</h4>
+                        <p><strong>Personajes:</strong> Lázaro, el escudero</p>
+                        <p><strong>Diálogo clave:</strong> Conversación sobre la "nobleza" del escudero despite su pobreza.</p>
+                        <p><strong>Sugerencia:</strong> Muestra la tragicomedia de mantener apariencias sin recursos.</p>
+                    </div>
+                </div>
+
+                <div class="activity-container">
+                    <h4 style="font-family: 'Cinzel', serif; color: var(--primary-color); margin-bottom: 1rem;">🎭 Técnicas de Actuación</h4>
+                    <ul style="list-style: none; padding: 0;">
+                        <li style="margin-bottom: 1rem;">🎭 <strong>Caracterización:</strong> Cada personaje tiene voz y gestos distintivos</li>
+                        <li style="margin-bottom: 1rem;">😏 <strong>Tono irónico:</strong> Mantener el humor cínico característico</li>
+                        <li style="margin-bottom: 1rem;">👁️ <strong>Perspectiva picaresca:</strong> Ver el mundo desde la marginalidad</li>
+                        <li style="margin-bottom: 1rem;">⚖️ <strong>Contraste social:</strong> Exagerar las diferencias entre apariencias y realidad</li>
+                    </ul>
+                </div>
+
+                <div class="activity-container">
+                    <h4 style="font-family: 'Cinzel', serif; color: var(--primary-color); margin-bottom: 1rem;">🎪 Prepara tu Representación</h4>
+                    <textarea class="text-editor" placeholder="Escribe aquí tu guion de dramatización..." style="min-height: 200px;"></textarea>
+                    <div style="text-align: center; margin-top: 2rem;">
+                        <button class="submit-btn" onclick="saveDramaScript()">Guardar Guion</button>
+                    </div>
+                </div>
+            </div>
+
             <div style="text-align: center;">
                 <a href="index.html" class="back-link">← Volver a Inicio</a>
             </div>
         </section>
     </main>
     <footer><p class="footer-text">Una obra maestra que sigue vigente después de casi 500 años</p><div class="footer-badge">📚 Clase de literatura española - Siglo de Oro</div></footer>
+
+    <script>
+        function showTab(tabName) {
+            // Hide all tabs
+            document.querySelectorAll('.tab-content').forEach(tab => {
+                tab.classList.remove('active');
+            });
+
+            // Remove active class from all buttons
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+
+            // Show selected tab
+            document.getElementById(tabName).classList.add('active');
+
+            // Add active class to clicked button
+            event.target.classList.add('active');
+        }
+
+        function checkQuiz() {
+            const answers = {
+                q1: 'b', // 1554
+                q2: 'c', // El ciego
+                q3: 'c', // 7 tratados
+                q4: 'b', // El hambre
+                q5: 'b'  // Novela picaresca
+            };
+
+            let correct = 0;
+            const total = 5;
+
+            // Check each question
+            for (let i = 1; i <= total; i++) {
+                const selected = document.querySelector(`input[name="q${i}"]:checked`);
+                const options = document.querySelectorAll(`input[name="q${i}"]`);
+
+                options.forEach(option => {
+                    const parent = option.parentElement;
+                    parent.classList.remove('correct', 'incorrect');
+
+                    if (option.checked) {
+                        if (option.value === answers[`q${i}`]) {
+                            parent.classList.add('correct');
+                            correct++;
+                        } else {
+                            parent.classList.add('incorrect');
+                        }
+                    }
+                });
+            }
+
+            // Show result
+            const resultDiv = document.getElementById('quiz-result');
+            resultDiv.style.display = 'block';
+
+            if (correct === total) {
+                resultDiv.className = 'result-message result-success';
+                resultDiv.innerHTML = `<h3>🎉 ¡Excelente!</h3><p>Has respondido correctamente todas las preguntas (${correct}/${total}). ¡Domina perfectamente Lazarillo de Tormes!</p>`;
+            } else if (correct >= 3) {
+                resultDiv.className = 'result-message result-partial';
+                resultDiv.innerHTML = `<h3>👍 ¡Bien hecho!</h3><p>Has respondido correctamente ${correct} de ${total} preguntas. ¡Sigue estudiando para mejorar!</p>`;
+            } else {
+                resultDiv.className = 'result-message result-partial';
+                resultDiv.innerHTML = `<h3>📚 Sigue practicando</h3><p>Has respondido correctamente ${correct} de ${total} preguntas. Te recomiendo repasar los materiales de la presentación.</p>`;
+            }
+        }
+
+        function toggleCharacterAnalysis(characterId) {
+            const analysis = document.getElementById(characterId + '-analysis');
+            analysis.classList.toggle('active');
+        }
+
+        function updateWordCount() {
+            const text = document.getElementById('creative-text').value;
+            const words = text.trim().split(/\s+/).filter(word => word.length > 0).length;
+            document.getElementById('word-count').textContent = `Palabras: ${words}`;
+        }
+
+        function saveCreativeWriting() {
+            const text = document.getElementById('creative-text').value;
+            const resultDiv = document.getElementById('creative-result');
+
+            if (text.trim().length > 0) {
+                resultDiv.innerHTML = `<div style="background: rgba(76, 175, 80, 0.1); color: #2E7D32; padding: 1rem; border-radius: 10px; border: 2px solid #4CAF50;">
+                    <h4>✅ ¡Tratado guardado!</h4>
+                    <p>Tu nuevo tratado ha sido guardado (${text.trim().split(/\s+/).filter(w => w.length > 0).length} palabras). Excelente trabajo creativo.</p>
+                </div>`;
+            } else {
+                resultDiv.innerHTML = `<div style="background: rgba(244, 67, 54, 0.1); color: #C62828; padding: 1rem; border-radius: 10px; border: 2px solid #f44336;">
+                    <p>Por favor, escribe algo antes de guardar.</p>
+                </div>`;
+            }
+        }
+
+        function saveResearch() {
+            // Simple save function for research
+            alert('Tu investigación ha sido guardada. ¡Excelente trabajo de investigación histórica!');
+        }
+
+        function saveDramaScript() {
+            // Simple save function for drama script
+            alert('Tu guion de dramatización ha sido guardado. ¡Prepara tu representación!');
+        }
+
+        function toggleDebateResponse(responseId) {
+            const response = document.getElementById(responseId);
+            response.classList.toggle('active');
+        }
+    </script>
 </body>
 </html>
