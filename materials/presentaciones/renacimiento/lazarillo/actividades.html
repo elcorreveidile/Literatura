@@ -65,8 +65,12 @@
         .highlight { background: linear-gradient(45deg, var(--primary-color), var(--secondary-color)); color: white; padding: 3px 10px; border-radius: 15px; font-weight: 600; display: inline-block; margin: 2px; }
         .back-link { display: inline-block; margin-top: 2rem; padding: 1rem 2rem; background: linear-gradient(45deg, var(--primary-color), var(--secondary-color)); color: var(--text-light); text-decoration: none; border-radius: 25px; font-weight: 600; transition: all 0.3s ease; }
         .back-link:hover { transform: translateY(-2px); }
+        .floating-arrow { position: fixed; right: 2rem; bottom: 2rem; width: 50px; height: 50px; background: linear-gradient(45deg, var(--primary-color), var(--secondary-color)); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 1.5rem; cursor: pointer; box-shadow: 0 4px 15px rgba(139, 69, 19, 0.4); transition: all 0.3s ease; z-index: 1000; opacity: 0.8; }
+        .floating-arrow:hover { transform: translateY(-5px); opacity: 1; box-shadow: 0 6px 20px rgba(139, 69, 19, 0.5); }
+        .source-link { color: var(--primary-color); text-decoration: underline; font-weight: 600; transition: all 0.3s ease; }
+        .source-link:hover { color: var(--secondary-color); text-decoration: none; }
         footer { background: rgba(44, 24, 16, 0.95); color: var(--text-light); text-align: center; padding: 2rem; margin-top: 4rem; }
-        @media (max-width: 768px) { .main-title { font-size: 2rem; } .header-content { padding: 0 1rem; } main { padding: 2rem 1rem; } .content-section { padding: 2rem 1.5rem; } .activity-tabs { gap: 0.5rem; } .tab-btn { padding: 0.8rem 1.5rem; font-size: 1rem; } }
+        @media (max-width: 768px) { .main-title { font-size: 2rem; } .header-content { padding: 0 1rem; } main { padding: 2rem 1rem; } .content-section { padding: 2rem 1.5rem; } .activity-tabs { gap: 0.5rem; } .tab-btn { padding: 0.8rem 1.5rem; font-size: 1rem; } .floating-arrow { right: 1rem; bottom: 1rem; width: 45px; height: 45px; font-size: 1.2rem; } }
     </style>
 </head>
 <body>
@@ -371,25 +375,41 @@
                     <div style="margin-bottom: 2rem;">
                         <h4 style="color: var(--primary-color); margin-bottom: 1rem;">1. La Situación de los Pícaros en la Sociedad</h4>
                         <p style="margin-bottom: 1rem;">Investiga sobre la existencia real de pícaros en la España del siglo XVI. ¿Eran personajes literarios o reflejaban una realidad social?</p>
-                        <p><strong>Fuentes sugeridas:</strong> Documentos de la época, registros de la Santa Hermandad, crónicas de la vida callejera.</p>
+                        <p><strong>Fuentes sugeridas:</strong>
+                            <a href="https://es.wikipedia.org/wiki/P%C3%ADcaro_(literatura)" target="_blank" class="source-link">Wikipedia: Pícaro literario</a> |
+                            <a href="https://www.abc.es/historia/abci-picaresca-espanola-siglo-oro-201811161138_noticia.html" target="_blank" class="source-link">ABC: La picaresca española</a> |
+                            <a href="https://www.historiacultural.com/literatura/picaresca" target="_blank" class="source-link">Historia Cultural: Novela picaresca</a>
+                        </p>
                     </div>
 
                     <div style="margin-bottom: 2rem;">
                         <h4 style="color: var(--primary-color); margin-bottom: 1rem;">2. La Corrupción Eclesiástica</h4>
                         <p style="margin-bottom: 1rem;">Analiza los casos reales de corrupción en la Iglesia española del siglo XVI. ¿Qué tan precisa era la crítica de la obra?</p>
-                        <p><strong>Fuentes sugeridas:</strong> Archivos de la Inquisición, documentos del Concilio de Trento, visitas episcopales.</p>
+                        <p><strong>Fuentes sugeridas:</strong>
+                            <a href="https://es.wikipedia.org/wiki/Concilio_de_Trento" target="_blank" class="source-link">Wikipedia: Concilio de Trento</a> |
+                            <a href="https://www.historiaybiografias.com/reforma_catolica/" target="_blank" class="source-link">Historia y Biografías: Reforma católica</a> |
+                            <a href="https://www.abc.es/historia/abci-iglesia-espanola-siglo-xvi-201602231258_noticia.html" target="_blank" class="source-link">ABC: La Iglesia en el siglo XVI</a>
+                        </p>
                     </div>
 
                     <div style="margin-bottom: 2rem;">
                         <h4 style="color: var(--primary-color); margin-bottom: 1rem;">3. La Crisis Económica del Imperio</h4>
                         <p style="margin-bottom: 1rem;">Estudia las causas económicas del empobrecimiento general que describe la obra. Inflación, deudas, gastos militares.</p>
-                        <p><strong>Fuentes sugeridas:</strong> Archivos de la Hacienda Real, registros de impuestos, documentos sobre comercio con América.</p>
+                        <p><strong>Fuentes sugeridas:</strong>
+                            <a href="https://es.wikipedia.org/wiki/Carlos_V_del_Sacro_Imperio_Romano_Germ%C3%A1nico" target="_blank" class="source-link">Wikipedia: Carlos V</a> |
+                            <a href="https://www.banconacion.org/contenidos/historia-de-la-inflacion-en-espana-siglo-xvi/" target="_blank" class="source-link">Banco Nación: Inflación siglo XVI</a> |
+                            <a href="https://www.elconfidencial.com/cultura/2018-12-02/espana-siglo-xvi-crisis-economica_1663394/" target="_blank" class="source-link">El Confidencial: Crisis del siglo XVI</a>
+                        </p>
                     </div>
 
                     <div style="margin-bottom: 2rem;">
                         <h4 style="color: var(--primary-color); margin-bottom: 1rem;">4. La Inquisición y la Censura</h4>
                         <p style="margin-bottom: 1rem;">Investiga por qué la obra fue publicada anónimamente y las medidas de censura que enfrentó.</p>
-                        <p><strong>Fuentes sugeridas:</strong> Registros del Índice de Libros Prohibidos, documentos de la Inquisición española.</p>
+                        <p><strong>Fuentes sugeridas:</strong>
+                            <a href="https://es.wikipedia.org/wiki/Inquisici%C3%B3n_espa%C3%B1ola" target="_blank" class="source-link">Wikipedia: Inquisición española</a> |
+                            <a href="https://www.historiacultural.com/edad-moderna/inquisicion-espanola" target="_blank" class="source-link">Historia Cultural: Inquisición</a> |
+                            <a href="https://www.rtve.es/play/videos/historia-de-espana/inquisicion/2983927/" target="_blank" class="source-link">RTVE: Documental Inquisición</a>
+                        </p>
                     </div>
                 </div>
 
@@ -456,6 +476,11 @@
         </section>
     </main>
     <footer><p class="footer-text">Una obra maestra que sigue vigente después de casi 500 años</p><div class="footer-badge">📚 Clase de literatura española - Siglo de Oro</div></footer>
+
+    <!-- Flecha flotante para subir -->
+    <div class="floating-arrow" onclick="scrollToTop()" title="Subir a Actividades">
+        ↑
+    </div>
 
     <script>
         function showTab(tabName) {
@@ -699,6 +724,23 @@
                 }, 5000);
             }
         }
+
+        function scrollToTop() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        }
+
+        // Mostrar/ocultar flecha según scroll
+        window.addEventListener('scroll', function() {
+            const arrow = document.querySelector('.floating-arrow');
+            if (window.pageYOffset > 300) {
+                arrow.style.opacity = '0.8';
+            } else {
+                arrow.style.opacity = '0';
+            }
+        });
     </script>
 </body>
 </html>
