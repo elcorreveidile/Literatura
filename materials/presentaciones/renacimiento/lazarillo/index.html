@@ -808,56 +808,17 @@
     </div>
 
     <script>
-        // Navegación suave al hacer click en los enlaces
-        document.querySelectorAll('.nav-link').forEach(link => {
-            link.addEventListener('click', function(e) {
-                e.preventDefault();
-
-                // Quitar clase active de todos los enlaces
-                document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
-                // Añadir clase active al enlace clickeado
-                this.classList.add('active');
-
-                // Scroll suave a la sección
-                const targetId = this.getAttribute('href');
-                const targetSection = document.querySelector(targetId);
-                if (targetSection) {
-                    targetSection.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
-
-                // Cerrar menú móvil si está abierto
-                if (window.innerWidth <= 1024) {
-                    document.getElementById('sidebar').classList.remove('active');
-                }
-            });
-        });
-
         // Toggle del menú móvil
         document.getElementById('menuToggle').addEventListener('click', function() {
             document.getElementById('sidebar').classList.toggle('active');
         });
 
-        // Actualizar navegación activa al hacer scroll
-        window.addEventListener('scroll', function() {
-            const sections = document.querySelectorAll('.section');
-            const navLinks = document.querySelectorAll('.nav-link');
-
-            let current = '';
-            sections.forEach(section => {
-                const sectionTop = section.offsetTop;
-                const sectionHeight = section.clientHeight;
-                if (scrollY >= (sectionTop - 200)) {
-                    current = section.getAttribute('id');
-                }
-            });
-
-            navLinks.forEach(link => {
-                link.classList.remove('active');
-                if (link.getAttribute('href') === '#' + current) {
-                    link.classList.add('active');
+        // Cerrar menú móvil al hacer click en enlaces (solo para navegación responsive)
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', function() {
+                // Cerrar menú móvil si está abierto
+                if (window.innerWidth <= 1024) {
+                    document.getElementById('sidebar').classList.remove('active');
                 }
             });
         });
