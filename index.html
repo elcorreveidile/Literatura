@@ -547,7 +547,12 @@
         const ulExtras = document.createElement('ul'); ulExtras.className = 'list';
         data.extras.forEach(e=>{
           const li = document.createElement('li');
-          li.innerHTML = `<button class="btn" data-pdf="${e.href}">⬇️ ${e.t}</button>`;
+          // Si tiene 'link', abrir en nueva pestaña; si tiene 'href', usar data-pdf
+          if (e.link) {
+            li.innerHTML = `<a class="btn primary" href="${e.link}" target="_blank" rel="noopener">🌐 ${e.t}</a>`;
+          } else if (e.href) {
+            li.innerHTML = `<button class="btn" data-pdf="${e.href}">⬇️ ${e.t}</button>`;
+          }
           ulExtras.appendChild(li);
         });
         list.parentElement.appendChild(ulExtras);
