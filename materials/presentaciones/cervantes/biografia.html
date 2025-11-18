@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Biografía de Miguel de Cervantes</title>
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:wght@400;600;700&family=Cinzel:wght@600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-color: #1a4d7a;
+            --secondary-color: #2c6ba0;
+            --accent-color: #7ba7c7;
+            --text-primary: #1a2a3a;
+            --text-secondary: #3a4a5a;
+            --text-light: #f0f4f8;
+            --background: linear-gradient(135deg, #0f2537 0%, #1a4d7a 50%, #2c6ba0 100%);
+            --content-bg: rgba(240, 244, 248, 0.95);
+            --shadow: 0 8px 32px rgba(0,0,0,0.3);
+        }
+
+        body {
+            font-family: 'Crimson Text', serif;
+            color: var(--text-primary);
+            background: var(--background);
+            min-height: 100vh;
+            line-height: 1.6;
+        }
+
+        header {
+            background: rgba(15, 37, 55, 0.95);
+            padding: 1rem 0;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            text-align: center;
+        }
+
+        .main-title {
+            font-family: 'Cinzel', serif;
+            font-size: 2.5rem;
+            color: var(--accent-color);
+            margin-bottom: 1.5rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .main-subtitle {
+            font-size: 1.2rem;
+            color: var(--text-light);
+            margin-bottom: 2rem;
+            font-style: italic;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        nav a {
+            display: block;
+            padding: 0.8rem 1.5rem;
+            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+            color: var(--text-light);
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(26, 77, 122, 0.3);
+            font-size: 1rem;
+        }
+
+        nav a:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(26, 77, 122, 0.4);
+            background: linear-gradient(45deg, var(--secondary-color), var(--primary-color));
+        }
+
+        nav a.active {
+            background: linear-gradient(45deg, var(--accent-color), #9bc3de);
+            color: var(--text-primary);
+        }
+
+        main {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 3rem 2rem;
+        }
+
+        .content-section {
+            background: var(--content-bg);
+            border-radius: 20px;
+            padding: 3rem;
+            margin-bottom: 2rem;
+            box-shadow: var(--shadow);
+            border: 2px solid var(--primary-color);
+        }
+
+        .section-title {
+            font-family: 'Cinzel', serif;
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .section-subtitle {
+            font-family: 'Cinzel', serif;
+            font-size: 1.8rem;
+            color: var(--secondary-color);
+            margin-top: 2.5rem;
+            margin-bottom: 1.5rem;
+            border-bottom: 2px solid var(--accent-color);
+            padding-bottom: 0.5rem;
+        }
+
+        .timeline {
+            position: relative;
+            padding: 2rem 0;
+        }
+
+        .timeline-item {
+            display: grid;
+            grid-template-columns: 120px 1fr;
+            gap: 2rem;
+            margin-bottom: 2.5rem;
+            padding-bottom: 2.5rem;
+            border-bottom: 1px dashed var(--accent-color);
+        }
+
+        .timeline-item:last-child {
+            border-bottom: none;
+        }
+
+        .timeline-year {
+            font-family: 'Cinzel', serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            text-align: right;
+            padding-top: 0.3rem;
+        }
+
+        .timeline-content {
+            background: rgba(123, 167, 199, 0.1);
+            padding: 1.5rem;
+            border-radius: 10px;
+            border-left: 4px solid var(--primary-color);
+        }
+
+        .timeline-title {
+            font-family: 'Cinzel', serif;
+            font-size: 1.3rem;
+            color: var(--secondary-color);
+            margin-bottom: 0.8rem;
+        }
+
+        .timeline-text {
+            font-size: 1.1rem;
+            line-height: 1.7;
+            color: var(--text-secondary);
+        }
+
+        .highlight {
+            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 3px 10px;
+            border-radius: 15px;
+            font-weight: 600;
+            display: inline-block;
+            margin: 2px;
+        }
+
+        .info-box {
+            background: rgba(26, 77, 122, 0.1);
+            border-left: 4px solid var(--primary-color);
+            padding: 1.5rem;
+            margin: 2rem 0;
+            border-radius: 8px;
+        }
+
+        .info-box-title {
+            font-family: 'Cinzel', serif;
+            font-size: 1.4rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        .info-box-text {
+            font-size: 1.1rem;
+            line-height: 1.7;
+            color: var(--text-secondary);
+        }
+
+        .quote-box {
+            background: linear-gradient(135deg, rgba(26, 77, 122, 0.1) 0%, rgba(123, 167, 199, 0.1) 100%);
+            border: 2px solid var(--accent-color);
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 2rem 0;
+            text-align: center;
+            font-style: italic;
+            font-size: 1.3rem;
+            color: var(--secondary-color);
+            position: relative;
+        }
+
+        .quote-box::before {
+            content: '«';
+            font-size: 4rem;
+            position: absolute;
+            top: -10px;
+            left: 20px;
+            color: var(--accent-color);
+            opacity: 0.3;
+        }
+
+        .quote-box::after {
+            content: '»';
+            font-size: 4rem;
+            position: absolute;
+            bottom: -30px;
+            right: 20px;
+            color: var(--accent-color);
+            opacity: 0.3;
+        }
+
+        footer {
+            background: rgba(15, 37, 55, 0.95);
+            color: var(--text-light);
+            text-align: center;
+            padding: 2rem;
+            margin-top: 4rem;
+        }
+
+        .footer-text {
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+        }
+
+        .footer-badge {
+            display: inline-block;
+            background: rgba(123, 167, 199, 0.2);
+            padding: 0.5rem 1.5rem;
+            border-radius: 20px;
+            border: 1px solid var(--accent-color);
+            font-weight: 600;
+        }
+
+        @media (max-width: 768px) {
+            .main-title {
+                font-size: 2rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .timeline-item {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+
+            .timeline-year {
+                text-align: left;
+            }
+
+            nav a {
+                padding: 0.6rem 1rem;
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <h1 class="main-title">Miguel de Cervantes Saavedra</h1>
+            <p class="main-subtitle">El genio universal que creó la novela moderna</p>
+
+            <nav>
+                <ul>
+                    <li><a href="index.html">📚 Inicio</a></li>
+                    <li><a href="biografia.html" class="active">👤 Biografía</a></li>
+                    <li><a href="contexto-historico.html">🏛️ Contexto Histórico</a></li>
+                    <li><a href="quijote.html">⚔️ Don Quijote</a></li>
+                    <li><a href="novelas-ejemplares.html">📖 Novelas Ejemplares</a></li>
+                    <li><a href="estilo.html">✒️ Estilo y Perspectivismo</a></li>
+                    <li><a href="fragmentos.html">📜 Fragmentos Clave</a></li>
+                    <li><a href="actividades.html">🎯 Actividades</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="content-section">
+            <h2 class="section-title">👤 Biografía de Miguel de Cervantes</h2>
+
+            <div class="quote-box">
+                El escritor más universal de las letras españolas, cuya vida fue tan novelesca como sus obras
+            </div>
+
+            <h3 class="section-subtitle">⏱️ Cronología de una Vida Extraordinaria (15 minutos de clase)</h3>
+
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-year">1547</div>
+                    <div class="timeline-content">
+                        <h4 class="timeline-title">🏠 Nacimiento en Alcalá de Henares</h4>
+                        <p class="timeline-text">
+                            Nace <span class="highlight">Miguel de Cervantes Saavedra</span> el 29 de septiembre en Alcalá de Henares (Madrid).
+                            Cuarto hijo de Rodrigo de Cervantes, cirujano-barbero, y Leonor de Cortinas.
+                            Familia de <span class="highlight">hidalgos empobrecidos</span>, lo que marcará profundamente su obra.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-year">1551-1566</div>
+                    <div class="timeline-content">
+                        <h4 class="timeline-title">📚 Infancia y Juventud Itinerante</h4>
+                        <p class="timeline-text">
+                            La familia se traslada constantemente por problemas económicos: <span class="highlight">Valladolid, Córdoba, Sevilla, Madrid</span>.
+                            Educación irregular y autodidacta. Probable contacto con la <span class="highlight">picaresca real</span> que luego reflejaría en sus obras.
+                            No hay constancia de estudios universitarios, aunque su cultura era inmensa.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-year">1568</div>
+                    <div class="timeline-content">
+                        <h4 class="timeline-title">✍️ Primeros Escritos</h4>
+                        <p class="timeline-text">
+                            Estudia con el humanista <span class="highlight">Juan López de Hoyos</span> en Madrid.
+                            Escribe sus primeros poemas publicados en homenaje a <span class="highlight">Isabel de Valois</span>.
+                            Posible huida a Italia tras un duelo (hay una orden de arresto contra él).
+                        </p>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-year">1569-1571</div>
+                    <div class="timeline-content">
+                        <h4 class="timeline-title">🇮🇹 Italia: Renacimiento y Soldado</h4>
+                        <p class="timeline-text">
+                            Se traslada a Italia, donde sirve como <span class="highlight">camarero del cardenal Acquaviva</span>.
+                            Se alista en los <span class="highlight">tercios españoles</span> en Nápoles.
+                            Conoce de primera mano el <span class="highlight">Renacimiento italiano</span> que tanto influirá en su obra.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-year">1571</div>
+                    <div class="timeline-content">
+                        <h4 class="timeline-title">⚔️ La Batalla de Lepanto</h4>
+                        <p class="timeline-text">
+                            Participa en la <span class="highlight">batalla de Lepanto</span> (7 de octubre de 1571), la mayor batalla naval del siglo XVI.
+                            A pesar de estar enfermo con fiebre, pide combatir y lucha heroicamente.
+                            Recibe <span class="highlight">tres arcabuzazos</span>: dos en el pecho y uno que le deja <span class="highlight">inutilizada la mano izquierda</span> para siempre.
+                            De ahí su apodo: <span class="highlight">"El Manco de Lepanto"</span>.
+                            Consideró este episodio <span class="highlight">el momento más glorioso de su vida</span>.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-year">1571-1575</div>
+                    <div class="timeline-content">
+                        <h4 class="timeline-title">💪 Convalecencia y Servicio Militar</h4>
+                        <p class="timeline-text">
+                            Meses de recuperación en un hospital de Messina (Sicilia).
+                            Continúa su servicio militar en Italia: <span class="highlight">Navarino, Túnez, La Goleta</span>.
+                            Recibe cartas de recomendación de <span class="highlight">Don Juan de Austria</span> y el Duque de Sessa para el Rey.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-year">1575-1580</div>
+                    <div class="timeline-content">
+                        <h4 class="timeline-title">⛓️ Cautiverio en Argel</h4>
+                        <p class="timeline-text">
+                            Al volver a España, su barco es capturado por <span class="highlight">corsarios berberiscos</span> (26 de septiembre de 1575).
+                            Las cartas de recomendación hacen pensar que es importante: le piden un <span class="highlight">rescate altísimo</span>.
+                            <span class="highlight">Cinco años de cautiverio</span> en Argel como esclavo de Hasán Bajá.
+                            Intenta escapar <span class="highlight">cuatro veces</span>: todas fracasan. Su valentía evita represalias contra sus compañeros.
+                            Organiza planes de fuga, negocia rescates, protege a otros cautivos.
+                            Finalmente rescatado por los <span class="highlight">frailes trinitarios</span> en 1580 por 500 escudos de oro.
+                            Esta experiencia marcará obras como <span class="highlight">"El trato de Argel"</span> y episodios del Quijote.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-year">1580-1587</div>
+                    <div class="timeline-content">
+                        <h4 class="timeline-title">🎭 Retorno y Teatro</h4>
+                        <p class="timeline-text">
+                            Vuelve a España arruinado y sin fortuna. Busca empleo en la Corte sin éxito.
+                            Se dedica a escribir <span class="highlight">teatro</span>: escribe 20-30 comedias (hoy perdidas en su mayoría).
+                            En 1584 se casa con <span class="highlight">Catalina de Salazar</span>, 18 años menor que él.
+                            En 1585 publica <span class="highlight">"La Galatea"</span>, novela pastoral que no tiene éxito comercial.
+                            Tiene una hija natural, <span class="highlight">Isabel de Saavedra</span>, con Ana Franca de Rojas.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-year">1587-1600</div>
+                    <div class="timeline-content">
+                        <h4 class="timeline-title">💼 Comisario Real: Miseria y Problemas</h4>
+                        <p class="timeline-text">
+                            Trabaja como <span class="highlight">comisario de abastos</span> para la Armada Invencible: recaudar trigo y aceite en Andalucía.
+                            Trabajo mal pagado, peligroso (enfrenta resistencia de pueblos y la Iglesia).
+                            En 1592 es <span class="highlight">excomulgado temporalmente</span> por requisar grano de la Iglesia.
+                            Luego, <span class="highlight">recaudador de impuestos</span> en Granada: un banquero quiebra con su dinero.
+                            En 1597 es <span class="highlight">encarcelado en Sevilla</span> por irregularidades en las cuentas (3 meses en prisión).
+                            Época de enorme dificultad económica, pero rica en experiencia humana que nutrirá su obra.
+                            Se dice que <span class="highlight">comenzó a escribir el Quijote en prisión</span> (no confirmado).
+                        </p>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-year">1605</div>
+                    <div class="timeline-content">
+                        <h4 class="timeline-title">⚔️ EL QUIJOTE (Primera Parte)</h4>
+                        <p class="timeline-text">
+                            Se publica en Madrid <span class="highlight">"El ingenioso hidalgo don Quijote de la Mancha"</span>.
+                            <span class="highlight">¡Éxito inmediato y arrollador!</span> Seis ediciones en 1605.
+                            Traducida rápidamente al inglés (1612), francés (1614), italiano (1622).
+                            Cervantes tiene <span class="highlight">58 años</span>. Ha esperado toda una vida este éxito.
+                            Pero el éxito literario <span class="highlight">no le trae riqueza</span> (vendió los derechos).
+                        </p>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-year">1606-1613</div>
+                    <div class="timeline-content">
+                        <h4 class="timeline-title">✍️ Madurez Literaria</h4>
+                        <p class="timeline-text">
+                            La Corte se traslada a <span class="highlight">Valladolid</span> y luego a <span class="highlight">Madrid</span>; Cervantes las sigue.
+                            En 1613 publica las <span class="highlight">"Novelas Ejemplares"</span>: 12 relatos que él mismo califica como los primeros originales en castellano.
+                            Incluyen obras maestras como <span class="highlight">"Rinconete y Cortadillo", "El licenciado Vidriera", "El coloquio de los perros"</span>.
+                            Vida modesta en Madrid, dedicado completamente a la literatura.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-year">1614</div>
+                    <div class="timeline-content">
+                        <h4 class="timeline-title">😡 El Quijote Apócrifo</h4>
+                        <p class="timeline-text">
+                            Un tal <span class="highlight">Alonso Fernández de Avellaneda</span> (pseudónimo) publica una continuación falsa del Quijote.
+                            Está llena de insultos contra Cervantes (viejo, manco, envidioso).
+                            Cervantes se enfurece y <span class="highlight">acelera la escritura de su propia Segunda Parte</span>.
+                            En ella, los personajes <span class="highlight">conocen la versión falsa</span> y la critican (¡metaficción pura!).
+                        </p>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-year">1615</div>
+                    <div class="timeline-content">
+                        <h4 class="timeline-title">⚔️ EL QUIJOTE (Segunda Parte)</h4>
+                        <p class="timeline-text">
+                            Publica <span class="highlight">"Segunda parte del ingenioso caballero don Quijote de la Mancha"</span>.
+                            Aún más compleja, profunda y moderna que la primera.
+                            Incluye reflexiones sobre <span class="highlight">la identidad, la fama, la locura y la ficción</span>.
+                            También publica <span class="highlight">"Ocho comedias y ocho entremeses nuevos"</span>.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-year">1616</div>
+                    <div class="timeline-content">
+                        <h4 class="timeline-title">💀 Muerte en Madrid</h4>
+                        <p class="timeline-text">
+                            Gravemente enfermo de <span class="highlight">hidropesía</span> (probablemente diabetes).
+                            El 2 de abril firma el prólogo de su última obra: <span class="highlight">"Los trabajos de Persiles y Sigismunda"</span> (publicada póstuma).
+                            <span class="highlight">Muere el 22 de abril de 1616</span> en Madrid, a los 68 años.
+                            Curiosidad: <span class="highlight">Shakespeare muere el 23 de abril</span> (según calendario juliano/gregoriano, realmente 10 días después).
+                            Es enterrado en el <span class="highlight">convento de las Trinitarias Descalzas</span> de Madrid.
+                            Durante siglos se perdió la ubicación de sus restos. En 2015 se encontraron probablemente sus huesos.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <h3 class="section-subtitle">🎖️ "El Manco de Lepanto": Soldado y Escritor</h3>
+
+            <div class="info-box">
+                <h4 class="info-box-title">La Dualidad de Cervantes</h4>
+                <p class="info-box-text">
+                    Cervantes fue <span class="highlight">soldado heroico</span> y <span class="highlight">escritor revolucionario</span>.
+                    Su experiencia militar en Lepanto le dio prestigio, pero le dejó <span class="highlight">mutilado de por vida</span>.
+                    Su cautiverio en Argel le mostró los límites del heroísmo y la <span class="highlight">complejidad humana</span>.
+                    Sus fracasos económicos como recaudador le hicieron conocer <span class="highlight">toda España</span>: pueblos, ventas, pícaros, nobles arruinados.
+                    Todo esto se vierte en el Quijote: <span class="highlight">idealismo vs realidad, honor vs supervivencia, locura vs cordura</span>.
+                </p>
+            </div>
+
+            <h3 class="section-subtitle">📖 Legado Biográfico en su Obra</h3>
+
+            <div class="info-box">
+                <h4 class="info-box-title">De la Vida a la Literatura</h4>
+                <p class="info-box-text">
+                    <strong>Lepanto</strong> → El ideal heroico de Don Quijote y el "Discurso de las Armas y las Letras"<br><br>
+                    <strong>Cautiverio en Argel</strong> → "El trato de Argel", "Los baños de Argel", el episodio del Cautivo en el Quijote (I, 39-41)<br><br>
+                    <strong>Prisión en Sevilla</strong> → Posible origen del Quijote; conocimiento de la sociedad baja<br><br>
+                    <strong>Vida itinerante</strong> → La geografía realista del Quijote; ventas, caminos, pueblos de La Mancha<br><br>
+                    <strong>Hidalgos pobres</strong> → Don Quijote mismo: noble sin dinero, viviendo de apariencias<br><br>
+                    <strong>Fracasos económicos</strong> → Comprensión de la <span class="highlight">España real</span> más allá de mitos imperiales
+                </p>
+            </div>
+
+            <div class="quote-box">
+                Cervantes vivió una vida épica de aventuras, fracasos y genialidad tardía. <br>
+                Su experiencia vital se convirtió en la materia prima de la mejor novela jamás escrita.
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p class="footer-text">«El Manco de Lepanto»: soldado heroico, cautivo valiente, genio literario universal</p>
+        <div class="footer-badge">📚 Duración estimada: 15 minutos</div>
+    </footer>
+</body>
+</html>
