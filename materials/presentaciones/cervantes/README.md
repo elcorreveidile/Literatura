@@ -2,7 +2,17 @@
 
 ## 📚 Descripción
 
-MinWeb educativa completa sobre **Miguel de Cervantes** y su obra cumbre **Don Quijote de la Mancha**, diseñada para una sesión de clase de **100 minutos** con contenidos dosificados, lecturas y actividades interactivas.
+MinWeb educativa completa sobre **Miguel de Cervantes** y su obra cumbre **Don Quijote de la Mancha**, diseñada específicamente para **estudiantes de español como lengua extranjera (ELE) nivel B1.2**.
+
+Sesión de clase de **100 minutos** con contenidos dosificados, lecturas adaptadas y actividades interactivas enfocadas en la práctica del español.
+
+## 👥 Público Objetivo
+
+**Estudiantes de español ELE nivel B1.2** (MCER)
+- Vocabulario adaptado al nivel intermedio
+- Estructuras gramaticales apropiadas para B1.2
+- Actividades enfocadas en producción escrita y comprensión lectora
+- Contenido cultural sobre literatura española
 
 ## 🎯 Objetivos Educativos
 
@@ -121,7 +131,9 @@ materials/presentaciones/cervantes/
 - Cada fragmento con **análisis literario detallado**
 - **Preguntas para discusión** en clase
 
-### 8. actividades.html - 6 Actividades Interactivas (15 min)
+### 8. actividades.html - 7 Actividades Interactivas (15 min)
+
+**Adaptadas para estudiantes de español ELE nivel B1.2**
 
 #### Actividad 1: Quiz de Comprensión
 - 5 preguntas de opción múltiple
@@ -135,7 +147,26 @@ materials/presentaciones/cervantes/
   - Dulcinea del Toboso
   - Sansón Carrasco
 
-#### Actividad 3: Escribe Tu Propia Aventura Quijotesca
+#### Actividad 3: **NUEVA** - Guion: Don Quijote en el Siglo XXI
+- **Actividad principal de escritura creativa** para nivel B1.2
+- Editor de texto con contador de palabras
+- **6 ideas de objetos modernos** que Don Quijote puede confundir:
+  - Rascacielos → torre de castillo
+  - Helicóptero → dragón volador
+  - Motocicleta → caballo de metal
+  - Smartphone → espejo mágico
+  - Robot aspirador → escudo encantado
+  - Ordenador → libro de hechizos
+- **OPCIÓN ESPECIAL**: Episodio de la Pastora Marcela adaptado al siglo XXI
+  - Marcela como influencer, CEO, o estudiante
+  - Discurso sobre libertad y feminismo moderno
+  - Don Quijote defiende a Marcela de stalkers modernos
+- **Modelo/ejemplo completo** de guion (centro comercial, escalera mecánica)
+- **Estructura recomendada** en 6 pasos
+- **Vocabulario útil** para nivel B1.2 (verbos, adjetivos, acciones)
+- **Generación de PDF** con jsPDF
+
+#### Actividad 4: Escribe Tu Propia Aventura Quijotesca
 - Editor de texto libre
 - Consigna: aventura de Don Quijote en el mundo moderno
 - Contador de palabras
@@ -280,20 +311,28 @@ Esta miniweb se integra en el proyecto **Literatura** como parte de la sección 
 
 ## 🎓 Nivel Educativo
 
-- **Destinatarios**: Estudiantes de Secundaria y Bachillerato
-- **Asignatura**: Lengua y Literatura Española
-- **Nivel**: ESO / Bachillerato
-- **Competencias**: Comprensión lectora, análisis literario, expresión escrita, investigación
+- **Destinatarios**: Estudiantes de español como lengua extranjera (ELE)
+- **Nivel MCER**: B1.2 (intermedio)
+- **Asignatura**: Español como Lengua Extranjera / Literatura Española
+- **Contexto**: Curso de español para estudiantes internacionales
+- **Competencias**:
+  - Comprensión lectora (textos literarios adaptados)
+  - Expresión escrita (creación de guiones y narrativas)
+  - Competencia cultural (literatura española del Siglo de Oro)
+  - Vocabulario literario y cultural
 
 ## ✨ Características Destacadas
 
+- ✅ **Adaptada para ELE B1.2**: Vocabulario y estructuras apropiadas para estudiantes de español
 - ✅ **Completamente autónoma**: No requiere conexión constante (excepto fuentes de Google)
 - ✅ **100% responsive**: Funciona en móviles, tablets y escritorio
 - ✅ **Sin frameworks**: JavaScript vanilla, CSS puro
 - ✅ **Accesible**: Navegación clara, contrastes adecuados
-- ✅ **Interactiva**: 6 actividades diferentes
-- ✅ **Exportable**: Generación de PDFs
+- ✅ **Interactiva**: 7 actividades diferentes (incluyendo guion del siglo XXI)
+- ✅ **Creación de guiones**: Actividad de escritura creativa con modelo y vocabulario
+- ✅ **Exportable**: Generación de PDFs de todos los trabajos
 - ✅ **Documentada**: README completo
+- ✅ **Culturalmente relevante**: Episodio de Marcela (feminismo en el Quijote)
 
 ---
 
