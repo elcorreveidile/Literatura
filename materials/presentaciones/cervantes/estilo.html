@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Estilo y Perspectivismo - Cervantes</title>
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:wght@400;600;700&family=Cinzel:wght@600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-color: #1a4d7a;
+            --secondary-color: #2c6ba0;
+            --accent-color: #7ba7c7;
+            --text-primary: #1a2a3a;
+            --text-secondary: #3a4a5a;
+            --text-light: #f0f4f8;
+            --background: linear-gradient(135deg, #0f2537 0%, #1a4d7a 50%, #2c6ba0 100%);
+            --content-bg: rgba(240, 244, 248, 0.95);
+            --shadow: 0 8px 32px rgba(0,0,0,0.3);
+        }
+
+        body {
+            font-family: 'Crimson Text', serif;
+            color: var(--text-primary);
+            background: var(--background);
+            min-height: 100vh;
+            line-height: 1.6;
+        }
+
+        header {
+            background: rgba(15, 37, 55, 0.95);
+            padding: 1rem 0;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            text-align: center;
+        }
+
+        .main-title {
+            font-family: 'Cinzel', serif;
+            font-size: 2.5rem;
+            color: var(--accent-color);
+            margin-bottom: 1.5rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .main-subtitle {
+            font-size: 1.2rem;
+            color: var(--text-light);
+            margin-bottom: 2rem;
+            font-style: italic;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        nav a {
+            display: block;
+            padding: 0.8rem 1.5rem;
+            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+            color: var(--text-light);
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(26, 77, 122, 0.3);
+            font-size: 1rem;
+        }
+
+        nav a:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(26, 77, 122, 0.4);
+            background: linear-gradient(45deg, var(--secondary-color), var(--primary-color));
+        }
+
+        nav a.active {
+            background: linear-gradient(45deg, var(--accent-color), #9bc3de);
+            color: var(--text-primary);
+        }
+
+        main {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 3rem 2rem;
+        }
+
+        .content-section {
+            background: var(--content-bg);
+            border-radius: 20px;
+            padding: 3rem;
+            margin-bottom: 2rem;
+            box-shadow: var(--shadow);
+            border: 2px solid var(--primary-color);
+        }
+
+        .section-title {
+            font-family: 'Cinzel', serif;
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .section-subtitle {
+            font-family: 'Cinzel', serif;
+            font-size: 1.8rem;
+            color: var(--secondary-color);
+            margin-top: 2.5rem;
+            margin-bottom: 1.5rem;
+            border-bottom: 2px solid var(--accent-color);
+            padding-bottom: 0.5rem;
+        }
+
+        .highlight {
+            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 3px 10px;
+            border-radius: 15px;
+            font-weight: 600;
+            display: inline-block;
+            margin: 2px;
+        }
+
+        .quote-box {
+            background: linear-gradient(135deg, rgba(26, 77, 122, 0.1) 0%, rgba(123, 167, 199, 0.1) 100%);
+            border: 2px solid var(--accent-color);
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 2rem 0;
+            text-align: center;
+            font-style: italic;
+            font-size: 1.3rem;
+            color: var(--secondary-color);
+        }
+
+        .info-box {
+            background: rgba(26, 77, 122, 0.1);
+            border-left: 4px solid var(--primary-color);
+            padding: 1.5rem;
+            margin: 2rem 0;
+            border-radius: 8px;
+        }
+
+        .info-box-title {
+            font-family: 'Cinzel', serif;
+            font-size: 1.4rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        .info-box-text {
+            font-size: 1.1rem;
+            line-height: 1.7;
+            color: var(--text-secondary);
+        }
+
+        .technique-card {
+            background: linear-gradient(135deg, rgba(26, 77, 122, 0.05) 0%, rgba(123, 167, 199, 0.1) 100%);
+            border: 2px solid var(--accent-color);
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 2rem 0;
+        }
+
+        .technique-title {
+            font-family: 'Cinzel', serif;
+            font-size: 1.6rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        .technique-content {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: var(--text-secondary);
+        }
+
+        .example-box {
+            background: rgba(123, 167, 199, 0.15);
+            border-left: 4px solid var(--secondary-color);
+            padding: 1.2rem;
+            margin: 1.5rem 0 1.5rem 2rem;
+            border-radius: 8px;
+            font-style: italic;
+        }
+
+        .comparison-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .comparison-card {
+            background: rgba(26, 77, 122, 0.08);
+            border: 2px solid var(--accent-color);
+            border-radius: 12px;
+            padding: 1.5rem;
+        }
+
+        .comparison-title {
+            font-family: 'Cinzel', serif;
+            font-size: 1.3rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        .comparison-text {
+            font-size: 1.05rem;
+            line-height: 1.7;
+            color: var(--text-secondary);
+        }
+
+        footer {
+            background: rgba(15, 37, 55, 0.95);
+            color: var(--text-light);
+            text-align: center;
+            padding: 2rem;
+            margin-top: 4rem;
+        }
+
+        .footer-text {
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+        }
+
+        .footer-badge {
+            display: inline-block;
+            background: rgba(123, 167, 199, 0.2);
+            padding: 0.5rem 1.5rem;
+            border-radius: 20px;
+            border: 1px solid var(--accent-color);
+            font-weight: 600;
+        }
+
+        @media (max-width: 768px) {
+            .comparison-grid {
+                grid-template-columns: 1fr;
+            }
+
+            nav a {
+                padding: 0.6rem 1rem;
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <h1 class="main-title">Miguel de Cervantes Saavedra</h1>
+            <p class="main-subtitle">El genio universal que creó la novela moderna</p>
+
+            <nav>
+                <ul>
+                    <li><a href="index.html">📚 Inicio</a></li>
+                    <li><a href="biografia.html">👤 Biografía</a></li>
+                    <li><a href="contexto-historico.html">🏛️ Contexto Histórico</a></li>
+                    <li><a href="quijote.html">⚔️ Don Quijote</a></li>
+                    <li><a href="novelas-ejemplares.html">📖 Novelas Ejemplares</a></li>
+                    <li><a href="estilo.html" class="active">✒️ Estilo y Perspectivismo</a></li>
+                    <li><a href="fragmentos.html">📜 Fragmentos Clave</a></li>
+                    <li><a href="actividades.html">🎯 Actividades</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="content-section">
+            <h2 class="section-title">✒️ Estilo y Perspectivismo Cervantino</h2>
+
+            <div class="quote-box">
+                Cervantes revolucionó la literatura con técnicas narrativas que anticiparon<br>
+                los experimentos del siglo XX: <strong>perspectivismo, metaficción, ironía compleja</strong>
+            </div>
+
+            <h3 class="section-subtitle">⏱️ Innovaciones Estilísticas (15 minutos de clase)</h3>
+
+            <h3 class="section-subtitle">👁️ El Perspectivismo: Múltiples Puntos de Vista</h3>
+
+            <div class="info-box">
+                <h4 class="info-box-title">¿Qué es el Perspectivismo?</h4>
+                <p class="info-box-text">
+                    El <span class="highlight">perspectivismo</span> es una técnica narrativa que presenta <span class="highlight">múltiples puntos de vista</span> sobre un mismo evento o realidad.
+                    <br><br>
+                    <strong>No hay una verdad objetiva única</strong>. La "realidad" depende de quién la percibe.
+                    <br><br>
+                    Cervantes fue <span class="highlight">pionero absoluto</span> de esta técnica, anticipándose 300 años a la narrativa moderna.
+                    <br><br>
+                    Comparable a técnicas del siglo XX: Faulkner, Woolf, Akutagawa (<em>Rashomon</em>).
+                </p>
+            </div>
+
+            <div class="technique-card">
+                <h4 class="technique-title">🎭 Ejemplo Clásico: Los Molinos de Viento</h4>
+                <div class="technique-content">
+                    La aventura más famosa del Quijote ilustra perfectamente el perspectivismo:
+                    <br><br>
+                    <div class="comparison-grid">
+                        <div class="comparison-card">
+                            <h5 class="comparison-title">👁️ Perspectiva de Don Quijote</h5>
+                            <p class="comparison-text">
+                                Ve <span class="highlight">gigantes amenazadores</span> con brazos enormes.
+                                <br><br>
+                                Percepción condicionada por <strong>libros de caballerías</strong>.
+                                <br><br>
+                                Para él, son <strong>reales</strong>. No finge: realmente los ve así.
+                                <br><br>
+                                Su código caballeresco le exige atacarlos.
+                            </p>
+                        </div>
+
+                        <div class="comparison-card">
+                            <h5 class="comparison-title">👁️ Perspectiva de Sancho</h5>
+                            <p class="comparison-text">
+                                Ve <span class="highlight">molinos de viento</span> ordinarios.
+                                <br><br>
+                                Percepción <strong>realista y pragmática</strong>.
+                                <br><br>
+                                Intenta advertir a Don Quijote: "son molinos".
+                                <br><br>
+                                Su sentido común choca con el idealismo.
+                            </p>
+                        </div>
+                    </div>
+
+                    <br>
+                    <strong>Pregunta clave de Cervantes:</strong> <span class="highlight">¿Quién tiene razón?</span>
+                    <br><br>
+                    Cervantes <strong>NO resuelve la contradicción</strong>. Ambas perspectivas coexisten.
+                    <br><br>
+                    Esto es <span class="highlight">radicalmente moderno</span>: en la literatura anterior, el narrador omnisciente decidía la verdad.
+                </div>
+            </div>
+
+            <h3 class="section-subtitle">📚 Niveles de Perspectivismo en el Quijote</h3>
+
+            <div class="technique-card">
+                <h4 class="technique-title">1️⃣ Perspectivismo de Personajes</h4>
+                <div class="technique-content">
+                    Cada personaje ve la realidad de modo diferente:
+                    <br><br>
+                    <strong>Don Quijote:</strong> Ve el mundo según <span class="highlight">códigos caballerescos</span>. Ventas son castillos, campesinas son damas.
+                    <br><br>
+                    <strong>Sancho Panza:</strong> Ve el mundo según <span class="highlight">necesidades materiales</span>. Hambre, sueño, dinero.
+                    <br><br>
+                    <strong>Otros personajes:</strong> Cada uno interpreta a Don Quijote diferentemente (loco, genio, entretenimiento, amenaza).
+                    <br><br>
+                    <div class="example-box">
+                        <strong>Ejemplo:</strong> La bacía de barbero / Yelmo de Mambrino
+                        <br>
+                        Don Quijote ve un <span class="highlight">yelmo mágico</span>. Sancho ve una <span class="highlight">bacía de barbero</span>.
+                        Cervantes inventa el término "baciyelmo" para capturar la ambigüedad.
+                    </div>
+                </div>
+            </div>
+
+            <div class="technique-card">
+                <h4 class="technique-title">2️⃣ Perspectivismo Narrativo: El Juego de Autores</h4>
+                <div class="technique-content">
+                    Cervantes crea <span class="highlight">múltiples capas narrativas</span>:
+                    <br><br>
+                    <strong>Capa 1:</strong> <span class="highlight">Cide Hamete Benengeli</span>, supuesto "historiador árabe" que escribió la historia original.
+                    <br><br>
+                    <strong>Capa 2:</strong> Un traductor morisco que traduce del árabe al castellano.
+                    <br><br>
+                    <strong>Capa 3:</strong> Cervantes como "editor" que presenta la traducción.
+                    <br><br>
+                    <strong>Efecto:</strong> <span class="highlight">¿Quién es el verdadero autor?</span> ¿Quién tiene la autoridad narrativa?
+                    <br><br>
+                    <div class="example-box">
+                        Cervantes pone en duda la <span class="highlight">fiabilidad del narrador</span>:
+                        <br>
+                        "Dicen que en el original desta historia se lee que llegando Cide Hamete a escribir este capítulo,
+                        no le tradujo su intérprete como él le había escrito..."
+                        <br><br>
+                        ¿Es fiable un historiador árabe? ¿Y un traductor morisco? Cervantes <strong>juega con los prejuicios</strong> de su época.
+                    </div>
+                </div>
+            </div>
+
+            <div class="technique-card">
+                <h4 class="technique-title">3️⃣ Metaficción: La Literatura Dentro de la Literatura</h4>
+                <div class="technique-content">
+                    En la <span class="highlight">Segunda Parte (1615)</span>, Cervantes lleva el perspectivismo al extremo:
+                    <br><br>
+                    <strong>Los personajes han leído la Primera Parte publicada en 1605.</strong>
+                    <br><br>
+                    Don Quijote y Sancho saben que son <span class="highlight">famosos</span>. Comentan su propia historia.
+                    <br><br>
+                    Otros personajes los reconocen: "¡Tú eres Don Quijote!"
+                    <br><br>
+                    <div class="example-box">
+                        <strong>Ejemplo extremo:</strong> Cervantes incluye el <span class="highlight">Quijote apócrifo</span> de Avellaneda (1614).
+                        <br><br>
+                        Don Quijote y Sancho <strong>leen la continuación falsa</strong> y la critican:
+                        <br>
+                        "Ese escritor no sabe de lo que habla. Yo no fui a Zaragoza como él dice, sino a Barcelona."
+                        <br><br>
+                        <strong>Personajes ficticios critican otra ficción sobre ellos mismos.</strong> ¡Metaficción pura!
+                    </div>
+                    <br>
+                    Esto anticipa técnicas del <span class="highlight">siglo XX</span>: Borges, Pirandello, postmodernismo.
+                </div>
+            </div>
+
+            <h3 class="section-subtitle">🎭 Ironía Cervantina</h3>
+
+            <div class="info-box">
+                <h4 class="info-box-title">Ironía Compleja y Compasiva</h4>
+                <p class="info-box-text">
+                    La ironía de Cervantes es <span class="highlight">multidimensional</span>:
+                    <br><br>
+                    <strong>1. Ironía Situacional</strong><br>
+                    Don Quijote quiere hacer el bien, pero causa daño.
+                    Libera a los galeotes (prisioneros), y estos lo apalean.
+                    <br><br>
+
+                    <strong>2. Ironía Verbal</strong><br>
+                    Los personajes dicen cosas que significan lo contrario.
+                    Don Quijote llama a Dulcinea "princesa" cuando es campesina.
+                    <br><br>
+
+                    <strong>3. Ironía Dramática</strong><br>
+                    El lector sabe más que Don Quijote.
+                    Vemos los molinos; él ve gigantes. Nos reímos, pero también <span class="highlight">sentimos compasión</span>.
+                    <br><br>
+
+                    <strong>4. Ironía Trágica</strong><br>
+                    Al final, Don Quijote recupera la cordura... <span class="highlight">y muere</span>.
+                    La "curación" es en realidad una derrota. Pierde su propósito vital.
+                    <br><br>
+
+                    <strong>Clave:</strong> Cervantes <span class="highlight">nunca se burla cruelmente</span>.
+                    Tiene <strong>compasión</strong> por Don Quijote. La ironía es <span class="highlight">afectuosa</span>, no destructiva.
+                </p>
+            </div>
+
+            <h3 class="section-subtitle">🗣️ Realismo Lingüístico</h3>
+
+            <div class="technique-card">
+                <h4 class="technique-title">Cada Personaje Habla Según su Clase Social</h4>
+                <div class="technique-content">
+                    <strong>Don Quijote:</strong>
+                    <br>
+                    Lenguaje <span class="highlight">arcaizante y retórico</span>, imitando libros de caballerías.
+                    <br>
+                    Frases largas, cultismos, estilo elevado.
+                    <br>
+                    <div class="example-box">
+                        "La libertad, Sancho, es uno de los más preciosos dones que a los hombres dieron los cielos..."
+                    </div>
+                    <br>
+
+                    <strong>Sancho Panza:</strong>
+                    <br>
+                    Lenguaje <span class="highlight">popular y coloquial</span>. Abundantes <span class="highlight">refranes</span>.
+                    <br>
+                    Frases cortas, directas, a veces gramaticalmente incorrectas.
+                    <br>
+                    <div class="example-box">
+                        "Más vale pájaro en mano que buitre volando."
+                        <br>
+                        (Deforma el refrán: debería ser "que ciento volando")
+                    </div>
+                    <br>
+
+                    <strong>Curas, bachilleres:</strong> Lenguaje culto pero natural.
+                    <br>
+                    <strong>Pícaros, delincuentes:</strong> Jerga del hampa (<em>germanía</em>).
+                    <br>
+                    <strong>Nobles:</strong> Lenguaje cortesano.
+                    <br><br>
+
+                    <strong>Innovación:</strong> En la literatura anterior, todos los personajes hablaban igual (el estilo del autor).
+                    Cervantes da a cada personaje <span class="highlight">su propia voz</span>. Esto es <strong>modernísimo</strong>.
+                </div>
+            </div>
+
+            <h3 class="section-subtitle">⚖️ Ambigüedad: Sin Respuestas Definitivas</h3>
+
+            <div class="info-box">
+                <h4 class="info-box-title">Cervantes No Resuelve las Contradicciones</h4>
+                <p class="info-box-text">
+                    A diferencia de la literatura didáctica de su época, Cervantes <span class="highlight">no da respuestas</span>.
+                    <br><br>
+                    <strong>¿Quién tiene razón: Don Quijote (idealista) o Sancho (realista)?</strong>
+                    <br>
+                    → Ambos y ninguno. Cervantes muestra <span class="highlight">la complejidad</span>.
+                    <br><br>
+
+                    <strong>¿Es Don Quijote admirable o ridículo?</strong>
+                    <br>
+                    → Ambas cosas a la vez. <span class="highlight">Héroe trágico</span> y <span class="highlight">loco cómico</span>.
+                    <br><br>
+
+                    <strong>¿Está bien que Don Quijote recupere la cordura al final?</strong>
+                    <br>
+                    → Es una "victoria" pero también una <span class="highlight">derrota existencial</span>. Ambiguo.
+                    <br><br>
+
+                    <strong>¿Hablan realmente los perros en "El coloquio de los perros"?</strong>
+                    <br>
+                    → Cervantes nunca lo aclara. Puede ser real o un sueño. <span class="highlight">Ambigüedad deliberada</span>.
+                    <br><br>
+
+                    Esta <span class="highlight">resistencia a las respuestas fáciles</span> hace a Cervantes <strong>radicalmente moderno</strong>.
+                </p>
+            </div>
+
+            <h3 class="section-subtitle">🌟 Por qué Cervantes es el Creador de la Novela Moderna</h3>
+
+            <div class="info-box">
+                <h4 class="info-box-title">Síntesis de Innovaciones Revolucionarias</h4>
+                <p class="info-box-text">
+                    <strong>1. Perspectivismo</strong> → Múltiples puntos de vista, realidad relativa
+                    <br><br>
+                    <strong>2. Metaficción</strong> → La novela reflexiona sobre sí misma
+                    <br><br>
+                    <strong>3. Personajes complejos</strong> → Psicología realista, evolución, contradicciones
+                    <br><br>
+                    <strong>4. Ironía compasiva</strong> → Humor sin crueldad, complejidad emocional
+                    <br><br>
+                    <strong>5. Realismo lingüístico</strong> → Cada personaje con su propia voz
+                    <br><br>
+                    <strong>6. Ambigüedad</strong> → Sin respuestas definitivas, complejidad moral
+                    <br><br>
+                    <strong>7. Mezcla de géneros</strong> → Parodia + realismo + idealismo + tragedia + comedia
+                    <br><br>
+                    <strong>8. Verosimilitud</strong> → Geografía real, detalles cotidianos, pero con imaginación
+                    <br><br>
+
+                    Todas estas técnicas definen <span class="highlight">la novela moderna</span> tal como la conocemos hoy.
+                    <br><br>
+                    <span class="highlight">Cervantes las inventó o perfeccionó en 1605-1615</span>.
+                    <br><br>
+                    Por eso el Quijote es <strong>"la primera novela moderna"</strong> y la más influyente de la historia.
+                </p>
+            </div>
+
+            <div class="quote-box">
+                Cervantes no solo escribió una gran historia:<br>
+                <strong>inventó la forma narrativa</strong> que dominaría la literatura occidental durante 400 años.<br>
+                El Quijote es el <strong>Big Bang de la novela moderna</strong>.
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p class="footer-text">Perspectivismo, metaficción, ironía: técnicas del siglo XVII que anticiparon el siglo XX</p>
+        <div class="footer-badge">📚 Duración estimada: 15 minutos</div>
+    </footer>
+</body>
+</html>

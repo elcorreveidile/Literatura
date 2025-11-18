@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Novelas Ejemplares - Cervantes</title>
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:wght@400;600;700&family=Cinzel:wght@600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-color: #1a4d7a;
+            --secondary-color: #2c6ba0;
+            --accent-color: #7ba7c7;
+            --text-primary: #1a2a3a;
+            --text-secondary: #3a4a5a;
+            --text-light: #f0f4f8;
+            --background: linear-gradient(135deg, #0f2537 0%, #1a4d7a 50%, #2c6ba0 100%);
+            --content-bg: rgba(240, 244, 248, 0.95);
+            --shadow: 0 8px 32px rgba(0,0,0,0.3);
+        }
+
+        body {
+            font-family: 'Crimson Text', serif;
+            color: var(--text-primary);
+            background: var(--background);
+            min-height: 100vh;
+            line-height: 1.6;
+        }
+
+        header {
+            background: rgba(15, 37, 55, 0.95);
+            padding: 1rem 0;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            text-align: center;
+        }
+
+        .main-title {
+            font-family: 'Cinzel', serif;
+            font-size: 2.5rem;
+            color: var(--accent-color);
+            margin-bottom: 1.5rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .main-subtitle {
+            font-size: 1.2rem;
+            color: var(--text-light);
+            margin-bottom: 2rem;
+            font-style: italic;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        nav a {
+            display: block;
+            padding: 0.8rem 1.5rem;
+            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+            color: var(--text-light);
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(26, 77, 122, 0.3);
+            font-size: 1rem;
+        }
+
+        nav a:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(26, 77, 122, 0.4);
+            background: linear-gradient(45deg, var(--secondary-color), var(--primary-color));
+        }
+
+        nav a.active {
+            background: linear-gradient(45deg, var(--accent-color), #9bc3de);
+            color: var(--text-primary);
+        }
+
+        main {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 3rem 2rem;
+        }
+
+        .content-section {
+            background: var(--content-bg);
+            border-radius: 20px;
+            padding: 3rem;
+            margin-bottom: 2rem;
+            box-shadow: var(--shadow);
+            border: 2px solid var(--primary-color);
+        }
+
+        .section-title {
+            font-family: 'Cinzel', serif;
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .section-subtitle {
+            font-family: 'Cinzel', serif;
+            font-size: 1.8rem;
+            color: var(--secondary-color);
+            margin-top: 2.5rem;
+            margin-bottom: 1.5rem;
+            border-bottom: 2px solid var(--accent-color);
+            padding-bottom: 0.5rem;
+        }
+
+        .highlight {
+            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 3px 10px;
+            border-radius: 15px;
+            font-weight: 600;
+            display: inline-block;
+            margin: 2px;
+        }
+
+        .quote-box {
+            background: linear-gradient(135deg, rgba(26, 77, 122, 0.1) 0%, rgba(123, 167, 199, 0.1) 100%);
+            border: 2px solid var(--accent-color);
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 2rem 0;
+            text-align: center;
+            font-style: italic;
+            font-size: 1.3rem;
+            color: var(--secondary-color);
+        }
+
+        .info-box {
+            background: rgba(26, 77, 122, 0.1);
+            border-left: 4px solid var(--primary-color);
+            padding: 1.5rem;
+            margin: 2rem 0;
+            border-radius: 8px;
+        }
+
+        .info-box-title {
+            font-family: 'Cinzel', serif;
+            font-size: 1.4rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        .info-box-text {
+            font-size: 1.1rem;
+            line-height: 1.7;
+            color: var(--text-secondary);
+        }
+
+        .novelas-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .novela-card {
+            background: linear-gradient(135deg, rgba(26, 77, 122, 0.05) 0%, rgba(123, 167, 199, 0.1) 100%);
+            border: 2px solid var(--accent-color);
+            border-radius: 15px;
+            padding: 2rem;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .novela-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 24px rgba(26, 77, 122, 0.3);
+        }
+
+        .novela-icon {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 1rem;
+        }
+
+        .novela-title {
+            font-family: 'Cinzel', serif;
+            font-size: 1.4rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        .novela-year {
+            text-align: center;
+            color: var(--secondary-color);
+            font-style: italic;
+            margin-bottom: 1rem;
+            font-size: 1rem;
+        }
+
+        .novela-desc {
+            font-size: 1.05rem;
+            line-height: 1.7;
+            color: var(--text-secondary);
+        }
+
+        footer {
+            background: rgba(15, 37, 55, 0.95);
+            color: var(--text-light);
+            text-align: center;
+            padding: 2rem;
+            margin-top: 4rem;
+        }
+
+        .footer-text {
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+        }
+
+        .footer-badge {
+            display: inline-block;
+            background: rgba(123, 167, 199, 0.2);
+            padding: 0.5rem 1.5rem;
+            border-radius: 20px;
+            border: 1px solid var(--accent-color);
+            font-weight: 600;
+        }
+
+        @media (max-width: 768px) {
+            nav a {
+                padding: 0.6rem 1rem;
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <h1 class="main-title">Miguel de Cervantes Saavedra</h1>
+            <p class="main-subtitle">El genio universal que creó la novela moderna</p>
+
+            <nav>
+                <ul>
+                    <li><a href="index.html">📚 Inicio</a></li>
+                    <li><a href="biografia.html">👤 Biografía</a></li>
+                    <li><a href="contexto-historico.html">🏛️ Contexto Histórico</a></li>
+                    <li><a href="quijote.html">⚔️ Don Quijote</a></li>
+                    <li><a href="novelas-ejemplares.html" class="active">📖 Novelas Ejemplares</a></li>
+                    <li><a href="estilo.html">✒️ Estilo y Perspectivismo</a></li>
+                    <li><a href="fragmentos.html">📜 Fragmentos Clave</a></li>
+                    <li><a href="actividades.html">🎯 Actividades</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="content-section">
+            <h2 class="section-title">📖 Novelas Ejemplares</h2>
+
+            <div class="quote-box">
+                «Yo soy el primero que he novelado en lengua castellana»<br>
+                — Cervantes, prólogo a las Novelas ejemplares (1613)
+            </div>
+
+            <h3 class="section-subtitle">⏱️ Otras Obras Maestras de Cervantes (10 minutos de clase)</h3>
+
+            <div class="info-box">
+                <h4 class="info-box-title">¿Qué son las Novelas Ejemplares?</h4>
+                <p class="info-box-text">
+                    Publicadas en <span class="highlight">1613</span>, entre las dos partes del Quijote.
+                    <br><br>
+                    <strong>12 relatos cortos</strong> (novelle al estilo italiano) de extensión variable.
+                    <br><br>
+                    <span class="highlight">"Ejemplares"</span> = Cervantes afirma que contienen enseñanzas morales (aunque esto es debatible).
+                    <br><br>
+                    <strong>Primera colección original de novelas cortas en castellano</strong>. Antes solo había traducciones del italiano.
+                    <br><br>
+                    <span class="highlight">Innovación radical</span>: diversidad de temas, estilos, tonos. Desde realismo picaresco hasta idealismo romántico.
+                    <br><br>
+                    Demuestran la <span class="highlight">versatilidad genial</span> de Cervantes: puede escribir en cualquier registro.
+                </p>
+            </div>
+
+            <h3 class="section-subtitle">📚 Las 12 Novelas Ejemplares</h3>
+
+            <div class="novelas-grid">
+                <div class="novela-card">
+                    <div class="novela-icon">💃</div>
+                    <h4 class="novela-title">La gitanilla</h4>
+                    <p class="novela-year">(Primera en el volumen)</p>
+                    <p class="novela-desc">
+                        <strong>Historia de Preciosa</strong>, bella gitana que en realidad es noble raptada de niña.
+                        <span class="highlight">Idealismo romántico</span>: amor entre Preciosa y Don Juan.
+                        Final feliz con reconocimiento de noble linaje.
+                        <strong>Temas</strong>: libertad gitana vs convenciones sociales, belleza y virtud.
+                    </p>
+                </div>
+
+                <div class="novela-card">
+                    <div class="novela-icon">💰</div>
+                    <h4 class="novela-title">El amante liberal</h4>
+                    <p class="novela-year">(Aventuras mediterráneas)</p>
+                    <p class="novela-desc">
+                        <strong>Cautiverio y aventuras</strong> en el Mediterráneo.
+                        Ricardo, cautivo de turcos, rescata a su amada Leonisa.
+                        <span class="highlight">Reflejo de la experiencia de Cervantes en Argel</span>.
+                        <strong>Temas</strong>: generosidad, cautiverio, peligros del mar.
+                    </p>
+                </div>
+
+                <div class="novela-card">
+                    <div class="novela-icon">🎭</div>
+                    <h4 class="novela-title">Rinconete y Cortadillo</h4>
+                    <p class="novela-year">(Obra maestra picaresca)</p>
+                    <p class="novela-desc">
+                        <strong>Dos jóvenes pícaros</strong> llegan a Sevilla e ingresan en la <span class="highlight">cofradía de ladrones</span> de Monipodio.
+                        <span class="highlight">Realismo crudo y cómico</span>: describe el hampa sevillana.
+                        <strong>Innovación</strong>: retrato de la <span class="highlight">delincuencia organizada</span> con ironía.
+                        <strong>Temas</strong>: picaresca, corrupción social, crítica moral velada.
+                    </p>
+                </div>
+
+                <div class="novela-card">
+                    <div class="novela-icon">🗡️</div>
+                    <h4 class="novela-title">La española inglesa</h4>
+                    <p class="novela-year">(Romance histórico)</p>
+                    <p class="novela-desc">
+                        <strong>Isabela</strong>, niña española raptada por ingleses, criada en Inglaterra.
+                        Amores con Ricaredo, noble inglés.
+                        Contexto: <span class="highlight">rivalidad España-Inglaterra</span> (Armada Invencible).
+                        Final feliz tras múltiples peripecias.
+                        <strong>Temas</strong>: identidad nacional, amor que trasciende fronteras.
+                    </p>
+                </div>
+
+                <div class="novela-card">
+                    <div class="novela-icon">🏺</div>
+                    <h4 class="novela-title">El licenciado Vidriera</h4>
+                    <p class="novela-year">(Sátira filosófica)</p>
+                    <p class="novela-desc">
+                        <strong>Tomás Rodaja</strong>, estudiante brillante, enloquece creyendo ser <span class="highlight">hecho de vidrio</span>.
+                        En su locura, dice <span class="highlight">verdades mordaces</span> sobre la sociedad.
+                        <strong>Paradoja quijotesca</strong>: loco dice verdades; cuerdo es ignorado.
+                        Al recuperar la cordura, nadie escucha sus sabias palabras.
+                        <strong>Temas</strong>: locura y verdad, crítica social, fragilidad humana.
+                    </p>
+                </div>
+
+                <div class="novela-card">
+                    <div class="novela-icon">⚖️</div>
+                    <h4 class="novela-title">La fuerza de la sangre</h4>
+                    <p class="novela-year">(Drama y justicia)</p>
+                    <p class="novela-desc">
+                        <strong>Leocadia</strong> es violada por Rodolfo. Años después se reencuentran.
+                        El violador se redime y se casan (final polémico para lectores modernos).
+                        <strong>Temas</strong>: honra femenina, justicia divina, redención.
+                        Muestra <span class="highlight">convenciones sociales</span> de la época.
+                    </p>
+                </div>
+
+                <div class="novela-card">
+                    <div class="novela-icon">🎨</div>
+                    <h4 class="novela-title">El celoso extremeño</h4>
+                    <p class="novela-year">(Tragedia doméstica)</p>
+                    <p class="novela-desc">
+                        <strong>Carrizales</strong>, viejo celoso, encierra a su joven esposa Leonora.
+                        Un joven entra en la casa, pero Leonora <span class="highlight">resiste la tentación</span>.
+                        Carrizales muere de pena, creyéndola infiel (injustamente).
+                        <strong>Temas</strong>: celos patológicos, apariencia vs realidad, tragedia de la desconfianza.
+                    </p>
+                </div>
+
+                <div class="novela-card">
+                    <div class="novela-icon">📜</div>
+                    <h4 class="novela-title">La ilustre fregona</h4>
+                    <p class="novela-year">(Comedia romántica)</p>
+                    <p class="novela-desc">
+                        <strong>Costanza</strong>, fregona de una posada en Toledo, es en realidad noble.
+                        Dos jóvenes nobles se enamoran de ella y trabajan en la posada.
+                        <strong>Picaresca idealizada</strong>: vida baja con final noble.
+                        <strong>Temas</strong>: virtud oculta, amor que supera clases sociales.
+                    </p>
+                </div>
+
+                <div class="novela-card">
+                    <div class="novela-icon">💍</div>
+                    <h4 class="novela-title">Las dos doncellas</h4>
+                    <p class="novela-year">(Aventura caballeresca)</p>
+                    <p class="novela-desc">
+                        <strong>Dos jóvenes mujeres</strong> disfrazadas de hombre buscan al mismo seductor.
+                        Aventuras por los caminos de España.
+                        <span class="highlight">Tema del travestismo</span> (recurrente en Cervantes y teatro del Siglo de Oro).
+                        <strong>Temas</strong>: honra, engaño, aventura, final feliz.
+                    </p>
+                </div>
+
+                <div class="novela-card">
+                    <div class="novela-icon">🧙</div>
+                    <h4 class="novela-title">La señora Cornelia</h4>
+                    <p class="novela-year">(Enredo italiano)</p>
+                    <p class="novela-desc">
+                        Dos caballeros españoles en <span class="highlight">Bolonia</span> ayudan a Cornelia.
+                        Enredos de identidad, honor, amor secreto.
+                        Ambientada en Italia (Cervantes recuerda su juventud italiana).
+                        <strong>Temas</strong>: honor, aventura, amistad.
+                    </p>
+                </div>
+
+                <div class="novela-card">
+                    <div class="novela-icon">💒</div>
+                    <h4 class="novela-title">El casamiento engañoso</h4>
+                    <p class="novela-year">(Sátira picaresca)</p>
+                    <p class="novela-desc">
+                        <strong>Alférez Campuzano</strong> se casa creyendo que su esposa es rica; ella lo engaña.
+                        Él también la engañó haciéndose pasar por rico.
+                        <span class="highlight">Doble engaño mutuo</span>: ambos son víctimas y victimarios.
+                        Sirve de <span class="highlight">marco narrativo</span> para "El coloquio de los perros".
+                        <strong>Temas</strong>: engaño, codicia, justicia poética.
+                    </p>
+                </div>
+
+                <div class="novela-card">
+                    <div class="novela-icon">🐕</div>
+                    <h4 class="novela-title">El coloquio de los perros</h4>
+                    <p class="novela-year">(OBRA MAESTRA)</p>
+                    <p class="novela-desc">
+                        <strong>Dos perros, Cipión y Berganza</strong>, hablan durante una noche en el Hospital de la Resurrección (Valladolid).
+                        <span class="highlight">Berganza cuenta su vida</span> sirviendo a diversos amos.
+                        <span class="highlight">Sátira social feroz</span>: critica todos los estamentos (pastores, mercaderes, alguaciles, gitanos, brujas).
+                        <strong>Innovación radical</strong>: <span class="highlight">perspectiva animal</span> para criticar humanidad.
+                        <strong>Metaficción</strong>: ¿realmente hablan los perros o es un sueño del Alférez enfermo?
+                        <strong>Temas</strong>: crítica social, apariencia vs realidad, relativismo narrativo.
+                        <br><br>
+                        <span class="highlight">Considerada la mejor de las Novelas Ejemplares</span>.
+                    </p>
+                </div>
+            </div>
+
+            <h3 class="section-subtitle">💎 Importancia de las Novelas Ejemplares</h3>
+
+            <div class="info-box">
+                <h4 class="info-box-title">Revolución del Género Narrativo Breve</h4>
+                <p class="info-box-text">
+                    <strong>1. Primera colección original en castellano</strong><br>
+                    Antes solo había traducciones italianas (Boccaccio, Bandello).
+                    Cervantes <span class="highlight">crea el género en España</span>.
+                    <br><br>
+
+                    <strong>2. Diversidad de registros</strong><br>
+                    Desde <span class="highlight">realismo picaresco</span> (Rinconete) hasta <span class="highlight">idealismo romántico</span> (La gitanilla).
+                    Desde <span class="highlight">comedia</span> (La ilustre fregona) hasta <span class="highlight">tragedia</span> (El celoso extremeño).
+                    Muestra la <span class="highlight">versatilidad genial</span> de Cervantes.
+                    <br><br>
+
+                    <strong>3. Innovaciones narrativas</strong><br>
+                    <span class="highlight">Perspectiva animal</span> (Coloquio de los perros) → anticipa Orwell, fábulas modernas.
+                    <span class="highlight">Marcos narrativos</span> (El casamiento engañoso introduce El coloquio).
+                    <span class="highlight">Ironía y ambigüedad</span>: finales no siempre claros moralmente.
+                    <br><br>
+
+                    <strong>4. Crítica social</strong><br>
+                    Cervantes critica <span class="highlight">todos los estamentos</span>: nobles, clero, pícaros, gitanos.
+                    Pero con <span class="highlight">compasión y humor</span>, no con amargura.
+                    <br><br>
+
+                    <strong>5. Influencia</strong><br>
+                    Modelo para la <span class="highlight">novela corta española</span> posterior.
+                    Influencia en Poe, Maupassant, Chejov (maestros del relato corto).
+                </p>
+            </div>
+
+            <h3 class="section-subtitle">📚 Otras Obras de Cervantes</h3>
+
+            <div class="info-box">
+                <h4 class="info-box-title">Producción Completa</h4>
+                <p class="info-box-text">
+                    <strong>La Galatea (1585)</strong><br>
+                    Novela pastoral. Primera obra publicada de Cervantes.
+                    Pastores idealizados, amores complicados, verso y prosa.
+                    <span class="highlight">Éxito moderado</span>. Cervantes prometió segunda parte que nunca escribió.
+                    <br><br>
+
+                    <strong>Viaje del Parnaso (1614)</strong><br>
+                    Poema narrativo en tercetos.
+                    <span class="highlight">Sátira literaria</span>: Apolo convoca a los buenos poetas para combatir a los malos.
+                    Cervantes se autorretrata con <span class="highlight">ironía</span>.
+                    <br><br>
+
+                    <strong>Ocho comedias y ocho entremeses (1615)</strong><br>
+                    Teatro. <span class="highlight">Fracaso en vida</span> (Lope de Vega dominaba el teatro).
+                    Hoy reconocidos como valiosos, especialmente los <span class="highlight">entremeses</span> (piezas cómicas breves).
+                    <br><br>
+
+                    <strong>Los trabajos de Persiles y Sigismunda (1617, póstuma)</strong><br>
+                    Novela bizantina: aventuras, viajes, amor idealizado.
+                    Última obra de Cervantes. Prólogo escrito <span class="highlight">días antes de morir</span>.
+                    Cervantes la consideraba su <span class="highlight">mejor obra</span> (el público prefirió el Quijote).
+                </p>
+            </div>
+
+            <div class="quote-box">
+                Cervantes no solo escribió el Quijote:<br>
+                fue un <strong>innovador múltiple</strong> en novela corta, teatro y poesía.<br>
+                Las Novelas Ejemplares demuestran su <strong>genio versátil</strong> y su dominio de todos los registros narrativos.
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p class="footer-text">«Yo soy el primero que he novelado en lengua castellana»</p>
+        <div class="footer-badge">📚 Duración estimada: 10 minutos</div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,681 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Don Quijote de la Mancha - Análisis Completo</title>
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:wght@400;600;700&family=Cinzel:wght@600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-color: #1a4d7a;
+            --secondary-color: #2c6ba0;
+            --accent-color: #7ba7c7;
+            --text-primary: #1a2a3a;
+            --text-secondary: #3a4a5a;
+            --text-light: #f0f4f8;
+            --background: linear-gradient(135deg, #0f2537 0%, #1a4d7a 50%, #2c6ba0 100%);
+            --content-bg: rgba(240, 244, 248, 0.95);
+            --shadow: 0 8px 32px rgba(0,0,0,0.3);
+        }
+
+        body {
+            font-family: 'Crimson Text', serif;
+            color: var(--text-primary);
+            background: var(--background);
+            min-height: 100vh;
+            line-height: 1.6;
+        }
+
+        header {
+            background: rgba(15, 37, 55, 0.95);
+            padding: 1rem 0;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            text-align: center;
+        }
+
+        .main-title {
+            font-family: 'Cinzel', serif;
+            font-size: 2.5rem;
+            color: var(--accent-color);
+            margin-bottom: 1.5rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .main-subtitle {
+            font-size: 1.2rem;
+            color: var(--text-light);
+            margin-bottom: 2rem;
+            font-style: italic;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        nav a {
+            display: block;
+            padding: 0.8rem 1.5rem;
+            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+            color: var(--text-light);
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(26, 77, 122, 0.3);
+            font-size: 1rem;
+        }
+
+        nav a:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(26, 77, 122, 0.4);
+            background: linear-gradient(45deg, var(--secondary-color), var(--primary-color));
+        }
+
+        nav a.active {
+            background: linear-gradient(45deg, var(--accent-color), #9bc3de);
+            color: var(--text-primary);
+        }
+
+        main {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 3rem 2rem;
+        }
+
+        .content-section {
+            background: var(--content-bg);
+            border-radius: 20px;
+            padding: 3rem;
+            margin-bottom: 2rem;
+            box-shadow: var(--shadow);
+            border: 2px solid var(--primary-color);
+        }
+
+        .section-title {
+            font-family: 'Cinzel', serif;
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .section-subtitle {
+            font-family: 'Cinzel', serif;
+            font-size: 1.8rem;
+            color: var(--secondary-color);
+            margin-top: 2.5rem;
+            margin-bottom: 1.5rem;
+            border-bottom: 2px solid var(--accent-color);
+            padding-bottom: 0.5rem;
+        }
+
+        .highlight {
+            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 3px 10px;
+            border-radius: 15px;
+            font-weight: 600;
+            display: inline-block;
+            margin: 2px;
+        }
+
+        .quote-box {
+            background: linear-gradient(135deg, rgba(26, 77, 122, 0.1) 0%, rgba(123, 167, 199, 0.1) 100%);
+            border: 2px solid var(--accent-color);
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 2rem 0;
+            text-align: center;
+            font-style: italic;
+            font-size: 1.3rem;
+            color: var(--secondary-color);
+        }
+
+        .info-box {
+            background: rgba(26, 77, 122, 0.1);
+            border-left: 4px solid var(--primary-color);
+            padding: 1.5rem;
+            margin: 2rem 0;
+            border-radius: 8px;
+        }
+
+        .info-box-title {
+            font-family: 'Cinzel', serif;
+            font-size: 1.4rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        .info-box-text {
+            font-size: 1.1rem;
+            line-height: 1.7;
+            color: var(--text-secondary);
+        }
+
+        .dual-box {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .dual-card {
+            background: rgba(123, 167, 199, 0.1);
+            border: 2px solid var(--accent-color);
+            border-radius: 15px;
+            padding: 2rem;
+        }
+
+        .dual-card-title {
+            font-family: 'Cinzel', serif;
+            font-size: 1.5rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        .dual-card-text {
+            font-size: 1.1rem;
+            line-height: 1.7;
+            color: var(--text-secondary);
+        }
+
+        .character-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .character-card {
+            background: linear-gradient(135deg, rgba(26, 77, 122, 0.05) 0%, rgba(123, 167, 199, 0.1) 100%);
+            border: 2px solid var(--accent-color);
+            border-radius: 12px;
+            padding: 1.5rem;
+            transition: transform 0.3s ease;
+        }
+
+        .character-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(26, 77, 122, 0.2);
+        }
+
+        .character-name {
+            font-family: 'Cinzel', serif;
+            font-size: 1.3rem;
+            color: var(--primary-color);
+            margin-bottom: 0.8rem;
+            text-align: center;
+        }
+
+        .character-desc {
+            font-size: 1rem;
+            line-height: 1.6;
+            color: var(--text-secondary);
+        }
+
+        .structure-box {
+            background: linear-gradient(135deg, rgba(26, 77, 122, 0.1) 0%, rgba(123, 167, 199, 0.1) 100%);
+            border: 2px solid var(--primary-color);
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 2rem 0;
+        }
+
+        .structure-item {
+            margin-bottom: 2rem;
+            padding-bottom: 2rem;
+            border-bottom: 1px dashed var(--accent-color);
+        }
+
+        .structure-item:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+
+        .structure-title {
+            font-family: 'Cinzel', serif;
+            font-size: 1.4rem;
+            color: var(--primary-color);
+            margin-bottom: 0.8rem;
+        }
+
+        .structure-text {
+            font-size: 1.1rem;
+            line-height: 1.7;
+            color: var(--text-secondary);
+        }
+
+        .theme-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .theme-list li {
+            background: rgba(123, 167, 199, 0.1);
+            padding: 1.2rem;
+            margin-bottom: 1rem;
+            border-left: 4px solid var(--primary-color);
+            border-radius: 8px;
+            font-size: 1.1rem;
+            line-height: 1.7;
+            color: var(--text-secondary);
+        }
+
+        .theme-list strong {
+            color: var(--primary-color);
+            font-family: 'Cinzel', serif;
+        }
+
+        footer {
+            background: rgba(15, 37, 55, 0.95);
+            color: var(--text-light);
+            text-align: center;
+            padding: 2rem;
+            margin-top: 4rem;
+        }
+
+        .footer-text {
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+        }
+
+        .footer-badge {
+            display: inline-block;
+            background: rgba(123, 167, 199, 0.2);
+            padding: 0.5rem 1.5rem;
+            border-radius: 20px;
+            border: 1px solid var(--accent-color);
+            font-weight: 600;
+        }
+
+        @media (max-width: 768px) {
+            .dual-box {
+                grid-template-columns: 1fr;
+            }
+
+            nav a {
+                padding: 0.6rem 1rem;
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <h1 class="main-title">Miguel de Cervantes Saavedra</h1>
+            <p class="main-subtitle">El genio universal que creó la novela moderna</p>
+
+            <nav>
+                <ul>
+                    <li><a href="index.html">📚 Inicio</a></li>
+                    <li><a href="biografia.html">👤 Biografía</a></li>
+                    <li><a href="contexto-historico.html">🏛️ Contexto Histórico</a></li>
+                    <li><a href="quijote.html" class="active">⚔️ Don Quijote</a></li>
+                    <li><a href="novelas-ejemplares.html">📖 Novelas Ejemplares</a></li>
+                    <li><a href="estilo.html">✒️ Estilo y Perspectivismo</a></li>
+                    <li><a href="fragmentos.html">📜 Fragmentos Clave</a></li>
+                    <li><a href="actividades.html">🎯 Actividades</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="content-section">
+            <h2 class="section-title">⚔️ Don Quijote de la Mancha</h2>
+
+            <div class="quote-box">
+                «En un lugar de la Mancha, de cuyo nombre no quiero acordarme, no ha mucho tiempo que vivía
+                un hidalgo de los de lanza en astillero, adarga antigua, rocín flaco y galgo corredor...»
+            </div>
+
+            <h3 class="section-subtitle">⏱️ Análisis Exhaustivo (25 minutos de clase)</h3>
+
+            <h3 class="section-subtitle">📖 Datos Fundamentales de la Obra</h3>
+
+            <div class="structure-box">
+                <div class="structure-item">
+                    <h4 class="structure-title">Título Completo</h4>
+                    <p class="structure-text">
+                        <span class="highlight">Primera Parte (1605)</span>: <em>El ingenioso hidalgo don Quijote de la Mancha</em>
+                        <br>
+                        <span class="highlight">Segunda Parte (1615)</span>: <em>Segunda parte del ingenioso caballero don Quijote de la Mancha</em>
+                        <br><br>
+                        Nótese el cambio: de "hidalgo" a "caballero" → evolución del personaje.
+                    </p>
+                </div>
+
+                <div class="structure-item">
+                    <h4 class="structure-title">Publicación y Éxito</h4>
+                    <p class="structure-text">
+                        <strong>Primera Parte</strong>: Madrid, 1605. Juan de la Cuesta (impresor).
+                        <br>
+                        <span class="highlight">Éxito inmediato</span>: 6 ediciones en 1605, traducida a inglés (1612), francés (1614).
+                        <br><br>
+                        <strong>Segunda Parte</strong>: Madrid, 1615. Publicada diez años después.
+                        <br>
+                        Motivada por la aparición del <span class="highlight">Quijote apócrifo</span> de Avellaneda (1614).
+                    </p>
+                </div>
+
+                <div class="structure-item">
+                    <h4 class="structure-title">Extensión</h4>
+                    <p class="structure-text">
+                        Una de las <span class="highlight">novelas más largas jamás escritas</span>:
+                        <br>
+                        Primera Parte: 52 capítulos · Segunda Parte: 74 capítulos
+                        <br>
+                        Total: <strong>126 capítulos</strong> · Aproximadamente <strong>1.000 páginas</strong> en ediciones modernas.
+                    </p>
+                </div>
+            </div>
+
+            <h3 class="section-subtitle">📚 Estructura de la Obra</h3>
+
+            <div class="dual-box">
+                <div class="dual-card">
+                    <h4 class="dual-card-title">Primera Parte (1605)</h4>
+                    <p class="dual-card-text">
+                        <strong>52 capítulos</strong>
+                        <br><br>
+                        <span class="highlight">Salida primera (caps. 1-6)</span>: Don Quijote sale solo. Vuelve apaleado.
+                        <br><br>
+                        <span class="highlight">Salida segunda (caps. 7-52)</span>: Con Sancho Panza. Aventuras principales:
+                        <br>
+                        • Molinos de viento<br>
+                        • Manteamiento de Sancho<br>
+                        • Yelmo de Mambrino<br>
+                        • Galeras de galeotes<br>
+                        • Penitencia en Sierra Morena<br>
+                        • Historia del Cautivo<br>
+                        • Batalla de los cueros de vino
+                        <br><br>
+                        <strong>Estructura episódica</strong>: aventuras independientes + historias intercaladas.
+                    </p>
+                </div>
+
+                <div class="dual-card">
+                    <h4 class="dual-card-title">Segunda Parte (1615)</h4>
+                    <p class="dual-card-text">
+                        <strong>74 capítulos</strong>
+                        <br><br>
+                        <span class="highlight">Salida tercera (caps. 1-74)</span>: Más compleja y elaborada.
+                        <br><br>
+                        <strong>Gran novedad</strong>: Los personajes han leído la Primera Parte.
+                        <span class="highlight">Metaficción</span>: los personajes saben que son famosos.
+                        <br><br>
+                        Aventuras principales:
+                        <br>
+                        • Cueva de Montesinos<br>
+                        • Retablo de Maese Pedro<br>
+                        • Palacio de los Duques (burlas)<br>
+                        • "Gobierno" de Sancho en la ínsula Barataria<br>
+                        • Derrota ante el Caballero de la Blanca Luna<br>
+                        • Muerte de Don Quijote
+                        <br><br>
+                        <strong>Más psicológica</strong>: personajes evolucionan, profundidad emocional.
+                    </p>
+                </div>
+            </div>
+
+            <h3 class="section-subtitle">👥 Personajes Principales</h3>
+
+            <div class="character-grid">
+                <div class="character-card">
+                    <h4 class="character-name">⚔️ Don Quijote / Alonso Quijano</h4>
+                    <p class="character-desc">
+                        <strong>Hidalgo manchego</strong> de unos 50 años que enloquece leyendo libros de caballerías.
+                        Se inventa el nombre <span class="highlight">"Don Quijote de la Mancha"</span>.
+                        <br><br>
+                        <strong>Idealista absoluto</strong>: cree en la justicia, el honor, el amor cortés, el heroísmo.
+                        Ve el mundo según los <span class="highlight">códigos caballerescos</span>, no según la realidad.
+                        <br><br>
+                        <strong>Paradoja</strong>: Loco con momentos de lucidez brillante. Sus discursos sobre las armas, las letras, la Edad de Oro son <span class="highlight">sabios y elocuentes</span>.
+                        <br><br>
+                        <strong>Evolución</strong>: De "hidalgo" a "caballero". Al final recupera la cordura y <span class="highlight">muere como Alonso Quijano el Bueno</span>.
+                    </p>
+                </div>
+
+                <div class="character-card">
+                    <h4 class="character-name">🐴 Sancho Panza</h4>
+                    <p class="character-desc">
+                        <strong>Labrador vecino</strong> de Don Quijote. Hombre simple, bonachón, con mujer e hijos.
+                        Acepta ser escudero atraído por la promesa de <span class="highlight">gobernar una ínsula</span>.
+                        <br><br>
+                        <strong>Realista pragmático</strong>: ve molinos donde Don Quijote ve gigantes.
+                        Guiado por el <span class="highlight">sentido común</span> y el interés material (comida, sueño, dinero).
+                        <br><br>
+                        <strong>Sabiduría popular</strong>: Usa <span class="highlight">refranes constantemente</span> (a veces mal).
+                        <br><br>
+                        <strong>Evolución</strong>: Se "quijotiza" progresivamente. Su gobierno de la ínsula muestra <span class="highlight">sabiduría natural y justicia</span>. Se vuelve más idealista.
+                        <br><br>
+                        <strong>Relación con Don Quijote</strong>: Amistad profunda. Diálogo entre <span class="highlight">idealismo y realismo</span>.
+                    </p>
+                </div>
+
+                <div class="character-card">
+                    <h4 class="character-name">💃 Dulcinea del Toboso</h4>
+                    <p class="character-desc">
+                        La <span class="highlight">dama imaginaria</span> de Don Quijote.
+                        <br><br>
+                        <strong>Realidad</strong>: Aldonza Lorenzo, campesina robusta del Toboso.
+                        <br><br>
+                        <strong>En la mente de Don Quijote</strong>: La más bella y noble dama del mundo, por quien realiza hazañas.
+                        <br><br>
+                        <strong>Símbolo</strong>: El <span class="highlight">poder transformador del idealismo</span>. Don Quijote convierte lo vulgar en sublime mediante la imaginación.
+                        <br><br>
+                        <strong>Nunca aparece</strong> realmente en la novela (solo en la imaginación de Don Quijote).
+                    </p>
+                </div>
+
+                <div class="character-card">
+                    <h4 class="character-name">🐎 Rocinante</h4>
+                    <p class="character-desc">
+                        El <span class="highlight">caballo de Don Quijote</span>.
+                        <br><br>
+                        <strong>Realidad</strong>: "Rocín flaco" y viejo, casi inútil.
+                        <br><br>
+                        <strong>Nombre</strong>: Inventado por Don Quijote. "Rocín" + "-ante" (antes) = fue rocín, ahora es el primero.
+                        <br><br>
+                        <strong>Símbolo</strong>: La <span class="highlight">brecha entre idealismo y realidad</span>.
+                        Don Quijote lo ve como corcel magnífico; es solo un caballo decrépito.
+                    </p>
+                </div>
+
+                <div class="character-card">
+                    <h4 class="character-name">🏠 El Cura y el Barbero</h4>
+                    <p class="character-desc">
+                        Amigos de Alonso Quijano en su pueblo.
+                        <br><br>
+                        Representan la <span class="highlight">razón práctica</span> y el intento de "curar" a Don Quijote.
+                        <br><br>
+                        <strong>Queman los libros</strong> de caballerías (auto de fe literario).
+                        <br><br>
+                        <strong>Urden estratagemas</strong> para hacer volver a Don Quijote a casa (disfrazándose, inventando historias).
+                    </p>
+                </div>
+
+                <div class="character-card">
+                    <h4 class="character-name">🎭 Sansón Carrasco</h4>
+                    <p class="character-desc">
+                        Bachiller del pueblo. Inteligente y astuto.
+                        <br><br>
+                        En la Segunda Parte intenta <span class="highlight">vencer a Don Quijote en combate</span> para obligarlo a volver a casa.
+                        <br><br>
+                        <strong>Caballero de los Espejos</strong> (fracasa).
+                        <br>
+                        <strong>Caballero de la Blanca Luna</strong> (lo vence en Barcelona).
+                        <br><br>
+                        Su victoria causa el <span class="highlight">regreso y muerte</span> de Don Quijote.
+                    </p>
+                </div>
+            </div>
+
+            <h3 class="section-subtitle">🎭 Temas Fundamentales del Quijote</h3>
+
+            <ul class="theme-list">
+                <li>
+                    <strong>1. Idealismo vs Realismo</strong><br>
+                    El tema central. Don Quijote vive según <span class="highlight">ideales caballerescos anacrónic os</span> (justicia, honor, amor cortés).
+                    El mundo real es prosaico, materialista, corrupto. <span class="highlight">Conflicto constante</span> entre visión ideal y realidad.
+                    Cervantes no resuelve el conflicto: muestra la <span class="highlight">nobleza del idealismo</span> y la <span class="highlight">inevitabilidad de la realidad</span>.
+                </li>
+
+                <li>
+                    <strong>2. Locura y Cordura</strong><br>
+                    ¿Quién está loco? ¿Don Quijote que busca la justicia, o el mundo que acepta la injusticia?
+                    <span class="highlight">Locura santa</span> vs cordura cínica.
+                    Don Quijote loco dice verdades profundas; los "cuerdos" a veces son mezquinos.
+                    Al final, recupera la cordura pero <span class="highlight">pierde su propósito vital</span> y muere.
+                </li>
+
+                <li>
+                    <strong>3. Apariencia y Realidad</strong><br>
+                    Los molinos ¿son gigantes o molinos? Depende de quién mira.
+                    <span class="highlight">Perspectivismo</span>: no hay una realidad objetiva única. Cada personaje ve según su punto de vista.
+                    Dulcinea: ¿campesina ordinaria o dama sublime? Ambas, según el observador.
+                    Tema muy moderno: <span class="highlight">la realidad se construye</span> mediante la percepción.
+                </li>
+
+                <li>
+                    <strong>4. Lectura y Ficción</strong><br>
+                    Don Quijote enloquece <span class="highlight">leyendo libros de caballerías</span>.
+                    La literatura <span class="highlight">transforma la realidad</span> (para bien y para mal).
+                    En la Segunda Parte, personajes han leído la Primera Parte: <span class="highlight">metaficción</span>.
+                    Cervantes reflexiona sobre el <span class="highlight">poder de la literatura</span> y la relación entre ficción y vida.
+                </li>
+
+                <li>
+                    <strong>5. Libertad Individual</strong><br>
+                    Don Quijote libera a los <span class="highlight">galeotes</span> (prisioneros): defiende la libertad contra la autoridad.
+                    Busca su <span class="highlight">propia aventura</span>, no acepta el destino impuesto (hidalgo pobre, sin futuro).
+                    Tema del <span class="highlight">libre albedrío</span> vs determinismo social.
+                    Sancho también busca libertad: mejorar su condición (ínsula).
+                </li>
+
+                <li>
+                    <strong>6. La Identidad</strong><br>
+                    Alonso Quijano <span class="highlight">se inventa a sí mismo</span> como Don Quijote.
+                    ¿Quién es realmente? ¿El hidalgo cuerdo o el caballero loco?
+                    En la Segunda Parte, <span class="highlight">la fama modifica su identidad</span>: es famoso, otros lo reconocen.
+                    Al final: renuncia a ser Don Quijote, vuelve a ser Alonso Quijano... y muere.
+                    Pregunta: <span class="highlight">¿podemos elegir quiénes somos?</span>
+                </li>
+
+                <li>
+                    <strong>7. El Amor</strong><br>
+                    <span class="highlight">Amor cortés</span>: Don Quijote ama a Dulcinea platónicamente, sin esperanza de correspondencia.
+                    Contraste con amores más terrenales de historias intercaladas.
+                    Amor como <span class="highlight">motor de acción heroica</span> vs amor como realidad cotidiana.
+                </li>
+
+                <li>
+                    <strong>8. La Justicia</strong><br>
+                    Don Quijote se dedica a <span class="highlight">"desfacer entuertos"</span> (corregir injusticias).
+                    Pero sus intervenciones suelen empeorar las cosas (libera galeotes que lo apalean).
+                    <span class="highlight">Justicia ideal vs justicia real</span>.
+                    Cervantes cuestiona: ¿Es posible la justicia en un mundo corrupto?
+                </li>
+            </ul>
+
+            <h3 class="section-subtitle">💎 Innovaciones Narrativas</h3>
+
+            <div class="info-box">
+                <h4 class="info-box-title">El Quijote como Primera Novela Moderna</h4>
+                <p class="info-box-text">
+                    <strong>1. Personajes Complejos y Evolutivos</strong><br>
+                    Don Quijote y Sancho <span class="highlight">cambian y evolucionan</span>. No son tipos fijos.
+                    <span class="highlight">Psicología realista</span>: dudas, contradicciones, emociones complejas.
+                    Muy diferente de personajes planos de libros de caballerías.
+                    <br><br>
+
+                    <strong>2. Perspectivismo</strong><br>
+                    <span class="highlight">Múltiples puntos de vista</span>: Don Quijote, Sancho, otros personajes ven la misma escena de modo diferente.
+                    No hay <span class="highlight">narrador omnisciente autoritario</span>. La verdad es relativa.
+                    Anticipa técnicas del siglo XX (Faulkner, Woolf).
+                    <br><br>
+
+                    <strong>3. Metaficción</strong><br>
+                    La novela <span class="highlight">reflexiona sobre sí misma</span>.
+                    En la Segunda Parte, personajes han leído la Primera Parte.
+                    Cervantes incluye al <span class="highlight">Quijote apócrifo</span> de Avellaneda y lo critica dentro de su novela.
+                    Juegos con autores ficticios: <span class="highlight">Cide Hamete Benengeli</span>, historiador árabe inventado.
+                    <br><br>
+
+                    <strong>4. Mezcla de Géneros</strong><br>
+                    Parodia de libros de caballerías + novela picaresca + novela pastoril + relatos intercalados.
+                    <span class="highlight">Hibridez</span> que rompe con la pureza genérica clásica.
+                    <br><br>
+
+                    <strong>5. Realismo y Verosimilitud</strong><br>
+                    Geografía real: <span class="highlight">La Mancha, Barcelona, Zaragoza</span> (lugares reales).
+                    Detalles cotidianos: comida, ventas, caminos, dinero.
+                    Personajes hablan según su clase social (realismo lingüístico).
+                    Pero combinado con <span class="highlight">fantasía subjetiva</span> (lo que ve Don Quijote).
+                    <br><br>
+
+                    <strong>6. Ironía y Humor</strong><br>
+                    <span class="highlight">Ironía compleja</span>: nos reímos de Don Quijote, pero también <span class="highlight">admiramos su nobleza</span>.
+                    Humor no solo cómico: también <span class="highlight">trágico y melancólico</span>.
+                    Cervantes no se burla cruelmente: tiene <span class="highlight">compasión</span> por su protagonista.
+                </p>
+            </div>
+
+            <h3 class="section-subtitle">🌍 Legado e Influencia Universal</h3>
+
+            <div class="info-box">
+                <h4 class="info-box-title">La Novela Más Influyente de la Historia</h4>
+                <p class="info-box-text">
+                    <strong>Votaciones internacionales</strong> de escritores (2002): El Quijote elegido <span class="highlight">"mejor obra literaria jamás escrita"</span>.
+                    <br><br>
+                    <strong>Traducida a más de 140 idiomas</strong>. Segunda obra más traducida después de la Biblia.
+                    <br><br>
+                    <strong>Influencia en la novela occidental</strong>:<br>
+                    • Fielding, Sterne (siglo XVIII británico)<br>
+                    • Flaubert (<em>Madame Bovary</em>: "bovarismo" = quijotismo femenino)<br>
+                    • Dostoievski (<em>El idiota</em>: Príncipe Myshkin como Quijote ruso)<br>
+                    • Kafka, Borges, Nabokov, Kundera (metaficción, perspectivismo)<br>
+                    • García Márquez, Vargas Llosa (realismo mágico inspirado en Cervantes)
+                    <br><br>
+                    <strong>"Quijotismo" como concepto universal</strong>:<br>
+                    <span class="highlight">Idealista que lucha contra molinos de viento</span> = arquetipo cultural mundial.
+                    Representa la <span class="highlight">nobleza del fracaso</span> y la <span class="highlight">dignidad de los ideales imposibles</span>.
+                </p>
+            </div>
+
+            <div class="quote-box">
+                El Quijote no es solo una novela: es el <strong>nacimiento de la novela moderna</strong>,<br>
+                una reflexión filosófica sobre la realidad y la ficción,<br>
+                y un símbolo universal del <strong>idealismo heroico</strong> frente al mundo desencantado.
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p class="footer-text">«La mejor obra literaria jamás escrita» — Votación de 100 escritores internacionales, 2002</p>
+        <div class="footer-badge">📚 Duración estimada: 25 minutos</div>
+    </footer>
+</body>
+</html>
