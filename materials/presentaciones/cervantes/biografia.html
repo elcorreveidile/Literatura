@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Biografía de Miguel de Cervantes</title>
-    <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:wght@400;600;700&family=Cinzel:wght@600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -13,210 +13,215 @@
         }
 
         :root {
-            --primary-color: #1a4d7a;
-            --secondary-color: #2c6ba0;
-            --accent-color: #7ba7c7;
-            --text-primary: #1a2a3a;
-            --text-secondary: #3a4a5a;
-            --text-light: #f0f4f8;
-            --background: linear-gradient(135deg, #0f2537 0%, #1a4d7a 50%, #2c6ba0 100%);
-            --content-bg: rgba(240, 244, 248, 0.95);
-            --shadow: 0 8px 32px rgba(0,0,0,0.3);
+            --gradient-1: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --gradient-2: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            --gradient-3: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            --gradient-4: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+            --gradient-5: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+            --gradient-main: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+            --text-dark: #1a1a2e;
+            --text-light: #f8f9fa;
+            --bg-dark: #0f0f1e;
+            --bg-card: rgba(255, 255, 255, 0.95);
+            --shadow-sm: 0 2px 10px rgba(0,0,0,0.1);
+            --shadow-md: 0 8px 30px rgba(0,0,0,0.12);
+            --shadow-lg: 0 20px 60px rgba(0,0,0,0.3);
+            --sidebar-width: 280px;
         }
 
         body {
-            font-family: 'Crimson Text', serif;
-            color: var(--text-primary);
-            background: var(--background);
+            font-family: 'Inter', sans-serif;
+            color: var(--text-dark);
+            background: var(--gradient-main);
             min-height: 100vh;
-            line-height: 1.6;
+            overflow-x: hidden;
         }
 
-        header {
-            background: rgba(15, 37, 55, 0.95);
-            padding: 1rem 0;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
-            position: sticky;
+        /* Sidebar Navigation - Left Side */
+        .sidebar {
+            position: fixed;
+            left: 0;
             top: 0;
-            z-index: 1000;
-        }
-
-        .header-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 2rem;
-            text-align: center;
-        }
-
-        .main-title {
-            font-family: 'Cinzel', serif;
-            font-size: 2.5rem;
-            color: var(--accent-color);
-            margin-bottom: 1.5rem;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
-        }
-
-        .main-subtitle {
-            font-size: 1.2rem;
-            color: var(--text-light);
-            margin-bottom: 2rem;
-            font-style: italic;
-        }
-
-        nav ul {
-            list-style: none;
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 1rem;
-        }
-
-        nav a {
-            display: block;
-            padding: 0.8rem 1.5rem;
-            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
-            color: var(--text-light);
-            text-decoration: none;
-            border-radius: 25px;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(26, 77, 122, 0.3);
-            font-size: 1rem;
-        }
-
-        nav a:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(26, 77, 122, 0.4);
-            background: linear-gradient(45deg, var(--secondary-color), var(--primary-color));
-        }
-
-        nav a.active {
-            background: linear-gradient(45deg, var(--accent-color), #9bc3de);
-            color: var(--text-primary);
-        }
-
-        main {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 3rem 2rem;
-        }
-
-        .content-section {
-            background: var(--content-bg);
-            border-radius: 20px;
-            padding: 3rem;
-            margin-bottom: 2rem;
-            box-shadow: var(--shadow);
-            border: 2px solid var(--primary-color);
-        }
-
-        .section-title {
-            font-family: 'Cinzel', serif;
-            font-size: 2.5rem;
-            color: var(--primary-color);
-            margin-bottom: 2rem;
-            text-align: center;
-        }
-
-        .section-subtitle {
-            font-family: 'Cinzel', serif;
-            font-size: 1.8rem;
-            color: var(--secondary-color);
-            margin-top: 2.5rem;
-            margin-bottom: 1.5rem;
-            border-bottom: 2px solid var(--accent-color);
-            padding-bottom: 0.5rem;
-        }
-
-        .timeline {
-            position: relative;
+            width: var(--sidebar-width);
+            height: 100vh;
+            background: rgba(15, 15, 30, 0.95);
+            backdrop-filter: blur(20px);
             padding: 2rem 0;
+            z-index: 1000;
+            box-shadow: var(--shadow-lg);
+            overflow-y: auto;
         }
 
-        .timeline-item {
-            display: grid;
-            grid-template-columns: 120px 1fr;
-            gap: 2rem;
-            margin-bottom: 2.5rem;
-            padding-bottom: 2.5rem;
-            border-bottom: 1px dashed var(--accent-color);
+        .sidebar-header {
+            padding: 0 1.5rem 2rem;
+            border-bottom: 2px solid rgba(255,255,255,0.1);
+            margin-bottom: 2rem;
         }
 
-        .timeline-item:last-child {
-            border-bottom: none;
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            font-weight: 900;
+            background: var(--gradient-5);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 0.5rem;
+            line-height: 1.2;
         }
 
-        .timeline-year {
-            font-family: 'Cinzel', serif;
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: var(--primary-color);
-            text-align: right;
-            padding-top: 0.3rem;
+        .logo-subtitle {
+            color: rgba(255,255,255,0.6);
+            font-size: 0.85rem;
+            font-weight: 400;
         }
 
-        .timeline-content {
-            background: rgba(123, 167, 199, 0.1);
-            padding: 1.5rem;
-            border-radius: 10px;
-            border-left: 4px solid var(--primary-color);
+        .nav-menu {
+            list-style: none;
+            padding: 0 1rem;
         }
 
-        .timeline-title {
-            font-family: 'Cinzel', serif;
-            font-size: 1.3rem;
-            color: var(--secondary-color);
-            margin-bottom: 0.8rem;
+        .nav-item {
+            margin-bottom: 0.5rem;
         }
 
-        .timeline-text {
-            font-size: 1.1rem;
-            line-height: 1.7;
-            color: var(--text-secondary);
-        }
-
-        .highlight {
-            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
-            color: white;
-            padding: 3px 10px;
-            border-radius: 15px;
+        .nav-link {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem 1rem;
+            color: rgba(255,255,255,0.8);
+            text-decoration: none;
+            border-radius: 12px;
             font-weight: 600;
-            display: inline-block;
-            margin: 2px;
+            font-size: 0.95rem;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
         }
 
-        .info-box {
-            background: rgba(26, 77, 122, 0.1);
-            border-left: 4px solid var(--primary-color);
-            padding: 1.5rem;
-            margin: 2rem 0;
-            border-radius: 8px;
+        .nav-link::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 4px;
+            height: 100%;
+            background: var(--gradient-5);
+            transform: scaleY(0);
+            transition: transform 0.3s ease;
         }
 
-        .info-box-title {
-            font-family: 'Cinzel', serif;
+        .nav-link:hover {
+            background: rgba(255,255,255,0.1);
+            color: #fff;
+            transform: translateX(5px);
+        }
+
+        .nav-link:hover::before {
+            transform: scaleY(1);
+        }
+
+        .nav-link.active {
+            background: var(--gradient-5);
+            color: #fff;
+        }
+
+        .nav-icon {
             font-size: 1.4rem;
-            color: var(--primary-color);
-            margin-bottom: 1rem;
+            width: 24px;
+            text-align: center;
         }
 
-        .info-box-text {
-            font-size: 1.1rem;
-            line-height: 1.7;
-            color: var(--text-secondary);
+        /* Main Content Area */
+        .main-content {
+            margin-left: var(--sidebar-width);
+            min-height: 100vh;
+            padding: 3rem;
         }
 
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: var(--bg-card);
+            border-radius: 30px;
+            padding: 4rem;
+            margin-bottom: 3rem;
+            box-shadow: var(--shadow-lg);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -10%;
+            width: 500px;
+            height: 500px;
+            background: var(--gradient-2);
+            opacity: 0.1;
+            border-radius: 50%;
+            filter: blur(80px);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            padding: 0.5rem 1.5rem;
+            background: var(--gradient-1);
+            color: white;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 1.5rem;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .hero-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 4rem;
+            font-weight: 900;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            background: var(--gradient-main);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-description {
+            font-size: 1.3rem;
+            color: #666;
+            line-height: 1.8;
+            margin-bottom: 2rem;
+            max-width: 800px;
+            font-style: italic;
+        }
+
+        /* Quote Box */
         .quote-box {
-            background: linear-gradient(135deg, rgba(26, 77, 122, 0.1) 0%, rgba(123, 167, 199, 0.1) 100%);
-            border: 2px solid var(--accent-color);
-            border-radius: 15px;
-            padding: 2rem;
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(240, 147, 251, 0.1) 100%);
+            border: 2px solid rgba(102, 126, 234, 0.3);
+            border-radius: 20px;
+            padding: 2.5rem;
             margin: 2rem 0;
             text-align: center;
             font-style: italic;
             font-size: 1.3rem;
-            color: var(--secondary-color);
+            color: var(--text-dark);
             position: relative;
+            box-shadow: var(--shadow-sm);
         }
 
         .quote-box::before {
@@ -224,9 +229,12 @@
             font-size: 4rem;
             position: absolute;
             top: -10px;
-            left: 20px;
-            color: var(--accent-color);
-            opacity: 0.3;
+            left: 30px;
+            background: var(--gradient-1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            opacity: 0.5;
         }
 
         .quote-box::after {
@@ -234,94 +242,452 @@
             font-size: 4rem;
             position: absolute;
             bottom: -30px;
-            right: 20px;
-            color: var(--accent-color);
-            opacity: 0.3;
+            right: 30px;
+            background: var(--gradient-1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            opacity: 0.5;
         }
 
-        footer {
-            background: rgba(15, 37, 55, 0.95);
+        /* Section Headers */
+        .section-header {
+            margin: 4rem 0 3rem;
+        }
+
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            font-weight: 900;
+            margin-bottom: 1rem;
+            background: var(--gradient-2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            display: inline-block;
+        }
+
+        /* Timeline */
+        .timeline {
+            position: relative;
+            padding: 2rem 0;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50px;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background: linear-gradient(180deg,
+                var(--gradient-1) 0%,
+                var(--gradient-2) 25%,
+                var(--gradient-3) 50%,
+                var(--gradient-4) 75%,
+                var(--gradient-5) 100%);
+            border-radius: 2px;
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 3rem;
+            padding-left: 120px;
+            animation: fadeInRight 0.6s ease-out;
+        }
+
+        .timeline-item:nth-child(even) {
+            animation: fadeInLeft 0.6s ease-out;
+        }
+
+        .timeline-year {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100px;
+            height: 100px;
+            background: var(--gradient-1);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Playfair Display', serif;
+            font-size: 1.3rem;
+            font-weight: 900;
+            color: white;
+            box-shadow: var(--shadow-md);
+            z-index: 2;
+        }
+
+        .timeline-item:nth-child(2) .timeline-year { background: var(--gradient-2); }
+        .timeline-item:nth-child(3) .timeline-year { background: var(--gradient-3); }
+        .timeline-item:nth-child(4) .timeline-year { background: var(--gradient-4); }
+        .timeline-item:nth-child(5) .timeline-year { background: var(--gradient-5); }
+        .timeline-item:nth-child(6) .timeline-year { background: var(--gradient-1); }
+        .timeline-item:nth-child(7) .timeline-year { background: var(--gradient-2); }
+        .timeline-item:nth-child(8) .timeline-year { background: var(--gradient-3); }
+        .timeline-item:nth-child(9) .timeline-year { background: var(--gradient-4); }
+        .timeline-item:nth-child(10) .timeline-year { background: var(--gradient-5); }
+        .timeline-item:nth-child(11) .timeline-year { background: var(--gradient-1); }
+        .timeline-item:nth-child(12) .timeline-year { background: var(--gradient-2); }
+        .timeline-item:nth-child(13) .timeline-year { background: var(--gradient-3); }
+        .timeline-item:nth-child(14) .timeline-year { background: var(--gradient-4); }
+
+        .timeline-card {
+            background: var(--bg-card);
+            border-radius: 24px;
+            padding: 2.5rem;
+            box-shadow: var(--shadow-md);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .timeline-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--gradient-1);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .timeline-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .timeline-card:hover::before {
+            opacity: 0.05;
+        }
+
+        .timeline-icon {
+            width: 60px;
+            height: 60px;
+            background: var(--gradient-1);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            box-shadow: var(--shadow-sm);
+            position: relative;
+            z-index: 1;
+        }
+
+        .timeline-item:nth-child(2) .timeline-icon { background: var(--gradient-2); }
+        .timeline-item:nth-child(3) .timeline-icon { background: var(--gradient-3); }
+        .timeline-item:nth-child(4) .timeline-icon { background: var(--gradient-4); }
+        .timeline-item:nth-child(5) .timeline-icon { background: var(--gradient-5); }
+        .timeline-item:nth-child(6) .timeline-icon { background: var(--gradient-1); }
+        .timeline-item:nth-child(7) .timeline-icon { background: var(--gradient-2); }
+        .timeline-item:nth-child(8) .timeline-icon { background: var(--gradient-3); }
+        .timeline-item:nth-child(9) .timeline-icon { background: var(--gradient-4); }
+        .timeline-item:nth-child(10) .timeline-icon { background: var(--gradient-5); }
+        .timeline-item:nth-child(11) .timeline-icon { background: var(--gradient-1); }
+        .timeline-item:nth-child(12) .timeline-icon { background: var(--gradient-2); }
+        .timeline-item:nth-child(13) .timeline-icon { background: var(--gradient-3); }
+        .timeline-item:nth-child(14) .timeline-icon { background: var(--gradient-4); }
+
+        .timeline-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            font-weight: 900;
+            margin-bottom: 1rem;
+            color: var(--text-dark);
+            position: relative;
+            z-index: 1;
+        }
+
+        .timeline-text {
+            font-size: 1.05rem;
+            line-height: 1.8;
+            color: #555;
+            position: relative;
+            z-index: 1;
+        }
+
+        .highlight {
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.2), rgba(118, 75, 162, 0.2));
+            padding: 2px 8px;
+            border-radius: 6px;
+            font-weight: 700;
+            color: #667eea;
+        }
+
+        /* Info Box */
+        .info-box {
+            background: var(--bg-card);
+            border-radius: 24px;
+            padding: 3rem;
+            margin: 3rem 0;
+            box-shadow: var(--shadow-md);
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .info-box::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 6px;
+            height: 100%;
+            background: var(--gradient-4);
+        }
+
+        .info-box:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .info-box-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            font-weight: 900;
+            margin-bottom: 1.5rem;
+            background: var(--gradient-4);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .info-box-text {
+            font-size: 1.1rem;
+            line-height: 1.9;
+            color: #555;
+        }
+
+        .info-box-text strong {
+            color: var(--text-dark);
+            font-weight: 700;
+        }
+
+        /* Footer */
+        .footer {
+            background: rgba(15, 15, 30, 0.95);
+            backdrop-filter: blur(20px);
             color: var(--text-light);
             text-align: center;
-            padding: 2rem;
-            margin-top: 4rem;
+            padding: 3rem;
+            margin-top: 5rem;
+            border-radius: 30px;
+            box-shadow: var(--shadow-lg);
         }
 
         .footer-text {
-            font-size: 1.1rem;
+            font-size: 1.2rem;
             margin-bottom: 1rem;
         }
 
         .footer-badge {
             display: inline-block;
-            background: rgba(123, 167, 199, 0.2);
-            padding: 0.5rem 1.5rem;
-            border-radius: 20px;
-            border: 1px solid var(--accent-color);
-            font-weight: 600;
+            background: var(--gradient-5);
+            padding: 0.8rem 2rem;
+            border-radius: 25px;
+            font-weight: 700;
+            font-size: 1rem;
+            box-shadow: var(--shadow-sm);
         }
 
-        @media (max-width: 768px) {
-            .main-title {
-                font-size: 2rem;
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .sidebar {
+                transform: translateX(-100%);
+                transition: transform 0.3s ease;
+            }
+
+            .main-content {
+                margin-left: 0;
+                padding: 2rem 1.5rem;
+            }
+
+            .hero {
+                padding: 3rem 2rem;
+            }
+
+            .hero-title {
+                font-size: 3rem;
+            }
+
+            .timeline::before {
+                left: 30px;
+            }
+
+            .timeline-item {
+                padding-left: 80px;
+            }
+
+            .timeline-year {
+                width: 70px;
+                height: 70px;
+                font-size: 1rem;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .hero-title {
+                font-size: 2.5rem;
+            }
+
+            .hero-description {
+                font-size: 1.1rem;
             }
 
             .section-title {
                 font-size: 2rem;
             }
 
-            .timeline-item {
-                grid-template-columns: 1fr;
-                gap: 1rem;
+            .timeline-title {
+                font-size: 1.5rem;
             }
 
-            .timeline-year {
-                text-align: left;
+            .timeline-text {
+                font-size: 1rem;
             }
 
-            nav a {
-                padding: 0.6rem 1rem;
-                font-size: 0.9rem;
+            .quote-box {
+                font-size: 1.1rem;
+                padding: 2rem;
             }
+        }
+
+        /* Animations */
+        @keyframes fadeInRight {
+            from {
+                opacity: 0;
+                transform: translateX(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes fadeInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero {
+            animation: fadeInUp 0.6s ease-out;
         }
     </style>
 </head>
 <body>
-    <header>
-        <div class="header-content">
-            <h1 class="main-title">Miguel de Cervantes Saavedra</h1>
-            <p class="main-subtitle">El genio universal que creó la novela moderna</p>
-
-            <nav>
-                <ul>
-                    <li><a href="index.html">📚 Inicio</a></li>
-                    <li><a href="biografia.html" class="active">👤 Biografía</a></li>
-                    <li><a href="contexto-historico.html">🏛️ Contexto Histórico</a></li>
-                    <li><a href="quijote.html">⚔️ Don Quijote</a></li>
-                    <li><a href="novelas-ejemplares.html">📖 Novelas Ejemplares</a></li>
-                    <li><a href="estilo.html">✒️ Estilo y Perspectivismo</a></li>
-                    <li><a href="fragmentos.html">📜 Fragmentos Clave</a></li>
-                    <li><a href="actividades.html">🎯 Actividades</a></li>
-                </ul>
-            </nav>
+    <!-- Sidebar Navigation -->
+    <aside class="sidebar">
+        <div class="sidebar-header">
+            <h1 class="logo">Cervantes<br>Portal</h1>
+            <p class="logo-subtitle">Literatura Española ELE B1.2</p>
         </div>
-    </header>
+        <nav>
+            <ul class="nav-menu">
+                <li class="nav-item">
+                    <a href="index.html" class="nav-link">
+                        <span class="nav-icon">🏠</span>
+                        <span>Inicio</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="biografia.html" class="nav-link active">
+                        <span class="nav-icon">👤</span>
+                        <span>Biografía</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="contexto-historico.html" class="nav-link">
+                        <span class="nav-icon">🏛️</span>
+                        <span>Contexto Histórico</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="quijote.html" class="nav-link">
+                        <span class="nav-icon">⚔️</span>
+                        <span>Don Quijote</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="novelas-ejemplares.html" class="nav-link">
+                        <span class="nav-icon">📖</span>
+                        <span>Novelas Ejemplares</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="estilo.html" class="nav-link">
+                        <span class="nav-icon">✒️</span>
+                        <span>Estilo Literario</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="fragmentos.html" class="nav-link">
+                        <span class="nav-icon">📜</span>
+                        <span>Fragmentos Clave</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="actividades.html" class="nav-link">
+                        <span class="nav-icon">🎯</span>
+                        <span>Actividades</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </aside>
 
-    <main>
-        <section class="content-section">
-            <h2 class="section-title">👤 Biografía de Miguel de Cervantes</h2>
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="container">
+            <!-- Hero Section -->
+            <section class="hero">
+                <div class="hero-content">
+                    <div class="hero-badge">👤 Biografía Completa</div>
+                    <h1 class="hero-title">Biografía de Miguel de Cervantes</h1>
+                    <p class="hero-description">
+                        El escritor más universal de las letras españolas, cuya vida fue tan novelesca como sus obras
+                    </p>
+                </div>
+            </section>
 
+            <!-- Quote -->
             <div class="quote-box">
                 El escritor más universal de las letras españolas, cuya vida fue tan novelesca como sus obras
             </div>
 
-            <h3 class="section-subtitle">⏱️ Cronología de una Vida Extraordinaria (15 minutos de clase)</h3>
+            <!-- Timeline Section -->
+            <div class="section-header">
+                <h2 class="section-title">⏱️ Cronología de una Vida Extraordinaria</h2>
+            </div>
 
             <div class="timeline">
+                <!-- 1547 -->
                 <div class="timeline-item">
                     <div class="timeline-year">1547</div>
-                    <div class="timeline-content">
-                        <h4 class="timeline-title">🏠 Nacimiento en Alcalá de Henares</h4>
+                    <div class="timeline-card">
+                        <div class="timeline-icon">🏠</div>
+                        <h3 class="timeline-title">Nacimiento en Alcalá de Henares</h3>
                         <p class="timeline-text">
                             Nace <span class="highlight">Miguel de Cervantes Saavedra</span> el 29 de septiembre en Alcalá de Henares (Madrid).
                             Cuarto hijo de Rodrigo de Cervantes, cirujano-barbero, y Leonor de Cortinas.
@@ -330,10 +696,12 @@
                     </div>
                 </div>
 
+                <!-- 1551-1566 -->
                 <div class="timeline-item">
-                    <div class="timeline-year">1551-1566</div>
-                    <div class="timeline-content">
-                        <h4 class="timeline-title">📚 Infancia y Juventud Itinerante</h4>
+                    <div class="timeline-year">1551-<br>1566</div>
+                    <div class="timeline-card">
+                        <div class="timeline-icon">📚</div>
+                        <h3 class="timeline-title">Infancia y Juventud Itinerante</h3>
                         <p class="timeline-text">
                             La familia se traslada constantemente por problemas económicos: <span class="highlight">Valladolid, Córdoba, Sevilla, Madrid</span>.
                             Educación irregular y autodidacta. Probable contacto con la <span class="highlight">picaresca real</span> que luego reflejaría en sus obras.
@@ -342,10 +710,12 @@
                     </div>
                 </div>
 
+                <!-- 1568 -->
                 <div class="timeline-item">
                     <div class="timeline-year">1568</div>
-                    <div class="timeline-content">
-                        <h4 class="timeline-title">✍️ Primeros Escritos</h4>
+                    <div class="timeline-card">
+                        <div class="timeline-icon">✍️</div>
+                        <h3 class="timeline-title">Primeros Escritos</h3>
                         <p class="timeline-text">
                             Estudia con el humanista <span class="highlight">Juan López de Hoyos</span> en Madrid.
                             Escribe sus primeros poemas publicados en homenaje a <span class="highlight">Isabel de Valois</span>.
@@ -354,10 +724,12 @@
                     </div>
                 </div>
 
+                <!-- 1569-1571 -->
                 <div class="timeline-item">
-                    <div class="timeline-year">1569-1571</div>
-                    <div class="timeline-content">
-                        <h4 class="timeline-title">🇮🇹 Italia: Renacimiento y Soldado</h4>
+                    <div class="timeline-year">1569-<br>1571</div>
+                    <div class="timeline-card">
+                        <div class="timeline-icon">🇮🇹</div>
+                        <h3 class="timeline-title">Italia: Renacimiento y Soldado</h3>
                         <p class="timeline-text">
                             Se traslada a Italia, donde sirve como <span class="highlight">camarero del cardenal Acquaviva</span>.
                             Se alista en los <span class="highlight">tercios españoles</span> en Nápoles.
@@ -366,10 +738,12 @@
                     </div>
                 </div>
 
+                <!-- 1571 -->
                 <div class="timeline-item">
                     <div class="timeline-year">1571</div>
-                    <div class="timeline-content">
-                        <h4 class="timeline-title">⚔️ La Batalla de Lepanto</h4>
+                    <div class="timeline-card">
+                        <div class="timeline-icon">⚔️</div>
+                        <h3 class="timeline-title">La Batalla de Lepanto</h3>
                         <p class="timeline-text">
                             Participa en la <span class="highlight">batalla de Lepanto</span> (7 de octubre de 1571), la mayor batalla naval del siglo XVI.
                             A pesar de estar enfermo con fiebre, pide combatir y lucha heroicamente.
@@ -380,10 +754,12 @@
                     </div>
                 </div>
 
+                <!-- 1571-1575 -->
                 <div class="timeline-item">
-                    <div class="timeline-year">1571-1575</div>
-                    <div class="timeline-content">
-                        <h4 class="timeline-title">💪 Convalecencia y Servicio Militar</h4>
+                    <div class="timeline-year">1571-<br>1575</div>
+                    <div class="timeline-card">
+                        <div class="timeline-icon">💪</div>
+                        <h3 class="timeline-title">Convalecencia y Servicio Militar</h3>
                         <p class="timeline-text">
                             Meses de recuperación en un hospital de Messina (Sicilia).
                             Continúa su servicio militar en Italia: <span class="highlight">Navarino, Túnez, La Goleta</span>.
@@ -392,10 +768,12 @@
                     </div>
                 </div>
 
+                <!-- 1575-1580 -->
                 <div class="timeline-item">
-                    <div class="timeline-year">1575-1580</div>
-                    <div class="timeline-content">
-                        <h4 class="timeline-title">⛓️ Cautiverio en Argel</h4>
+                    <div class="timeline-year">1575-<br>1580</div>
+                    <div class="timeline-card">
+                        <div class="timeline-icon">⛓️</div>
+                        <h3 class="timeline-title">Cautiverio en Argel</h3>
                         <p class="timeline-text">
                             Al volver a España, su barco es capturado por <span class="highlight">corsarios berberiscos</span> (26 de septiembre de 1575).
                             Las cartas de recomendación hacen pensar que es importante: le piden un <span class="highlight">rescate altísimo</span>.
@@ -408,10 +786,12 @@
                     </div>
                 </div>
 
+                <!-- 1580-1587 -->
                 <div class="timeline-item">
-                    <div class="timeline-year">1580-1587</div>
-                    <div class="timeline-content">
-                        <h4 class="timeline-title">🎭 Retorno y Teatro</h4>
+                    <div class="timeline-year">1580-<br>1587</div>
+                    <div class="timeline-card">
+                        <div class="timeline-icon">🎭</div>
+                        <h3 class="timeline-title">Retorno y Teatro</h3>
                         <p class="timeline-text">
                             Vuelve a España arruinado y sin fortuna. Busca empleo en la Corte sin éxito.
                             Se dedica a escribir <span class="highlight">teatro</span>: escribe 20-30 comedias (hoy perdidas en su mayoría).
@@ -422,10 +802,12 @@
                     </div>
                 </div>
 
+                <!-- 1587-1600 -->
                 <div class="timeline-item">
-                    <div class="timeline-year">1587-1600</div>
-                    <div class="timeline-content">
-                        <h4 class="timeline-title">💼 Comisario Real: Miseria y Problemas</h4>
+                    <div class="timeline-year">1587-<br>1600</div>
+                    <div class="timeline-card">
+                        <div class="timeline-icon">💼</div>
+                        <h3 class="timeline-title">Comisario Real: Miseria y Problemas</h3>
                         <p class="timeline-text">
                             Trabaja como <span class="highlight">comisario de abastos</span> para la Armada Invencible: recaudar trigo y aceite en Andalucía.
                             Trabajo mal pagado, peligroso (enfrenta resistencia de pueblos y la Iglesia).
@@ -438,10 +820,12 @@
                     </div>
                 </div>
 
+                <!-- 1605 -->
                 <div class="timeline-item">
                     <div class="timeline-year">1605</div>
-                    <div class="timeline-content">
-                        <h4 class="timeline-title">⚔️ EL QUIJOTE (Primera Parte)</h4>
+                    <div class="timeline-card">
+                        <div class="timeline-icon">⚔️</div>
+                        <h3 class="timeline-title">EL QUIJOTE (Primera Parte)</h3>
                         <p class="timeline-text">
                             Se publica en Madrid <span class="highlight">"El ingenioso hidalgo don Quijote de la Mancha"</span>.
                             <span class="highlight">¡Éxito inmediato y arrollador!</span> Seis ediciones en 1605.
@@ -452,10 +836,12 @@
                     </div>
                 </div>
 
+                <!-- 1606-1613 -->
                 <div class="timeline-item">
-                    <div class="timeline-year">1606-1613</div>
-                    <div class="timeline-content">
-                        <h4 class="timeline-title">✍️ Madurez Literaria</h4>
+                    <div class="timeline-year">1606-<br>1613</div>
+                    <div class="timeline-card">
+                        <div class="timeline-icon">✍️</div>
+                        <h3 class="timeline-title">Madurez Literaria</h3>
                         <p class="timeline-text">
                             La Corte se traslada a <span class="highlight">Valladolid</span> y luego a <span class="highlight">Madrid</span>; Cervantes las sigue.
                             En 1613 publica las <span class="highlight">"Novelas Ejemplares"</span>: 12 relatos que él mismo califica como los primeros originales en castellano.
@@ -465,10 +851,12 @@
                     </div>
                 </div>
 
+                <!-- 1614 -->
                 <div class="timeline-item">
                     <div class="timeline-year">1614</div>
-                    <div class="timeline-content">
-                        <h4 class="timeline-title">😡 El Quijote Apócrifo</h4>
+                    <div class="timeline-card">
+                        <div class="timeline-icon">😡</div>
+                        <h3 class="timeline-title">El Quijote Apócrifo</h3>
                         <p class="timeline-text">
                             Un tal <span class="highlight">Alonso Fernández de Avellaneda</span> (pseudónimo) publica una continuación falsa del Quijote.
                             Está llena de insultos contra Cervantes (viejo, manco, envidioso).
@@ -478,10 +866,12 @@
                     </div>
                 </div>
 
+                <!-- 1615 -->
                 <div class="timeline-item">
                     <div class="timeline-year">1615</div>
-                    <div class="timeline-content">
-                        <h4 class="timeline-title">⚔️ EL QUIJOTE (Segunda Parte)</h4>
+                    <div class="timeline-card">
+                        <div class="timeline-icon">⚔️</div>
+                        <h3 class="timeline-title">EL QUIJOTE (Segunda Parte)</h3>
                         <p class="timeline-text">
                             Publica <span class="highlight">"Segunda parte del ingenioso caballero don Quijote de la Mancha"</span>.
                             Aún más compleja, profunda y moderna que la primera.
@@ -491,10 +881,12 @@
                     </div>
                 </div>
 
+                <!-- 1616 -->
                 <div class="timeline-item">
                     <div class="timeline-year">1616</div>
-                    <div class="timeline-content">
-                        <h4 class="timeline-title">💀 Muerte en Madrid</h4>
+                    <div class="timeline-card">
+                        <div class="timeline-icon">💀</div>
+                        <h3 class="timeline-title">Muerte en Madrid</h3>
                         <p class="timeline-text">
                             Gravemente enfermo de <span class="highlight">hidropesía</span> (probablemente diabetes).
                             El 2 de abril firma el prólogo de su última obra: <span class="highlight">"Los trabajos de Persiles y Sigismunda"</span> (publicada póstuma).
@@ -507,10 +899,13 @@
                 </div>
             </div>
 
-            <h3 class="section-subtitle">🎖️ "El Manco de Lepanto": Soldado y Escritor</h3>
+            <!-- Additional Sections -->
+            <div class="section-header">
+                <h2 class="section-title">🎖️ "El Manco de Lepanto": Soldado y Escritor</h2>
+            </div>
 
             <div class="info-box">
-                <h4 class="info-box-title">La Dualidad de Cervantes</h4>
+                <h3 class="info-box-title">La Dualidad de Cervantes</h3>
                 <p class="info-box-text">
                     Cervantes fue <span class="highlight">soldado heroico</span> y <span class="highlight">escritor revolucionario</span>.
                     Su experiencia militar en Lepanto le dio prestigio, pero le dejó <span class="highlight">mutilado de por vida</span>.
@@ -520,10 +915,12 @@
                 </p>
             </div>
 
-            <h3 class="section-subtitle">📖 Legado Biográfico en su Obra</h3>
+            <div class="section-header">
+                <h2 class="section-title">📖 Legado Biográfico en su Obra</h2>
+            </div>
 
             <div class="info-box">
-                <h4 class="info-box-title">De la Vida a la Literatura</h4>
+                <h3 class="info-box-title">De la Vida a la Literatura</h3>
                 <p class="info-box-text">
                     <strong>Lepanto</strong> → El ideal heroico de Don Quijote y el "Discurso de las Armas y las Letras"<br><br>
                     <strong>Cautiverio en Argel</strong> → "El trato de Argel", "Los baños de Argel", el episodio del Cautivo en el Quijote (I, 39-41)<br><br>
@@ -538,12 +935,13 @@
                 Cervantes vivió una vida épica de aventuras, fracasos y genialidad tardía. <br>
                 Su experiencia vital se convirtió en la materia prima de la mejor novela jamás escrita.
             </div>
-        </section>
-    </main>
 
-    <footer>
-        <p class="footer-text">«El Manco de Lepanto»: soldado heroico, cautivo valiente, genio literario universal</p>
-        <div class="footer-badge">📚 Duración estimada: 15 minutos</div>
-    </footer>
+            <!-- Footer -->
+            <footer class="footer">
+                <p class="footer-text">«El Manco de Lepanto»: soldado heroico, cautivo valiente, genio literario universal</p>
+                <div class="footer-badge">📚 Duración estimada: 15 minutos</div>
+            </footer>
+        </div>
+    </main>
 </body>
 </html>

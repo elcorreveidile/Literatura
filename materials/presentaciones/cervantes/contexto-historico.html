@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contexto Histórico - Cervantes y el Siglo de Oro</title>
-    <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:wght@400;600;700&family=Cinzel:wght@600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -13,263 +13,511 @@
         }
 
         :root {
-            --primary-color: #1a4d7a;
-            --secondary-color: #2c6ba0;
-            --accent-color: #7ba7c7;
-            --text-primary: #1a2a3a;
-            --text-secondary: #3a4a5a;
-            --text-light: #f0f4f8;
-            --background: linear-gradient(135deg, #0f2537 0%, #1a4d7a 50%, #2c6ba0 100%);
-            --content-bg: rgba(240, 244, 248, 0.95);
-            --shadow: 0 8px 32px rgba(0,0,0,0.3);
+            --gradient-1: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --gradient-2: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            --gradient-3: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            --gradient-4: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+            --gradient-5: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+            --gradient-main: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+            --text-dark: #1a1a2e;
+            --text-light: #f8f9fa;
+            --bg-dark: #0f0f1e;
+            --bg-card: rgba(255, 255, 255, 0.95);
+            --shadow-sm: 0 2px 10px rgba(0,0,0,0.1);
+            --shadow-md: 0 8px 30px rgba(0,0,0,0.12);
+            --shadow-lg: 0 20px 60px rgba(0,0,0,0.3);
+            --sidebar-width: 280px;
         }
 
         body {
-            font-family: 'Crimson Text', serif;
-            color: var(--text-primary);
-            background: var(--background);
+            font-family: 'Inter', sans-serif;
+            color: var(--text-dark);
+            background: var(--gradient-main);
             min-height: 100vh;
-            line-height: 1.6;
+            overflow-x: hidden;
         }
 
-        header {
-            background: rgba(15, 37, 55, 0.95);
-            padding: 1rem 0;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
-            position: sticky;
+        /* Sidebar Navigation - Left Side */
+        .sidebar {
+            position: fixed;
+            left: 0;
             top: 0;
+            width: var(--sidebar-width);
+            height: 100vh;
+            background: rgba(15, 15, 30, 0.95);
+            backdrop-filter: blur(20px);
+            padding: 2rem 0;
             z-index: 1000;
+            box-shadow: var(--shadow-lg);
+            overflow-y: auto;
         }
 
-        .header-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 2rem;
-            text-align: center;
-        }
-
-        .main-title {
-            font-family: 'Cinzel', serif;
-            font-size: 2.5rem;
-            color: var(--accent-color);
-            margin-bottom: 1.5rem;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
-        }
-
-        .main-subtitle {
-            font-size: 1.2rem;
-            color: var(--text-light);
+        .sidebar-header {
+            padding: 0 1.5rem 2rem;
+            border-bottom: 2px solid rgba(255,255,255,0.1);
             margin-bottom: 2rem;
-            font-style: italic;
         }
 
-        nav ul {
-            list-style: none;
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 1rem;
-        }
-
-        nav a {
-            display: block;
-            padding: 0.8rem 1.5rem;
-            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
-            color: var(--text-light);
-            text-decoration: none;
-            border-radius: 25px;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(26, 77, 122, 0.3);
-            font-size: 1rem;
-        }
-
-        nav a:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(26, 77, 122, 0.4);
-            background: linear-gradient(45deg, var(--secondary-color), var(--primary-color));
-        }
-
-        nav a.active {
-            background: linear-gradient(45deg, var(--accent-color), #9bc3de);
-            color: var(--text-primary);
-        }
-
-        main {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 3rem 2rem;
-        }
-
-        .content-section {
-            background: var(--content-bg);
-            border-radius: 20px;
-            padding: 3rem;
-            margin-bottom: 2rem;
-            box-shadow: var(--shadow);
-            border: 2px solid var(--primary-color);
-        }
-
-        .section-title {
-            font-family: 'Cinzel', serif;
-            font-size: 2.5rem;
-            color: var(--primary-color);
-            margin-bottom: 2rem;
-            text-align: center;
-        }
-
-        .section-subtitle {
-            font-family: 'Cinzel', serif;
+        .logo {
+            font-family: 'Playfair Display', serif;
             font-size: 1.8rem;
-            color: var(--secondary-color);
-            margin-top: 2.5rem;
-            margin-bottom: 1.5rem;
-            border-bottom: 2px solid var(--accent-color);
-            padding-bottom: 0.5rem;
+            font-weight: 900;
+            background: var(--gradient-5);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 0.5rem;
+            line-height: 1.2;
         }
 
-        .context-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin: 2rem 0;
+        .logo-subtitle {
+            color: rgba(255,255,255,0.6);
+            font-size: 0.85rem;
+            font-weight: 400;
         }
 
-        .context-card {
-            background: rgba(123, 167, 199, 0.1);
-            border: 2px solid var(--accent-color);
-            border-radius: 15px;
-            padding: 2rem;
+        .nav-menu {
+            list-style: none;
+            padding: 0 1rem;
+        }
+
+        .nav-item {
+            margin-bottom: 0.5rem;
+        }
+
+        .nav-link {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem 1rem;
+            color: rgba(255,255,255,0.8);
+            text-decoration: none;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .nav-link::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 4px;
+            height: 100%;
+            background: var(--gradient-5);
+            transform: scaleY(0);
             transition: transform 0.3s ease;
         }
 
-        .context-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 20px rgba(26, 77, 122, 0.2);
+        .nav-link:hover {
+            background: rgba(255,255,255,0.1);
+            color: #fff;
+            transform: translateX(5px);
         }
 
-        .card-icon {
-            font-size: 2.5rem;
-            text-align: center;
-            margin-bottom: 1rem;
+        .nav-link:hover::before {
+            transform: scaleY(1);
         }
 
-        .card-title {
-            font-family: 'Cinzel', serif;
+        .nav-link.active {
+            background: var(--gradient-5);
+            color: #fff;
+        }
+
+        .nav-icon {
             font-size: 1.4rem;
-            color: var(--primary-color);
-            margin-bottom: 1rem;
+            width: 24px;
             text-align: center;
         }
 
-        .card-text {
-            font-size: 1.1rem;
-            line-height: 1.7;
-            color: var(--text-secondary);
+        /* Main Content Area */
+        .main-content {
+            margin-left: var(--sidebar-width);
+            min-height: 100vh;
+            padding: 3rem;
         }
 
-        .highlight {
-            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
-            color: white;
-            padding: 3px 10px;
-            border-radius: 15px;
-            font-weight: 600;
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: var(--bg-card);
+            border-radius: 30px;
+            padding: 4rem;
+            margin-bottom: 3rem;
+            box-shadow: var(--shadow-lg);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -10%;
+            width: 500px;
+            height: 500px;
+            background: var(--gradient-2);
+            opacity: 0.1;
+            border-radius: 50%;
+            filter: blur(80px);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-badge {
             display: inline-block;
-            margin: 2px;
+            padding: 0.5rem 1.5rem;
+            background: var(--gradient-1);
+            color: white;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 1.5rem;
+            box-shadow: var(--shadow-sm);
         }
 
-        .timeline-box {
-            background: linear-gradient(135deg, rgba(26, 77, 122, 0.1) 0%, rgba(123, 167, 199, 0.1) 100%);
-            border: 2px solid var(--primary-color);
-            border-radius: 15px;
-            padding: 2rem;
-            margin: 2rem 0;
+        .hero-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.5rem;
+            font-weight: 900;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            background: var(--gradient-main);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-description {
+            font-size: 1.25rem;
+            color: #666;
+            line-height: 1.8;
+            max-width: 900px;
+            font-style: italic;
+        }
+
+        /* Section Headers */
+        .section {
+            margin-bottom: 3rem;
+        }
+
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            font-weight: 900;
+            margin-bottom: 2rem;
+            background: var(--gradient-2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .section-subtitle {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            font-weight: 700;
+            margin: 3rem 0 2rem;
+            color: var(--text-dark);
+        }
+
+        /* Quote Box */
+        .quote-box {
+            background: var(--bg-card);
+            border-radius: 24px;
+            padding: 3rem;
+            margin-bottom: 3rem;
+            box-shadow: var(--shadow-md);
+            position: relative;
+            overflow: hidden;
+            border-left: 6px solid;
+            border-image: var(--gradient-5) 1;
+        }
+
+        .quote-box::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--gradient-5);
+            opacity: 0.05;
+        }
+
+        .quote-text {
+            position: relative;
+            z-index: 1;
+            font-size: 1.3rem;
+            line-height: 1.8;
+            color: #444;
+            font-style: italic;
+            text-align: center;
+        }
+
+        /* Timeline */
+        .timeline-container {
+            background: var(--bg-card);
+            border-radius: 24px;
+            padding: 3rem;
+            margin-bottom: 3rem;
+            box-shadow: var(--shadow-md);
         }
 
         .timeline-item {
             display: grid;
-            grid-template-columns: 150px 1fr;
-            gap: 1.5rem;
-            margin-bottom: 1.5rem;
-            padding-bottom: 1.5rem;
-            border-bottom: 1px dashed var(--accent-color);
+            grid-template-columns: 200px 1fr;
+            gap: 2rem;
+            margin-bottom: 2.5rem;
+            padding-bottom: 2.5rem;
+            border-bottom: 2px solid rgba(0,0,0,0.05);
+            position: relative;
         }
 
         .timeline-item:last-child {
             border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
         }
 
         .timeline-year {
-            font-family: 'Cinzel', serif;
-            font-size: 1.3rem;
-            font-weight: 700;
-            color: var(--primary-color);
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            font-weight: 900;
+            background: var(--gradient-1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
             text-align: right;
-            padding-top: 0.2rem;
+            padding-top: 0.3rem;
         }
 
-        .timeline-text {
-            font-size: 1.1rem;
-            line-height: 1.7;
-            color: var(--text-secondary);
+        .timeline-year-range {
+            display: block;
+            font-size: 1rem;
+            color: #999;
+            margin-top: 0.3rem;
         }
 
+        .timeline-content {
+            font-size: 1.05rem;
+            line-height: 1.8;
+            color: #555;
+        }
+
+        .timeline-content strong {
+            color: var(--text-dark);
+            font-weight: 700;
+        }
+
+        .highlight {
+            background: var(--gradient-3);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: 700;
+        }
+
+        /* Info Box */
         .info-box {
-            background: rgba(26, 77, 122, 0.1);
-            border-left: 4px solid var(--primary-color);
-            padding: 1.5rem;
-            margin: 2rem 0;
-            border-radius: 8px;
+            background: var(--bg-card);
+            border-radius: 24px;
+            padding: 3rem;
+            margin-bottom: 3rem;
+            box-shadow: var(--shadow-md);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .info-box::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--gradient-4);
+            opacity: 0.05;
+        }
+
+        .info-box-content {
+            position: relative;
+            z-index: 1;
         }
 
         .info-box-title {
-            font-family: 'Cinzel', serif;
-            font-size: 1.4rem;
-            color: var(--primary-color);
-            margin-bottom: 1rem;
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            font-weight: 900;
+            margin-bottom: 1.5rem;
+            background: var(--gradient-4);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
 
         .info-box-text {
             font-size: 1.1rem;
+            line-height: 1.8;
+            color: #555;
+        }
+
+        /* Cards Grid */
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .context-card {
+            background: var(--bg-card);
+            border-radius: 24px;
+            padding: 2.5rem;
+            box-shadow: var(--shadow-md);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .context-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--gradient-1);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .context-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .context-card:hover::before {
+            opacity: 0.05;
+        }
+
+        .card-icon {
+            width: 80px;
+            height: 80px;
+            background: var(--gradient-1);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            box-shadow: var(--shadow-sm);
+            position: relative;
+            z-index: 1;
+        }
+
+        .context-card:nth-child(1) .card-icon { background: var(--gradient-1); }
+        .context-card:nth-child(2) .card-icon { background: var(--gradient-2); }
+        .context-card:nth-child(3) .card-icon { background: var(--gradient-3); }
+        .context-card:nth-child(4) .card-icon { background: var(--gradient-4); }
+        .context-card:nth-child(5) .card-icon { background: var(--gradient-5); }
+        .context-card:nth-child(6) .card-icon { background: var(--gradient-1); }
+        .context-card:nth-child(7) .card-icon { background: var(--gradient-2); }
+        .context-card:nth-child(8) .card-icon { background: var(--gradient-3); }
+
+        .card-title {
+            font-size: 1.5rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            color: var(--text-dark);
+            position: relative;
+            z-index: 1;
+        }
+
+        .card-text {
+            color: #555;
             line-height: 1.7;
-            color: var(--text-secondary);
+            font-size: 1rem;
+            position: relative;
+            z-index: 1;
         }
 
-        .quote-box {
-            background: linear-gradient(135deg, rgba(26, 77, 122, 0.1) 0%, rgba(123, 167, 199, 0.1) 100%);
-            border: 2px solid var(--accent-color);
-            border-radius: 15px;
-            padding: 2rem;
-            margin: 2rem 0;
-            text-align: center;
-            font-style: italic;
-            font-size: 1.3rem;
-            color: var(--secondary-color);
+        .card-text .highlight {
+            background: var(--gradient-5);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: 700;
         }
 
-        footer {
-            background: rgba(15, 37, 55, 0.95);
-            color: var(--text-light);
-            text-align: center;
+        .card-text strong {
+            color: var(--text-dark);
+            font-weight: 700;
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--bg-card);
+            border-radius: 24px;
             padding: 2rem;
             margin-top: 4rem;
+            margin-bottom: 2rem;
+            text-align: center;
+            box-shadow: var(--shadow-md);
         }
 
         .footer-text {
             font-size: 1.1rem;
+            color: #666;
             margin-bottom: 1rem;
         }
 
         .footer-badge {
             display: inline-block;
-            background: rgba(123, 167, 199, 0.2);
             padding: 0.5rem 1.5rem;
-            border-radius: 20px;
-            border: 1px solid var(--accent-color);
-            font-weight: 600;
+            background: var(--gradient-1);
+            color: white;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            font-weight: 700;
+            box-shadow: var(--shadow-sm);
         }
 
-        @media (max-width: 768px) {
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .sidebar {
+                transform: translateX(-100%);
+                transition: transform 0.3s ease;
+            }
+
+            .main-content {
+                margin-left: 0;
+                padding: 2rem 1.5rem;
+            }
+
+            .hero {
+                padding: 3rem 2rem;
+            }
+
+            .hero-title {
+                font-size: 2.5rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
             .timeline-item {
                 grid-template-columns: 1fr;
             }
@@ -278,244 +526,360 @@
                 text-align: left;
             }
 
-            nav a {
-                padding: 0.6rem 1rem;
-                font-size: 0.9rem;
+            .cards-grid {
+                grid-template-columns: 1fr;
             }
         }
+
+        @media (max-width: 640px) {
+            .hero-title {
+                font-size: 2rem;
+            }
+
+            .hero-description {
+                font-size: 1.1rem;
+            }
+
+            .section-title {
+                font-size: 1.8rem;
+            }
+
+            .section-subtitle {
+                font-size: 1.5rem;
+            }
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero, .timeline-container, .info-box, .quote-box, .context-card {
+            animation: fadeInUp 0.6s ease-out;
+        }
+
+        .context-card:nth-child(1) { animation-delay: 0.1s; }
+        .context-card:nth-child(2) { animation-delay: 0.2s; }
+        .context-card:nth-child(3) { animation-delay: 0.3s; }
+        .context-card:nth-child(4) { animation-delay: 0.4s; }
+        .context-card:nth-child(5) { animation-delay: 0.5s; }
+        .context-card:nth-child(6) { animation-delay: 0.6s; }
+        .context-card:nth-child(7) { animation-delay: 0.7s; }
+        .context-card:nth-child(8) { animation-delay: 0.8s; }
     </style>
 </head>
 <body>
-    <header>
-        <div class="header-content">
-            <h1 class="main-title">Miguel de Cervantes Saavedra</h1>
-            <p class="main-subtitle">El genio universal que creó la novela moderna</p>
-
-            <nav>
-                <ul>
-                    <li><a href="index.html">📚 Inicio</a></li>
-                    <li><a href="biografia.html">👤 Biografía</a></li>
-                    <li><a href="contexto-historico.html" class="active">🏛️ Contexto Histórico</a></li>
-                    <li><a href="quijote.html">⚔️ Don Quijote</a></li>
-                    <li><a href="novelas-ejemplares.html">📖 Novelas Ejemplares</a></li>
-                    <li><a href="estilo.html">✒️ Estilo y Perspectivismo</a></li>
-                    <li><a href="fragmentos.html">📜 Fragmentos Clave</a></li>
-                    <li><a href="actividades.html">🎯 Actividades</a></li>
-                </ul>
-            </nav>
+    <!-- Sidebar Navigation -->
+    <aside class="sidebar">
+        <div class="sidebar-header">
+            <h1 class="logo">Cervantes<br>Portal</h1>
+            <p class="logo-subtitle">Literatura Española ELE B1.2</p>
         </div>
-    </header>
+        <nav>
+            <ul class="nav-menu">
+                <li class="nav-item">
+                    <a href="index.html" class="nav-link">
+                        <span class="nav-icon">🏠</span>
+                        <span>Inicio</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="biografia.html" class="nav-link">
+                        <span class="nav-icon">👤</span>
+                        <span>Biografía</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="contexto-historico.html" class="nav-link active">
+                        <span class="nav-icon">🏛️</span>
+                        <span>Contexto Histórico</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="quijote.html" class="nav-link">
+                        <span class="nav-icon">⚔️</span>
+                        <span>Don Quijote</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="novelas-ejemplares.html" class="nav-link">
+                        <span class="nav-icon">📖</span>
+                        <span>Novelas Ejemplares</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="estilo.html" class="nav-link">
+                        <span class="nav-icon">✒️</span>
+                        <span>Estilo Literario</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="fragmentos.html" class="nav-link">
+                        <span class="nav-icon">📜</span>
+                        <span>Fragmentos Clave</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="actividades.html" class="nav-link">
+                        <span class="nav-icon">🎯</span>
+                        <span>Actividades</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </aside>
 
-    <main>
-        <section class="content-section">
-            <h2 class="section-title">🏛️ La España del Siglo de Oro</h2>
-
-            <div class="quote-box">
-                La época de Cervantes (1547-1616) coincide con el apogeo y la decadencia del Imperio Español:
-                máximo esplendor cultural y literario en medio de crisis política y económica.
-            </div>
-
-            <h3 class="section-subtitle">⏱️ Contexto Histórico y Cultural (10 minutos de clase)</h3>
-
-            <h3 class="section-subtitle">👑 La España Imperial: Auge y Crisis</h3>
-
-            <div class="timeline-box">
-                <div class="timeline-item">
-                    <div class="timeline-year">Carlos I (1516-1556)</div>
-                    <div class="timeline-text">
-                        <span class="highlight">Carlos V de Alemania</span>, primer rey de la dinastía Habsburgo en España.
-                        <strong>Imperio donde "no se ponía el sol"</strong>: España, Países Bajos, sur de Italia, Alemania, América.
-                        Guerras constantes: contra Francia, contra los turcos, contra los protestantes alemanes.
-                        Enorme deuda acumulada. <strong>Abdica agotado</strong> en 1556.
-                    </div>
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="container">
+            <!-- Hero Section -->
+            <section class="hero">
+                <div class="hero-content">
+                    <div class="hero-badge">🏛️ Contexto Histórico</div>
+                    <h1 class="hero-title">La España del Siglo de Oro</h1>
+                    <p class="hero-description">
+                        La época de Cervantes (1547-1616) coincide con el apogeo y la decadencia del Imperio Español:
+                        máximo esplendor cultural y literario en medio de crisis política y económica.
+                    </p>
                 </div>
+            </section>
 
-                <div class="timeline-item">
-                    <div class="timeline-year">Felipe II (1556-1598)</div>
-                    <div class="timeline-text">
-                        El rey más poderoso de Europa. Cervantes vive toda su juventud bajo su reinado.
-                        <strong>Victoria de Lepanto (1571)</strong> contra los turcos donde combate Cervantes.
-                        <strong>Anexión de Portugal (1580)</strong>: España controla un imperio planetario.
-                        Construcción de <span class="highlight">El Escorial</span>, símbolo del poder español.
-                        Crisis: <strong>rebelión de los Países Bajos, derrota de la Armada Invencible (1588)</strong>, bancarrotas.
-                        Monarquía autoritaria y Contrarreforma católica: <strong>Inquisición</strong> en pleno vigor.
-                    </div>
-                </div>
-
-                <div class="timeline-item">
-                    <div class="timeline-year">Felipe III (1598-1621)</div>
-                    <div class="timeline-text">
-                        Rey débil dominado por el <span class="highlight">Duque de Lerma</span> (valido).
-                        Cervantes escribe el Quijote durante este reinado (1605-1615).
-                        <strong>Expulsión de los moriscos (1609)</strong>: 300.000 personas expulsadas, catástrofe económica.
-                        Decadencia política y económica evidente. <strong>Pax Hispánica</strong>: tregua con Inglaterra y Países Bajos.
-                        Crisis social y económica: <strong>despoblación, miseria, vagabundos</strong> (mundo que refleja el Quijote).
-                    </div>
-                </div>
-            </div>
-
-            <h3 class="section-subtitle">💡 El Siglo de Oro: Paradoja Cultural</h3>
-
-            <div class="info-box">
-                <h4 class="info-box-title">Contradicción Fundamental</h4>
-                <p class="info-box-text">
-                    La mayor <span class="highlight">crisis política y económica</span> de España coincide con su
-                    <span class="highlight">máximo esplendor cultural y literario</span>. Mientras el imperio se desmorona,
-                    España produce a Cervantes, Lope de Vega, Quevedo, Góngora, Calderón, Velázquez, El Greco...
-                    <br><br>
-                    <strong>¿Por qué?</strong> La tensión entre <span class="highlight">ideales imperiales</span> y
-                    <span class="highlight">realidad miserable</span> genera una literatura profunda, crítica e irónica.
+            <!-- Main Content Sections -->
+            <section class="section">
+                <h2 class="section-title">⏱️ Contexto Histórico y Cultural</h2>
+                <p style="text-align: center; color: rgba(255,255,255,0.9); font-size: 1.1rem; margin-bottom: 3rem;">
+                    Duración estimada: 10 minutos de clase
                 </p>
-            </div>
 
-            <h3 class="section-subtitle">🎭 Sociedad Española del Siglo XVI-XVII</h3>
+                <!-- La España Imperial Timeline -->
+                <h3 class="section-subtitle">👑 La España Imperial: Auge y Crisis</h3>
 
-            <div class="context-grid">
-                <div class="context-card">
-                    <div class="card-icon">👑</div>
-                    <h4 class="card-title">Nobleza y Honra</h4>
-                    <p class="card-text">
-                        Sociedad <span class="highlight">estamental</span> rígida: nobles, clero, pueblo llano.
-                        <strong>Obsesión por la honra y la "limpieza de sangre"</strong> (no tener ancestros judíos o moros).
-                        Miles de <span class="highlight">hidalgos pobres</span> (como Don Quijote) que viven de apariencias.
-                        Desprecio del trabajo manual: <strong>"el ocio es noble"</strong>.
-                    </p>
+                <div class="timeline-container">
+                    <div class="timeline-item">
+                        <div class="timeline-year">
+                            Carlos I
+                            <span class="timeline-year-range">(1516-1556)</span>
+                        </div>
+                        <div class="timeline-content">
+                            <span class="highlight">Carlos V de Alemania</span>, primer rey de la dinastía Habsburgo en España.
+                            <strong>Imperio donde "no se ponía el sol"</strong>: España, Países Bajos, sur de Italia, Alemania, América.
+                            Guerras constantes: contra Francia, contra los turcos, contra los protestantes alemanes.
+                            Enorme deuda acumulada. <strong>Abdica agotado</strong> en 1556.
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-year">
+                            Felipe II
+                            <span class="timeline-year-range">(1556-1598)</span>
+                        </div>
+                        <div class="timeline-content">
+                            El rey más poderoso de Europa. Cervantes vive toda su juventud bajo su reinado.
+                            <strong>Victoria de Lepanto (1571)</strong> contra los turcos donde combate Cervantes.
+                            <strong>Anexión de Portugal (1580)</strong>: España controla un imperio planetario.
+                            Construcción de <span class="highlight">El Escorial</span>, símbolo del poder español.
+                            Crisis: <strong>rebelión de los Países Bajos, derrota de la Armada Invencible (1588)</strong>, bancarrotas.
+                            Monarquía autoritaria y Contrarreforma católica: <strong>Inquisición</strong> en pleno vigor.
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-year">
+                            Felipe III
+                            <span class="timeline-year-range">(1598-1621)</span>
+                        </div>
+                        <div class="timeline-content">
+                            Rey débil dominado por el <span class="highlight">Duque de Lerma</span> (valido).
+                            Cervantes escribe el Quijote durante este reinado (1605-1615).
+                            <strong>Expulsión de los moriscos (1609)</strong>: 300.000 personas expulsadas, catástrofe económica.
+                            Decadencia política y económica evidente. <strong>Pax Hispánica</strong>: tregua con Inglaterra y Países Bajos.
+                            Crisis social y económica: <strong>despoblación, miseria, vagabundos</strong> (mundo que refleja el Quijote).
+                        </div>
+                    </div>
                 </div>
 
-                <div class="context-card">
-                    <div class="card-icon">💰</div>
-                    <h4 class="card-title">Crisis Económica</h4>
-                    <p class="card-text">
-                        <strong>Inflación galopante</strong> por la llegada del oro de América (paradójicamente empobrece).
-                        <strong>Bancarrotas sucesivas</strong> de la Corona (1557, 1575, 1596, 1607...).
-                        Despoblación del campo, <span class="highlight">mendicidad masiva</span>, pícaros y vagabundos.
-                        Contraste brutal entre <span class="highlight">riqueza ostentosa</span> y <span class="highlight">pobreza extrema</span>.
-                    </p>
+                <!-- Paradoja Cultural -->
+                <h3 class="section-subtitle">💡 El Siglo de Oro: Paradoja Cultural</h3>
+
+                <div class="info-box">
+                    <div class="info-box-content">
+                        <h4 class="info-box-title">Contradicción Fundamental</h4>
+                        <p class="info-box-text">
+                            La mayor <span class="highlight">crisis política y económica</span> de España coincide con su
+                            <span class="highlight">máximo esplendor cultural y literario</span>. Mientras el imperio se desmorona,
+                            España produce a Cervantes, Lope de Vega, Quevedo, Góngora, Calderón, Velázquez, El Greco...
+                            <br><br>
+                            <strong>¿Por qué?</strong> La tensión entre <span class="highlight">ideales imperiales</span> y
+                            <span class="highlight">realidad miserable</span> genera una literatura profunda, crítica e irónica.
+                        </p>
+                    </div>
                 </div>
 
-                <div class="context-card">
-                    <div class="card-icon">✝️</div>
-                    <h4 class="card-title">Contrarreforma</h4>
-                    <p class="card-text">
-                        España, campeona del <span class="highlight">catolicismo militante</span> contra la Reforma protestante.
-                        <strong>Concilio de Trento (1545-1563)</strong>: reafirmación dogmática.
-                        <strong>Inquisición</strong> controla la ortodoxia: censura de libros, persecución de heterodoxos.
-                        Paradoja: fervor religioso convive con <span class="highlight">corrupción clerical</span> (criticada en el Quijote).
-                    </p>
+                <!-- Sociedad Española -->
+                <h3 class="section-subtitle">🎭 Sociedad Española del Siglo XVI-XVII</h3>
+
+                <div class="cards-grid">
+                    <div class="context-card">
+                        <div class="card-icon">👑</div>
+                        <h4 class="card-title">Nobleza y Honra</h4>
+                        <p class="card-text">
+                            Sociedad <span class="highlight">estamental</span> rígida: nobles, clero, pueblo llano.
+                            <strong>Obsesión por la honra y la "limpieza de sangre"</strong> (no tener ancestros judíos o moros).
+                            Miles de <span class="highlight">hidalgos pobres</span> (como Don Quijote) que viven de apariencias.
+                            Desprecio del trabajo manual: <strong>"el ocio es noble"</strong>.
+                        </p>
+                    </div>
+
+                    <div class="context-card">
+                        <div class="card-icon">💰</div>
+                        <h4 class="card-title">Crisis Económica</h4>
+                        <p class="card-text">
+                            <strong>Inflación galopante</strong> por la llegada del oro de América (paradójicamente empobrece).
+                            <strong>Bancarrotas sucesivas</strong> de la Corona (1557, 1575, 1596, 1607...).
+                            Despoblación del campo, <span class="highlight">mendicidad masiva</span>, pícaros y vagabundos.
+                            Contraste brutal entre <span class="highlight">riqueza ostentosa</span> y <span class="highlight">pobreza extrema</span>.
+                        </p>
+                    </div>
+
+                    <div class="context-card">
+                        <div class="card-icon">✝️</div>
+                        <h4 class="card-title">Contrarreforma</h4>
+                        <p class="card-text">
+                            España, campeona del <span class="highlight">catolicismo militante</span> contra la Reforma protestante.
+                            <strong>Concilio de Trento (1545-1563)</strong>: reafirmación dogmática.
+                            <strong>Inquisición</strong> controla la ortodoxia: censura de libros, persecución de heterodoxos.
+                            Paradoja: fervor religioso convive con <span class="highlight">corrupción clerical</span> (criticada en el Quijote).
+                        </p>
+                    </div>
+
+                    <div class="context-card">
+                        <div class="card-icon">📚</div>
+                        <h4 class="card-title">La Imprenta y el Mercado</h4>
+                        <p class="card-text">
+                            <span class="highlight">Revolución de la imprenta</span> (introducida en España en 1472).
+                            Aumento de la <strong>alfabetización urbana</strong> y nacimiento del <span class="highlight">mercado literario</span>.
+                            Aparición del <strong>lector moderno</strong> que compra y lee por placer (no solo por erudición).
+                            El Quijote se beneficia de este mercado: <span class="highlight">bestseller inmediato</span>.
+                        </p>
+                    </div>
+
+                    <div class="context-card">
+                        <div class="card-icon">🗡️</div>
+                        <h4 class="card-title">Mundo de Aventuras</h4>
+                        <p class="card-text">
+                            España domina América, Italia, Flandes: <span class="highlight">soldados, marineros, conquistadores</span>.
+                            Cervantes mismo combate en Lepanto y es cautivo en Argel.
+                            <strong>Piratería</strong> mediterránea (turcos y berberiscos) es amenaza constante.
+                            Realidad épica convive con <span class="highlight">miseria cotidiana</span>.
+                        </p>
+                    </div>
+
+                    <div class="context-card">
+                        <div class="card-icon">🎨</div>
+                        <h4 class="card-title">Renacimiento y Barroco</h4>
+                        <p class="card-text">
+                            Influencia del <span class="highlight">Renacimiento italiano</span> (Cervantes lo conoce directamente).
+                            Transición hacia el <span class="highlight">Barroco</span>: complejidad, contraste, desengaño.
+                            Tensión entre <strong>idealismo renacentista</strong> y <strong>realismo barroco</strong>.
+                            El Quijote refleja perfectamente esta tensión.
+                        </p>
+                    </div>
                 </div>
 
-                <div class="context-card">
-                    <div class="card-icon">📚</div>
-                    <h4 class="card-title">La Imprenta y el Mercado</h4>
-                    <p class="card-text">
-                        <span class="highlight">Revolución de la imprenta</span> (introducida en España en 1472).
-                        Aumento de la <strong>alfabetización urbana</strong> y nacimiento del <span class="highlight">mercado literario</span>.
-                        Aparición del <strong>lector moderno</strong> que compra y lee por placer (no solo por erudición).
-                        El Quijote se beneficia de este mercado: <span class="highlight">bestseller inmediato</span>.
-                    </p>
+                <!-- Literatura de la Época -->
+                <h3 class="section-subtitle">📖 Literatura de la Época: Contexto Cervantino</h3>
+
+                <div class="cards-grid">
+                    <div class="context-card">
+                        <div class="card-icon">⚔️</div>
+                        <h4 class="card-title">Libros de Caballerías</h4>
+                        <p class="card-text">
+                            <strong>Género de moda</strong> en el siglo XVI: <span class="highlight">Amadís de Gaula</span>, <em>Palmerín</em>, etc.
+                            Aventuras fantásticas de caballeros andantes, magia, amores imposibles.
+                            <strong>El Quijote PARODIA este género</strong>: Don Quijote enloquece leyéndolos.
+                            Cervantes los critica por inverosímiles, pero también reconoce su encanto.
+                        </p>
+                    </div>
+
+                    <div class="context-card">
+                        <div class="card-icon">🐑</div>
+                        <h4 class="card-title">Novela Pastoral</h4>
+                        <p class="card-text">
+                            <strong>Pastores idealizados</strong> en paisajes bucólicos: <span class="highlight">La Diana</span> de Montemayor.
+                            Cervantes mismo escribe una: <strong>La Galatea (1585)</strong>.
+                            El Quijote incluye episodios pastoriles, pero con <span class="highlight">distancia irónica</span>.
+                        </p>
+                    </div>
+
+                    <div class="context-card">
+                        <div class="card-icon">🃏</div>
+                        <h4 class="card-title">Novela Picaresca</h4>
+                        <p class="card-text">
+                            <strong>Lazarillo de Tormes (1554)</strong> y <strong>Guzmán de Alfarache (1599)</strong>.
+                            <span class="highlight">Anti-héroes</span> de origen humilde que sobreviven engañando.
+                            Visión <strong>realista y crítica</strong> de la sociedad española.
+                            Influencia en Cervantes: <span class="highlight">realismo</span>, pero sin el pesimismo extremo.
+                        </p>
+                    </div>
+
+                    <div class="context-card">
+                        <div class="card-icon">🎭</div>
+                        <h4 class="card-title">Teatro del Siglo de Oro</h4>
+                        <p class="card-text">
+                            <strong>Lope de Vega</strong> revoluciona el teatro español con cientos de comedias.
+                            Cervantes también escribe teatro, pero con <span class="highlight">menos éxito</span> que Lope.
+                            El Quijote incluye reflexiones sobre el <strong>teatro contemporáneo</strong>.
+                        </p>
+                    </div>
                 </div>
 
-                <div class="context-card">
-                    <div class="card-icon">🗡️</div>
-                    <h4 class="card-title">Mundo de Aventuras</h4>
-                    <p class="card-text">
-                        España domina América, Italia, Flandes: <span class="highlight">soldados, marineros, conquistadores</span>.
-                        Cervantes mismo combate en Lepanto y es cautivo en Argel.
-                        <strong>Piratería</strong> mediterránea (turcos y berberiscos) es amenaza constante.
-                        Realidad épica convive con <span class="highlight">miseria cotidiana</span>.
-                    </p>
+                <!-- El Quijote en su Contexto -->
+                <h3 class="section-subtitle">🔗 El Quijote en su Contexto</h3>
+
+                <div class="info-box">
+                    <div class="info-box-content">
+                        <h4 class="info-box-title">Reflejo de una Época en Crisis</h4>
+                        <p class="info-box-text">
+                            El <strong>Quijote</strong> es un espejo de la España de su tiempo:
+                            <br><br>
+                            <span class="highlight">Don Quijote</span> = El <strong>idealismo anacrónico</strong> de la España imperial (caballerías, honra, heroísmo).
+                            <br><br>
+                            <span class="highlight">Sancho Panza</span> = El <strong>realismo pragmático</strong> del pueblo español (hambre, supervivencia, sentido común).
+                            <br><br>
+                            <span class="highlight">Diálogo entre ambos</span> = La <strong>tensión de la época</strong> entre mito imperial y realidad miserable.
+                            <br><br>
+                            <span class="highlight">Ventas, pícaros, nobles pobres</span> = La <strong>geografía social real</strong> de la España de 1600.
+                            <br><br>
+                            <span class="highlight">Imprenta y lectores</span> = La <strong>revolución del mercado literario</strong> que hace posible el éxito del Quijote.
+                            <br><br>
+                            <span class="highlight">Ironía y perspectivismo</span> = Respuesta artística a una época de <strong>contradicciones</strong> y <strong>desengaños</strong>.
+                        </p>
+                    </div>
                 </div>
 
-                <div class="context-card">
-                    <div class="card-icon">🎨</div>
-                    <h4 class="card-title">Renacimiento y Barroco</h4>
-                    <p class="card-text">
-                        Influencia del <span class="highlight">Renacimiento italiano</span> (Cervantes lo conoce directamente).
-                        Transición hacia el <span class="highlight">Barroco</span>: complejidad, contraste, desengaño.
-                        Tensión entre <strong>idealismo renacentista</strong> y <strong>realismo barroco</strong>.
-                        El Quijote refleja perfectamente esta tensión.
+                <!-- Final Quote -->
+                <div class="quote-box">
+                    <p class="quote-text">
+                        Cervantes escribe en una época contradictoria y fascinante:<br>
+                        imperio en decadencia, esplendor cultural, crisis social, nacimiento del lector moderno.<br>
+                        El Quijote es hijo de todas estas contradicciones.
                     </p>
                 </div>
-            </div>
+            </section>
 
-            <h3 class="section-subtitle">📖 Literatura de la Época: Contexto Cervantino</h3>
-
-            <div class="context-grid">
-                <div class="context-card">
-                    <div class="card-icon">⚔️</div>
-                    <h4 class="card-title">Libros de Caballerías</h4>
-                    <p class="card-text">
-                        <strong>Género de moda</strong> en el siglo XVI: <span class="highlight">Amadís de Gaula</span>, <em>Palmerín</em>, etc.
-                        Aventuras fantásticas de caballeros andantes, magia, amores imposibles.
-                        <strong>El Quijote PARODIA este género</strong>: Don Quijote enloquece leyéndolos.
-                        Cervantes los critica por inverosímiles, pero también reconoce su encanto.
-                    </p>
-                </div>
-
-                <div class="context-card">
-                    <div class="card-icon">🐑</div>
-                    <h4 class="card-title">Novela Pastoral</h4>
-                    <p class="card-text">
-                        <strong>Pastores idealizados</strong> en paisajes bucólicos: <span class="highlight">La Diana</span> de Montemayor.
-                        Cervantes mismo escribe una: <strong>La Galatea (1585)</strong>.
-                        El Quijote incluye episodios pastoriles, pero con <span class="highlight">distancia irónica</span>.
-                    </p>
-                </div>
-
-                <div class="context-card">
-                    <div class="card-icon">🃏</div>
-                    <h4 class="card-title">Novela Picaresca</h4>
-                    <p class="card-text">
-                        <strong>Lazarillo de Tormes (1554)</strong> y <strong>Guzmán de Alfarache (1599)</strong>.
-                        <span class="highlight">Anti-héroes</span> de origen humilde que sobreviven engañando.
-                        Visión <strong>realista y crítica</strong> de la sociedad española.
-                        Influencia en Cervantes: <span class="highlight">realismo</span>, pero sin el pesimismo extremo.
-                    </p>
-                </div>
-
-                <div class="context-card">
-                    <div class="card-icon">🎭</div>
-                    <h4 class="card-title">Teatro del Siglo de Oro</h4>
-                    <p class="card-text">
-                        <strong>Lope de Vega</strong> revoluciona el teatro español con cientos de comedias.
-                        Cervantes también escribe teatro, pero con <span class="highlight">menos éxito</span> que Lope.
-                        El Quijote incluye reflexiones sobre el <strong>teatro contemporáneo</strong>.
-                    </p>
-                </div>
-            </div>
-
-            <h3 class="section-subtitle">🔗 El Quijote en su Contexto</h3>
-
-            <div class="info-box">
-                <h4 class="info-box-title">Reflejo de una Época en Crisis</h4>
-                <p class="info-box-text">
-                    El <strong>Quijote</strong> es un espejo de la España de su tiempo:
-                    <br><br>
-                    <span class="highlight">Don Quijote</span> = El <strong>idealismo anacrónico</strong> de la España imperial (caballerías, honra, heroísmo).
-                    <br><br>
-                    <span class="highlight">Sancho Panza</span> = El <strong>realismo pragmático</strong> del pueblo español (hambre, supervivencia, sentido común).
-                    <br><br>
-                    <span class="highlight">Diálogo entre ambos</span> = La <strong>tensión de la época</strong> entre mito imperial y realidad miserable.
-                    <br><br>
-                    <span class="highlight">Ventas, pícaros, nobles pobres</span> = La <strong>geografía social real</strong> de la España de 1600.
-                    <br><br>
-                    <span class="highlight">Imprenta y lectores</span> = La <strong>revolución del mercado literario</strong> que hace posible el éxito del Quijote.
-                    <br><br>
-                    <span class="highlight">Ironía y perspectivismo</span> = Respuesta artística a una época de <strong>contradicciones</strong> y <strong>desengaños</strong>.
-                </p>
-            </div>
-
-            <div class="quote-box">
-                Cervantes escribe en una época contradictoria y fascinante:<br>
-                imperio en decadencia, esplendor cultural, crisis social, nacimiento del lector moderno.<br>
-                El Quijote es hijo de todas estas contradicciones.
-            </div>
-        </section>
+            <!-- Footer -->
+            <footer class="footer">
+                <p class="footer-text">El Siglo de Oro: máximo esplendor literario en medio de la crisis imperial</p>
+                <div class="footer-badge">📚 Duración estimada: 10 minutos</div>
+            </footer>
+        </div>
     </main>
-
-    <footer>
-        <p class="footer-text">El Siglo de Oro: máximo esplendor literario en medio de la crisis imperial</p>
-        <div class="footer-badge">📚 Duración estimada: 10 minutos</div>
-    </footer>
 </body>
 </html>

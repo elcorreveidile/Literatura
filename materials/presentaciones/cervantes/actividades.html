@@ -4,293 +4,1139 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Actividades Interactivas - Cervantes</title>
-    <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:wght@400;600;700&family=Cinzel:wght@600;700&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        :root {
-            --primary-color: #1a4d7a;
-            --secondary-color: #2c6ba0;
-            --accent-color: #7ba7c7;
-            --text-primary: #1a2a3a;
-            --text-secondary: #3a4a5a;
-            --text-light: #f0f4f8;
-            --background: linear-gradient(135deg, #0f2537 0%, #1a4d7a 50%, #2c6ba0 100%);
-            --content-bg: rgba(240, 244, 248, 0.95);
-            --shadow: 0 8px 32px rgba(0,0,0,0.3);
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
-        body { font-family: 'Crimson Text', serif; color: var(--text-primary); background: var(--background); min-height: 100vh; line-height: 1.6; }
-        header { background: rgba(15, 37, 55, 0.95); padding: 1rem 0; box-shadow: 0 4px 20px rgba(0,0,0,0.3); position: sticky; top: 0; z-index: 1000; }
-        .header-content { max-width: 1200px; margin: 0 auto; padding: 0 2rem; text-align: center; }
-        .main-title { font-family: 'Cinzel', serif; font-size: 2.5rem; color: var(--accent-color); margin-bottom: 1.5rem; text-shadow: 2px 2px 4px rgba(0,0,0,0.5); }
-        .main-subtitle { font-size: 1.2rem; color: var(--text-light); margin-bottom: 2rem; font-style: italic; }
-        nav ul { list-style: none; display: flex; justify-content: center; flex-wrap: wrap; gap: 0.5rem; }
-        nav a { display: block; padding: 0.6rem 1.2rem; background: linear-gradient(45deg, var(--primary-color), var(--secondary-color)); color: var(--text-light); text-decoration: none; border-radius: 25px; font-weight: 600; transition: all 0.3s ease; box-shadow: 0 4px 15px rgba(26, 77, 122, 0.3); font-size: 0.9rem; }
-        nav a:hover { transform: translateY(-2px); background: linear-gradient(45deg, var(--secondary-color), var(--primary-color)); }
-        nav a.active { background: linear-gradient(45deg, var(--accent-color), #9bc3de); color: var(--text-primary); }
-        main { max-width: 1200px; margin: 0 auto; padding: 3rem 2rem; }
-        .content-section { background: var(--content-bg); border-radius: 20px; padding: 3rem; margin-bottom: 2rem; box-shadow: var(--shadow); border: 2px solid var(--primary-color); }
-        .section-title { font-family: 'Cinzel', serif; font-size: 2.5rem; color: var(--primary-color); text-align: center; margin-bottom: 3rem; }
-        .intro-text { font-size: 1.2rem; line-height: 1.8; color: var(--text-secondary); text-align: center; margin-bottom: 3rem; font-style: italic; }
-        .activity-tabs { display: flex; justify-content: center; gap: 1rem; margin-bottom: 3rem; flex-wrap: wrap; }
-        .tab-btn { padding: 1rem 2rem; background: rgba(26, 77, 122, 0.1); border: 2px solid var(--primary-color); border-radius: 25px; font-family: 'Cinzel', serif; color: var(--primary-color); cursor: pointer; transition: all 0.3s ease; font-size: 1.1rem; }
-        .tab-btn:hover { background: rgba(26, 77, 122, 0.2); transform: translateY(-2px); }
-        .tab-btn.active { background: linear-gradient(45deg, var(--primary-color), var(--secondary-color)); color: white; border-color: var(--secondary-color); }
-        .tab-content { display: none; animation: fadeIn 0.5s ease; }
-        .tab-content.active { display: block; }
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
-        .activity-container { background: rgba(255, 255, 255, 0.8); border-radius: 15px; padding: 2rem; margin-bottom: 2rem; }
-        .quiz-question { font-family: 'Cinzel', serif; font-size: 1.3rem; color: var(--primary-color); margin-bottom: 1.5rem; }
-        .quiz-options { display: flex; flex-direction: column; gap: 1rem; margin-bottom: 2rem; }
-        .quiz-option { background: white; border: 2px solid rgba(26, 77, 122, 0.2); border-radius: 10px; padding: 1rem; cursor: pointer; transition: all 0.3s ease; display: flex; align-items: center; gap: 1rem; }
-        .quiz-option:hover { background: rgba(26, 77, 122, 0.05); border-color: var(--primary-color); transform: translateX(5px); }
-        .quiz-option input[type="radio"] { width: 20px; height: 20px; }
-        .quiz-option.correct { background: rgba(76, 175, 80, 0.1); border-color: #4CAF50; }
-        .quiz-option.incorrect { background: rgba(244, 67, 54, 0.1); border-color: #f44336; }
-        .submit-btn { background: linear-gradient(45deg, var(--primary-color), var(--secondary-color)); color: white; border: none; padding: 1rem 2rem; border-radius: 25px; font-size: 1.1rem; cursor: pointer; transition: all 0.3s ease; box-shadow: 0 4px 15px rgba(26, 77, 122, 0.3); font-family: 'Cinzel', serif; }
-        .submit-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(26, 77, 122, 0.4); }
-        .result-message { text-align: center; font-size: 1.2rem; margin-top: 2rem; padding: 1rem; border-radius: 10px; }
-        .result-success { background: rgba(76, 175, 80, 0.1); color: #2E7D32; border: 2px solid #4CAF50; }
-        .result-partial { background: rgba(255, 152, 0, 0.1); color: #E65100; border: 2px solid #FF9800; }
-        .character-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; margin-bottom: 2rem; }
-        .character-card { background: white; border: 2px solid rgba(26, 77, 122, 0.2); border-radius: 15px; padding: 1.5rem; text-align: center; cursor: pointer; transition: all 0.3s ease; }
-        .character-card:hover { background: rgba(26, 77, 122, 0.05); border-color: var(--primary-color); transform: translateY(-5px); }
-        .character-icon { font-size: 2.5rem; color: var(--primary-color); margin-bottom: 1rem; }
-        .character-name { font-family: 'Cinzel', serif; font-size: 1.2rem; color: var(--primary-color); margin-bottom: 0.5rem; }
-        .character-role { color: var(--text-secondary); font-size: 0.9rem; }
-        .character-analysis { display: none; margin-top: 1rem; padding-top: 1rem; border-top: 1px solid rgba(26, 77, 122, 0.2); }
-        .character-analysis.active { display: block; }
-        .text-editor { width: 100%; min-height: 300px; padding: 1.5rem; border: 2px solid rgba(26, 77, 122, 0.2); border-radius: 10px; font-family: 'Crimson Text', serif; font-size: 1.1rem; line-height: 1.8; resize: vertical; background: white; }
-        .text-editor:focus { outline: none; border-color: var(--primary-color); background: rgba(255, 255, 255, 0.95); }
-        .editor-prompt { background: rgba(26, 77, 122, 0.05); border-left: 4px solid var(--primary-color); padding: 1.5rem; margin-bottom: 2rem; border-radius: 5px; }
-        .debate-container { margin-bottom: 2rem; }
-        .debate-question { font-family: 'Cinzel', serif; font-size: 1.2rem; color: var(--primary-color); margin-bottom: 1rem; }
-        .debate-options { display: flex; flex-direction: column; gap: 1rem; margin-bottom: 1.5rem; }
-        .debate-option { display: flex; align-items: center; gap: 1rem; padding: 1rem; background: white; border: 2px solid rgba(26, 77, 122, 0.2); border-radius: 10px; cursor: pointer; transition: all 0.3s ease; }
-        .debate-option:hover { background: rgba(26, 77, 122, 0.05); border-color: var(--primary-color); }
-        .debate-response { display: none; margin-top: 1rem; padding: 1rem; background: rgba(26, 77, 122, 0.05); border-radius: 5px; }
-        .debate-response.active { display: block; }
-        .word-count { text-align: right; color: var(--text-secondary); font-size: 0.9rem; margin-top: 0.5rem; }
-        .highlight { background: linear-gradient(45deg, var(--primary-color), var(--secondary-color)); color: white; padding: 3px 10px; border-radius: 15px; font-weight: 600; display: inline-block; margin: 2px; }
-        .floating-arrow { position: fixed; right: 2rem; bottom: 2rem; width: 50px; height: 50px; background: linear-gradient(45deg, var(--primary-color), var(--secondary-color)); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 1.5rem; cursor: pointer; box-shadow: 0 4px 15px rgba(26, 77, 122, 0.4); transition: all 0.3s ease; z-index: 1000; opacity: 0; }
-        .floating-arrow:hover { transform: translateY(-5px); opacity: 1; box-shadow: 0 6px 20px rgba(26, 77, 122, 0.5); }
-        .source-link { color: var(--primary-color); text-decoration: underline; font-weight: 600; transition: all 0.3s ease; }
-        .source-link:hover { color: var(--secondary-color); text-decoration: none; }
-        footer { background: rgba(15, 37, 55, 0.95); color: var(--text-light); text-align: center; padding: 2rem; margin-top: 4rem; }
-        @media (max-width: 768px) { .main-title { font-size: 2rem; } .header-content { padding: 0 1rem; } main { padding: 2rem 1rem; } .content-section { padding: 2rem 1.5rem; } .activity-tabs { gap: 0.5rem; } .tab-btn { padding: 0.8rem 1.5rem; font-size: 1rem; } .floating-arrow { right: 1rem; bottom: 1rem; width: 45px; height: 45px; font-size: 1.2rem; } }
+
+        :root {
+            --gradient-1: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --gradient-2: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            --gradient-3: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            --gradient-4: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+            --gradient-5: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+            --gradient-main: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+            --text-dark: #1a1a2e;
+            --text-light: #f8f9fa;
+            --bg-dark: #0f0f1e;
+            --bg-card: rgba(255, 255, 255, 0.95);
+            --shadow-sm: 0 2px 10px rgba(0,0,0,0.1);
+            --shadow-md: 0 8px 30px rgba(0,0,0,0.12);
+            --shadow-lg: 0 20px 60px rgba(0,0,0,0.3);
+            --sidebar-width: 280px;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--text-dark);
+            background: var(--gradient-main);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* Sidebar Navigation */
+        .sidebar {
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: var(--sidebar-width);
+            height: 100vh;
+            background: rgba(15, 15, 30, 0.95);
+            backdrop-filter: blur(20px);
+            padding: 2rem 0;
+            z-index: 1000;
+            box-shadow: var(--shadow-lg);
+            overflow-y: auto;
+        }
+
+        .sidebar-header {
+            padding: 0 1.5rem 2rem;
+            border-bottom: 2px solid rgba(255,255,255,0.1);
+            margin-bottom: 2rem;
+        }
+
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            font-weight: 900;
+            background: var(--gradient-5);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 0.5rem;
+            line-height: 1.2;
+        }
+
+        .logo-subtitle {
+            color: rgba(255,255,255,0.6);
+            font-size: 0.85rem;
+            font-weight: 400;
+        }
+
+        .nav-menu {
+            list-style: none;
+            padding: 0 1rem;
+        }
+
+        .nav-item {
+            margin-bottom: 0.5rem;
+        }
+
+        .nav-link {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem 1rem;
+            color: rgba(255,255,255,0.8);
+            text-decoration: none;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .nav-link::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 4px;
+            height: 100%;
+            background: var(--gradient-5);
+            transform: scaleY(0);
+            transition: transform 0.3s ease;
+        }
+
+        .nav-link:hover {
+            background: rgba(255,255,255,0.1);
+            color: #fff;
+            transform: translateX(5px);
+        }
+
+        .nav-link:hover::before {
+            transform: scaleY(1);
+        }
+
+        .nav-link.active {
+            background: var(--gradient-5);
+            color: #fff;
+        }
+
+        .nav-icon {
+            font-size: 1.4rem;
+            width: 24px;
+            text-align: center;
+        }
+
+        /* Main Content */
+        .main-content {
+            margin-left: var(--sidebar-width);
+            min-height: 100vh;
+            padding: 3rem;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: var(--bg-card);
+            border-radius: 30px;
+            padding: 3rem;
+            margin-bottom: 3rem;
+            box-shadow: var(--shadow-lg);
+            position: relative;
+            overflow: hidden;
+            animation: fadeInUp 0.6s ease-out;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -10%;
+            width: 500px;
+            height: 500px;
+            background: var(--gradient-5);
+            opacity: 0.08;
+            border-radius: 50%;
+            filter: blur(100px);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            padding: 0.5rem 1.5rem;
+            background: var(--gradient-1);
+            color: white;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 1.5rem;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .hero-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.5rem;
+            font-weight: 900;
+            line-height: 1.1;
+            margin-bottom: 1rem;
+            background: var(--gradient-main);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-subtitle {
+            font-size: 1.2rem;
+            color: #666;
+            line-height: 1.6;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .highlight-text {
+            background: var(--gradient-5);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: 700;
+        }
+
+        /* Activity Tabs */
+        .activity-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin-bottom: 3rem;
+        }
+
+        .tab-btn {
+            padding: 1rem 2rem;
+            background: var(--bg-card);
+            border: 3px solid transparent;
+            border-radius: 20px;
+            font-family: 'Inter', sans-serif;
+            font-weight: 700;
+            font-size: 1rem;
+            color: var(--text-dark);
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: var(--shadow-sm);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .tab-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: 0;
+        }
+
+        .tab-btn:nth-child(1)::before { background: var(--gradient-1); }
+        .tab-btn:nth-child(2)::before { background: var(--gradient-2); }
+        .tab-btn:nth-child(3)::before { background: var(--gradient-3); }
+        .tab-btn:nth-child(4)::before { background: var(--gradient-4); }
+        .tab-btn:nth-child(5)::before { background: var(--gradient-5); }
+        .tab-btn:nth-child(6)::before { background: var(--gradient-1); }
+        .tab-btn:nth-child(7)::before { background: var(--gradient-2); }
+
+        .tab-btn span {
+            position: relative;
+            z-index: 1;
+        }
+
+        .tab-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .tab-btn:hover::before {
+            opacity: 0.1;
+        }
+
+        .tab-btn.active {
+            color: white;
+            border-color: transparent;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .tab-btn.active::before {
+            opacity: 1;
+        }
+
+        .tab-btn:nth-child(1).active { background: var(--gradient-1); }
+        .tab-btn:nth-child(2).active { background: var(--gradient-2); }
+        .tab-btn:nth-child(3).active { background: var(--gradient-3); }
+        .tab-btn:nth-child(4).active { background: var(--gradient-4); }
+        .tab-btn:nth-child(5).active { background: var(--gradient-5); }
+        .tab-btn:nth-child(6).active { background: var(--gradient-1); }
+        .tab-btn:nth-child(7).active { background: var(--gradient-2); }
+
+        /* Tab Content */
+        .tab-content {
+            display: none;
+            animation: fadeInUp 0.5s ease;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Activity Section */
+        .activity-section {
+            background: var(--bg-card);
+            border-radius: 24px;
+            padding: 3rem;
+            margin-bottom: 2rem;
+            box-shadow: var(--shadow-lg);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .activity-section::before {
+            content: '';
+            position: absolute;
+            top: -20px;
+            right: -20px;
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            opacity: 0.05;
+            filter: blur(60px);
+        }
+
+        .tab-content:nth-child(1) .activity-section::before { background: var(--gradient-1); }
+        .tab-content:nth-child(2) .activity-section::before { background: var(--gradient-2); }
+        .tab-content:nth-child(3) .activity-section::before { background: var(--gradient-3); }
+        .tab-content:nth-child(4) .activity-section::before { background: var(--gradient-4); }
+        .tab-content:nth-child(5) .activity-section::before { background: var(--gradient-5); }
+
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            font-weight: 900;
+            margin-bottom: 2rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        #quiz .section-title { background: var(--gradient-1); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+        #characters .section-title { background: var(--gradient-2); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+        #modern .section-title { background: var(--gradient-3); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+        #creative .section-title { background: var(--gradient-4); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+        #debate .section-title { background: var(--gradient-5); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+        #research .section-title { background: var(--gradient-1); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+        #dramatization .section-title { background: var(--gradient-2); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+
+        .intro-text {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #666;
+            margin-bottom: 2rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Quiz Styles */
+        .quiz-container {
+            background: white;
+            border-radius: 20px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: var(--shadow-sm);
+            transition: all 0.3s ease;
+            position: relative;
+            z-index: 1;
+        }
+
+        .quiz-container:hover {
+            box-shadow: var(--shadow-md);
+            transform: translateY(-2px);
+        }
+
+        .quiz-question {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--text-dark);
+            margin-bottom: 1.5rem;
+            line-height: 1.4;
+        }
+
+        .quiz-options {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .quiz-option {
+            background: #f8f9fa;
+            border: 2px solid #e9ecef;
+            border-radius: 12px;
+            padding: 1.2rem;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            font-size: 1rem;
+        }
+
+        .quiz-option:hover {
+            background: white;
+            border-color: #667eea;
+            transform: translateX(8px);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .quiz-option input[type="radio"] {
+            width: 22px;
+            height: 22px;
+            cursor: pointer;
+            accent-color: #667eea;
+        }
+
+        .quiz-option.correct {
+            background: rgba(67, 233, 123, 0.1);
+            border-color: #43e97b;
+            animation: correctPulse 0.5s ease;
+        }
+
+        .quiz-option.incorrect {
+            background: rgba(245, 87, 108, 0.1);
+            border-color: #f5576c;
+            animation: shake 0.5s ease;
+        }
+
+        @keyframes correctPulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.02); }
+        }
+
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-5px); }
+            75% { transform: translateX(5px); }
+        }
+
+        /* Submit Button */
+        .submit-btn {
+            background: var(--gradient-1);
+            color: white;
+            border: none;
+            padding: 1.2rem 3rem;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: var(--shadow-md);
+            font-family: 'Inter', sans-serif;
+            display: inline-block;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .submit-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: rgba(255,255,255,0.2);
+            transition: left 0.5s ease;
+        }
+
+        .submit-btn:hover::before {
+            left: 100%;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .submit-btn:active {
+            transform: translateY(-1px) scale(1.02);
+        }
+
+        /* Result Messages */
+        .result-message {
+            text-align: center;
+            padding: 2rem;
+            border-radius: 20px;
+            margin-top: 2rem;
+            font-size: 1.1rem;
+            animation: fadeInUp 0.5s ease;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .result-success {
+            background: rgba(67, 233, 123, 0.1);
+            border: 3px solid #43e97b;
+            color: #2d8659;
+        }
+
+        .result-success h3 {
+            color: #2d8659;
+            font-size: 1.8rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .result-partial {
+            background: rgba(250, 112, 154, 0.1);
+            border: 3px solid #fa709a;
+            color: #c24869;
+        }
+
+        .result-partial h3 {
+            color: #c24869;
+            font-size: 1.8rem;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Character Cards */
+        .character-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .character-card {
+            background: white;
+            border-radius: 20px;
+            padding: 2rem;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: var(--shadow-sm);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .character-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .character-card:nth-child(1)::before { background: var(--gradient-1); }
+        .character-card:nth-child(2)::before { background: var(--gradient-2); }
+        .character-card:nth-child(3)::before { background: var(--gradient-3); }
+        .character-card:nth-child(4)::before { background: var(--gradient-4); }
+
+        .character-card:hover {
+            transform: translateY(-10px) scale(1.03);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .character-card:hover::before {
+            opacity: 0.05;
+        }
+
+        .character-icon {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .character-name {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            font-weight: 900;
+            margin-bottom: 0.5rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .character-role {
+            color: #666;
+            font-size: 1rem;
+            margin-bottom: 1rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .character-analysis {
+            display: none;
+            margin-top: 1.5rem;
+            padding-top: 1.5rem;
+            border-top: 2px solid #f0f0f0;
+            text-align: left;
+            line-height: 1.8;
+            font-size: 0.95rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .character-analysis.active {
+            display: block;
+            animation: fadeInUp 0.4s ease;
+        }
+
+        /* Text Editor */
+        .editor-prompt {
+            background: rgba(102, 126, 234, 0.08);
+            border-left: 5px solid #667eea;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            border-radius: 12px;
+            line-height: 1.8;
+            position: relative;
+            z-index: 1;
+        }
+
+        .editor-prompt strong {
+            color: var(--text-dark);
+            font-size: 1.1rem;
+        }
+
+        .editor-prompt ul, .editor-prompt ol {
+            margin-top: 1rem;
+            margin-left: 1.5rem;
+        }
+
+        .editor-prompt li {
+            margin-bottom: 0.5rem;
+        }
+
+        .text-editor {
+            width: 100%;
+            min-height: 350px;
+            padding: 1.5rem;
+            border: 3px solid #e9ecef;
+            border-radius: 16px;
+            font-family: 'Inter', sans-serif;
+            font-size: 1.05rem;
+            line-height: 1.8;
+            resize: vertical;
+            background: white;
+            transition: all 0.3s ease;
+            position: relative;
+            z-index: 1;
+        }
+
+        .text-editor:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.1);
+        }
+
+        .word-count {
+            text-align: right;
+            color: #666;
+            font-size: 0.95rem;
+            margin-top: 0.5rem;
+            font-weight: 600;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Debate Styles */
+        .debate-container {
+            background: white;
+            border-radius: 20px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: var(--shadow-sm);
+            transition: all 0.3s ease;
+            position: relative;
+            z-index: 1;
+        }
+
+        .debate-container:hover {
+            box-shadow: var(--shadow-md);
+        }
+
+        .debate-question {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--text-dark);
+            margin-bottom: 1.5rem;
+        }
+
+        .debate-options {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .debate-option {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1.2rem;
+            background: #f8f9fa;
+            border: 2px solid #e9ecef;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .debate-option:hover {
+            background: white;
+            border-color: #fa709a;
+            transform: translateX(8px);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .debate-option input[type="radio"] {
+            width: 22px;
+            height: 22px;
+            cursor: pointer;
+            accent-color: #fa709a;
+        }
+
+        .debate-response {
+            display: none;
+            margin-top: 1rem;
+            padding: 1.5rem;
+            background: rgba(250, 112, 154, 0.08);
+            border-radius: 12px;
+            line-height: 1.8;
+            border-left: 4px solid #fa709a;
+        }
+
+        .debate-response.active {
+            display: block;
+            animation: fadeInUp 0.4s ease;
+        }
+
+        /* Floating Scroll Button */
+        .scroll-top {
+            position: fixed;
+            right: 2rem;
+            bottom: 2rem;
+            width: 60px;
+            height: 60px;
+            background: var(--gradient-5);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.8rem;
+            cursor: pointer;
+            box-shadow: var(--shadow-lg);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            opacity: 0;
+            visibility: hidden;
+            z-index: 999;
+        }
+
+        .scroll-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .scroll-top:hover {
+            transform: translateY(-8px) scale(1.1);
+            box-shadow: 0 25px 70px rgba(0,0,0,0.4);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .sidebar {
+                transform: translateX(-100%);
+                transition: transform 0.3s ease;
+            }
+
+            .main-content {
+                margin-left: 0;
+                padding: 2rem 1.5rem;
+            }
+
+            .hero {
+                padding: 2rem;
+            }
+
+            .hero-title {
+                font-size: 2.5rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .activity-tabs {
+                gap: 0.5rem;
+            }
+
+            .tab-btn {
+                padding: 0.8rem 1.5rem;
+                font-size: 0.9rem;
+            }
+
+            .character-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .scroll-top {
+                right: 1rem;
+                bottom: 1rem;
+                width: 50px;
+                height: 50px;
+                font-size: 1.5rem;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .hero-title {
+                font-size: 2rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1rem;
+            }
+
+            .section-title {
+                font-size: 1.8rem;
+            }
+
+            .activity-section {
+                padding: 2rem 1.5rem;
+            }
+
+            .quiz-container, .debate-container {
+                padding: 1.5rem;
+            }
+        }
+
+        /* Additional animations */
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        .character-card:hover .character-icon {
+            animation: pulse 1s infinite;
+        }
     </style>
 </head>
 <body>
-    <header>
-        <div class="header-content">
-            <h1 class="main-title">Miguel de Cervantes Saavedra</h1>
-            <p class="main-subtitle">El genio universal que creó la novela moderna</p>
-            <nav>
-                <ul>
-                    <li><a href="index.html">📚 Inicio</a></li>
-                    <li><a href="biografia.html">👤 Biografía</a></li>
-                    <li><a href="contexto-historico.html">🏛️ Contexto</a></li>
-                    <li><a href="quijote.html">⚔️ Quijote</a></li>
-                    <li><a href="novelas-ejemplares.html">📖 Novelas</a></li>
-                    <li><a href="estilo.html">✒️ Estilo</a></li>
-                    <li><a href="fragmentos.html">📜 Fragmentos</a></li>
-                    <li><a href="actividades.html" class="active">🎯 Actividades</a></li>
-                </ul>
-            </nav>
+    <!-- Sidebar Navigation -->
+    <aside class="sidebar">
+        <div class="sidebar-header">
+            <h1 class="logo">Cervantes<br>Portal</h1>
+            <p class="logo-subtitle">Literatura Española ELE B1.2</p>
         </div>
-    </header>
+        <nav>
+            <ul class="nav-menu">
+                <li class="nav-item">
+                    <a href="index.html" class="nav-link">
+                        <span class="nav-icon">🏠</span>
+                        <span>Inicio</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="biografia.html" class="nav-link">
+                        <span class="nav-icon">👤</span>
+                        <span>Biografía</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="contexto-historico.html" class="nav-link">
+                        <span class="nav-icon">🏛️</span>
+                        <span>Contexto Histórico</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="quijote.html" class="nav-link">
+                        <span class="nav-icon">⚔️</span>
+                        <span>Don Quijote</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="novelas-ejemplares.html" class="nav-link">
+                        <span class="nav-icon">📖</span>
+                        <span>Novelas Ejemplares</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="estilo.html" class="nav-link">
+                        <span class="nav-icon">✒️</span>
+                        <span>Estilo Literario</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="fragmentos.html" class="nav-link">
+                        <span class="nav-icon">📜</span>
+                        <span>Fragmentos Clave</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="actividades.html" class="nav-link active">
+                        <span class="nav-icon">🎯</span>
+                        <span>Actividades</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </aside>
 
-    <main>
-        <section class="content-section">
-            <h2 class="section-title">🎯 Actividades Interactivas</h2>
-            <p class="intro-text">
-                <strong>Para estudiantes de español nivel B1.2</strong><br>
-                Practica tu español con <span class="highlight">Miguel de Cervantes</span> y el <span class="highlight">Quijote</span>.<br>
-                7 actividades interactivas para mejorar tu comprensión y escritura.
-            </p>
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="container">
+            <!-- Hero Section -->
+            <section class="hero">
+                <div class="hero-content">
+                    <div class="hero-badge">🎯 ACTIVIDADES INTERACTIVAS</div>
+                    <h1 class="hero-title">Practica con Cervantes</h1>
+                    <p class="hero-subtitle">
+                        <strong>Para estudiantes de español nivel B1.2</strong><br>
+                        Practica tu español con <span class="highlight-text">Miguel de Cervantes</span> y el <span class="highlight-text">Quijote</span>.
+                        7 actividades interactivas para mejorar tu comprensión y escritura.
+                    </p>
+                </div>
+            </section>
 
+            <!-- Activity Tabs -->
             <div class="activity-tabs">
-                <button class="tab-btn active" onclick="showTab('quiz')">📝 Quiz</button>
-                <button class="tab-btn" onclick="showTab('characters')">👤 Personajes</button>
-                <button class="tab-btn" onclick="showTab('modern')">🎬 Guion Siglo XXI</button>
-                <button class="tab-btn" onclick="showTab('creative')">✍️ Aventura</button>
-                <button class="tab-btn" onclick="showTab('debate')">💭 Debate</button>
-                <button class="tab-btn" onclick="showTab('research')">🔍 Investiga</button>
-                <button class="tab-btn" onclick="showTab('dramatization')">🎭 Teatro</button>
+                <button class="tab-btn active" onclick="showTab('quiz')">
+                    <span>📝 Quiz</span>
+                </button>
+                <button class="tab-btn" onclick="showTab('characters')">
+                    <span>👤 Personajes</span>
+                </button>
+                <button class="tab-btn" onclick="showTab('modern')">
+                    <span>🎬 Guion Siglo XXI</span>
+                </button>
+                <button class="tab-btn" onclick="showTab('creative')">
+                    <span>✍️ Aventura</span>
+                </button>
+                <button class="tab-btn" onclick="showTab('debate')">
+                    <span>💭 Debate</span>
+                </button>
+                <button class="tab-btn" onclick="showTab('research')">
+                    <span>🔍 Investiga</span>
+                </button>
+                <button class="tab-btn" onclick="showTab('dramatization')">
+                    <span>🎭 Teatro</span>
+                </button>
             </div>
 
             <!-- ACTIVIDAD 1: QUIZ -->
             <div id="quiz" class="tab-content active">
-                <h3 style="font-family: 'Cinzel', serif; font-size: 1.8rem; color: var(--primary-color); margin-bottom: 2rem;">📝 Quiz de Comprensión sobre Cervantes</h3>
+                <div class="activity-section">
+                    <h2 class="section-title">📝 Quiz de Comprensión sobre Cervantes</h2>
 
-                <div class="activity-container">
-                    <div class="quiz-question">1. ¿En qué batalla naval perdió Cervantes el uso de su mano izquierda?</div>
-                    <div class="quiz-options">
-                        <label class="quiz-option">
-                            <input type="radio" name="q1" value="a">
-                            <span>a) Batalla de San Quintín</span>
-                        </label>
-                        <label class="quiz-option">
-                            <input type="radio" name="q1" value="b">
-                            <span>b) Batalla de Lepanto (1571)</span>
-                        </label>
-                        <label class="quiz-option">
-                            <input type="radio" name="q1" value="c">
-                            <span>c) Batalla de Pavía</span>
-                        </label>
-                        <label class="quiz-option">
-                            <input type="radio" name="q1" value="d">
-                            <span>d) Armada Invencible</span>
-                        </label>
+                    <div class="quiz-container">
+                        <div class="quiz-question">1. ¿En qué batalla naval perdió Cervantes el uso de su mano izquierda?</div>
+                        <div class="quiz-options">
+                            <label class="quiz-option">
+                                <input type="radio" name="q1" value="a">
+                                <span>a) Batalla de San Quintín</span>
+                            </label>
+                            <label class="quiz-option">
+                                <input type="radio" name="q1" value="b">
+                                <span>b) Batalla de Lepanto (1571)</span>
+                            </label>
+                            <label class="quiz-option">
+                                <input type="radio" name="q1" value="c">
+                                <span>c) Batalla de Pavía</span>
+                            </label>
+                            <label class="quiz-option">
+                                <input type="radio" name="q1" value="d">
+                                <span>d) Armada Invencible</span>
+                            </label>
+                        </div>
                     </div>
-                </div>
 
-                <div class="activity-container">
-                    <div class="quiz-question">2. ¿Cuántos años estuvo Cervantes cautivo en Argel?</div>
-                    <div class="quiz-options">
-                        <label class="quiz-option">
-                            <input type="radio" name="q2" value="a">
-                            <span>a) 3 años</span>
-                        </label>
-                        <label class="quiz-option">
-                            <input type="radio" name="q2" value="b">
-                            <span>b) 5 años (1575-1580)</span>
-                        </label>
-                        <label class="quiz-option">
-                            <input type="radio" name="q2" value="c">
-                            <span>c) 7 años</span>
-                        </label>
-                        <label class="quiz-option">
-                            <input type="radio" name="q2" value="d">
-                            <span>d) 10 años</span>
-                        </label>
+                    <div class="quiz-container">
+                        <div class="quiz-question">2. ¿Cuántos años estuvo Cervantes cautivo en Argel?</div>
+                        <div class="quiz-options">
+                            <label class="quiz-option">
+                                <input type="radio" name="q2" value="a">
+                                <span>a) 3 años</span>
+                            </label>
+                            <label class="quiz-option">
+                                <input type="radio" name="q2" value="b">
+                                <span>b) 5 años (1575-1580)</span>
+                            </label>
+                            <label class="quiz-option">
+                                <input type="radio" name="q2" value="c">
+                                <span>c) 7 años</span>
+                            </label>
+                            <label class="quiz-option">
+                                <input type="radio" name="q2" value="d">
+                                <span>d) 10 años</span>
+                            </label>
+                        </div>
                     </div>
-                </div>
 
-                <div class="activity-container">
-                    <div class="quiz-question">3. ¿En qué años se publicaron las dos partes del Quijote?</div>
-                    <div class="quiz-options">
-                        <label class="quiz-option">
-                            <input type="radio" name="q3" value="a">
-                            <span>a) 1595 y 1605</span>
-                        </label>
-                        <label class="quiz-option">
-                            <input type="radio" name="q3" value="b">
-                            <span>b) 1605 y 1615</span>
-                        </label>
-                        <label class="quiz-option">
-                            <input type="radio" name="q3" value="c">
-                            <span>c) 1600 y 1610</span>
-                        </label>
-                        <label class="quiz-option">
-                            <input type="radio" name="q3" value="d">
-                            <span>d) 1610 y 1620</span>
-                        </label>
+                    <div class="quiz-container">
+                        <div class="quiz-question">3. ¿En qué años se publicaron las dos partes del Quijote?</div>
+                        <div class="quiz-options">
+                            <label class="quiz-option">
+                                <input type="radio" name="q3" value="a">
+                                <span>a) 1595 y 1605</span>
+                            </label>
+                            <label class="quiz-option">
+                                <input type="radio" name="q3" value="b">
+                                <span>b) 1605 y 1615</span>
+                            </label>
+                            <label class="quiz-option">
+                                <input type="radio" name="q3" value="c">
+                                <span>c) 1600 y 1610</span>
+                            </label>
+                            <label class="quiz-option">
+                                <input type="radio" name="q3" value="d">
+                                <span>d) 1610 y 1620</span>
+                            </label>
+                        </div>
                     </div>
-                </div>
 
-                <div class="activity-container">
-                    <div class="quiz-question">4. ¿Cuál es el nombre real de Don Quijote antes de volverse caballero andante?</div>
-                    <div class="quiz-options">
-                        <label class="quiz-option">
-                            <input type="radio" name="q4" value="a">
-                            <span>a) Rodrigo de Cervantes</span>
-                        </label>
-                        <label class="quiz-option">
-                            <input type="radio" name="q4" value="b">
-                            <span>b) Alonso Quijano</span>
-                        </label>
-                        <label class="quiz-option">
-                            <input type="radio" name="q4" value="c">
-                            <span>c) Sancho de la Mancha</span>
-                        </label>
-                        <label class="quiz-option">
-                            <input type="radio" name="q4" value="d">
-                            <span>d) Miguel de Alcalá</span>
-                        </label>
+                    <div class="quiz-container">
+                        <div class="quiz-question">4. ¿Cuál es el nombre real de Don Quijote antes de volverse caballero andante?</div>
+                        <div class="quiz-options">
+                            <label class="quiz-option">
+                                <input type="radio" name="q4" value="a">
+                                <span>a) Rodrigo de Cervantes</span>
+                            </label>
+                            <label class="quiz-option">
+                                <input type="radio" name="q4" value="b">
+                                <span>b) Alonso Quijano</span>
+                            </label>
+                            <label class="quiz-option">
+                                <input type="radio" name="q4" value="c">
+                                <span>c) Sancho de la Mancha</span>
+                            </label>
+                            <label class="quiz-option">
+                                <input type="radio" name="q4" value="d">
+                                <span>d) Miguel de Alcalá</span>
+                            </label>
+                        </div>
                     </div>
-                </div>
 
-                <div class="activity-container">
-                    <div class="quiz-question">5. ¿Cuántas "Novelas Ejemplares" publicó Cervantes en 1613?</div>
-                    <div class="quiz-options">
-                        <label class="quiz-option">
-                            <input type="radio" name="q5" value="a">
-                            <span>a) 8 novelas</span>
-                        </label>
-                        <label class="quiz-option">
-                            <input type="radio" name="q5" value="b">
-                            <span>b) 10 novelas</span>
-                        </label>
-                        <label class="quiz-option">
-                            <input type="radio" name="q5" value="c">
-                            <span>c) 12 novelas</span>
-                        </label>
-                        <label class="quiz-option">
-                            <input type="radio" name="q5" value="d">
-                            <span>d) 15 novelas</span>
-                        </label>
+                    <div class="quiz-container">
+                        <div class="quiz-question">5. ¿Cuántas "Novelas Ejemplares" publicó Cervantes en 1613?</div>
+                        <div class="quiz-options">
+                            <label class="quiz-option">
+                                <input type="radio" name="q5" value="a">
+                                <span>a) 8 novelas</span>
+                            </label>
+                            <label class="quiz-option">
+                                <input type="radio" name="q5" value="b">
+                                <span>b) 10 novelas</span>
+                            </label>
+                            <label class="quiz-option">
+                                <input type="radio" name="q5" value="c">
+                                <span>c) 12 novelas</span>
+                            </label>
+                            <label class="quiz-option">
+                                <input type="radio" name="q5" value="d">
+                                <span>d) 15 novelas</span>
+                            </label>
+                        </div>
                     </div>
-                </div>
 
-                <button class="submit-btn" onclick="checkQuiz()">Comprobar Respuestas</button>
-                <div id="quiz-result"></div>
+                    <button class="submit-btn" onclick="checkQuiz()">Comprobar Respuestas</button>
+                    <div id="quiz-result"></div>
+                </div>
             </div>
 
             <!-- ACTIVIDAD 2: PERSONAJES -->
             <div id="characters" class="tab-content">
-                <h3 style="font-family: 'Cinzel', serif; font-size: 1.8rem; color: var(--primary-color); margin-bottom: 2rem;">👤 Análisis de Personajes Principales</h3>
-                <p style="font-size: 1.1rem; margin-bottom: 2rem; color: var(--text-secondary);">
-                    Haz clic en cada personaje para descubrir un análisis detallado de su rol en el Quijote.
-                </p>
+                <div class="activity-section">
+                    <h2 class="section-title">👤 Análisis de Personajes Principales</h2>
+                    <p class="intro-text">
+                        Haz clic en cada personaje para descubrir un análisis detallado de su rol en el Quijote.
+                    </p>
 
-                <div class="character-grid">
-                    <div class="character-card" onclick="toggleCharacter('quijote')">
-                        <div class="character-icon">⚔️</div>
-                        <div class="character-name">Don Quijote</div>
-                        <div class="character-role">El Caballero Idealista</div>
-                        <div id="quijote" class="character-analysis">
-                            <strong>Evolución:</strong> Hidalgo → Caballero andante → Alonso Quijano<br><br>
-                            <strong>Personalidad:</strong> Idealista absoluto, noble, quijotesco. Ve el mundo según códigos caballerescos anacrónicos.<br><br>
-                            <strong>Simboliza:</strong> El idealismo, la imaginación, la lucha contra la realidad prosaica.<br><br>
-                            <strong>Conflicto:</strong> Choque constante entre su visión ideal del mundo y la realidad material.
+                    <div class="character-grid">
+                        <div class="character-card" onclick="toggleCharacter('quijote')">
+                            <div class="character-icon">⚔️</div>
+                            <div class="character-name">Don Quijote</div>
+                            <div class="character-role">El Caballero Idealista</div>
+                            <div id="quijote" class="character-analysis">
+                                <strong>Evolución:</strong> Hidalgo → Caballero andante → Alonso Quijano<br><br>
+                                <strong>Personalidad:</strong> Idealista absoluto, noble, quijotesco. Ve el mundo según códigos caballerescos anacrónicos.<br><br>
+                                <strong>Simboliza:</strong> El idealismo, la imaginación, la lucha contra la realidad prosaica.<br><br>
+                                <strong>Conflicto:</strong> Choque constante entre su visión ideal del mundo y la realidad material.
+                            </div>
                         </div>
-                    </div>
 
-                    <div class="character-card" onclick="toggleCharacter('sancho')">
-                        <div class="character-icon">🐴</div>
-                        <div class="character-name">Sancho Panza</div>
-                        <div class="character-role">El Escudero Realista</div>
-                        <div id="sancho" class="character-analysis">
-                            <strong>Evolución:</strong> Campesino pragmático → Escudero idealizado → Gobernador sabio<br><br>
-                            <strong>Personalidad:</strong> Realista, sentido común, refranero popular. Se "quijotiza" progresivamente.<br><br>
-                            <strong>Simboliza:</strong> El realismo, la sabiduría popular, el pueblo llano español.<br><br>
-                            <strong>Relación con Don Quijote:</strong> Amistad profunda. Diálogo entre idealismo y realismo.
+                        <div class="character-card" onclick="toggleCharacter('sancho')">
+                            <div class="character-icon">🐴</div>
+                            <div class="character-name">Sancho Panza</div>
+                            <div class="character-role">El Escudero Realista</div>
+                            <div id="sancho" class="character-analysis">
+                                <strong>Evolución:</strong> Campesino pragmático → Escudero idealizado → Gobernador sabio<br><br>
+                                <strong>Personalidad:</strong> Realista, sentido común, refranero popular. Se "quijotiza" progresivamente.<br><br>
+                                <strong>Simboliza:</strong> El realismo, la sabiduría popular, el pueblo llano español.<br><br>
+                                <strong>Relación con Don Quijote:</strong> Amistad profunda. Diálogo entre idealismo y realismo.
+                            </div>
                         </div>
-                    </div>
 
-                    <div class="character-card" onclick="toggleCharacter('dulcinea')">
-                        <div class="character-icon">💃</div>
-                        <div class="character-name">Dulcinea del Toboso</div>
-                        <div class="character-role">La Dama Imaginaria</div>
-                        <div id="dulcinea" class="character-analysis">
-                            <strong>Realidad:</strong> Aldonza Lorenzo, campesina robusta del Toboso.<br><br>
-                            <strong>En la mente de Don Quijote:</strong> La dama más bella y noble del mundo.<br><br>
-                            <strong>Simboliza:</strong> El poder transformador de la imaginación. La idealización del amor cortés.<br><br>
-                            <strong>Importancia:</strong> Nunca aparece físicamente, pero es el motor de las hazañas de Don Quijote.
+                        <div class="character-card" onclick="toggleCharacter('dulcinea')">
+                            <div class="character-icon">💃</div>
+                            <div class="character-name">Dulcinea del Toboso</div>
+                            <div class="character-role">La Dama Imaginaria</div>
+                            <div id="dulcinea" class="character-analysis">
+                                <strong>Realidad:</strong> Aldonza Lorenzo, campesina robusta del Toboso.<br><br>
+                                <strong>En la mente de Don Quijote:</strong> La dama más bella y noble del mundo.<br><br>
+                                <strong>Simboliza:</strong> El poder transformador de la imaginación. La idealización del amor cortés.<br><br>
+                                <strong>Importancia:</strong> Nunca aparece físicamente, pero es el motor de las hazañas de Don Quijote.
+                            </div>
                         </div>
-                    </div>
 
-                    <div class="character-card" onclick="toggleCharacter('carrasco')">
-                        <div class="character-icon">🎭</div>
-                        <div class="character-name">Sansón Carrasco</div>
-                        <div class="character-role">El Bachiller</div>
-                        <div id="carrasco" class="character-analysis">
-                            <strong>Rol:</strong> Intenta "curar" a Don Quijote venciéndolo en combate disfrazado de caballero.<br><br>
-                            <strong>Disfraces:</strong> Caballero de los Espejos (fracasa) / Caballero de la Blanca Luna (vence).<br><br>
-                            <strong>Importancia:</strong> Su victoria causa el regreso de Don Quijote a casa y su muerte.<br><br>
-                            <strong>Simboliza:</strong> La razón práctica que intenta imponer cordura al idealismo.
+                        <div class="character-card" onclick="toggleCharacter('carrasco')">
+                            <div class="character-icon">🎭</div>
+                            <div class="character-name">Sansón Carrasco</div>
+                            <div class="character-role">El Bachiller</div>
+                            <div id="carrasco" class="character-analysis">
+                                <strong>Rol:</strong> Intenta "curar" a Don Quijote venciéndolo en combate disfrazado de caballero.<br><br>
+                                <strong>Disfraces:</strong> Caballero de los Espejos (fracasa) / Caballero de la Blanca Luna (vence).<br><br>
+                                <strong>Importancia:</strong> Su victoria causa el regreso de Don Quijote a casa y su muerte.<br><br>
+                                <strong>Simboliza:</strong> La razón práctica que intenta imponer cordura al idealismo.
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -298,139 +1144,140 @@
 
             <!-- ACTIVIDAD 3: GUION SIGLO XXI -->
             <div id="modern" class="tab-content">
-                <h3 style="font-family: 'Cinzel', serif; font-size: 1.8rem; color: var(--primary-color); margin-bottom: 2rem;">🎬 Guion: Don Quijote en el Siglo XXI</h3>
+                <div class="activity-section">
+                    <h2 class="section-title">🎬 Guion: Don Quijote en el Siglo XXI</h2>
 
-                <div class="editor-prompt">
-                    <strong>🎥 Tu tarea (para estudiantes B1.2):</strong> Escribe un episodio moderno de Don Quijote.
-                    <br><br>
-                    <strong>📝 Instrucciones simples:</strong>
-                    <ul style="margin-top: 1rem; margin-left: 2rem; line-height: 1.8;">
-                        <li><strong>Personajes:</strong> Don Quijote y Sancho viven en el siglo XXI (año 2025)</li>
-                        <li><strong>Situación:</strong> Don Quijote ve algo moderno pero piensa que es medieval</li>
-                        <li><strong>Diálogo:</strong> Don Quijote habla como en el libro; Sancho habla normal</li>
-                        <li><strong>Longitud:</strong> Mínimo 200 palabras</li>
-                    </ul>
-                    <br>
-                    <strong>💡 IDEAS de objetos modernos que Don Quijote puede confundir:</strong>
-                </div>
+                    <div class="editor-prompt">
+                        <strong>🎥 Tu tarea (para estudiantes B1.2):</strong> Escribe un episodio moderno de Don Quijote.
+                        <br><br>
+                        <strong>📝 Instrucciones simples:</strong>
+                        <ul>
+                            <li><strong>Personajes:</strong> Don Quijote y Sancho viven en el siglo XXI (año 2025)</li>
+                            <li><strong>Situación:</strong> Don Quijote ve algo moderno pero piensa que es medieval</li>
+                            <li><strong>Diálogo:</strong> Don Quijote habla como en el libro; Sancho habla normal</li>
+                            <li><strong>Longitud:</strong> Mínimo 200 palabras</li>
+                        </ul>
+                        <br>
+                        <strong>💡 IDEAS de objetos modernos que Don Quijote puede confundir:</strong>
+                    </div>
 
-                <div class="character-grid" style="margin: 2rem 0;">
-                    <div class="character-card" style="cursor: default;">
-                        <div class="character-icon">🏢</div>
-                        <div class="character-name">Rascacielos</div>
-                        <div class="character-role" style="color: var(--text-secondary);">
-                            Don Quijote piensa que es una <strong>torre de un castillo</strong>
+                    <div class="character-grid" style="margin: 2rem 0;">
+                        <div class="character-card" style="cursor: default;">
+                            <div class="character-icon">🏢</div>
+                            <div class="character-name">Rascacielos</div>
+                            <div class="character-role" style="color: var(--text-secondary);">
+                                Don Quijote piensa que es una <strong>torre de un castillo</strong>
+                            </div>
+                        </div>
+
+                        <div class="character-card" style="cursor: default;">
+                            <div class="character-icon">🚁</div>
+                            <div class="character-name">Helicóptero</div>
+                            <div class="character-role" style="color: var(--text-secondary);">
+                                Don Quijote piensa que es un <strong>dragón volador</strong>
+                            </div>
+                        </div>
+
+                        <div class="character-card" style="cursor: default;">
+                            <div class="character-icon">🏍️</div>
+                            <div class="character-name">Motocicleta</div>
+                            <div class="character-role" style="color: var(--text-secondary);">
+                                Don Quijote piensa que es un <strong>caballo de metal</strong>
+                            </div>
+                        </div>
+
+                        <div class="character-card" style="cursor: default;">
+                            <div class="character-icon">📱</div>
+                            <div class="character-name">Smartphone</div>
+                            <div class="character-role" style="color: var(--text-secondary);">
+                                Don Quijote piensa que es un <strong>espejo mágico</strong>
+                            </div>
+                        </div>
+
+                        <div class="character-card" style="cursor: default;">
+                            <div class="character-icon">🤖</div>
+                            <div class="character-name">Robot aspirador</div>
+                            <div class="character-role" style="color: var(--text-secondary);">
+                                Don Quijote piensa que es un <strong>escudo encantado</strong>
+                            </div>
+                        </div>
+
+                        <div class="character-card" style="cursor: default;">
+                            <div class="character-icon">💻</div>
+                            <div class="character-name">Ordenador</div>
+                            <div class="character-role" style="color: var(--text-secondary);">
+                                Don Quijote piensa que es un <strong>libro de hechizos</strong>
+                            </div>
                         </div>
                     </div>
 
-                    <div class="character-card" style="cursor: default;">
-                        <div class="character-icon">🚁</div>
-                        <div class="character-name">Helicóptero</div>
-                        <div class="character-role" style="color: var(--text-secondary);">
-                            Don Quijote piensa que es un <strong>dragón volador</strong>
-                        </div>
+                    <div class="editor-prompt" style="background: rgba(156, 39, 176, 0.08); border-color: #9C27B0;">
+                        <strong>🌟 OPCIÓN ESPECIAL: El episodio de la Pastora Marcela (en el siglo XXI)</strong>
+                        <br><br>
+                        <strong>📖 En el Quijote original (Capítulos 12-14):</strong>
+                        <br>
+                        Marcela es una pastora muy hermosa. Muchos hombres quieren casarse con ella, pero ella rechaza a todos.
+                        Un joven (Grisóstomo) muere de tristeza porque Marcela no lo ama. En su funeral, Marcela aparece y
+                        hace un discurso famoso defendiendo <strong>su derecho a ser libre</strong> y no casarse si no quiere.
+                        <br><br>
+                        <strong>💡 IDEAS para adaptar al siglo XXI:</strong>
+                        <ul>
+                            <li><strong>Marcela como influencer:</strong> Tiene millones de seguidores en Instagram. Muchos quieren una relación con ella, pero ella defiende su independencia.</li>
+                            <li><strong>Marcela como CEO exitosa:</strong> Rechaza propuestas de matrimonio. Prefiere su carrera profesional.</li>
+                            <li><strong>Marcela como estudiante:</strong> En la universidad, muchos la persiguen románticamente. Ella quiere estudiar, no tener novio.</li>
+                            <li><strong>El discurso moderno:</strong> Marcela da un discurso sobre el derecho de las mujeres a elegir su vida (feminismo, libertad personal)</li>
+                        </ul>
+                        <br>
+                        <strong>🎬 Posible escena:</strong> Don Quijote y Sancho ven a Marcela dando su discurso (TED talk, conferencia, video viral...).
+                        Don Quijote la defiende contra sus pretendientes modernos (stalkers de redes sociales, ex-novios insistentes...).
                     </div>
 
-                    <div class="character-card" style="cursor: default;">
-                        <div class="character-icon">🏍️</div>
-                        <div class="character-name">Motocicleta</div>
-                        <div class="character-role" style="color: var(--text-secondary);">
-                            Don Quijote piensa que es un <strong>caballo de metal</strong>
-                        </div>
+                    <div class="editor-prompt" style="background: rgba(76, 175, 80, 0.08); border-color: #4CAF50;">
+                        <strong>✍️ MODELO / EJEMPLO para ayudarte:</strong>
+                        <br><br>
+                        <em style="color: var(--text-secondary); line-height: 1.9;">
+                            <strong>ESCENA: Don Quijote y Sancho en un centro comercial</strong>
+                            <br><br>
+                            DON QUIJOTE: (señalando las escaleras mecánicas) ¡Mira, Sancho! ¡Una escalera encantada que sube por sí sola! Seguramente es obra de algún mago malvado. ¡Debemos destruirla!
+                            <br><br>
+                            SANCHO: (suspirando) Don Quijote, eso no es magia. Se llama "escalera mecánica". La gente la usa para subir al segundo piso del centro comercial.
+                            <br><br>
+                            DON QUIJOTE: ¡No me engañes, fiel escudero! Veo cómo se mueve sin caballos, sin personas que la empujen. ¡Es claramente un hechizo!
+                            <br><br>
+                            SANCHO: (mirando su móvil) Señor, tenemos que comprar pan y volver a casa. Mi mujer me está mandando mensajes de WhatsApp...
+                            <br><br>
+                            DON QUIJOTE: (subiendo a la escalera con su lanza) ¡En guardia, escalera diabólica! (La gente lo mira extrañada)
+                            <br><br>
+                            SANCHO: (avergonzado) Disculpen, mi amigo está... ensayando para una obra de teatro.
+                        </em>
                     </div>
 
-                    <div class="character-card" style="cursor: default;">
-                        <div class="character-icon">📱</div>
-                        <div class="character-name">Smartphone</div>
-                        <div class="character-role" style="color: var(--text-secondary);">
-                            Don Quijote piensa que es un <strong>espejo mágico</strong>
-                        </div>
+                    <div class="editor-prompt">
+                        <strong>📋 ESTRUCTURA RECOMENDADA de tu guion:</strong>
+                        <br><br>
+                        <ol>
+                            <li><strong>ESCENA:</strong> ¿Dónde están? (ciudad, supermercado, aeropuerto...)</li>
+                            <li><strong>SITUACIÓN:</strong> ¿Qué ve Don Quijote?</li>
+                            <li><strong>CONFUSIÓN:</strong> ¿Qué piensa que es?</li>
+                            <li><strong>DIÁLOGO:</strong> Conversación entre Don Quijote y Sancho</li>
+                            <li><strong>ACCIÓN:</strong> ¿Qué hace Don Quijote?</li>
+                            <li><strong>FINAL:</strong> ¿Qué pasa al final? (¿gracioso? ¿problemático?)</li>
+                        </ol>
                     </div>
 
-                    <div class="character-card" style="cursor: default;">
-                        <div class="character-icon">🤖</div>
-                        <div class="character-name">Robot aspirador</div>
-                        <div class="character-role" style="color: var(--text-secondary);">
-                            Don Quijote piensa que es un <strong>escudo encantado</strong>
-                        </div>
+                    <div class="editor-prompt" style="background: rgba(33, 150, 243, 0.08); border-color: #2196F3;">
+                        <strong>💬 VOCABULARIO ÚTIL (nivel B1.2):</strong>
+                        <br><br>
+                        <strong>Para describir:</strong> señalar, mirar, observar, descubrir
+                        <br>
+                        <strong>Para Don Quijote:</strong> encantado/a, mágico/a, maléfico/a, noble, valiente
+                        <br>
+                        <strong>Para Sancho:</strong> normal, moderno/a, real, explicar, intentar convencer
+                        <br>
+                        <strong>Para acción:</strong> atacar, defender, correr, gritar, sorprenderse
                     </div>
 
-                    <div class="character-card" style="cursor: default;">
-                        <div class="character-icon">💻</div>
-                        <div class="character-name">Ordenador</div>
-                        <div class="character-role" style="color: var(--text-secondary);">
-                            Don Quijote piensa que es un <strong>libro de hechizos</strong>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="editor-prompt" style="background: rgba(156, 39, 176, 0.1); border-color: #9C27B0;">
-                    <strong>🌟 OPCIÓN ESPECIAL: El episodio de la Pastora Marcela (en el siglo XXI)</strong>
-                    <br><br>
-                    <strong>📖 En el Quijote original (Capítulos 12-14):</strong>
-                    <br>
-                    Marcela es una pastora muy hermosa. Muchos hombres quieren casarse con ella, pero ella rechaza a todos.
-                    Un joven (Grisóstomo) muere de tristeza porque Marcela no lo ama. En su funeral, Marcela aparece y
-                    hace un discurso famoso defendiendo <strong>su derecho a ser libre</strong> y no casarse si no quiere.
-                    <br><br>
-                    <strong>💡 IDEAS para adaptar al siglo XXI:</strong>
-                    <ul style="margin-top: 1rem; margin-left: 2rem; line-height: 1.8;">
-                        <li><strong>Marcela como influencer:</strong> Tiene millones de seguidores en Instagram. Muchos quieren una relación con ella, pero ella defiende su independencia.</li>
-                        <li><strong>Marcela como CEO exitosa:</strong> Rechaza propuestas de matrimonio. Prefiere su carrera profesional.</li>
-                        <li><strong>Marcela como estudiante:</strong> En la universidad, muchos la persiguen románticamente. Ella quiere estudiar, no tener novio.</li>
-                        <li><strong>El discurso moderno:</strong> Marcela da un discurso sobre el derecho de las mujeres a elegir su vida (feminismo, libertad personal)</li>
-                    </ul>
-                    <br>
-                    <strong>🎬 Posible escena:</strong> Don Quijote y Sancho ven a Marcela dando su discurso (TED talk, conferencia, video viral...).
-                    Don Quijote la defiende contra sus pretendientes modernos (stalkers de redes sociales, ex-novios insistentes...).
-                </div>
-
-                <div class="editor-prompt" style="background: rgba(76, 175, 80, 0.1); border-color: #4CAF50;">
-                    <strong>✍️ MODELO / EJEMPLO para ayudarte:</strong>
-                    <br><br>
-                    <em style="color: var(--text-secondary); line-height: 1.9;">
-                        <strong>ESCENA: Don Quijote y Sancho en un centro comercial</strong>
-                        <br><br>
-                        DON QUIJOTE: (señalando las escaleras mecánicas) ¡Mira, Sancho! ¡Una escalera encantada que sube por sí sola! Seguramente es obra de algún mago malvado. ¡Debemos destruirla!
-                        <br><br>
-                        SANCHO: (suspirando) Don Quijote, eso no es magia. Se llama "escalera mecánica". La gente la usa para subir al segundo piso del centro comercial.
-                        <br><br>
-                        DON QUIJOTE: ¡No me engañes, fiel escudero! Veo cómo se mueve sin caballos, sin personas que la empujen. ¡Es claramente un hechizo!
-                        <br><br>
-                        SANCHO: (mirando su móvil) Señor, tenemos que comprar pan y volver a casa. Mi mujer me está mandando mensajes de WhatsApp...
-                        <br><br>
-                        DON QUIJOTE: (subiendo a la escalera con su lanza) ¡En guardia, escalera diabólica! (La gente lo mira extrañada)
-                        <br><br>
-                        SANCHO: (avergonzado) Disculpen, mi amigo está... ensayando para una obra de teatro.
-                    </em>
-                </div>
-
-                <div class="editor-prompt">
-                    <strong>📋 ESTRUCTURA RECOMENDADA de tu guion:</strong>
-                    <br><br>
-                    <ol style="margin-left: 2rem; line-height: 1.8;">
-                        <li><strong>ESCENA:</strong> ¿Dónde están? (ciudad, supermercado, aeropuerto...)</li>
-                        <li><strong>SITUACIÓN:</strong> ¿Qué ve Don Quijote?</li>
-                        <li><strong>CONFUSIÓN:</strong> ¿Qué piensa que es?</li>
-                        <li><strong>DIÁLOGO:</strong> Conversación entre Don Quijote y Sancho</li>
-                        <li><strong>ACCIÓN:</strong> ¿Qué hace Don Quijote?</li>
-                        <li><strong>FINAL:</strong> ¿Qué pasa al final? (¿gracioso? ¿problemático?)</li>
-                    </ol>
-                </div>
-
-                <div class="editor-prompt" style="background: rgba(33, 150, 243, 0.1); border-color: #2196F3;">
-                    <strong>💬 VOCABULARIO ÚTIL (nivel B1.2):</strong>
-                    <br><br>
-                    <strong>Para describir:</strong> señalar, mirar, observar, descubrir
-                    <br>
-                    <strong>Para Don Quijote:</strong> encantado/a, mágico/a, maléfico/a, noble, valiente
-                    <br>
-                    <strong>Para Sancho:</strong> normal, moderno/a, real, explicar, intentar convencer
-                    <br>
-                    <strong>Para acción:</strong> atacar, defender, correr, gritar, sorprenderse
-                </div>
-
-                <textarea id="modern-text" class="text-editor" placeholder="Escribe aquí tu guion de Don Quijote en el siglo XXI...
+                    <textarea id="modern-text" class="text-editor" placeholder="Escribe aquí tu guion de Don Quijote en el siglo XXI...
 
 Ejemplo de inicio:
 
@@ -439,169 +1286,172 @@ ESCENA: Don Quijote y Sancho en el aeropuerto
 DON QUIJOTE: (mirando un avión) ¡Sancho! ¿Ves ese gran pájaro de metal? ¡Es un dragón gigante!
 
 SANCHO: No, señor. Es un avión. Sirve para viajar..." oninput="updateWordCount('modern')"></textarea>
-                <div id="modern-count" class="word-count">0 palabras</div>
+                    <div id="modern-count" class="word-count">0 palabras</div>
 
-                <button class="submit-btn" style="margin-top: 1rem;" onclick="generatePDF('modern')">📄 Descargar mi Guion en PDF</button>
-                <div id="modern-result" style="margin-top: 1rem;"></div>
+                    <button class="submit-btn" style="margin-top: 1rem;" onclick="generatePDF('modern')">📄 Descargar mi Guion en PDF</button>
+                    <div id="modern-result" style="margin-top: 1rem;"></div>
+                </div>
             </div>
 
             <!-- ACTIVIDAD 4: CREATIVIDAD -->
             <div id="creative" class="tab-content">
-                <h3 style="font-family: 'Cinzel', serif; font-size: 1.8rem; color: var(--primary-color); margin-bottom: 2rem;">✍️ Escribe Tu Propia Aventura Quijotesca</h3>
+                <div class="activity-section">
+                    <h2 class="section-title">✍️ Escribe Tu Propia Aventura Quijotesca</h2>
 
-                <div class="editor-prompt">
-                    <strong>📜 Consigna:</strong> Imagina una nueva aventura de Don Quijote y Sancho Panza en el mundo moderno.
-                    <br><br>
-                    <strong>Elementos que debes incluir:</strong>
-                    <ul style="margin-top: 1rem; margin-left: 2rem;">
-                        <li>Un objeto moderno que Don Quijote confunde con algo medieval/caballeresco</li>
-                        <li>El contraste entre la visión de Don Quijote y la de Sancho</li>
-                        <li>Un diálogo entre ambos personajes</li>
-                        <li>Un desenlace cómico o irónico</li>
-                    </ul>
-                    <br>
-                    <strong>Ejemplo de inicio:</strong> "En esto, descubrieron treinta o cuarenta molinos de viento solares que hay en aquel campo; y así como don Quijote los vio..."
+                    <div class="editor-prompt">
+                        <strong>📜 Consigna:</strong> Imagina una nueva aventura de Don Quijote y Sancho Panza en el mundo moderno.
+                        <br><br>
+                        <strong>Elementos que debes incluir:</strong>
+                        <ul>
+                            <li>Un objeto moderno que Don Quijote confunde con algo medieval/caballeresco</li>
+                            <li>El contraste entre la visión de Don Quijote y la de Sancho</li>
+                            <li>Un diálogo entre ambos personajes</li>
+                            <li>Un desenlace cómico o irónico</li>
+                        </ul>
+                        <br>
+                        <strong>Ejemplo de inicio:</strong> "En esto, descubrieron treinta o cuarenta molinos de viento solares que hay en aquel campo; y así como don Quijote los vio..."
+                    </div>
+
+                    <textarea id="creative-text" class="text-editor" placeholder="Escribe aquí tu aventura quijotesca..." oninput="updateWordCount('creative')"></textarea>
+                    <div id="creative-count" class="word-count">0 palabras</div>
+
+                    <button class="submit-btn" style="margin-top: 1rem;" onclick="generatePDF('creative')">📄 Generar PDF de mi Aventura</button>
+                    <div id="creative-result" style="margin-top: 1rem;"></div>
                 </div>
-
-                <textarea id="creative-text" class="text-editor" placeholder="Escribe aquí tu aventura quijotesca..." oninput="updateWordCount('creative')"></textarea>
-                <div id="creative-count" class="word-count">0 palabras</div>
-
-                <button class="submit-btn" style="margin-top: 1rem;" onclick="generatePDF('creative')">📄 Generar PDF de mi Aventura</button>
-                <div id="creative-result" style="margin-top: 1rem;"></div>
             </div>
 
-            <!-- ACTIVIDAD 4: DEBATE -->
+            <!-- ACTIVIDAD 5: DEBATE -->
             <div id="debate" class="tab-content">
-                <h3 style="font-family: 'Cinzel', serif; font-size: 1.8rem; color: var(--primary-color); margin-bottom: 2rem;">💭 Debates Éticos y Filosóficos</h3>
+                <div class="activity-section">
+                    <h2 class="section-title">💭 Debates Éticos y Filosóficos</h2>
 
-                <div class="debate-container">
-                    <div class="debate-question">1. ¿Está bien que Don Quijote recupere la cordura al final de la novela?</div>
-                    <div class="debate-options">
-                        <label class="debate-option">
-                            <input type="radio" name="debate1" value="a" onchange="showDebateResponse('debate1', 'a')">
-                            <span>Sí, es mejor ser cuerdo que loco, aunque sea idealista</span>
-                        </label>
-                        <label class="debate-option">
-                            <input type="radio" name="debate1" value="b" onchange="showDebateResponse('debate1', 'b')">
-                            <span>No, pierde su propósito vital y muere. La "locura" le daba sentido</span>
-                        </label>
+                    <div class="debate-container">
+                        <div class="debate-question">1. ¿Está bien que Don Quijote recupere la cordura al final de la novela?</div>
+                        <div class="debate-options">
+                            <label class="debate-option">
+                                <input type="radio" name="debate1" value="a" onchange="showDebateResponse('debate1', 'a')">
+                                <span>Sí, es mejor ser cuerdo que loco, aunque sea idealista</span>
+                            </label>
+                            <label class="debate-option">
+                                <input type="radio" name="debate1" value="b" onchange="showDebateResponse('debate1', 'b')">
+                                <span>No, pierde su propósito vital y muere. La "locura" le daba sentido</span>
+                            </label>
+                        </div>
+                        <div id="debate1-response" class="debate-response"></div>
                     </div>
-                    <div id="debate1-response" class="debate-response"></div>
-                </div>
 
-                <div class="debate-container">
-                    <div class="debate-question">2. En el episodio de los molinos: ¿Quién tiene razón?</div>
-                    <div class="debate-options">
-                        <label class="debate-option">
-                            <input type="radio" name="debate2" value="a" onchange="showDebateResponse('debate2', 'a')">
-                            <span>Don Quijote: el idealismo es necesario para cambiar el mundo</span>
-                        </label>
-                        <label class="debate-option">
-                            <input type="radio" name="debate2" value="b" onchange="showDebateResponse('debate2', 'b')">
-                            <span>Sancho: el realismo pragmático evita sufrimiento innecesario</span>
-                        </label>
-                        <label class="debate-option">
-                            <input type="radio" name="debate2" value="c" onchange="showDebateResponse('debate2', 'c')">
-                            <span>Ambos tienen razón desde su perspectiva (perspectivismo)</span>
-                        </label>
+                    <div class="debate-container">
+                        <div class="debate-question">2. En el episodio de los molinos: ¿Quién tiene razón?</div>
+                        <div class="debate-options">
+                            <label class="debate-option">
+                                <input type="radio" name="debate2" value="a" onchange="showDebateResponse('debate2', 'a')">
+                                <span>Don Quijote: el idealismo es necesario para cambiar el mundo</span>
+                            </label>
+                            <label class="debate-option">
+                                <input type="radio" name="debate2" value="b" onchange="showDebateResponse('debate2', 'b')">
+                                <span>Sancho: el realismo pragmático evita sufrimiento innecesario</span>
+                            </label>
+                            <label class="debate-option">
+                                <input type="radio" name="debate2" value="c" onchange="showDebateResponse('debate2', 'c')">
+                                <span>Ambos tienen razón desde su perspectiva (perspectivismo)</span>
+                            </label>
+                        </div>
+                        <div id="debate2-response" class="debate-response"></div>
                     </div>
-                    <div id="debate2-response" class="debate-response"></div>
-                </div>
 
-                <div class="debate-container">
-                    <div class="debate-question">3. ¿Es Don Quijote un héroe o un loco ridículo?</div>
-                    <div class="debate-options">
-                        <label class="debate-option">
-                            <input type="radio" name="debate3" value="a" onchange="showDebateResponse('debate3', 'a')">
-                            <span>Es un héroe: lucha por ideales nobles (justicia, honor, amor)</span>
-                        </label>
-                        <label class="debate-option">
-                            <input type="radio" name="debate3" value="b" onchange="showDebateResponse('debate3', 'b')">
-                            <span>Es un loco: causa daño con sus intervenciones absurdas</span>
-                        </label>
-                        <label class="debate-option">
-                            <input type="radio" name="debate3" value="c" onchange="showDebateResponse('debate3', 'c')">
-                            <span>Es ambas cosas: héroe trágico cuyo idealismo es noble pero inviable</span>
-                        </label>
+                    <div class="debate-container">
+                        <div class="debate-question">3. ¿Es Don Quijote un héroe o un loco ridículo?</div>
+                        <div class="debate-options">
+                            <label class="debate-option">
+                                <input type="radio" name="debate3" value="a" onchange="showDebateResponse('debate3', 'a')">
+                                <span>Es un héroe: lucha por ideales nobles (justicia, honor, amor)</span>
+                            </label>
+                            <label class="debate-option">
+                                <input type="radio" name="debate3" value="b" onchange="showDebateResponse('debate3', 'b')">
+                                <span>Es un loco: causa daño con sus intervenciones absurdas</span>
+                            </label>
+                            <label class="debate-option">
+                                <input type="radio" name="debate3" value="c" onchange="showDebateResponse('debate3', 'c')">
+                                <span>Es ambas cosas: héroe trágico cuyo idealismo es noble pero inviable</span>
+                            </label>
+                        </div>
+                        <div id="debate3-response" class="debate-response"></div>
                     </div>
-                    <div id="debate3-response" class="debate-response"></div>
                 </div>
             </div>
 
-            <!-- ACTIVIDAD 5: INVESTIGACIÓN -->
+            <!-- ACTIVIDAD 6: INVESTIGACIÓN -->
             <div id="research" class="tab-content">
-                <h3 style="font-family: 'Cinzel', serif; font-size: 1.8rem; color: var(--primary-color); margin-bottom: 2rem;">🔍 Investigación Histórica y Cultural</h3>
+                <div class="activity-section">
+                    <h2 class="section-title">🔍 Investigación Histórica y Cultural</h2>
 
-                <div class="editor-prompt">
-                    <strong>📚 Tarea de Investigación:</strong> Elige uno de los siguientes temas y escribe un breve ensayo (200-300 palabras) investigando en fuentes fiables.
-                    <br><br>
-                    <strong>Temas disponibles:</strong>
-                    <ul style="margin-top: 1rem; margin-left: 2rem;">
-                        <li><strong>La Batalla de Lepanto (1571):</strong> ¿Qué fue esta batalla? ¿Por qué fue importante? ¿Cómo participó Cervantes?</li>
-                        <li><strong>El cautiverio en Argel:</strong> ¿Cómo funcionaba la piratería berberisca? ¿Qué era el rescate de cautivos?</li>
-                        <li><strong>Los libros de caballerías:</strong> ¿Qué eran? ¿Títulos famosos? ¿Por qué los parodia Cervantes?</li>
-                        <li><strong>El Quijote apócrifo de Avellaneda:</strong> ¿Quién lo escribió? ¿Cómo reaccionó Cervantes?</li>
-                        <li><strong>Influencia del Quijote en la literatura mundial:</strong> Ejemplos de autores influenciados (Flaubert, Dostoievski, etc.)</li>
-                    </ul>
-                    <br>
-                    <strong>Fuentes recomendadas:</strong> Wikipedia (artículos en español), Biblioteca Virtual Cervantes, enciclopedias digitales académicas.
+                    <div class="editor-prompt">
+                        <strong>📚 Tarea de Investigación:</strong> Elige uno de los siguientes temas y escribe un breve ensayo (200-300 palabras) investigando en fuentes fiables.
+                        <br><br>
+                        <strong>Temas disponibles:</strong>
+                        <ul>
+                            <li><strong>La Batalla de Lepanto (1571):</strong> ¿Qué fue esta batalla? ¿Por qué fue importante? ¿Cómo participó Cervantes?</li>
+                            <li><strong>El cautiverio en Argel:</strong> ¿Cómo funcionaba la piratería berberisca? ¿Qué era el rescate de cautivos?</li>
+                            <li><strong>Los libros de caballerías:</strong> ¿Qué eran? ¿Títulos famosos? ¿Por qué los parodia Cervantes?</li>
+                            <li><strong>El Quijote apócrifo de Avellaneda:</strong> ¿Quién lo escribió? ¿Cómo reaccionó Cervantes?</li>
+                            <li><strong>Influencia del Quijote en la literatura mundial:</strong> Ejemplos de autores influenciados (Flaubert, Dostoievski, etc.)</li>
+                        </ul>
+                        <br>
+                        <strong>Fuentes recomendadas:</strong> Wikipedia (artículos en español), Biblioteca Virtual Cervantes, enciclopedias digitales académicas.
+                    </div>
+
+                    <textarea id="research-text" class="text-editor" placeholder="Escribe aquí tu investigación..." oninput="updateWordCount('research')"></textarea>
+                    <div id="research-count" class="word-count">0 palabras</div>
+
+                    <button class="submit-btn" style="margin-top: 1rem;" onclick="generatePDF('research')">📄 Generar PDF de mi Investigación</button>
+                    <div id="research-result" style="margin-top: 1rem;"></div>
                 </div>
-
-                <textarea id="research-text" class="text-editor" placeholder="Escribe aquí tu investigación..." oninput="updateWordCount('research')"></textarea>
-                <div id="research-count" class="word-count">0 palabras</div>
-
-                <button class="submit-btn" style="margin-top: 1rem;" onclick="generatePDF('research')">📄 Generar PDF de mi Investigación</button>
-                <div id="research-result" style="margin-top: 1rem;"></div>
             </div>
 
-            <!-- ACTIVIDAD 6: DRAMATIZACIÓN -->
+            <!-- ACTIVIDAD 7: DRAMATIZACIÓN -->
             <div id="dramatization" class="tab-content">
-                <h3 style="font-family: 'Cinzel', serif; font-size: 1.8rem; color: var(--primary-color); margin-bottom: 2rem;">🎭 Dramatización y Actuación</h3>
+                <div class="activity-section">
+                    <h2 class="section-title">🎭 Dramatización y Actuación</h2>
 
-                <div class="editor-prompt">
-                    <strong>🎬 Actividad de Dramatización:</strong> Prepara una escena para representar en clase.
-                    <br><br>
-                    <strong>Opciones de escenas:</strong>
-                    <ul style="margin-top: 1rem; margin-left: 2rem;">
-                        <li><strong>Molinos de viento:</strong> Don Quijote ve gigantes, Sancho intenta razonar con él, ataque al molino.</li>
-                        <li><strong>Investidura de caballero:</strong> Don Quijote pide al ventero que lo arme caballero (comedia pura).</li>
-                        <li><strong>Gobierno de Sancho:</strong> Sancho juzga casos absurdos en la ínsula Barataria con sabiduría popular.</li>
-                        <li><strong>Muerte de Don Quijote:</strong> Recupera la cordura, renuncia a ser caballero, muere como Alonso Quijano.</li>
-                    </ul>
-                    <br>
-                    <strong>Instrucciones:</strong>
-                    <ul style="margin-top: 1rem; margin-left: 2rem;">
-                        <li>Escribe un guion adaptado (diálogos + acotaciones)</li>
-                        <li>Asigna roles (Don Quijote, Sancho, otros personajes)</li>
-                        <li>Incluye elementos cómicos e irónicos</li>
-                        <li>Duración: 3-5 minutos de representación</li>
-                    </ul>
-                    <br>
-                    <strong>Formato del guion:</strong><br>
-                    <em>DON QUIJOTE:</em> (señalando con lanza) ¡Mira, Sancho! ¡Treinta o más desaforados gigantes!<br>
-                    <em>SANCHO:</em> (rascándose la cabeza) Señor, esos son molinos de viento...
+                    <div class="editor-prompt">
+                        <strong>🎬 Actividad de Dramatización:</strong> Prepara una escena para representar en clase.
+                        <br><br>
+                        <strong>Opciones de escenas:</strong>
+                        <ul>
+                            <li><strong>Molinos de viento:</strong> Don Quijote ve gigantes, Sancho intenta razonar con él, ataque al molino.</li>
+                            <li><strong>Investidura de caballero:</strong> Don Quijote pide al ventero que lo arme caballero (comedia pura).</li>
+                            <li><strong>Gobierno de Sancho:</strong> Sancho juzga casos absurdos en la ínsula Barataria con sabiduría popular.</li>
+                            <li><strong>Muerte de Don Quijote:</strong> Recupera la cordura, renuncia a ser caballero, muere como Alonso Quijano.</li>
+                        </ul>
+                        <br>
+                        <strong>Instrucciones:</strong>
+                        <ul>
+                            <li>Escribe un guion adaptado (diálogos + acotaciones)</li>
+                            <li>Asigna roles (Don Quijote, Sancho, otros personajes)</li>
+                            <li>Incluye elementos cómicos e irónicos</li>
+                            <li>Duración: 3-5 minutos de representación</li>
+                        </ul>
+                        <br>
+                        <strong>Formato del guion:</strong><br>
+                        <em>DON QUIJOTE:</em> (señalando con lanza) ¡Mira, Sancho! ¡Treinta o más desaforados gigantes!<br>
+                        <em>SANCHO:</em> (rascándose la cabeza) Señor, esos son molinos de viento...
+                    </div>
+
+                    <textarea id="dramatization-text" class="text-editor" placeholder="Escribe aquí tu guion teatral..." oninput="updateWordCount('dramatization')"></textarea>
+                    <div id="dramatization-count" class="word-count">0 palabras</div>
+
+                    <button class="submit-btn" style="margin-top: 1rem;" onclick="generatePDF('dramatization')">📄 Generar PDF del Guion</button>
+                    <div id="dramatization-result" style="margin-top: 1rem;"></div>
                 </div>
-
-                <textarea id="dramatization-text" class="text-editor" placeholder="Escribe aquí tu guion teatral..." oninput="updateWordCount('dramatization')"></textarea>
-                <div id="dramatization-count" class="word-count">0 palabras</div>
-
-                <button class="submit-btn" style="margin-top: 1rem;" onclick="generatePDF('dramatization')">📄 Generar PDF del Guion</button>
-                <div id="dramatization-result" style="margin-top: 1rem;"></div>
             </div>
-        </section>
+        </div>
     </main>
 
-    <div class="floating-arrow" onclick="scrollToTop()">↑</div>
-
-    <footer>
-        <p style="font-size: 1.1rem; margin-bottom: 1rem;">Actividades diseñadas para profundizar en el universo cervantino</p>
-        <div style="display: inline-block; background: rgba(123, 167, 199, 0.2); padding: 0.5rem 1.5rem; border-radius: 20px; border: 1px solid var(--accent-color); font-weight: 600;">
-            📚 Duración estimada: 15 minutos
-        </div>
-    </footer>
+    <!-- Floating Scroll to Top Button -->
+    <div class="scroll-top" onclick="scrollToTop()">↑</div>
 
     <script>
-        // Cambiar entre pestañas
+        // Tab switching functionality
         function showTab(tabName) {
             const tabs = document.querySelectorAll('.tab-content');
             tabs.forEach(tab => tab.classList.remove('active'));
@@ -613,7 +1463,7 @@ SANCHO: No, señor. Es un avión. Sirve para viajar..." oninput="updateWordCount
             event.target.classList.add('active');
         }
 
-        // Quiz de comprensión
+        // Quiz validation
         function checkQuiz() {
             const answers = {
                 q1: 'b',
@@ -660,27 +1510,27 @@ SANCHO: No, señor. Es un avión. Sirve para viajar..." oninput="updateWordCount
                     <p>Tienes buenos conocimientos, pero revisa los errores para mejorar.</p>
                 </div>`;
             } else {
-                resultDiv.innerHTML = `<div class="result-message" style="background: rgba(244, 67, 54, 0.1); color: #C62828; border: 2px solid #f44336;">
+                resultDiv.innerHTML = `<div class="result-message" style="background: rgba(244, 67, 54, 0.1); color: #C62828; border: 3px solid #f44336;">
                     <h3>📚 ${correct}/${total} correctas</h3>
                     <p>Te recomendamos revisar el material antes de continuar. ¡Ánimo!</p>
                 </div>`;
             }
         }
 
-        // Toggle análisis de personajes
+        // Character analysis toggle
         function toggleCharacter(charId) {
             const element = document.getElementById(charId);
             element.classList.toggle('active');
         }
 
-        // Contador de palabras
+        // Word counter for textareas
         function updateWordCount(type) {
             const text = document.getElementById(`${type}-text`).value;
             const words = text.trim() === '' ? 0 : text.trim().split(/\s+/).length;
             document.getElementById(`${type}-count`).innerHTML = `${words} palabras`;
         }
 
-        // Respuestas de debates
+        // Debate responses
         function showDebateResponse(debateId, option) {
             const responses = {
                 'debate1-a': '<strong>Perspectiva racionalista:</strong> La cordura es preferible a la locura. Don Quijote recupera la razón y puede morir en paz, reconciliado con la realidad.',
@@ -698,7 +1548,7 @@ SANCHO: No, señor. Es un avión. Sirve para viajar..." oninput="updateWordCount
             responseDiv.classList.add('active');
         }
 
-        // Generar PDF
+        // PDF generation
         function generatePDF(type) {
             const content = document.getElementById(`${type}-text`).value;
             let title, filename;
@@ -774,9 +1624,9 @@ SANCHO: No, señor. Es un avión. Sirve para viajar..." oninput="updateWordCount
 
             const resultDiv = document.getElementById(`${type}-result`);
             if (resultDiv) {
-                resultDiv.innerHTML = `<div style="background: rgba(76, 175, 80, 0.1); color: #2E7D32; padding: 1rem; border-radius: 10px; border: 2px solid #4CAF50;">
-                    <h4>📄 PDF Generado Exitosamente</h4>
-                    <p>Se ha descargado el archivo "${filename}" con tu contenido.</p>
+                resultDiv.innerHTML = `<div style="background: rgba(67, 233, 123, 0.1); color: #2d8659; padding: 1.5rem; border-radius: 16px; border: 3px solid #43e97b; box-shadow: var(--shadow-sm);">
+                    <h4 style="font-size: 1.3rem; margin-bottom: 0.5rem;">📄 PDF Generado Exitosamente</h4>
+                    <p style="margin: 0;">Se ha descargado el archivo "${filename}" con tu contenido.</p>
                 </div>`;
 
                 setTimeout(() => {
@@ -790,6 +1640,7 @@ SANCHO: No, señor. Es un avión. Sirve para viajar..." oninput="updateWordCount
             }
         }
 
+        // Scroll to top functionality
         function scrollToTop() {
             window.scrollTo({
                 top: 0,
@@ -797,12 +1648,13 @@ SANCHO: No, señor. Es un avión. Sirve para viajar..." oninput="updateWordCount
             });
         }
 
+        // Show/hide scroll to top button
         window.addEventListener('scroll', function() {
-            const arrow = document.querySelector('.floating-arrow');
+            const scrollBtn = document.querySelector('.scroll-top');
             if (window.pageYOffset > 300) {
-                arrow.style.opacity = '0.8';
+                scrollBtn.classList.add('visible');
             } else {
-                arrow.style.opacity = '0';
+                scrollBtn.classList.remove('visible');
             }
         });
     </script>

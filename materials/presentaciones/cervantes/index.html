@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Miguel de Cervantes - Presentación Completa</title>
-    <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:wght@400;600;700&family=Cinzel:wght@600;700&display=swap" rel="stylesheet">
+    <title>Miguel de Cervantes - Portal Educativo</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -13,418 +13,594 @@
         }
 
         :root {
-            --primary-color: #1a4d7a;
-            --secondary-color: #2c6ba0;
-            --accent-color: #7ba7c7;
-            --text-primary: #1a2a3a;
-            --text-secondary: #3a4a5a;
-            --text-light: #f0f4f8;
-            --background: linear-gradient(135deg, #0f2537 0%, #1a4d7a 50%, #2c6ba0 100%);
-            --content-bg: rgba(240, 244, 248, 0.95);
-            --shadow: 0 8px 32px rgba(0,0,0,0.3);
+            --gradient-1: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --gradient-2: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            --gradient-3: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            --gradient-4: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+            --gradient-5: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+            --gradient-main: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+            --text-dark: #1a1a2e;
+            --text-light: #f8f9fa;
+            --bg-dark: #0f0f1e;
+            --bg-card: rgba(255, 255, 255, 0.95);
+            --shadow-sm: 0 2px 10px rgba(0,0,0,0.1);
+            --shadow-md: 0 8px 30px rgba(0,0,0,0.12);
+            --shadow-lg: 0 20px 60px rgba(0,0,0,0.3);
+            --sidebar-width: 280px;
         }
 
         body {
-            font-family: 'Crimson Text', serif;
-            color: var(--text-primary);
-            background: var(--background);
+            font-family: 'Inter', sans-serif;
+            color: var(--text-dark);
+            background: var(--gradient-main);
             min-height: 100vh;
-            line-height: 1.6;
+            overflow-x: hidden;
         }
 
-        /* Header con navegación */
-        header {
-            background: rgba(15, 37, 55, 0.95);
-            padding: 1rem 0;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
-            position: sticky;
+        /* Sidebar Navigation - Left Side */
+        .sidebar {
+            position: fixed;
+            left: 0;
             top: 0;
+            width: var(--sidebar-width);
+            height: 100vh;
+            background: rgba(15, 15, 30, 0.95);
+            backdrop-filter: blur(20px);
+            padding: 2rem 0;
             z-index: 1000;
+            box-shadow: var(--shadow-lg);
+            overflow-y: auto;
         }
 
-        .header-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 2rem;
-            text-align: center;
-        }
-
-        .main-title {
-            font-family: 'Cinzel', serif;
-            font-size: 2.5rem;
-            color: var(--accent-color);
-            margin-bottom: 1.5rem;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
-        }
-
-        .main-subtitle {
-            font-size: 1.2rem;
-            color: var(--text-light);
+        .sidebar-header {
+            padding: 0 1.5rem 2rem;
+            border-bottom: 2px solid rgba(255,255,255,0.1);
             margin-bottom: 2rem;
-            font-style: italic;
         }
 
-        /* Navegación principal */
-        nav ul {
-            list-style: none;
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 1rem;
-        }
-
-        nav a {
-            display: block;
-            padding: 0.8rem 1.5rem;
-            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
-            color: var(--text-light);
-            text-decoration: none;
-            border-radius: 25px;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(26, 77, 122, 0.3);
-            font-size: 1rem;
-        }
-
-        nav a:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(26, 77, 122, 0.4);
-            background: linear-gradient(45deg, var(--secondary-color), var(--primary-color));
-        }
-
-        nav a.active {
-            background: linear-gradient(45deg, var(--accent-color), #9bc3de);
-            color: var(--text-primary);
-        }
-
-        /* Contenido principal */
-        main {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 3rem 2rem;
-        }
-
-        .hero-section {
-            background: var(--content-bg);
-            border-radius: 20px;
-            padding: 4rem 3rem;
-            margin-bottom: 3rem;
-            box-shadow: var(--shadow);
-            border: 2px solid var(--primary-color);
-            text-align: center;
-        }
-
-        .hero-title {
-            font-family: 'Cinzel', serif;
-            font-size: 3rem;
-            color: var(--primary-color);
-            margin-bottom: 2rem;
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            font-weight: 900;
+            background: var(--gradient-5);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 0.5rem;
             line-height: 1.2;
         }
 
-        .hero-text {
-            font-size: 1.3rem;
-            line-height: 1.8;
-            color: var(--text-secondary);
-            margin-bottom: 3rem;
-            max-width: 800px;
-            margin-left: auto;
-            margin-right: auto;
+        .logo-subtitle {
+            color: rgba(255,255,255,0.6);
+            font-size: 0.85rem;
+            font-weight: 400;
         }
 
-        .intro-grid {
+        .nav-menu {
+            list-style: none;
+            padding: 0 1rem;
+        }
+
+        .nav-item {
+            margin-bottom: 0.5rem;
+        }
+
+        .nav-link {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem 1rem;
+            color: rgba(255,255,255,0.8);
+            text-decoration: none;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .nav-link::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 4px;
+            height: 100%;
+            background: var(--gradient-5);
+            transform: scaleY(0);
+            transition: transform 0.3s ease;
+        }
+
+        .nav-link:hover {
+            background: rgba(255,255,255,0.1);
+            color: #fff;
+            transform: translateX(5px);
+        }
+
+        .nav-link:hover::before {
+            transform: scaleY(1);
+        }
+
+        .nav-link.active {
+            background: var(--gradient-5);
+            color: #fff;
+        }
+
+        .nav-icon {
+            font-size: 1.4rem;
+            width: 24px;
+            text-align: center;
+        }
+
+        /* Main Content Area */
+        .main-content {
+            margin-left: var(--sidebar-width);
+            min-height: 100vh;
+            padding: 3rem;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: var(--bg-card);
+            border-radius: 30px;
+            padding: 4rem;
+            margin-bottom: 3rem;
+            box-shadow: var(--shadow-lg);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -10%;
+            width: 500px;
+            height: 500px;
+            background: var(--gradient-2);
+            opacity: 0.1;
+            border-radius: 50%;
+            filter: blur(80px);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            padding: 0.5rem 1.5rem;
+            background: var(--gradient-1);
+            color: white;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 1.5rem;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .hero-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 4rem;
+            font-weight: 900;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            background: var(--gradient-main);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-description {
+            font-size: 1.3rem;
+            color: #666;
+            line-height: 1.8;
+            margin-bottom: 2rem;
+            max-width: 800px;
+        }
+
+        .highlight-text {
+            background: var(--gradient-5);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: 700;
+        }
+
+        /* Cards Grid */
+        .cards-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
             gap: 2rem;
             margin-bottom: 3rem;
         }
 
-        .intro-card {
-            background: rgba(240, 244, 248, 0.9);
-            border: 2px solid var(--secondary-color);
-            border-radius: 15px;
-            padding: 2rem;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-            transition: transform 0.3s ease;
+        .card {
+            background: var(--bg-card);
+            border-radius: 24px;
+            padding: 2.5rem;
+            box-shadow: var(--shadow-md);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
         }
 
-        .intro-card:hover {
-            transform: translateY(-5px);
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--gradient-1);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .card:hover::before {
+            opacity: 0.05;
         }
 
         .card-icon {
+            width: 80px;
+            height: 80px;
+            background: var(--gradient-1);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             font-size: 2.5rem;
-            color: var(--primary-color);
-            text-align: center;
-            margin-bottom: 1rem;
+            margin-bottom: 1.5rem;
+            box-shadow: var(--shadow-sm);
+            position: relative;
+            z-index: 1;
         }
+
+        .card:nth-child(2) .card-icon { background: var(--gradient-2); }
+        .card:nth-child(3) .card-icon { background: var(--gradient-3); }
+        .card:nth-child(4) .card-icon { background: var(--gradient-4); }
+        .card:nth-child(5) .card-icon { background: var(--gradient-5); }
+        .card:nth-child(6) .card-icon { background: var(--gradient-1); }
 
         .card-title {
-            font-family: 'Cinzel', serif;
-            font-size: 1.4rem;
-            color: var(--primary-color);
-            text-align: center;
+            font-size: 1.5rem;
+            font-weight: 800;
             margin-bottom: 1rem;
+            color: var(--text-dark);
+            position: relative;
+            z-index: 1;
         }
 
-        .card-content {
-            color: var(--text-secondary);
-            font-size: 1.1rem;
-            line-height: 1.6;
+        .card-description {
+            color: #666;
+            line-height: 1.7;
+            font-size: 1rem;
+            position: relative;
+            z-index: 1;
         }
 
-        .highlight {
-            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
-            color: white;
-            padding: 3px 10px;
-            border-radius: 15px;
-            font-weight: 600;
+        .card-time {
             display: inline-block;
-            margin: 2px;
-        }
-
-        /* Footer */
-        footer {
-            background: rgba(15, 37, 55, 0.95);
-            color: var(--text-light);
-            text-align: center;
-            padding: 2rem;
-            margin-top: 4rem;
-        }
-
-        .footer-text {
-            font-size: 1.1rem;
-            margin-bottom: 1rem;
-        }
-
-        .footer-badge {
-            display: inline-block;
-            background: rgba(123, 167, 199, 0.2);
-            padding: 0.5rem 1.5rem;
+            margin-top: 1rem;
+            padding: 0.4rem 1rem;
+            background: rgba(102, 126, 234, 0.1);
+            color: #667eea;
             border-radius: 20px;
-            border: 1px solid var(--accent-color);
+            font-size: 0.85rem;
+            font-weight: 700;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Section */
+        .section {
+            margin-bottom: 4rem;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            font-weight: 900;
+            margin-bottom: 1rem;
+            background: var(--gradient-2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .section-description {
+            font-size: 1.2rem;
+            color: rgba(255,255,255,0.9);
+            max-width: 700px;
+            margin: 0 auto;
+            line-height: 1.7;
+        }
+
+        /* Stats Cards */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .stat-card {
+            background: var(--bg-card);
+            border-radius: 20px;
+            padding: 2rem;
+            text-align: center;
+            box-shadow: var(--shadow-md);
+            transition: all 0.3s ease;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 900;
+            background: var(--gradient-3);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            color: #666;
+            font-size: 0.95rem;
             font-weight: 600;
         }
 
         /* Responsive */
-        @media (max-width: 768px) {
-            .main-title {
-                font-size: 2rem;
+        @media (max-width: 1024px) {
+            .sidebar {
+                transform: translateX(-100%);
+                transition: transform 0.3s ease;
+            }
+
+            .main-content {
+                margin-left: 0;
+                padding: 2rem 1.5rem;
+            }
+
+            .hero {
+                padding: 3rem 2rem;
             }
 
             .hero-title {
-                font-size: 2.2rem;
+                font-size: 3rem;
             }
 
-            .hero-text {
+            .section-title {
+                font-size: 2.5rem;
+            }
+
+            .cards-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .hero-title {
+                font-size: 2.5rem;
+            }
+
+            .hero-description {
                 font-size: 1.1rem;
             }
 
-            .header-content {
-                padding: 0 1rem;
-            }
-
-            main {
-                padding: 2rem 1rem;
-            }
-
-            nav ul {
-                gap: 0.5rem;
-            }
-
-            nav a {
-                padding: 0.6rem 1rem;
-                font-size: 0.9rem;
+            .section-title {
+                font-size: 2rem;
             }
         }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero, .card {
+            animation: fadeInUp 0.6s ease-out;
+        }
+
+        .card:nth-child(1) { animation-delay: 0.1s; }
+        .card:nth-child(2) { animation-delay: 0.2s; }
+        .card:nth-child(3) { animation-delay: 0.3s; }
+        .card:nth-child(4) { animation-delay: 0.4s; }
+        .card:nth-child(5) { animation-delay: 0.5s; }
+        .card:nth-child(6) { animation-delay: 0.6s; }
     </style>
 </head>
 <body>
-    <header>
-        <div class="header-content">
-            <h1 class="main-title">Miguel de Cervantes Saavedra</h1>
-            <p class="main-subtitle">El genio universal que creó la novela moderna</p>
-
-            <nav>
-                <ul>
-                    <li><a href="index.html" class="active">📚 Inicio</a></li>
-                    <li><a href="biografia.html">👤 Biografía</a></li>
-                    <li><a href="contexto-historico.html">🏛️ Contexto Histórico</a></li>
-                    <li><a href="quijote.html">⚔️ Don Quijote</a></li>
-                    <li><a href="novelas-ejemplares.html">📖 Novelas Ejemplares</a></li>
-                    <li><a href="estilo.html">✒️ Estilo y Perspectivismo</a></li>
-                    <li><a href="fragmentos.html">📜 Fragmentos Clave</a></li>
-                    <li><a href="actividades.html">🎯 Actividades</a></li>
-                </ul>
-            </nav>
+    <!-- Sidebar Navigation -->
+    <aside class="sidebar">
+        <div class="sidebar-header">
+            <h1 class="logo">Cervantes<br>Portal</h1>
+            <p class="logo-subtitle">Literatura Española ELE B1.2</p>
         </div>
-    </header>
+        <nav>
+            <ul class="nav-menu">
+                <li class="nav-item">
+                    <a href="index.html" class="nav-link active">
+                        <span class="nav-icon">🏠</span>
+                        <span>Inicio</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="biografia.html" class="nav-link">
+                        <span class="nav-icon">👤</span>
+                        <span>Biografía</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="contexto-historico.html" class="nav-link">
+                        <span class="nav-icon">🏛️</span>
+                        <span>Contexto Histórico</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="quijote.html" class="nav-link">
+                        <span class="nav-icon">⚔️</span>
+                        <span>Don Quijote</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="novelas-ejemplares.html" class="nav-link">
+                        <span class="nav-icon">📖</span>
+                        <span>Novelas Ejemplares</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="estilo.html" class="nav-link">
+                        <span class="nav-icon">✒️</span>
+                        <span>Estilo Literario</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="fragmentos.html" class="nav-link">
+                        <span class="nav-icon">📜</span>
+                        <span>Fragmentos Clave</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="actividades.html" class="nav-link">
+                        <span class="nav-icon">🎯</span>
+                        <span>Actividades</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </aside>
 
-    <main>
-        <section class="hero-section">
-            <h2 class="hero-title">El Ingenioso Hidalgo Don Quijote de la Mancha</h2>
-            <p class="hero-text">
-                La obra cumbre de <span class="highlight">Miguel de Cervantes</span> (1547-1616)
-                que <span class="highlight">revolucionó la literatura mundial</span>
-                y creó la <span class="highlight">novela moderna</span> tal como la conocemos.
-            </p>
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="container">
+            <!-- Hero Section -->
+            <section class="hero">
+                <div class="hero-content">
+                    <div class="hero-badge">📚 Siglo de Oro Español</div>
+                    <h2 class="hero-title">Miguel de Cervantes</h2>
+                    <p class="hero-description">
+                        Descubre al <span class="highlight-text">genio que creó la novela moderna</span>
+                        con Don Quijote de la Mancha. Una aventura literaria que cambió el mundo para siempre.
+                    </p>
 
-            <div class="intro-grid">
-                <div class="intro-card">
-                    <div class="card-icon">🪶</div>
-                    <h3 class="card-title">El Manco de Lepanto</h3>
-                    <div class="card-content">
-                        Soldado, cautivo, escritor genial. Una vida de aventuras extraordinarias que inspiró la mayor novela jamás escrita.
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <div class="stat-number">1547</div>
+                            <div class="stat-label">Año de nacimiento</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number">1605</div>
+                            <div class="stat-label">Don Quijote Parte I</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number">500M+</div>
+                            <div class="stat-label">Libros vendidos</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number">100</div>
+                            <div class="stat-label">Minutos de clase</div>
+                        </div>
                     </div>
                 </div>
+            </section>
 
-                <div class="intro-card">
-                    <div class="card-icon">⚔️</div>
-                    <h3 class="card-title">Don Quijote</h3>
-                    <div class="card-content">
-                        La primera novela moderna (1605-1615), considerada la mejor obra literaria jamás escrita en cualquier idioma.
-                    </div>
+            <!-- Main Sections -->
+            <section class="section">
+                <div class="section-header">
+                    <h3 class="section-title">Explora el Universo Cervantino</h3>
+                    <p class="section-description">
+                        Navega por las secciones para descubrir la vida, obra y genio de Miguel de Cervantes
+                    </p>
                 </div>
 
-                <div class="intro-card">
-                    <div class="card-icon">🎭</div>
-                    <h3 class="card-title">Innovación Narrativa</h3>
-                    <div class="card-content">
-                        Perspectivismo, metaficción, ironía compleja y personajes tridimensionales que transformaron la narrativa.
+                <div class="cards-grid">
+                    <div class="card" onclick="location.href='biografia.html'">
+                        <div class="card-icon">👤</div>
+                        <h4 class="card-title">Biografía</h4>
+                        <p class="card-description">
+                            Soldado en Lepanto, cautivo en Argel, escritor inmortal. La vida extraordinaria del Manco de Lepanto.
+                        </p>
+                        <span class="card-time">⏱️ 15 minutos</span>
+                    </div>
+
+                    <div class="card" onclick="location.href='contexto-historico.html'">
+                        <div class="card-icon">🏛️</div>
+                        <h4 class="card-title">Siglo de Oro</h4>
+                        <p class="card-description">
+                            La España imperial de los siglos XVI-XVII. El contexto histórico y cultural de la época.
+                        </p>
+                        <span class="card-time">⏱️ 10 minutos</span>
+                    </div>
+
+                    <div class="card" onclick="location.href='quijote.html'">
+                        <div class="card-icon">⚔️</div>
+                        <h4 class="card-title">Don Quijote</h4>
+                        <p class="card-description">
+                            La obra cumbre de la literatura universal. Análisis completo de la primera novela moderna.
+                        </p>
+                        <span class="card-time">⏱️ 25 minutos</span>
+                    </div>
+
+                    <div class="card" onclick="location.href='novelas-ejemplares.html'">
+                        <div class="card-icon">📖</div>
+                        <h4 class="card-title">Novelas Ejemplares</h4>
+                        <p class="card-description">
+                            12 relatos magistrales que revolucionaron la narrativa: Rinconete, La gitanilla y más.
+                        </p>
+                        <span class="card-time">⏱️ 10 minutos</span>
+                    </div>
+
+                    <div class="card" onclick="location.href='estilo.html'">
+                        <div class="card-icon">✒️</div>
+                        <h4 class="card-title">Perspectivismo</h4>
+                        <p class="card-description">
+                            Las técnicas narrativas revolucionarias: múltiples puntos de vista y metaficción.
+                        </p>
+                        <span class="card-time">⏱️ 15 minutos</span>
+                    </div>
+
+                    <div class="card" onclick="location.href='actividades.html'">
+                        <div class="card-icon">🎯</div>
+                        <h4 class="card-title">Actividades</h4>
+                        <p class="card-description">
+                            7 ejercicios interactivos: quiz, debates, guiones del siglo XXI y análisis creativo.
+                        </p>
+                        <span class="card-time">⏱️ 15 minutos</span>
                     </div>
                 </div>
-            </div>
-        </section>
-
-        <section class="hero-section">
-            <h2 class="hero-title">Explora el Universo Cervantino</h2>
-            <p class="hero-text">
-                Descubre la vida, obra y genio de Cervantes a través de esta presentación completa.
-                Cada sección ofrece un análisis profundo para comprender por qué es considerado
-                <span class="highlight">el más grande escritor en lengua española</span> de todos los tiempos.
-            </p>
-
-            <div class="intro-grid">
-                <div class="intro-card">
-                    <div class="card-icon">👤</div>
-                    <h3 class="card-title">Biografía Completa</h3>
-                    <div class="card-content">
-                        Desde Alcalá de Henares hasta su muerte en Madrid: soldado en Lepanto, cautivo en Argel, escritor inmortal.
-                    </div>
-                </div>
-
-                <div class="intro-card">
-                    <div class="card-icon">🏛️</div>
-                    <h3 class="card-title">El Siglo de Oro</h3>
-                    <div class="card-content">
-                        La España imperial de los siglos XVI-XVII: contexto histórico, cultural y social de la época cervantina.
-                    </div>
-                </div>
-
-                <div class="intro-card">
-                    <div class="card-icon">⚔️</div>
-                    <h3 class="card-title">Don Quijote Analizado</h3>
-                    <div class="card-content">
-                        Estructura, temas, personajes y técnicas narrativas de la obra más influyente de la literatura universal.
-                    </div>
-                </div>
-
-                <div class="intro-card">
-                    <div class="card-icon">📖</div>
-                    <h3 class="card-title">Novelas Ejemplares</h3>
-                    <div class="card-content">
-                        12 relatos magistrales que revolucionaron el género de la novela corta: Rinconete, La gitanilla, El licenciado Vidriera...
-                    </div>
-                </div>
-
-                <div class="intro-card">
-                    <div class="card-icon">✒️</div>
-                    <h3 class="card-title">Perspectivismo</h3>
-                    <div class="card-content">
-                        La técnica narrativa revolucionaria que presenta múltiples puntos de vista y cuestiona la realidad objetiva.
-                    </div>
-                </div>
-
-                <div class="intro-card">
-                    <div class="card-icon">🎯</div>
-                    <h3 class="card-title">Actividades Interactivas</h3>
-                    <div class="card-content">
-                        6 actividades completas para profundizar: quiz, análisis de personajes, debates, investigación y más.
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section class="hero-section">
-            <h2 class="hero-title">100 Minutos de Clase Cervantina</h2>
-            <p class="hero-text">
-                Esta miniweb está diseñada para una sesión completa de clase de 100 minutos,
-                con contenidos dosificados y actividades interactivas.
-            </p>
-
-            <div class="intro-grid">
-                <div class="intro-card">
-                    <div class="card-icon">⏱️</div>
-                    <h3 class="card-title">10 min - Introducción</h3>
-                    <div class="card-content">
-                        Presentación general y contextualización histórica de Cervantes y su época.
-                    </div>
-                </div>
-
-                <div class="intro-card">
-                    <div class="card-icon">⏱️</div>
-                    <h3 class="card-title">15 min - Biografía</h3>
-                    <div class="card-content">
-                        Vida extraordinaria de Cervantes: Lepanto, cautiverio, carrera literaria.
-                    </div>
-                </div>
-
-                <div class="intro-card">
-                    <div class="card-icon">⏱️</div>
-                    <h3 class="card-title">25 min - Don Quijote</h3>
-                    <div class="card-content">
-                        Análisis detallado de la estructura, temas y técnicas del Quijote.
-                    </div>
-                </div>
-
-                <div class="intro-card">
-                    <div class="card-icon">⏱️</div>
-                    <h3 class="card-title">10 min - Otras Obras</h3>
-                    <div class="card-content">
-                        Novelas Ejemplares y la diversidad del genio cervantino.
-                    </div>
-                </div>
-
-                <div class="intro-card">
-                    <div class="card-icon">⏱️</div>
-                    <h3 class="card-title">15 min - Estilo</h3>
-                    <div class="card-content">
-                        Perspectivismo, ironía y las innovaciones narrativas revolucionarias.
-                    </div>
-                </div>
-
-                <div class="intro-card">
-                    <div class="card-icon">⏱️</div>
-                    <h3 class="card-title">10 min - Lecturas</h3>
-                    <div class="card-content">
-                        Fragmentos seleccionados del Quijote para lectura y análisis en clase.
-                    </div>
-                </div>
-
-                <div class="intro-card">
-                    <div class="card-icon">⏱️</div>
-                    <h3 class="card-title">15 min - Actividades</h3>
-                    <div class="card-content">
-                        Ejercicios interactivos: quiz, debates, análisis y creación literaria.
-                    </div>
-                </div>
-            </div>
-        </section>
+            </section>
+        </div>
     </main>
-
-    <footer>
-        <p class="footer-text">«En un lugar de la Mancha, de cuyo nombre no quiero acordarme...»</p>
-        <div class="footer-badge">📚 Clase de Literatura Española - Siglo de Oro</div>
-    </footer>
 </body>
 </html>
