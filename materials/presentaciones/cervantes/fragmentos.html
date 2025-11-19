@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fragmentos Clave del Quijote</title>
-    <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:wght@400;600;700&family=Cinzel:wght@600;700&display=swap" rel="stylesheet">
+    <title>Fragmentos Clave del Quijote - Cervantes Portal</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -13,479 +13,950 @@
         }
 
         :root {
-            --primary-color: #1a4d7a;
-            --secondary-color: #2c6ba0;
-            --accent-color: #7ba7c7;
-            --text-primary: #1a2a3a;
-            --text-secondary: #3a4a5a;
-            --text-light: #f0f4f8;
-            --background: linear-gradient(135deg, #0f2537 0%, #1a4d7a 50%, #2c6ba0 100%);
-            --content-bg: rgba(240, 244, 248, 0.95);
-            --shadow: 0 8px 32px rgba(0,0,0,0.3);
+            --gradient-1: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --gradient-2: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            --gradient-3: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            --gradient-4: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+            --gradient-5: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+            --gradient-main: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+            --text-dark: #1a1a2e;
+            --text-light: #f8f9fa;
+            --bg-dark: #0f0f1e;
+            --bg-card: rgba(255, 255, 255, 0.95);
+            --shadow-sm: 0 2px 10px rgba(0,0,0,0.1);
+            --shadow-md: 0 8px 30px rgba(0,0,0,0.12);
+            --shadow-lg: 0 20px 60px rgba(0,0,0,0.3);
+            --sidebar-width: 280px;
         }
 
         body {
-            font-family: 'Crimson Text', serif;
-            color: var(--text-primary);
-            background: var(--background);
+            font-family: 'Inter', sans-serif;
+            color: var(--text-dark);
+            background: var(--gradient-main);
             min-height: 100vh;
+            overflow-x: hidden;
             line-height: 1.6;
         }
 
-        header {
-            background: rgba(15, 37, 55, 0.95);
-            padding: 1rem 0;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
-            position: sticky;
+        /* Sidebar Navigation */
+        .sidebar {
+            position: fixed;
+            left: 0;
             top: 0;
+            width: var(--sidebar-width);
+            height: 100vh;
+            background: rgba(15, 15, 30, 0.95);
+            backdrop-filter: blur(20px);
+            padding: 2rem 0;
             z-index: 1000;
+            box-shadow: var(--shadow-lg);
+            overflow-y: auto;
+        }
+
+        .sidebar-header {
+            padding: 0 1.5rem 2rem;
+            border-bottom: 2px solid rgba(255,255,255,0.1);
+            margin-bottom: 2rem;
+        }
+
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            font-weight: 900;
+            background: var(--gradient-5);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 0.5rem;
+            line-height: 1.2;
+        }
+
+        .logo-subtitle {
+            color: rgba(255,255,255,0.6);
+            font-size: 0.85rem;
+            font-weight: 400;
+        }
+
+        .nav-menu {
+            list-style: none;
+            padding: 0 1rem;
+        }
+
+        .nav-item {
+            margin-bottom: 0.5rem;
+        }
+
+        .nav-link {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem 1rem;
+            color: rgba(255,255,255,0.8);
+            text-decoration: none;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .nav-link::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 4px;
+            height: 100%;
+            background: var(--gradient-5);
+            transform: scaleY(0);
+            transition: transform 0.3s ease;
+        }
+
+        .nav-link:hover {
+            background: rgba(255,255,255,0.1);
+            color: #fff;
+            transform: translateX(5px);
+        }
+
+        .nav-link:hover::before {
+            transform: scaleY(1);
+        }
+
+        .nav-link.active {
+            background: var(--gradient-5);
+            color: #fff;
+        }
+
+        .nav-icon {
+            font-size: 1.4rem;
+            width: 24px;
+            text-align: center;
+        }
+
+        /* Main Content */
+        .main-content {
+            margin-left: var(--sidebar-width);
+            min-height: 100vh;
+            padding: 3rem;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* Hero Header */
+        .page-header {
+            background: var(--bg-card);
+            border-radius: 30px;
+            padding: 3rem;
+            margin-bottom: 3rem;
+            box-shadow: var(--shadow-lg);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .page-header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -10%;
+            width: 400px;
+            height: 400px;
+            background: var(--gradient-2);
+            opacity: 0.1;
+            border-radius: 50%;
+            filter: blur(80px);
         }
 
         .header-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 2rem;
-            text-align: center;
+            position: relative;
+            z-index: 1;
         }
 
-        .main-title {
-            font-family: 'Cinzel', serif;
-            font-size: 2.5rem;
-            color: var(--accent-color);
+        .page-badge {
+            display: inline-block;
+            padding: 0.5rem 1.5rem;
+            background: var(--gradient-5);
+            color: white;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
             margin-bottom: 1.5rem;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+            box-shadow: var(--shadow-sm);
         }
 
-        .main-subtitle {
+        .page-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.5rem;
+            font-weight: 900;
+            line-height: 1.2;
+            margin-bottom: 1rem;
+            background: var(--gradient-main);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .page-description {
             font-size: 1.2rem;
-            color: var(--text-light);
-            margin-bottom: 2rem;
-            font-style: italic;
-        }
-
-        nav ul {
-            list-style: none;
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 1rem;
-        }
-
-        nav a {
-            display: block;
-            padding: 0.8rem 1.5rem;
-            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
-            color: var(--text-light);
-            text-decoration: none;
-            border-radius: 25px;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(26, 77, 122, 0.3);
-            font-size: 1rem;
-        }
-
-        nav a:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(26, 77, 122, 0.4);
-            background: linear-gradient(45deg, var(--secondary-color), var(--primary-color));
-        }
-
-        nav a.active {
-            background: linear-gradient(45deg, var(--accent-color), #9bc3de);
-            color: var(--text-primary);
-        }
-
-        main {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 3rem 2rem;
-        }
-
-        .content-section {
-            background: var(--content-bg);
-            border-radius: 20px;
-            padding: 3rem;
-            margin-bottom: 2rem;
-            box-shadow: var(--shadow);
-            border: 2px solid var(--primary-color);
-        }
-
-        .section-title {
-            font-family: 'Cinzel', serif;
-            font-size: 2.5rem;
-            color: var(--primary-color);
-            margin-bottom: 2rem;
-            text-align: center;
-        }
-
-        .section-subtitle {
-            font-family: 'Cinzel', serif;
-            font-size: 1.8rem;
-            color: var(--secondary-color);
-            margin-top: 2.5rem;
+            color: #666;
+            line-height: 1.8;
             margin-bottom: 1.5rem;
-            border-bottom: 2px solid var(--accent-color);
-            padding-bottom: 0.5rem;
         }
 
-        .fragment-box {
-            background: linear-gradient(135deg, rgba(26, 77, 122, 0.05) 0%, rgba(123, 167, 199, 0.1) 100%);
-            border: 2px solid var(--accent-color);
+        .intro-box {
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.1), rgba(118, 75, 162, 0.1));
+            border-left: 4px solid #667eea;
+            padding: 1.5rem;
             border-radius: 15px;
-            padding: 2.5rem;
-            margin: 2.5rem 0;
+            margin-top: 1.5rem;
         }
+
+        .intro-box strong {
+            color: #667eea;
+            font-size: 1.1rem;
+        }
+
+        .highlight-badge {
+            background: var(--gradient-1);
+            color: white;
+            padding: 0.2rem 0.8rem;
+            border-radius: 20px;
+            font-weight: 700;
+            font-size: 0.95rem;
+            display: inline-block;
+        }
+
+        /* Fragment Cards */
+        .fragment-card {
+            background: var(--bg-card);
+            border-radius: 24px;
+            padding: 3rem;
+            margin-bottom: 2.5rem;
+            box-shadow: var(--shadow-md);
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            animation: fadeInUp 0.6s ease-out;
+        }
+
+        .fragment-card:nth-child(1) {
+            animation-delay: 0.1s;
+        }
+        .fragment-card:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+        .fragment-card:nth-child(3) {
+            animation-delay: 0.3s;
+        }
+        .fragment-card:nth-child(4) {
+            animation-delay: 0.4s;
+        }
+        .fragment-card:nth-child(5) {
+            animation-delay: 0.5s;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fragment-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 6px;
+            background: var(--gradient-1);
+            border-radius: 24px 24px 0 0;
+        }
+
+        .fragment-card:nth-child(2)::before { background: var(--gradient-2); }
+        .fragment-card:nth-child(3)::before { background: var(--gradient-3); }
+        .fragment-card:nth-child(4)::before { background: var(--gradient-4); }
+        .fragment-card:nth-child(5)::before { background: var(--gradient-5); }
+
+        .fragment-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .fragment-header {
+            margin-bottom: 2rem;
+        }
+
+        .fragment-number {
+            display: inline-block;
+            width: 50px;
+            height: 50px;
+            background: var(--gradient-1);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: 900;
+            margin-bottom: 1rem;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .fragment-card:nth-child(2) .fragment-number { background: var(--gradient-2); }
+        .fragment-card:nth-child(3) .fragment-number { background: var(--gradient-3); }
+        .fragment-card:nth-child(4) .fragment-number { background: var(--gradient-4); }
+        .fragment-card:nth-child(5) .fragment-number { background: var(--gradient-5); }
 
         .fragment-title {
-            font-family: 'Cinzel', serif;
-            font-size: 1.5rem;
-            color: var(--primary-color);
-            margin-bottom: 1.5rem;
-            text-align: center;
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            font-weight: 900;
+            color: var(--text-dark);
+            margin-bottom: 0.5rem;
+            line-height: 1.3;
         }
 
         .fragment-reference {
-            text-align: center;
-            color: var(--secondary-color);
+            color: #666;
+            font-size: 0.95rem;
+            font-weight: 600;
             font-style: italic;
-            margin-bottom: 2rem;
-            font-size: 1.1rem;
         }
 
-        .fragment-text {
-            font-size: 1.2rem;
+        /* Quote Box */
+        .quote-box {
+            background: linear-gradient(135deg, rgba(255,255,255,0.8), rgba(248,249,250,0.9));
+            border-radius: 20px;
+            padding: 2.5rem;
+            margin: 2rem 0;
+            position: relative;
+            box-shadow: var(--shadow-sm);
+            border-left: 5px solid;
+            border-image: var(--gradient-1) 1;
+        }
+
+        .fragment-card:nth-child(2) .quote-box { border-image: var(--gradient-2) 1; }
+        .fragment-card:nth-child(3) .quote-box { border-image: var(--gradient-3) 1; }
+        .fragment-card:nth-child(4) .quote-box { border-image: var(--gradient-4) 1; }
+        .fragment-card:nth-child(5) .quote-box { border-image: var(--gradient-5) 1; }
+
+        .quote-box::before {
+            content: '«';
+            position: absolute;
+            top: -10px;
+            left: 20px;
+            font-family: 'Playfair Display', serif;
+            font-size: 5rem;
+            background: var(--gradient-1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            opacity: 0.3;
+        }
+
+        .fragment-card:nth-child(2) .quote-box::before { background: var(--gradient-2); -webkit-background-clip: text; background-clip: text; }
+        .fragment-card:nth-child(3) .quote-box::before { background: var(--gradient-3); -webkit-background-clip: text; background-clip: text; }
+        .fragment-card:nth-child(4) .quote-box::before { background: var(--gradient-4); -webkit-background-clip: text; background-clip: text; }
+        .fragment-card:nth-child(5) .quote-box::before { background: var(--gradient-5); -webkit-background-clip: text; background-clip: text; }
+
+        .quote-text {
+            font-size: 1.15rem;
             line-height: 2;
-            color: var(--text-secondary);
-            padding: 2rem;
-            background: rgba(255, 255, 255, 0.7);
-            border-radius: 10px;
-            border-left: 4px solid var(--primary-color);
+            color: #2d3748;
             font-style: italic;
             position: relative;
+            z-index: 1;
         }
 
-        .fragment-text::before {
-            content: '«';
-            font-size: 4rem;
-            position: absolute;
-            top: 10px;
-            left: 10px;
-            color: var(--accent-color);
-            opacity: 0.3;
-            font-family: 'Cinzel', serif;
-        }
-
-        .fragment-analysis {
+        /* Analysis Section */
+        .analysis-section {
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.05), rgba(118, 75, 162, 0.05));
+            border-radius: 20px;
+            padding: 2rem;
             margin-top: 2rem;
-            padding: 1.5rem;
-            background: rgba(26, 77, 122, 0.08);
-            border-radius: 10px;
         }
+
+        .fragment-card:nth-child(2) .analysis-section { background: linear-gradient(135deg, rgba(240, 147, 251, 0.05), rgba(245, 87, 108, 0.05)); }
+        .fragment-card:nth-child(3) .analysis-section { background: linear-gradient(135deg, rgba(79, 172, 254, 0.05), rgba(0, 242, 254, 0.05)); }
+        .fragment-card:nth-child(4) .analysis-section { background: linear-gradient(135deg, rgba(67, 233, 123, 0.05), rgba(56, 249, 215, 0.05)); }
+        .fragment-card:nth-child(5) .analysis-section { background: linear-gradient(135deg, rgba(250, 112, 154, 0.05), rgba(254, 225, 64, 0.05)); }
 
         .analysis-title {
-            font-family: 'Cinzel', serif;
-            font-size: 1.3rem;
-            color: var(--primary-color);
-            margin-bottom: 1rem;
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            font-weight: 900;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .analysis-title::before {
+            content: '💡';
+            font-size: 1.8rem;
         }
 
         .analysis-text {
-            font-size: 1.1rem;
-            line-height: 1.8;
-            color: var(--text-secondary);
+            font-size: 1.05rem;
+            line-height: 1.9;
+            color: #4a5568;
+        }
+
+        .analysis-text strong {
+            color: var(--text-dark);
+            font-weight: 700;
+            display: block;
+            margin-top: 1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .analysis-text strong:first-child {
+            margin-top: 0;
         }
 
         .highlight {
-            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+            background: var(--gradient-1);
             color: white;
-            padding: 3px 10px;
+            padding: 0.15rem 0.6rem;
             border-radius: 15px;
-            font-weight: 600;
-            display: inline-block;
-            margin: 2px;
+            font-weight: 700;
+            font-size: 0.95rem;
+            white-space: nowrap;
         }
 
-        .quote-intro {
-            background: rgba(26, 77, 122, 0.1);
-            border-left: 4px solid var(--primary-color);
-            padding: 1.5rem;
-            margin: 2rem 0;
-            border-radius: 8px;
+        .fragment-card:nth-child(2) .highlight { background: var(--gradient-2); }
+        .fragment-card:nth-child(3) .highlight { background: var(--gradient-3); }
+        .fragment-card:nth-child(4) .highlight { background: var(--gradient-4); }
+        .fragment-card:nth-child(5) .highlight { background: var(--gradient-5); }
+
+        /* Reflection Section */
+        .reflection-section {
+            background: var(--bg-card);
+            border-radius: 24px;
+            padding: 3rem;
+            margin-top: 3rem;
+            box-shadow: var(--shadow-md);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .reflection-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 6px;
+            background: var(--gradient-main);
+            border-radius: 24px 24px 0 0;
+        }
+
+        .reflection-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            font-weight: 900;
+            margin-bottom: 1.5rem;
+            background: var(--gradient-main);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .reflection-box {
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.08), rgba(240, 147, 251, 0.08));
+            border-radius: 15px;
+            padding: 2rem;
+            margin-top: 1.5rem;
+        }
+
+        .reflection-subtitle {
+            font-weight: 700;
             font-size: 1.1rem;
-            line-height: 1.8;
-            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+            color: #667eea;
         }
 
-        footer {
-            background: rgba(15, 37, 55, 0.95);
-            color: var(--text-light);
+        .question-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .question-item {
+            padding: 1rem 0;
+            border-bottom: 1px solid rgba(102, 126, 234, 0.1);
+            font-size: 1.05rem;
+            line-height: 1.8;
+            color: #4a5568;
+        }
+
+        .question-item:last-child {
+            border-bottom: none;
+        }
+
+        .question-number {
+            display: inline-block;
+            width: 28px;
+            height: 28px;
+            background: var(--gradient-1);
+            color: white;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 28px;
+            font-weight: 700;
+            font-size: 0.9rem;
+            margin-right: 0.8rem;
+        }
+
+        /* Footer */
+        .page-footer {
             text-align: center;
             padding: 2rem;
-            margin-top: 4rem;
-        }
-
-        .footer-text {
-            font-size: 1.1rem;
-            margin-bottom: 1rem;
+            margin-top: 3rem;
+            color: rgba(255,255,255,0.9);
         }
 
         .footer-badge {
             display: inline-block;
-            background: rgba(123, 167, 199, 0.2);
-            padding: 0.5rem 1.5rem;
-            border-radius: 20px;
-            border: 1px solid var(--accent-color);
-            font-weight: 600;
+            background: var(--bg-card);
+            color: var(--text-dark);
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            font-weight: 700;
+            box-shadow: var(--shadow-md);
         }
 
-        @media (max-width: 768px) {
-            .fragment-text {
-                font-size: 1.1rem;
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .sidebar {
+                transform: translateX(-100%);
+                transition: transform 0.3s ease;
             }
 
-            nav a {
-                padding: 0.6rem 1rem;
-                font-size: 0.9rem;
+            .main-content {
+                margin-left: 0;
+                padding: 2rem 1.5rem;
             }
+
+            .page-header {
+                padding: 2rem;
+            }
+
+            .page-title {
+                font-size: 2.5rem;
+            }
+
+            .fragment-card {
+                padding: 2rem;
+            }
+
+            .fragment-title {
+                font-size: 1.6rem;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .main-content {
+                padding: 1.5rem 1rem;
+            }
+
+            .page-title {
+                font-size: 2rem;
+            }
+
+            .page-description {
+                font-size: 1rem;
+            }
+
+            .fragment-card {
+                padding: 1.5rem;
+            }
+
+            .fragment-title {
+                font-size: 1.4rem;
+            }
+
+            .quote-text {
+                font-size: 1.05rem;
+            }
+
+            .quote-box::before {
+                font-size: 3.5rem;
+            }
+        }
+
+        /* Scrollbar Styling */
+        .sidebar::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .sidebar::-webkit-scrollbar-track {
+            background: rgba(255,255,255,0.05);
+        }
+
+        .sidebar::-webkit-scrollbar-thumb {
+            background: rgba(255,255,255,0.2);
+            border-radius: 3px;
+        }
+
+        .sidebar::-webkit-scrollbar-thumb:hover {
+            background: rgba(255,255,255,0.3);
         }
     </style>
 </head>
 <body>
-    <header>
-        <div class="header-content">
-            <h1 class="main-title">Miguel de Cervantes Saavedra</h1>
-            <p class="main-subtitle">El genio universal que creó la novela moderna</p>
-
-            <nav>
-                <ul>
-                    <li><a href="index.html">📚 Inicio</a></li>
-                    <li><a href="biografia.html">👤 Biografía</a></li>
-                    <li><a href="contexto-historico.html">🏛️ Contexto Histórico</a></li>
-                    <li><a href="quijote.html">⚔️ Don Quijote</a></li>
-                    <li><a href="novelas-ejemplares.html">📖 Novelas Ejemplares</a></li>
-                    <li><a href="estilo.html">✒️ Estilo y Perspectivismo</a></li>
-                    <li><a href="fragmentos.html" class="active">📜 Fragmentos Clave</a></li>
-                    <li><a href="actividades.html">🎯 Actividades</a></li>
-                </ul>
-            </nav>
+    <!-- Sidebar Navigation -->
+    <aside class="sidebar">
+        <div class="sidebar-header">
+            <h1 class="logo">Cervantes<br>Portal</h1>
+            <p class="logo-subtitle">Literatura Española ELE B1.2</p>
         </div>
-    </header>
+        <nav>
+            <ul class="nav-menu">
+                <li class="nav-item">
+                    <a href="index.html" class="nav-link">
+                        <span class="nav-icon">🏠</span>
+                        <span>Inicio</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="biografia.html" class="nav-link">
+                        <span class="nav-icon">👤</span>
+                        <span>Biografía</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="contexto-historico.html" class="nav-link">
+                        <span class="nav-icon">🏛️</span>
+                        <span>Contexto Histórico</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="quijote.html" class="nav-link">
+                        <span class="nav-icon">⚔️</span>
+                        <span>Don Quijote</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="novelas-ejemplares.html" class="nav-link">
+                        <span class="nav-icon">📖</span>
+                        <span>Novelas Ejemplares</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="estilo.html" class="nav-link">
+                        <span class="nav-icon">✒️</span>
+                        <span>Estilo Literario</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="fragmentos.html" class="nav-link active">
+                        <span class="nav-icon">📜</span>
+                        <span>Fragmentos Clave</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="actividades.html" class="nav-link">
+                        <span class="nav-icon">🎯</span>
+                        <span>Actividades</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </aside>
 
-    <main>
-        <section class="content-section">
-            <h2 class="section-title">📜 Fragmentos Clave del Quijote</h2>
-
-            <div class="quote-intro">
-                <strong>⏱️ Lecturas para 10 minutos de clase</strong>
-                <br><br>
-                Fragmentos seleccionados de <span class="highlight">Don Quijote de la Mancha</span> para lectura, análisis y discusión en el aula.
-                Cada fragmento incluye contexto, análisis literario y temas para reflexión.
-            </div>
-
-            <!-- FRAGMENTO 1: Inicio legendario -->
-            <div class="fragment-box">
-                <h3 class="fragment-title">1. El Inicio Más Famoso de la Literatura</h3>
-                <p class="fragment-reference">Capítulo I, Primera Parte</p>
-
-                <div class="fragment-text">
-                    En un lugar de la Mancha, de cuyo nombre no quiero acordarme, no ha mucho tiempo que vivía un hidalgo de los de lanza en astillero, adarga antigua, rocín flaco y galgo corredor. Una olla de algo más vaca que carnero, salpicón las más noches, duelos y quebrantos los sábados, lantejas los viernes, algún palomino de añadidura los domingos, consumían las tres partes de su hacienda. El resto della concluían sayo de velarte, calzas de velludo para las fiestas, con sus pantuflos de lo mesmo, y los días de entresemana se honraba con su vellorí de lo más fino. Tenía en su casa una ama que pasaba de los cuarenta, y una sobrina que no llegaba a los veinte, y un mozo de campo y plaza, que así ensillaba el rocín como tomaba la podadera.
-                </div>
-
-                <div class="fragment-analysis">
-                    <h4 class="analysis-title">💡 Análisis</h4>
-                    <p class="analysis-text">
-                        <strong>"En un lugar de la Mancha, de cuyo nombre no quiero acordarme..."</strong>
-                        <br><br>
-                        Este inicio es uno de los <span class="highlight">más famosos de la literatura universal</span>.
-                        <br><br>
-                        <strong>Ambigüedad geográfica:</strong> No especifica el lugar exacto. Esto universaliza la historia (podría ser cualquier pueblo).
-                        <br><br>
-                        <strong>Detalle realista:</strong> Cervantes describe minuciosamente la comida (muy humilde) y la ropa del hidalgo.
-                        Esto es <span class="highlight">realismo innovador</span>: literatura anterior idealizaba a los nobles.
-                        <br><br>
-                        <strong>Retrato de la pobreza hidalga:</strong> Alonso Quijano es un <span class="highlight">hidalgo pobre</span>,
-                        obsesionado con mantener apariencias nobles aunque viva en la miseria.
-                        Esto refleja la <span class="highlight">España de 1600</span>: miles de hidalgos empobrecidos viviendo de su honor.
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="container">
+            <!-- Page Header -->
+            <header class="page-header">
+                <div class="header-content">
+                    <div class="page-badge">📜 Lecturas Esenciales</div>
+                    <h1 class="page-title">Fragmentos Clave del Quijote</h1>
+                    <p class="page-description">
+                        Los pasajes más memorables de la obra cumbre de Cervantes. Cada fragmento ha sido seleccionado
+                        para lectura en el aula, con análisis literario y temas de reflexión.
                     </p>
-                </div>
-            </div>
-
-            <!-- FRAGMENTO 2: Los molinos de viento -->
-            <div class="fragment-box">
-                <h3 class="fragment-title">2. Los Molinos de Viento (La Aventura Más Famosa)</h3>
-                <p class="fragment-reference">Capítulo VIII, Primera Parte</p>
-
-                <div class="fragment-text">
-                    En esto, descubrieron treinta o cuarenta molinos de viento que hay en aquel campo; y así como don Quijote los vio, dijo a su escudero:<br><br>
-                    —La ventura va guiando nuestras cosas mejor de lo que acertáramos a desear, porque ves allí, amigo Sancho Panza, donde se descubren treinta, o pocos más, desaforados gigantes, con quien pienso hacer batalla y quitarles a todos las vidas, con cuyos despojos comenzaremos a enriquecer; que esta es buena guerra, y es gran servicio de Dios quitar tan mala simiente de sobre la faz de la tierra.<br><br>
-                    —¿Qué gigantes? —dijo Sancho Panza.<br><br>
-                    —Aquellos que allí ves —respondió su amo— de los brazos largos, que los suelen tener algunos de casi dos leguas.<br><br>
-                    —Mire vuestra merced —respondió Sancho— que aquellos que allí se parecen no son gigantes, sino molinos de viento, y lo que en ellos parecen brazos son las aspas, que, volteadas del viento, hacen andar la piedra del molino.<br><br>
-                    —Bien parece —respondió don Quijote— que no estás cursado en esto de las aventuras: ellos son gigantes; y si tienes miedo, quítate de ahí, y ponte en oración en el espacio que yo voy a entrar con ellos en fiera y desigual batalla.
-                </div>
-
-                <div class="fragment-analysis">
-                    <h4 class="analysis-title">💡 Análisis</h4>
-                    <p class="analysis-text">
-                        <strong>Perspectivismo perfecto:</strong>
-                        <br>
-                        • Don Quijote ve <span class="highlight">gigantes</span> (percepción idealista, caballeresca)
-                        <br>
-                        • Sancho ve <span class="highlight">molinos</span> (percepción realista, pragmática)
+                    <div class="intro-box">
+                        <strong>⏱️ Lecturas para 10 minutos de clase</strong>
                         <br><br>
+                        Fragmentos seleccionados de <span class="highlight-badge">Don Quijote de la Mancha</span> para lectura,
+                        análisis y discusión en el aula. Cada fragmento incluye contexto, análisis literario y temas para reflexión.
+                    </div>
+                </div>
+            </header>
+
+            <!-- Fragment 1: El Inicio Más Famoso -->
+            <article class="fragment-card">
+                <div class="fragment-header">
+                    <div class="fragment-number">1</div>
+                    <h2 class="fragment-title">El Inicio Más Famoso de la Literatura</h2>
+                    <p class="fragment-reference">Capítulo I, Primera Parte</p>
+                </div>
+
+                <div class="quote-box">
+                    <div class="quote-text">
+                        En un lugar de la Mancha, de cuyo nombre no quiero acordarme, no ha mucho tiempo que vivía un hidalgo
+                        de los de lanza en astillero, adarga antigua, rocín flaco y galgo corredor. Una olla de algo más vaca que
+                        carnero, salpicón las más noches, duelos y quebrantos los sábados, lantejas los viernes, algún palomino
+                        de añadidura los domingos, consumían las tres partes de su hacienda. El resto della concluían sayo de velarte,
+                        calzas de velludo para las fiestas, con sus pantuflos de lo mesmo, y los días de entresemana se honraba con
+                        su vellorí de lo más fino. Tenía en su casa una ama que pasaba de los cuarenta, y una sobrina que no llegaba
+                        a los veinte, y un mozo de campo y plaza, que así ensillaba el rocín como tomaba la podadera.
+                    </div>
+                </div>
+
+                <div class="analysis-section">
+                    <h3 class="analysis-title">Análisis Literario</h3>
+                    <div class="analysis-text">
+                        <strong>"En un lugar de la Mancha, de cuyo nombre no quiero acordarme..."</strong>
+                        Este inicio es uno de los <span class="highlight">más famosos de la literatura universal</span>.
+
+                        <strong>Ambigüedad geográfica:</strong>
+                        No especifica el lugar exacto. Esto universaliza la historia (podría ser cualquier pueblo).
+
+                        <strong>Detalle realista:</strong>
+                        Cervantes describe minuciosamente la comida (muy humilde) y la ropa del hidalgo.
+                        Esto es <span class="highlight">realismo innovador</span>: literatura anterior idealizaba a los nobles.
+
+                        <strong>Retrato de la pobreza hidalga:</strong>
+                        Alonso Quijano es un <span class="highlight">hidalgo pobre</span>, obsesionado con mantener apariencias nobles
+                        aunque viva en la miseria. Esto refleja la <span class="highlight">España de 1600</span>: miles de hidalgos
+                        empobrecidos viviendo de su honor.
+                    </div>
+                </div>
+            </article>
+
+            <!-- Fragment 2: Los Molinos de Viento -->
+            <article class="fragment-card">
+                <div class="fragment-header">
+                    <div class="fragment-number">2</div>
+                    <h2 class="fragment-title">Los Molinos de Viento (La Aventura Más Famosa)</h2>
+                    <p class="fragment-reference">Capítulo VIII, Primera Parte</p>
+                </div>
+
+                <div class="quote-box">
+                    <div class="quote-text">
+                        En esto, descubrieron treinta o cuarenta molinos de viento que hay en aquel campo; y así como don Quijote
+                        los vio, dijo a su escudero:<br><br>
+                        —La ventura va guiando nuestras cosas mejor de lo que acertáramos a desear, porque ves allí, amigo Sancho Panza,
+                        donde se descubren treinta, o pocos más, desaforados gigantes, con quien pienso hacer batalla y quitarles a todos
+                        las vidas, con cuyos despojos comenzaremos a enriquecer; que esta es buena guerra, y es gran servicio de Dios
+                        quitar tan mala simiente de sobre la faz de la tierra.<br><br>
+                        —¿Qué gigantes? —dijo Sancho Panza.<br><br>
+                        —Aquellos que allí ves —respondió su amo— de los brazos largos, que los suelen tener algunos de casi dos leguas.<br><br>
+                        —Mire vuestra merced —respondió Sancho— que aquellos que allí se parecen no son gigantes, sino molinos de viento,
+                        y lo que en ellos parecen brazos son las aspas, que, volteadas del viento, hacen andar la piedra del molino.<br><br>
+                        —Bien parece —respondió don Quijote— que no estás cursado en esto de las aventuras: ellos son gigantes;
+                        y si tienes miedo, quítate de ahí, y ponte en oración en el espacio que yo voy a entrar con ellos en fiera
+                        y desigual batalla.
+                    </div>
+                </div>
+
+                <div class="analysis-section">
+                    <h3 class="analysis-title">Análisis Literario</h3>
+                    <div class="analysis-text">
+                        <strong>Perspectivismo perfecto:</strong>
+                        • Don Quijote ve <span class="highlight">gigantes</span> (percepción idealista, caballeresca)<br>
+                        • Sancho ve <span class="highlight">molinos</span> (percepción realista, pragmática)
 
                         <strong>Diálogo entre idealismo y realismo:</strong>
                         El choque entre ambas visiones del mundo es el <span class="highlight">núcleo temático del Quijote</span>.
-                        <br><br>
 
                         <strong>Don Quijote no finge:</strong>
                         Realmente ve gigantes. Para él, la <span class="highlight">realidad literaria</span> (libros de caballerías)
                         es más real que la realidad material.
-                        <br><br>
 
                         <strong>Ironía compasiva:</strong>
                         Cervantes no se burla cruelmente. Muestra la <span class="highlight">nobleza del idealismo</span>
                         (Don Quijote quiere hacer el bien) y también su <span class="highlight">inevitable fracaso</span>.
-                    </p>
+                    </div>
                 </div>
-            </div>
+            </article>
 
-            <!-- FRAGMENTO 3: Discurso de la Edad de Oro -->
-            <div class="fragment-box">
-                <h3 class="fragment-title">3. Discurso de la Edad de Oro</h3>
-                <p class="fragment-reference">Capítulo XI, Primera Parte</p>
-
-                <div class="fragment-text">
-                    Dichosa edad y siglos dichosos aquellos a quien los antiguos pusieron nombre de dorados, y no porque en ellos el oro, que en esta nuestra edad de hierro tanto se estima, se alcanzase en aquella venturosa sin fatiga alguna, sino porque entonces los que en ella vivían ignoraban estas dos palabras de tuyo y mío. Eran en aquella santa edad todas las cosas comunes; a nadie le era necesario para alcanzar su ordinario sustento tomar otro trabajo que alzar la mano y alcanzarle de las robustas encinas, que liberalmente les estaban convidando con su dulce y sazonado fruto. [...] Todo era paz entonces, todo amistad, todo concordia. [...] No había el fraude, el engaño ni la malicia mezcládose con la verdad y la llaneza. La justicia se estaba en sus propios términos, sin que la osasen turbar ni ofender los del favor y los del interés.
+            <!-- Fragment 3: Discurso de la Edad de Oro -->
+            <article class="fragment-card">
+                <div class="fragment-header">
+                    <div class="fragment-number">3</div>
+                    <h2 class="fragment-title">Discurso de la Edad de Oro</h2>
+                    <p class="fragment-reference">Capítulo XI, Primera Parte</p>
                 </div>
 
-                <div class="fragment-analysis">
-                    <h4 class="analysis-title">💡 Análisis</h4>
-                    <p class="analysis-text">
-                        <strong>Contexto:</strong> Don Quijote pronuncia este discurso ante unos <span class="highlight">cabreros humildes</span>
-                        que no entienden nada. Contraste cómico entre elocuencia y audiencia.
-                        <br><br>
+                <div class="quote-box">
+                    <div class="quote-text">
+                        Dichosa edad y siglos dichosos aquellos a quien los antiguos pusieron nombre de dorados, y no porque en ellos
+                        el oro, que en esta nuestra edad de hierro tanto se estima, se alcanzase en aquella venturosa sin fatiga alguna,
+                        sino porque entonces los que en ella vivían ignoraban estas dos palabras de tuyo y mío. Eran en aquella santa
+                        edad todas las cosas comunes; a nadie le era necesario para alcanzar su ordinario sustento tomar otro trabajo
+                        que alzar la mano y alcanzarle de las robustas encinas, que liberalmente les estaban convidando con su dulce
+                        y sazonado fruto. [...] Todo era paz entonces, todo amistad, todo concordia. [...] No había el fraude,
+                        el engaño ni la malicia mezcládose con la verdad y la llaneza. La justicia se estaba en sus propios términos,
+                        sin que la osasen turbar ni ofender los del favor y los del interés.
+                    </div>
+                </div>
+
+                <div class="analysis-section">
+                    <h3 class="analysis-title">Análisis Literario</h3>
+                    <div class="analysis-text">
+                        <strong>Contexto:</strong>
+                        Don Quijote pronuncia este discurso ante unos <span class="highlight">cabreros humildes</span> que no entienden nada.
+                        Contraste cómico entre elocuencia y audiencia.
 
                         <strong>Tema del Mito de la Edad de Oro:</strong>
-                        Idealización de un pasado utópico donde no existía la propiedad privada ("tuyo y mío"),
-                        ni el engaño, ni la injusticia. Tema clásico greco-romano (Hesíodo, Ovidio).
-                        <br><br>
+                        Idealización de un pasado utópico donde no existía la propiedad privada ("tuyo y mío"), ni el engaño, ni la injusticia.
+                        Tema clásico greco-romano (Hesíodo, Ovidio).
 
                         <strong>Crítica social implícita:</strong>
                         Don Quijote contrasta la <span class="highlight">inocencia perdida</span> con la
-                        <span class="highlight">"edad de hierro"</span> actual (su presente, la España de 1600):
-                        corrupta, codiciosa, injusta.
-                        <br><br>
+                        <span class="highlight">"edad de hierro"</span> actual (su presente, la España de 1600): corrupta, codiciosa, injusta.
 
                         <strong>Paradoja del personaje:</strong>
                         Don Quijote "loco" pronuncia un discurso <span class="highlight">sabio y filosófico</span>.
                         ¿Quién está realmente loco: él o la sociedad corrupta?
-                        <br><br>
 
                         <strong>Prosa poética:</strong>
                         Este pasaje muestra la <span class="highlight">maestría estilística</span> de Cervantes.
                         Lenguaje elevado, ritmo musical, imágenes poéticas.
-                    </p>
+                    </div>
                 </div>
-            </div>
+            </article>
 
-            <!-- FRAGMENTO 4: Quijotización de Sancho -->
-            <div class="fragment-box">
-                <h3 class="fragment-title">4. La Quijotización de Sancho</h3>
-                <p class="fragment-reference">Capítulo LXVII, Segunda Parte</p>
-
-                <div class="fragment-text">
-                    —Señor —respondió Sancho—, el descanso no es de los andantes caballeros; deste reposo y comodidad pueden gozar los que los ríen; pero a mí me toca y me ha tocado el trabajar y andar a caza de aventuras con vuesa merced. Vamos, mi señor, que yo le seguiré por doquiera que fuere; demos rienda a Rocinante, juntamente con mi rucio, y vámonos por esos mundos. ¿Para qué son tantas ceremonias y tanto descanso? Levántese vuesa merced y volvamos a nuestra acostumbrada andanza. Mi mujer Teresa y mis hijos me aguardan; pero el camino de las aventuras me parece mejor que el camino de vuelta a casa, donde me esperan.
+            <!-- Fragment 4: Quijotización de Sancho -->
+            <article class="fragment-card">
+                <div class="fragment-header">
+                    <div class="fragment-number">4</div>
+                    <h2 class="fragment-title">La Quijotización de Sancho</h2>
+                    <p class="fragment-reference">Capítulo LXVII, Segunda Parte</p>
                 </div>
 
-                <div class="fragment-analysis">
-                    <h4 class="analysis-title">💡 Análisis</h4>
-                    <p class="analysis-text">
+                <div class="quote-box">
+                    <div class="quote-text">
+                        —Señor —respondió Sancho—, el descanso no es de los andantes caballeros; deste reposo y comodidad pueden gozar
+                        los que los ríen; pero a mí me toca y me ha tocado el trabajar y andar a caza de aventuras con vuesa merced.
+                        Vamos, mi señor, que yo le seguiré por doquiera que fuere; demos rienda a Rocinante, juntamente con mi rucio,
+                        y vámonos por esos mundos. ¿Para qué son tantas ceremonias y tanto descanso? Levántese vuesa merced y volvamos
+                        a nuestra acostumbrada andanza. Mi mujer Teresa y mis hijos me aguardan; pero el camino de las aventuras me
+                        parece mejor que el camino de vuelta a casa, donde me esperan.
+                    </div>
+                </div>
+
+                <div class="analysis-section">
+                    <h3 class="analysis-title">Análisis Literario</h3>
+                    <div class="analysis-text">
                         <strong>Evolución del personaje:</strong>
                         Este fragmento (Segunda Parte, cerca del final) muestra cómo <span class="highlight">Sancho ha cambiado</span>.
-                        <br><br>
 
                         <strong>Inicio del Quijote:</strong>
                         Sancho era un campesino pragmático, materialista, guiado por la comida y el sueño.
-                        <br><br>
 
                         <strong>Aquí (cerca del final):</strong>
                         Sancho se ha <span class="highlight">"quijotizado"</span>: valora las aventuras más que la comodidad,
                         prefiere el camino de la andanza al regreso a casa.
-                        <br><br>
 
                         <strong>Intercambio de roles:</strong>
                         Mientras Don Quijote se <span class="highlight">"sanchifica"</span> (se vuelve más realista),
                         Sancho se <span class="highlight">"quijotiza"</span> (se vuelve más idealista).
-                        <br><br>
 
                         <strong>Amistad profunda:</strong>
                         Este pasaje muestra la <span class="highlight">lealtad</span> y el <span class="highlight">afecto genuino</span>
                         entre los dos personajes. Sancho no quiere que Don Quijote renuncie.
-                    </p>
+                    </div>
                 </div>
-            </div>
+            </article>
 
-            <!-- FRAGMENTO 5: Muerte de Don Quijote -->
-            <div class="fragment-box">
-                <h3 class="fragment-title">5. La Muerte de Don Quijote</h3>
-                <p class="fragment-reference">Capítulo LXXIV, Segunda Parte (Final)</p>
-
-                <div class="fragment-text">
-                    Yo fui loco y ya soy cuerdo; fui don Quijote de la Mancha, y soy agora, como he dicho, Alonso Quijano el Bueno. Pueda con vuestras mercedes mi arrepentimiento y mi verdad volverme a la estimación que de mí se tenía, y prosiga adelante el señor escribano. Ítem, declaro que mi sobrina Antonia Quijana, aquí presente, es mi legítima heredera de toda mi hacienda... [...] En fin, llegó el último de don Quijote, después de recibidos todos los sacramentos y después de haber abominado con muchas y eficaces razones de los libros de caballerías. Hallóse el escribano presente, y dijo que nunca había leído en ningún libro de caballerías que algún caballero andante hubiese muerto en su lecho tan sosegadamente y tan cristiano como don Quijote.
+            <!-- Fragment 5: Muerte de Don Quijote -->
+            <article class="fragment-card">
+                <div class="fragment-header">
+                    <div class="fragment-number">5</div>
+                    <h2 class="fragment-title">La Muerte de Don Quijote</h2>
+                    <p class="fragment-reference">Capítulo LXXIV, Segunda Parte (Final)</p>
                 </div>
 
-                <div class="fragment-analysis">
-                    <h4 class="analysis-title">💡 Análisis</h4>
-                    <p class="analysis-text">
+                <div class="quote-box">
+                    <div class="quote-text">
+                        Yo fui loco y ya soy cuerdo; fui don Quijote de la Mancha, y soy agora, como he dicho, Alonso Quijano el Bueno.
+                        Pueda con vuestras mercedes mi arrepentimiento y mi verdad volverme a la estimación que de mí se tenía, y prosiga
+                        adelante el señor escribano. Ítem, declaro que mi sobrina Antonia Quijana, aquí presente, es mi legítima heredera
+                        de toda mi hacienda... [...] En fin, llegó el último de don Quijote, después de recibidos todos los sacramentos
+                        y después de haber abominado con muchas y eficaces razones de los libros de caballerías. Hallóse el escribano
+                        presente, y dijo que nunca había leído en ningún libro de caballerías que algún caballero andante hubiese muerto
+                        en su lecho tan sosegadamente y tan cristiano como don Quijote.
+                    </div>
+                </div>
+
+                <div class="analysis-section">
+                    <h3 class="analysis-title">Análisis Literario</h3>
+                    <div class="analysis-text">
                         <strong>Recuperación de la cordura = Muerte espiritual:</strong>
                         Don Quijote recupera la razón y <span class="highlight">renuncia a su identidad</span> de caballero andante.
                         Vuelve a ser "Alonso Quijano el Bueno".
-                        <br><br>
 
                         <strong>Ambigüedad trágica:</strong>
                         ¿Es esto una victoria (recuperar la razón) o una derrota (perder el propósito vital)?
                         Cervantes <span class="highlight">no resuelve la ambigüedad</span>.
-                        <br><br>
 
                         <strong>Ironía final:</strong>
                         El escribano nota que <span class="highlight">ningún caballero andante murió nunca en la cama</span>.
                         Los héroes literarios mueren en combate. Don Quijote muere como un hidalgo común.
-                        <br><br>
 
                         <strong>Metaficción:</strong>
                         Cervantes mata definitivamente al personaje para que <span class="highlight">nadie pueda continuar la historia</span>
                         (como hizo Avellaneda con su Quijote apócrifo).
-                        <br><br>
 
                         <strong>Emoción:</strong>
                         Este es uno de los <span class="highlight">finales más conmovedores</span> de la literatura.
                         La muerte del idealismo es triste, aunque el personaje recupere la razón.
-                    </p>
+                    </div>
                 </div>
-            </div>
+            </article>
 
-            <h3 class="section-subtitle">📖 Reflexión Final para el Aula</h3>
+            <!-- Reflection Section -->
+            <section class="reflection-section">
+                <h2 class="reflection-title">Reflexión Final para el Aula</h2>
 
-            <div class="quote-intro">
-                <strong>Preguntas para discusión (5 minutos):</strong>
-                <br><br>
-                1. ¿Cuál de estos fragmentos te parece más significativo y por qué?
-                <br><br>
-                2. En el episodio de los molinos: ¿Quién tiene razón, Don Quijote o Sancho? ¿O ambos tienen razón desde su perspectiva?
-                <br><br>
-                3. ¿Está bien que Don Quijote recupere la cordura al final? ¿Es una victoria o una derrota?
-                <br><br>
-                4. ¿Qué significa "quijotización de Sancho"? ¿Por qué es importante que ambos personajes cambien?
-                <br><br>
-                5. ¿Por qué el inicio "En un lugar de la Mancha..." es tan famoso? ¿Qué lo hace especial?
-            </div>
-        </section>
+                <div class="reflection-box">
+                    <div class="reflection-subtitle">Preguntas para discusión (5 minutos):</div>
+
+                    <ul class="question-list">
+                        <li class="question-item">
+                            <span class="question-number">1</span>
+                            ¿Cuál de estos fragmentos te parece más significativo y por qué?
+                        </li>
+                        <li class="question-item">
+                            <span class="question-number">2</span>
+                            En el episodio de los molinos: ¿Quién tiene razón, Don Quijote o Sancho?
+                            ¿O ambos tienen razón desde su perspectiva?
+                        </li>
+                        <li class="question-item">
+                            <span class="question-number">3</span>
+                            ¿Está bien que Don Quijote recupere la cordura al final? ¿Es una victoria o una derrota?
+                        </li>
+                        <li class="question-item">
+                            <span class="question-number">4</span>
+                            ¿Qué significa "quijotización de Sancho"? ¿Por qué es importante que ambos personajes cambien?
+                        </li>
+                        <li class="question-item">
+                            <span class="question-number">5</span>
+                            ¿Por qué el inicio "En un lugar de la Mancha..." es tan famoso? ¿Qué lo hace especial?
+                        </li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- Footer -->
+            <footer class="page-footer">
+                <div class="footer-badge">📚 Duración estimada: 10 minutos | Fragmentos inmortales de la mejor novela jamás escrita</div>
+            </footer>
+        </div>
     </main>
-
-    <footer>
-        <p class="footer-text">Fragmentos inmortales de la mejor novela jamás escrita</p>
-        <div class="footer-badge">📚 Duración estimada: 10 minutos</div>
-    </footer>
 </body>
 </html>

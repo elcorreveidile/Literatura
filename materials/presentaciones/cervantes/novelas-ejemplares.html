@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Novelas Ejemplares - Cervantes</title>
-    <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:wght@400;600;700&family=Cinzel:wght@600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -13,276 +13,716 @@
         }
 
         :root {
-            --primary-color: #1a4d7a;
-            --secondary-color: #2c6ba0;
-            --accent-color: #7ba7c7;
-            --text-primary: #1a2a3a;
-            --text-secondary: #3a4a5a;
-            --text-light: #f0f4f8;
-            --background: linear-gradient(135deg, #0f2537 0%, #1a4d7a 50%, #2c6ba0 100%);
-            --content-bg: rgba(240, 244, 248, 0.95);
-            --shadow: 0 8px 32px rgba(0,0,0,0.3);
+            --gradient-1: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --gradient-2: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            --gradient-3: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            --gradient-4: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+            --gradient-5: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+            --gradient-main: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+            --text-dark: #1a1a2e;
+            --text-light: #f8f9fa;
+            --bg-dark: #0f0f1e;
+            --bg-card: rgba(255, 255, 255, 0.95);
+            --shadow-sm: 0 2px 10px rgba(0,0,0,0.1);
+            --shadow-md: 0 8px 30px rgba(0,0,0,0.12);
+            --shadow-lg: 0 20px 60px rgba(0,0,0,0.3);
+            --sidebar-width: 280px;
         }
 
         body {
-            font-family: 'Crimson Text', serif;
-            color: var(--text-primary);
-            background: var(--background);
+            font-family: 'Inter', sans-serif;
+            color: var(--text-dark);
+            background: var(--gradient-main);
             min-height: 100vh;
-            line-height: 1.6;
+            overflow-x: hidden;
         }
 
-        header {
-            background: rgba(15, 37, 55, 0.95);
-            padding: 1rem 0;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
-            position: sticky;
+        /* Sidebar Navigation - Left Side */
+        .sidebar {
+            position: fixed;
+            left: 0;
             top: 0;
+            width: var(--sidebar-width);
+            height: 100vh;
+            background: rgba(15, 15, 30, 0.95);
+            backdrop-filter: blur(20px);
+            padding: 2rem 0;
             z-index: 1000;
+            box-shadow: var(--shadow-lg);
+            overflow-y: auto;
         }
 
-        .header-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 2rem;
-            text-align: center;
-        }
-
-        .main-title {
-            font-family: 'Cinzel', serif;
-            font-size: 2.5rem;
-            color: var(--accent-color);
-            margin-bottom: 1.5rem;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
-        }
-
-        .main-subtitle {
-            font-size: 1.2rem;
-            color: var(--text-light);
+        .sidebar-header {
+            padding: 0 1.5rem 2rem;
+            border-bottom: 2px solid rgba(255,255,255,0.1);
             margin-bottom: 2rem;
-            font-style: italic;
         }
 
-        nav ul {
-            list-style: none;
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 1rem;
-        }
-
-        nav a {
-            display: block;
-            padding: 0.8rem 1.5rem;
-            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
-            color: var(--text-light);
-            text-decoration: none;
-            border-radius: 25px;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(26, 77, 122, 0.3);
-            font-size: 1rem;
-        }
-
-        nav a:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(26, 77, 122, 0.4);
-            background: linear-gradient(45deg, var(--secondary-color), var(--primary-color));
-        }
-
-        nav a.active {
-            background: linear-gradient(45deg, var(--accent-color), #9bc3de);
-            color: var(--text-primary);
-        }
-
-        main {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 3rem 2rem;
-        }
-
-        .content-section {
-            background: var(--content-bg);
-            border-radius: 20px;
-            padding: 3rem;
-            margin-bottom: 2rem;
-            box-shadow: var(--shadow);
-            border: 2px solid var(--primary-color);
-        }
-
-        .section-title {
-            font-family: 'Cinzel', serif;
-            font-size: 2.5rem;
-            color: var(--primary-color);
-            margin-bottom: 2rem;
-            text-align: center;
-        }
-
-        .section-subtitle {
-            font-family: 'Cinzel', serif;
+        .logo {
+            font-family: 'Playfair Display', serif;
             font-size: 1.8rem;
-            color: var(--secondary-color);
-            margin-top: 2.5rem;
-            margin-bottom: 1.5rem;
-            border-bottom: 2px solid var(--accent-color);
-            padding-bottom: 0.5rem;
+            font-weight: 900;
+            background: var(--gradient-5);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 0.5rem;
+            line-height: 1.2;
         }
 
-        .highlight {
-            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
-            color: white;
-            padding: 3px 10px;
-            border-radius: 15px;
+        .logo-subtitle {
+            color: rgba(255,255,255,0.6);
+            font-size: 0.85rem;
+            font-weight: 400;
+        }
+
+        .nav-menu {
+            list-style: none;
+            padding: 0 1rem;
+        }
+
+        .nav-item {
+            margin-bottom: 0.5rem;
+        }
+
+        .nav-link {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem 1rem;
+            color: rgba(255,255,255,0.8);
+            text-decoration: none;
+            border-radius: 12px;
             font-weight: 600;
-            display: inline-block;
-            margin: 2px;
+            font-size: 0.95rem;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
         }
 
-        .quote-box {
-            background: linear-gradient(135deg, rgba(26, 77, 122, 0.1) 0%, rgba(123, 167, 199, 0.1) 100%);
-            border: 2px solid var(--accent-color);
-            border-radius: 15px;
-            padding: 2rem;
-            margin: 2rem 0;
+        .nav-link::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 4px;
+            height: 100%;
+            background: var(--gradient-5);
+            transform: scaleY(0);
+            transition: transform 0.3s ease;
+        }
+
+        .nav-link:hover {
+            background: rgba(255,255,255,0.1);
+            color: #fff;
+            transform: translateX(5px);
+        }
+
+        .nav-link:hover::before {
+            transform: scaleY(1);
+        }
+
+        .nav-link.active {
+            background: var(--gradient-5);
+            color: #fff;
+        }
+
+        .nav-icon {
+            font-size: 1.4rem;
+            width: 24px;
             text-align: center;
-            font-style: italic;
-            font-size: 1.3rem;
-            color: var(--secondary-color);
         }
 
+        /* Main Content Area */
+        .main-content {
+            margin-left: var(--sidebar-width);
+            min-height: 100vh;
+            padding: 3rem;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: var(--bg-card);
+            border-radius: 30px;
+            padding: 4rem;
+            margin-bottom: 3rem;
+            box-shadow: var(--shadow-lg);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -10%;
+            width: 500px;
+            height: 500px;
+            background: var(--gradient-2);
+            opacity: 0.1;
+            border-radius: 50%;
+            filter: blur(80px);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            padding: 0.5rem 1.5rem;
+            background: var(--gradient-1);
+            color: white;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 1.5rem;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .hero-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.5rem;
+            font-weight: 900;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            background: var(--gradient-2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-quote {
+            font-size: 1.5rem;
+            font-style: italic;
+            color: #666;
+            line-height: 1.8;
+            text-align: center;
+            padding: 2rem;
+            border-left: 4px solid;
+            border-image: var(--gradient-5) 1;
+            background: rgba(102, 126, 234, 0.05);
+            border-radius: 15px;
+            margin-top: 2rem;
+        }
+
+        .hero-author {
+            display: block;
+            margin-top: 1rem;
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--text-dark);
+        }
+
+        /* Info Box */
         .info-box {
-            background: rgba(26, 77, 122, 0.1);
-            border-left: 4px solid var(--primary-color);
-            padding: 1.5rem;
-            margin: 2rem 0;
-            border-radius: 8px;
+            background: var(--bg-card);
+            border-radius: 24px;
+            padding: 3rem;
+            margin-bottom: 3rem;
+            box-shadow: var(--shadow-md);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .info-box::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: var(--gradient-3);
         }
 
         .info-box-title {
-            font-family: 'Cinzel', serif;
-            font-size: 1.4rem;
-            color: var(--primary-color);
-            margin-bottom: 1rem;
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            font-weight: 900;
+            margin-bottom: 1.5rem;
+            background: var(--gradient-3);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
 
         .info-box-text {
             font-size: 1.1rem;
-            line-height: 1.7;
-            color: var(--text-secondary);
+            line-height: 1.8;
+            color: #555;
         }
 
-        .novelas-grid {
+        .highlight {
+            background: var(--gradient-5);
+            color: white;
+            padding: 3px 12px;
+            border-radius: 6px;
+            font-weight: 700;
+            display: inline-block;
+            margin: 2px;
+        }
+
+        /* Section Headers */
+        .section-header {
+            text-align: center;
+            margin: 4rem 0 3rem;
+        }
+
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            font-weight: 900;
+            margin-bottom: 1rem;
+            background: var(--gradient-4);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .section-subtitle {
+            font-size: 1.2rem;
+            color: rgba(255,255,255,0.9);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        /* Novels Grid */
+        .novels-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
             gap: 2rem;
-            margin: 2rem 0;
+            margin-bottom: 4rem;
         }
 
-        .novela-card {
-            background: linear-gradient(135deg, rgba(26, 77, 122, 0.05) 0%, rgba(123, 167, 199, 0.1) 100%);
-            border: 2px solid var(--accent-color);
-            border-radius: 15px;
-            padding: 2rem;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        .novel-card {
+            background: var(--bg-card);
+            border-radius: 24px;
+            padding: 2.5rem;
+            box-shadow: var(--shadow-md);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
         }
 
-        .novela-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 12px 24px rgba(26, 77, 122, 0.3);
+        .novel-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: opacity 0.4s ease;
         }
 
-        .novela-icon {
+        .novel-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .novel-card:hover::before {
+            opacity: 0.05;
+        }
+
+        .novel-card:nth-child(12n+1) .novel-icon { background: var(--gradient-1); }
+        .novel-card:nth-child(12n+1)::before { background: var(--gradient-1); }
+
+        .novel-card:nth-child(12n+2) .novel-icon { background: var(--gradient-2); }
+        .novel-card:nth-child(12n+2)::before { background: var(--gradient-2); }
+
+        .novel-card:nth-child(12n+3) .novel-icon { background: var(--gradient-3); }
+        .novel-card:nth-child(12n+3)::before { background: var(--gradient-3); }
+
+        .novel-card:nth-child(12n+4) .novel-icon { background: var(--gradient-4); }
+        .novel-card:nth-child(12n+4)::before { background: var(--gradient-4); }
+
+        .novel-card:nth-child(12n+5) .novel-icon { background: var(--gradient-5); }
+        .novel-card:nth-child(12n+5)::before { background: var(--gradient-5); }
+
+        .novel-card:nth-child(12n+6) .novel-icon { background: var(--gradient-1); }
+        .novel-card:nth-child(12n+6)::before { background: var(--gradient-1); }
+
+        .novel-card:nth-child(12n+7) .novel-icon { background: var(--gradient-2); }
+        .novel-card:nth-child(12n+7)::before { background: var(--gradient-2); }
+
+        .novel-card:nth-child(12n+8) .novel-icon { background: var(--gradient-3); }
+        .novel-card:nth-child(12n+8)::before { background: var(--gradient-3); }
+
+        .novel-card:nth-child(12n+9) .novel-icon { background: var(--gradient-4); }
+        .novel-card:nth-child(12n+9)::before { background: var(--gradient-4); }
+
+        .novel-card:nth-child(12n+10) .novel-icon { background: var(--gradient-5); }
+        .novel-card:nth-child(12n+10)::before { background: var(--gradient-5); }
+
+        .novel-card:nth-child(12n+11) .novel-icon { background: var(--gradient-1); }
+        .novel-card:nth-child(12n+11)::before { background: var(--gradient-1); }
+
+        .novel-card:nth-child(12n+12) .novel-icon { background: var(--gradient-2); }
+        .novel-card:nth-child(12n+12)::before { background: var(--gradient-2); }
+
+        .novel-icon {
+            width: 80px;
+            height: 80px;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             font-size: 2.5rem;
-            text-align: center;
-            margin-bottom: 1rem;
+            margin-bottom: 1.5rem;
+            box-shadow: var(--shadow-sm);
+            position: relative;
+            z-index: 1;
         }
 
-        .novela-title {
-            font-family: 'Cinzel', serif;
-            font-size: 1.4rem;
-            color: var(--primary-color);
-            margin-bottom: 1rem;
-            text-align: center;
+        .novel-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.6rem;
+            font-weight: 900;
+            margin-bottom: 0.5rem;
+            color: var(--text-dark);
+            position: relative;
+            z-index: 1;
         }
 
-        .novela-year {
-            text-align: center;
-            color: var(--secondary-color);
+        .novel-subtitle {
+            font-size: 0.95rem;
+            color: #999;
             font-style: italic;
-            margin-bottom: 1rem;
-            font-size: 1rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+            z-index: 1;
         }
 
-        .novela-desc {
+        .novel-description {
             font-size: 1.05rem;
             line-height: 1.7;
-            color: var(--text-secondary);
+            color: #555;
+            position: relative;
+            z-index: 1;
         }
 
-        footer {
-            background: rgba(15, 37, 55, 0.95);
-            color: var(--text-light);
-            text-align: center;
+        .novel-description strong {
+            color: var(--text-dark);
+            font-weight: 700;
+        }
+
+        /* Importance Section */
+        .importance-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+
+        .importance-card {
+            background: var(--bg-card);
+            border-radius: 24px;
+            padding: 2.5rem;
+            box-shadow: var(--shadow-md);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .importance-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+        }
+
+        .importance-card:nth-child(1)::before { background: var(--gradient-1); }
+        .importance-card:nth-child(2)::before { background: var(--gradient-2); }
+        .importance-card:nth-child(3)::before { background: var(--gradient-3); }
+        .importance-card:nth-child(4)::before { background: var(--gradient-4); }
+        .importance-card:nth-child(5)::before { background: var(--gradient-5); }
+
+        .importance-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .importance-number {
+            font-size: 3rem;
+            font-weight: 900;
+            opacity: 0.1;
+            position: absolute;
+            right: 1rem;
+            top: 1rem;
+        }
+
+        .importance-title {
+            font-size: 1.3rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            color: var(--text-dark);
+        }
+
+        .importance-text {
+            font-size: 1rem;
+            line-height: 1.7;
+            color: #555;
+        }
+
+        /* Other Works Section */
+        .works-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .work-card {
+            background: var(--bg-card);
+            border-radius: 20px;
             padding: 2rem;
-            margin-top: 4rem;
+            box-shadow: var(--shadow-md);
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .work-card:nth-child(1) { border-color: rgba(102, 126, 234, 0.3); }
+        .work-card:nth-child(2) { border-color: rgba(240, 147, 251, 0.3); }
+        .work-card:nth-child(3) { border-color: rgba(79, 172, 254, 0.3); }
+        .work-card:nth-child(4) { border-color: rgba(67, 233, 123, 0.3); }
+
+        .work-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .work-title {
+            font-weight: 800;
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+            color: var(--text-dark);
+        }
+
+        .work-text {
+            font-size: 1rem;
+            line-height: 1.7;
+            color: #555;
+        }
+
+        /* Final Quote */
+        .final-quote {
+            background: var(--bg-card);
+            border-radius: 24px;
+            padding: 3rem;
+            text-align: center;
+            box-shadow: var(--shadow-md);
+            margin-bottom: 3rem;
+        }
+
+        .final-quote-text {
+            font-size: 1.4rem;
+            line-height: 1.8;
+            color: #555;
+            font-style: italic;
+        }
+
+        .final-quote-text strong {
+            font-weight: 800;
+            background: var(--gradient-5);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--bg-card);
+            border-radius: 24px;
+            padding: 2rem;
+            text-align: center;
+            box-shadow: var(--shadow-md);
+            margin-bottom: 2rem;
         }
 
         .footer-text {
             font-size: 1.1rem;
+            color: #666;
             margin-bottom: 1rem;
+            font-style: italic;
         }
 
         .footer-badge {
             display: inline-block;
-            background: rgba(123, 167, 199, 0.2);
-            padding: 0.5rem 1.5rem;
-            border-radius: 20px;
-            border: 1px solid var(--accent-color);
-            font-weight: 600;
+            padding: 0.6rem 1.5rem;
+            background: var(--gradient-4);
+            color: white;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 0.9rem;
         }
 
-        @media (max-width: 768px) {
-            nav a {
-                padding: 0.6rem 1rem;
-                font-size: 0.9rem;
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero, .info-box, .novel-card, .importance-card, .work-card {
+            animation: fadeInUp 0.6s ease-out;
+        }
+
+        .novel-card:nth-child(1) { animation-delay: 0.05s; }
+        .novel-card:nth-child(2) { animation-delay: 0.1s; }
+        .novel-card:nth-child(3) { animation-delay: 0.15s; }
+        .novel-card:nth-child(4) { animation-delay: 0.2s; }
+        .novel-card:nth-child(5) { animation-delay: 0.25s; }
+        .novel-card:nth-child(6) { animation-delay: 0.3s; }
+        .novel-card:nth-child(7) { animation-delay: 0.35s; }
+        .novel-card:nth-child(8) { animation-delay: 0.4s; }
+        .novel-card:nth-child(9) { animation-delay: 0.45s; }
+        .novel-card:nth-child(10) { animation-delay: 0.5s; }
+        .novel-card:nth-child(11) { animation-delay: 0.55s; }
+        .novel-card:nth-child(12) { animation-delay: 0.6s; }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .sidebar {
+                transform: translateX(-100%);
+                transition: transform 0.3s ease;
+            }
+
+            .main-content {
+                margin-left: 0;
+                padding: 2rem 1.5rem;
+            }
+
+            .hero {
+                padding: 3rem 2rem;
+            }
+
+            .hero-title {
+                font-size: 2.5rem;
+            }
+
+            .section-title {
+                font-size: 2.5rem;
+            }
+
+            .novels-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .hero-title {
+                font-size: 2rem;
+            }
+
+            .hero-quote {
+                font-size: 1.2rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .novel-title {
+                font-size: 1.4rem;
             }
         }
     </style>
 </head>
 <body>
-    <header>
-        <div class="header-content">
-            <h1 class="main-title">Miguel de Cervantes Saavedra</h1>
-            <p class="main-subtitle">El genio universal que creó la novela moderna</p>
-
-            <nav>
-                <ul>
-                    <li><a href="index.html">📚 Inicio</a></li>
-                    <li><a href="biografia.html">👤 Biografía</a></li>
-                    <li><a href="contexto-historico.html">🏛️ Contexto Histórico</a></li>
-                    <li><a href="quijote.html">⚔️ Don Quijote</a></li>
-                    <li><a href="novelas-ejemplares.html" class="active">📖 Novelas Ejemplares</a></li>
-                    <li><a href="estilo.html">✒️ Estilo y Perspectivismo</a></li>
-                    <li><a href="fragmentos.html">📜 Fragmentos Clave</a></li>
-                    <li><a href="actividades.html">🎯 Actividades</a></li>
-                </ul>
-            </nav>
+    <!-- Sidebar Navigation -->
+    <aside class="sidebar">
+        <div class="sidebar-header">
+            <h1 class="logo">Cervantes<br>Portal</h1>
+            <p class="logo-subtitle">Literatura Española ELE B1.2</p>
         </div>
-    </header>
+        <nav>
+            <ul class="nav-menu">
+                <li class="nav-item">
+                    <a href="index.html" class="nav-link">
+                        <span class="nav-icon">🏠</span>
+                        <span>Inicio</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="biografia.html" class="nav-link">
+                        <span class="nav-icon">👤</span>
+                        <span>Biografía</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="contexto-historico.html" class="nav-link">
+                        <span class="nav-icon">🏛️</span>
+                        <span>Contexto Histórico</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="quijote.html" class="nav-link">
+                        <span class="nav-icon">⚔️</span>
+                        <span>Don Quijote</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="novelas-ejemplares.html" class="nav-link active">
+                        <span class="nav-icon">📖</span>
+                        <span>Novelas Ejemplares</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="estilo.html" class="nav-link">
+                        <span class="nav-icon">✒️</span>
+                        <span>Estilo Literario</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="fragmentos.html" class="nav-link">
+                        <span class="nav-icon">📜</span>
+                        <span>Fragmentos Clave</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="actividades.html" class="nav-link">
+                        <span class="nav-icon">🎯</span>
+                        <span>Actividades</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </aside>
 
-    <main>
-        <section class="content-section">
-            <h2 class="section-title">📖 Novelas Ejemplares</h2>
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="container">
+            <!-- Hero Section -->
+            <section class="hero">
+                <div class="hero-content">
+                    <div class="hero-badge">📖 Obras Maestras</div>
+                    <h1 class="hero-title">Novelas Ejemplares</h1>
+                    <div class="hero-quote">
+                        «Yo soy el primero que he novelado en lengua castellana»
+                        <span class="hero-author">— Cervantes, prólogo a las Novelas ejemplares (1613)</span>
+                    </div>
+                </div>
+            </section>
 
-            <div class="quote-box">
-                «Yo soy el primero que he novelado en lengua castellana»<br>
-                — Cervantes, prólogo a las Novelas ejemplares (1613)
-            </div>
-
-            <h3 class="section-subtitle">⏱️ Otras Obras Maestras de Cervantes (10 minutos de clase)</h3>
-
+            <!-- What are Novelas Ejemplares -->
             <div class="info-box">
-                <h4 class="info-box-title">¿Qué son las Novelas Ejemplares?</h4>
+                <h2 class="info-box-title">¿Qué son las Novelas Ejemplares?</h2>
                 <p class="info-box-text">
                     Publicadas en <span class="highlight">1613</span>, entre las dos partes del Quijote.
                     <br><br>
@@ -298,14 +738,18 @@
                 </p>
             </div>
 
-            <h3 class="section-subtitle">📚 Las 12 Novelas Ejemplares</h3>
+            <!-- The 12 Novels -->
+            <div class="section-header">
+                <h2 class="section-title">Las 12 Novelas Ejemplares</h2>
+                <p class="section-subtitle">Una colección magistral que revolucionó la narrativa breve en español</p>
+            </div>
 
-            <div class="novelas-grid">
-                <div class="novela-card">
-                    <div class="novela-icon">💃</div>
-                    <h4 class="novela-title">La gitanilla</h4>
-                    <p class="novela-year">(Primera en el volumen)</p>
-                    <p class="novela-desc">
+            <div class="novels-grid">
+                <div class="novel-card">
+                    <div class="novel-icon">💃</div>
+                    <h3 class="novel-title">La gitanilla</h3>
+                    <p class="novel-subtitle">(Primera en el volumen)</p>
+                    <p class="novel-description">
                         <strong>Historia de Preciosa</strong>, bella gitana que en realidad es noble raptada de niña.
                         <span class="highlight">Idealismo romántico</span>: amor entre Preciosa y Don Juan.
                         Final feliz con reconocimiento de noble linaje.
@@ -313,11 +757,11 @@
                     </p>
                 </div>
 
-                <div class="novela-card">
-                    <div class="novela-icon">💰</div>
-                    <h4 class="novela-title">El amante liberal</h4>
-                    <p class="novela-year">(Aventuras mediterráneas)</p>
-                    <p class="novela-desc">
+                <div class="novel-card">
+                    <div class="novel-icon">💰</div>
+                    <h3 class="novel-title">El amante liberal</h3>
+                    <p class="novel-subtitle">(Aventuras mediterráneas)</p>
+                    <p class="novel-description">
                         <strong>Cautiverio y aventuras</strong> en el Mediterráneo.
                         Ricardo, cautivo de turcos, rescata a su amada Leonisa.
                         <span class="highlight">Reflejo de la experiencia de Cervantes en Argel</span>.
@@ -325,11 +769,11 @@
                     </p>
                 </div>
 
-                <div class="novela-card">
-                    <div class="novela-icon">🎭</div>
-                    <h4 class="novela-title">Rinconete y Cortadillo</h4>
-                    <p class="novela-year">(Obra maestra picaresca)</p>
-                    <p class="novela-desc">
+                <div class="novel-card">
+                    <div class="novel-icon">🎭</div>
+                    <h3 class="novel-title">Rinconete y Cortadillo</h3>
+                    <p class="novel-subtitle">(Obra maestra picaresca)</p>
+                    <p class="novel-description">
                         <strong>Dos jóvenes pícaros</strong> llegan a Sevilla e ingresan en la <span class="highlight">cofradía de ladrones</span> de Monipodio.
                         <span class="highlight">Realismo crudo y cómico</span>: describe el hampa sevillana.
                         <strong>Innovación</strong>: retrato de la <span class="highlight">delincuencia organizada</span> con ironía.
@@ -337,11 +781,11 @@
                     </p>
                 </div>
 
-                <div class="novela-card">
-                    <div class="novela-icon">🗡️</div>
-                    <h4 class="novela-title">La española inglesa</h4>
-                    <p class="novela-year">(Romance histórico)</p>
-                    <p class="novela-desc">
+                <div class="novel-card">
+                    <div class="novel-icon">🗡️</div>
+                    <h3 class="novel-title">La española inglesa</h3>
+                    <p class="novel-subtitle">(Romance histórico)</p>
+                    <p class="novel-description">
                         <strong>Isabela</strong>, niña española raptada por ingleses, criada en Inglaterra.
                         Amores con Ricaredo, noble inglés.
                         Contexto: <span class="highlight">rivalidad España-Inglaterra</span> (Armada Invencible).
@@ -350,11 +794,11 @@
                     </p>
                 </div>
 
-                <div class="novela-card">
-                    <div class="novela-icon">🏺</div>
-                    <h4 class="novela-title">El licenciado Vidriera</h4>
-                    <p class="novela-year">(Sátira filosófica)</p>
-                    <p class="novela-desc">
+                <div class="novel-card">
+                    <div class="novel-icon">🏺</div>
+                    <h3 class="novel-title">El licenciado Vidriera</h3>
+                    <p class="novel-subtitle">(Sátira filosófica)</p>
+                    <p class="novel-description">
                         <strong>Tomás Rodaja</strong>, estudiante brillante, enloquece creyendo ser <span class="highlight">hecho de vidrio</span>.
                         En su locura, dice <span class="highlight">verdades mordaces</span> sobre la sociedad.
                         <strong>Paradoja quijotesca</strong>: loco dice verdades; cuerdo es ignorado.
@@ -363,11 +807,11 @@
                     </p>
                 </div>
 
-                <div class="novela-card">
-                    <div class="novela-icon">⚖️</div>
-                    <h4 class="novela-title">La fuerza de la sangre</h4>
-                    <p class="novela-year">(Drama y justicia)</p>
-                    <p class="novela-desc">
+                <div class="novel-card">
+                    <div class="novel-icon">⚖️</div>
+                    <h3 class="novel-title">La fuerza de la sangre</h3>
+                    <p class="novel-subtitle">(Drama y justicia)</p>
+                    <p class="novel-description">
                         <strong>Leocadia</strong> es violada por Rodolfo. Años después se reencuentran.
                         El violador se redime y se casan (final polémico para lectores modernos).
                         <strong>Temas</strong>: honra femenina, justicia divina, redención.
@@ -375,11 +819,11 @@
                     </p>
                 </div>
 
-                <div class="novela-card">
-                    <div class="novela-icon">🎨</div>
-                    <h4 class="novela-title">El celoso extremeño</h4>
-                    <p class="novela-year">(Tragedia doméstica)</p>
-                    <p class="novela-desc">
+                <div class="novel-card">
+                    <div class="novel-icon">🎨</div>
+                    <h3 class="novel-title">El celoso extremeño</h3>
+                    <p class="novel-subtitle">(Tragedia doméstica)</p>
+                    <p class="novel-description">
                         <strong>Carrizales</strong>, viejo celoso, encierra a su joven esposa Leonora.
                         Un joven entra en la casa, pero Leonora <span class="highlight">resiste la tentación</span>.
                         Carrizales muere de pena, creyéndola infiel (injustamente).
@@ -387,11 +831,11 @@
                     </p>
                 </div>
 
-                <div class="novela-card">
-                    <div class="novela-icon">📜</div>
-                    <h4 class="novela-title">La ilustre fregona</h4>
-                    <p class="novela-year">(Comedia romántica)</p>
-                    <p class="novela-desc">
+                <div class="novel-card">
+                    <div class="novel-icon">📜</div>
+                    <h3 class="novel-title">La ilustre fregona</h3>
+                    <p class="novel-subtitle">(Comedia romántica)</p>
+                    <p class="novel-description">
                         <strong>Costanza</strong>, fregona de una posada en Toledo, es en realidad noble.
                         Dos jóvenes nobles se enamoran de ella y trabajan en la posada.
                         <strong>Picaresca idealizada</strong>: vida baja con final noble.
@@ -399,11 +843,11 @@
                     </p>
                 </div>
 
-                <div class="novela-card">
-                    <div class="novela-icon">💍</div>
-                    <h4 class="novela-title">Las dos doncellas</h4>
-                    <p class="novela-year">(Aventura caballeresca)</p>
-                    <p class="novela-desc">
+                <div class="novel-card">
+                    <div class="novel-icon">💍</div>
+                    <h3 class="novel-title">Las dos doncellas</h3>
+                    <p class="novel-subtitle">(Aventura caballeresca)</p>
+                    <p class="novel-description">
                         <strong>Dos jóvenes mujeres</strong> disfrazadas de hombre buscan al mismo seductor.
                         Aventuras por los caminos de España.
                         <span class="highlight">Tema del travestismo</span> (recurrente en Cervantes y teatro del Siglo de Oro).
@@ -411,11 +855,11 @@
                     </p>
                 </div>
 
-                <div class="novela-card">
-                    <div class="novela-icon">🧙</div>
-                    <h4 class="novela-title">La señora Cornelia</h4>
-                    <p class="novela-year">(Enredo italiano)</p>
-                    <p class="novela-desc">
+                <div class="novel-card">
+                    <div class="novel-icon">🧙</div>
+                    <h3 class="novel-title">La señora Cornelia</h3>
+                    <p class="novel-subtitle">(Enredo italiano)</p>
+                    <p class="novel-description">
                         Dos caballeros españoles en <span class="highlight">Bolonia</span> ayudan a Cornelia.
                         Enredos de identidad, honor, amor secreto.
                         Ambientada en Italia (Cervantes recuerda su juventud italiana).
@@ -423,11 +867,11 @@
                     </p>
                 </div>
 
-                <div class="novela-card">
-                    <div class="novela-icon">💒</div>
-                    <h4 class="novela-title">El casamiento engañoso</h4>
-                    <p class="novela-year">(Sátira picaresca)</p>
-                    <p class="novela-desc">
+                <div class="novel-card">
+                    <div class="novel-icon">💒</div>
+                    <h3 class="novel-title">El casamiento engañoso</h3>
+                    <p class="novel-subtitle">(Sátira picaresca)</p>
+                    <p class="novel-description">
                         <strong>Alférez Campuzano</strong> se casa creyendo que su esposa es rica; ella lo engaña.
                         Él también la engañó haciéndose pasar por rico.
                         <span class="highlight">Doble engaño mutuo</span>: ambos son víctimas y victimarios.
@@ -436,11 +880,11 @@
                     </p>
                 </div>
 
-                <div class="novela-card">
-                    <div class="novela-icon">🐕</div>
-                    <h4 class="novela-title">El coloquio de los perros</h4>
-                    <p class="novela-year">(OBRA MAESTRA)</p>
-                    <p class="novela-desc">
+                <div class="novel-card">
+                    <div class="novel-icon">🐕</div>
+                    <h3 class="novel-title">El coloquio de los perros</h3>
+                    <p class="novel-subtitle">(OBRA MAESTRA)</p>
+                    <p class="novel-description">
                         <strong>Dos perros, Cipión y Berganza</strong>, hablan durante una noche en el Hospital de la Resurrección (Valladolid).
                         <span class="highlight">Berganza cuenta su vida</span> sirviendo a diversos amos.
                         <span class="highlight">Sátira social feroz</span>: critica todos los estamentos (pastores, mercaderes, alguaciles, gitanos, brujas).
@@ -453,79 +897,119 @@
                 </div>
             </div>
 
-            <h3 class="section-subtitle">💎 Importancia de las Novelas Ejemplares</h3>
+            <!-- Importance Section -->
+            <div class="section-header">
+                <h2 class="section-title">Importancia de las Novelas Ejemplares</h2>
+                <p class="section-subtitle">Revolución del Género Narrativo Breve</p>
+            </div>
 
-            <div class="info-box">
-                <h4 class="info-box-title">Revolución del Género Narrativo Breve</h4>
-                <p class="info-box-text">
-                    <strong>1. Primera colección original en castellano</strong><br>
-                    Antes solo había traducciones italianas (Boccaccio, Bandello).
-                    Cervantes <span class="highlight">crea el género en España</span>.
-                    <br><br>
+            <div class="importance-grid">
+                <div class="importance-card">
+                    <div class="importance-number">1</div>
+                    <h3 class="importance-title">Primera colección original en castellano</h3>
+                    <p class="importance-text">
+                        Antes solo había traducciones italianas (Boccaccio, Bandello).
+                        Cervantes <span class="highlight">crea el género en España</span>.
+                    </p>
+                </div>
 
-                    <strong>2. Diversidad de registros</strong><br>
-                    Desde <span class="highlight">realismo picaresco</span> (Rinconete) hasta <span class="highlight">idealismo romántico</span> (La gitanilla).
-                    Desde <span class="highlight">comedia</span> (La ilustre fregona) hasta <span class="highlight">tragedia</span> (El celoso extremeño).
-                    Muestra la <span class="highlight">versatilidad genial</span> de Cervantes.
-                    <br><br>
+                <div class="importance-card">
+                    <div class="importance-number">2</div>
+                    <h3 class="importance-title">Diversidad de registros</h3>
+                    <p class="importance-text">
+                        Desde <span class="highlight">realismo picaresco</span> (Rinconete) hasta <span class="highlight">idealismo romántico</span> (La gitanilla).
+                        Desde <span class="highlight">comedia</span> (La ilustre fregona) hasta <span class="highlight">tragedia</span> (El celoso extremeño).
+                        Muestra la <span class="highlight">versatilidad genial</span> de Cervantes.
+                    </p>
+                </div>
 
-                    <strong>3. Innovaciones narrativas</strong><br>
-                    <span class="highlight">Perspectiva animal</span> (Coloquio de los perros) → anticipa Orwell, fábulas modernas.
-                    <span class="highlight">Marcos narrativos</span> (El casamiento engañoso introduce El coloquio).
-                    <span class="highlight">Ironía y ambigüedad</span>: finales no siempre claros moralmente.
-                    <br><br>
+                <div class="importance-card">
+                    <div class="importance-number">3</div>
+                    <h3 class="importance-title">Innovaciones narrativas</h3>
+                    <p class="importance-text">
+                        <span class="highlight">Perspectiva animal</span> (Coloquio de los perros) → anticipa Orwell, fábulas modernas.
+                        <span class="highlight">Marcos narrativos</span> (El casamiento engañoso introduce El coloquio).
+                        <span class="highlight">Ironía y ambigüedad</span>: finales no siempre claros moralmente.
+                    </p>
+                </div>
 
-                    <strong>4. Crítica social</strong><br>
-                    Cervantes critica <span class="highlight">todos los estamentos</span>: nobles, clero, pícaros, gitanos.
-                    Pero con <span class="highlight">compasión y humor</span>, no con amargura.
-                    <br><br>
+                <div class="importance-card">
+                    <div class="importance-number">4</div>
+                    <h3 class="importance-title">Crítica social</h3>
+                    <p class="importance-text">
+                        Cervantes critica <span class="highlight">todos los estamentos</span>: nobles, clero, pícaros, gitanos.
+                        Pero con <span class="highlight">compasión y humor</span>, no con amargura.
+                    </p>
+                </div>
 
-                    <strong>5. Influencia</strong><br>
-                    Modelo para la <span class="highlight">novela corta española</span> posterior.
-                    Influencia en Poe, Maupassant, Chejov (maestros del relato corto).
+                <div class="importance-card">
+                    <div class="importance-number">5</div>
+                    <h3 class="importance-title">Influencia</h3>
+                    <p class="importance-text">
+                        Modelo para la <span class="highlight">novela corta española</span> posterior.
+                        Influencia en Poe, Maupassant, Chejov (maestros del relato corto).
+                    </p>
+                </div>
+            </div>
+
+            <!-- Other Works Section -->
+            <div class="section-header">
+                <h2 class="section-title">Otras Obras de Cervantes</h2>
+                <p class="section-subtitle">Producción Completa del Genio Español</p>
+            </div>
+
+            <div class="works-grid">
+                <div class="work-card">
+                    <h3 class="work-title">La Galatea (1585)</h3>
+                    <p class="work-text">
+                        Novela pastoral. Primera obra publicada de Cervantes.
+                        Pastores idealizados, amores complicados, verso y prosa.
+                        <span class="highlight">Éxito moderado</span>. Cervantes prometió segunda parte que nunca escribió.
+                    </p>
+                </div>
+
+                <div class="work-card">
+                    <h3 class="work-title">Viaje del Parnaso (1614)</h3>
+                    <p class="work-text">
+                        Poema narrativo en tercetos.
+                        <span class="highlight">Sátira literaria</span>: Apolo convoca a los buenos poetas para combatir a los malos.
+                        Cervantes se autorretrata con <span class="highlight">ironía</span>.
+                    </p>
+                </div>
+
+                <div class="work-card">
+                    <h3 class="work-title">Ocho comedias y ocho entremeses (1615)</h3>
+                    <p class="work-text">
+                        Teatro. <span class="highlight">Fracaso en vida</span> (Lope de Vega dominaba el teatro).
+                        Hoy reconocidos como valiosos, especialmente los <span class="highlight">entremeses</span> (piezas cómicas breves).
+                    </p>
+                </div>
+
+                <div class="work-card">
+                    <h3 class="work-title">Los trabajos de Persiles y Sigismunda (1617, póstuma)</h3>
+                    <p class="work-text">
+                        Novela bizantina: aventuras, viajes, amor idealizado.
+                        Última obra de Cervantes. Prólogo escrito <span class="highlight">días antes de morir</span>.
+                        Cervantes la consideraba su <span class="highlight">mejor obra</span> (el público prefirió el Quijote).
+                    </p>
+                </div>
+            </div>
+
+            <!-- Final Quote -->
+            <div class="final-quote">
+                <p class="final-quote-text">
+                    Cervantes no solo escribió el Quijote:<br>
+                    fue un <strong>innovador múltiple</strong> en novela corta, teatro y poesía.<br>
+                    Las Novelas Ejemplares demuestran su <strong>genio versátil</strong> y su dominio de todos los registros narrativos.
                 </p>
             </div>
 
-            <h3 class="section-subtitle">📚 Otras Obras de Cervantes</h3>
-
-            <div class="info-box">
-                <h4 class="info-box-title">Producción Completa</h4>
-                <p class="info-box-text">
-                    <strong>La Galatea (1585)</strong><br>
-                    Novela pastoral. Primera obra publicada de Cervantes.
-                    Pastores idealizados, amores complicados, verso y prosa.
-                    <span class="highlight">Éxito moderado</span>. Cervantes prometió segunda parte que nunca escribió.
-                    <br><br>
-
-                    <strong>Viaje del Parnaso (1614)</strong><br>
-                    Poema narrativo en tercetos.
-                    <span class="highlight">Sátira literaria</span>: Apolo convoca a los buenos poetas para combatir a los malos.
-                    Cervantes se autorretrata con <span class="highlight">ironía</span>.
-                    <br><br>
-
-                    <strong>Ocho comedias y ocho entremeses (1615)</strong><br>
-                    Teatro. <span class="highlight">Fracaso en vida</span> (Lope de Vega dominaba el teatro).
-                    Hoy reconocidos como valiosos, especialmente los <span class="highlight">entremeses</span> (piezas cómicas breves).
-                    <br><br>
-
-                    <strong>Los trabajos de Persiles y Sigismunda (1617, póstuma)</strong><br>
-                    Novela bizantina: aventuras, viajes, amor idealizado.
-                    Última obra de Cervantes. Prólogo escrito <span class="highlight">días antes de morir</span>.
-                    Cervantes la consideraba su <span class="highlight">mejor obra</span> (el público prefirió el Quijote).
-                </p>
+            <!-- Footer -->
+            <div class="footer">
+                <p class="footer-text">«Yo soy el primero que he novelado en lengua castellana»</p>
+                <div class="footer-badge">📚 Duración estimada: 10 minutos</div>
             </div>
-
-            <div class="quote-box">
-                Cervantes no solo escribió el Quijote:<br>
-                fue un <strong>innovador múltiple</strong> en novela corta, teatro y poesía.<br>
-                Las Novelas Ejemplares demuestran su <strong>genio versátil</strong> y su dominio de todos los registros narrativos.
-            </div>
-        </section>
+        </div>
     </main>
-
-    <footer>
-        <p class="footer-text">«Yo soy el primero que he novelado en lengua castellana»</p>
-        <div class="footer-badge">📚 Duración estimada: 10 minutos</div>
-    </footer>
 </body>
 </html>
