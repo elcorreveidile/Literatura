@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Autores Principales - Barroco Español</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --gradient-barroco: linear-gradient(135deg, #8B5CF6 0%, #EC4899 50%, #F59E0B 100%);
+            --gradient-accent: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+            --text-dark: #1a1a2e;
+            --bg-card: rgba(255, 255, 255, 0.95);
+            --shadow-md: 0 8px 30px rgba(0,0,0,0.12);
+            --shadow-lg: 0 20px 60px rgba(0,0,0,0.3);
+            --sidebar-width: 280px;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--text-dark);
+            background: var(--gradient-barroco);
+            min-height: 100vh;
+        }
+
+        .sidebar {
+            position: fixed; left: 0; top: 0; width: var(--sidebar-width); height: 100vh;
+            background: rgba(15, 15, 30, 0.95); backdrop-filter: blur(20px);
+            padding: 2rem 0; z-index: 1000; box-shadow: var(--shadow-lg); overflow-y: auto;
+        }
+
+        .sidebar-header { padding: 0 1.5rem 2rem; border-bottom: 2px solid rgba(255,255,255,0.1); margin-bottom: 2rem; }
+        .logo { font-family: 'Playfair Display', serif; font-size: 1.8rem; font-weight: 900;
+                background: var(--gradient-accent); -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent; background-clip: text; margin-bottom: 0.5rem; }
+        .logo-subtitle { color: rgba(255,255,255,0.6); font-size: 0.85rem; }
+        .nav-menu { list-style: none; padding: 0 1rem; }
+        .nav-link { display: flex; align-items: center; gap: 1rem; padding: 1rem;
+                    color: rgba(255,255,255,0.8); text-decoration: none; border-radius: 12px;
+                    font-weight: 600; transition: all 0.3s; margin-bottom: 0.5rem; }
+        .nav-link:hover { background: rgba(255,255,255,0.1); color: #fff; transform: translateX(5px); }
+        .nav-link.active { background: var(--gradient-accent); color: #fff; }
+
+        .main-content { margin-left: var(--sidebar-width); padding: 3rem; }
+        .container { max-width: 1200px; margin: 0 auto; }
+        .content-card { background: var(--bg-card); border-radius: 30px; padding: 4rem;
+                        box-shadow: var(--shadow-lg); margin-bottom: 2rem; }
+
+        h1 { font-family: 'Playfair Display', serif; font-size: 3.5rem; font-weight: 900;
+             background: var(--gradient-barroco); -webkit-background-clip: text;
+             -webkit-text-fill-color: transparent; background-clip: text; margin-bottom: 2rem; }
+        h2 { font-family: 'Playfair Display', serif; font-size: 2rem; color: #8B5CF6; margin: 2rem 0 1rem; }
+        h3 { font-size: 1.4rem; color: #EC4899; margin: 1.5rem 0 0.75rem; }
+        p { line-height: 1.8; color: #444; margin-bottom: 1.5rem; font-size: 1.1rem; }
+        ul, ol { margin: 1rem 0 1.5rem 2rem; line-height: 1.8; }
+        li { margin-bottom: 0.75rem; color: #555; }
+
+        .author-card {
+            background: linear-gradient(135deg, rgba(139, 92, 246, 0.05), rgba(236, 72, 153, 0.05));
+            border-radius: 20px; padding: 2rem; margin-bottom: 2rem;
+            border-left: 5px solid #8B5CF6;
+        }
+
+        .author-card h2 { margin-top: 0; }
+
+        .quote-box {
+            background: linear-gradient(135deg, rgba(250, 112, 154, 0.1), rgba(254, 225, 64, 0.1));
+            border-left: 4px solid #fa709a; padding: 1.5rem; border-radius: 12px;
+            margin: 1.5rem 0; font-style: italic;
+        }
+
+        .mobile-menu-btn { position: fixed; top: 1.5rem; left: 1.5rem; z-index: 2000;
+                           width: 50px; height: 50px; background: var(--gradient-accent);
+                           border: none; border-radius: 12px; display: none; cursor: pointer; }
+        .sidebar-overlay { position: fixed; inset: 0; background: rgba(0, 0, 0, 0.5); z-index: 999; display: none; }
+
+        @media (max-width: 1024px) {
+            .mobile-menu-btn { display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 5px; }
+            .mobile-menu-btn span { width: 24px; height: 3px; background: white; border-radius: 2px; }
+            .sidebar { transform: translateX(-100%); transition: transform 0.3s ease; }
+            .sidebar.mobile-open { transform: translateX(0); }
+            .sidebar-overlay.active { display: block; }
+            .main-content { margin-left: 0; padding: 5rem 1.5rem 2rem; }
+            .content-card { padding: 2rem; }
+            h1 { font-size: 2.5rem; }
+        }
+    </style>
+</head>
+<body>
+    <aside class="sidebar">
+        <div class="sidebar-header">
+            <h1 class="logo">Barroco<br>Español</h1>
+            <p class="logo-subtitle">Literatura española hasta el siglo XVIII · CLM B1.2</p>
+        </div>
+        <nav>
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link"><span>🏠</span> Inicio</a></li>
+                <li><a href="contexto.html" class="nav-link"><span>🏛️</span> Contexto Histórico</a></li>
+                <li><a href="autores.html" class="nav-link active"><span>✍️</span> Autores Principales</a></li>
+                <li><a href="teatro.html" class="nav-link"><span>🎭</span> Teatro como Industria</a></li>
+                <li><a href="estilos.html" class="nav-link"><span>🖋️</span> Estilos Literarios</a></li>
+                <li><a href="obras.html" class="nav-link"><span>📚</span> Obras Fundamentales</a></li>
+            </ul>
+        </nav>
+    </aside>
+
+    <main class="main-content">
+        <div class="container">
+            <div class="content-card">
+                <h1>✍️ Los Cuatro Genios del Barroco</h1>
+
+                <p>
+                    El Barroco español cuenta con <strong>cuatro autores fundamentales</strong> que representan
+                    la cumbre de las letras hispanas. Dos dramaturgos (<strong>Lope y Calderón</strong>) y dos
+                    poetas (<strong>Góngora y Quevedo</strong>) que encarnan estilos opuestos y complementarios.
+                </p>
+
+                <!-- LOPE DE VEGA -->
+                <div class="author-card">
+                    <h2>🎭 Lope de Vega (1562-1635)</h2>
+                    <h3>El Fénix de los Ingenios</h3>
+
+                    <p>
+                        <strong>Félix Lope de Vega y Carpio</strong> fue el escritor más prolífico y popular de su
+                        tiempo. Revolucionó el teatro español con una fórmula que combinaba entretenimiento y arte,
+                        conquistando a todos los públicos.
+                    </p>
+
+                    <h3>Vida</h3>
+                    <ul>
+                        <li><strong>Niño prodigio</strong>: Escribía versos desde los 5 años</li>
+                        <li><strong>Vida apasionada</strong>: Amores turbulentos, matrimonios, numerosos hijos</li>
+                        <li><strong>Soldado</strong>: Participó en la Armada Invencible (1588)</li>
+                        <li><strong>Sacerdote</strong>: Se ordenó en 1614, aunque siguió escribiendo teatro profano</li>
+                        <li><strong>Fama inmensa</strong>: "Es de Lope" se decía de todo lo excelente</li>
+                    </ul>
+
+                    <h3>Obra</h3>
+                    <ul>
+                        <li><strong>Producción ingente</strong>: Se le atribuyen unas <strong>1.800 comedias</strong> (conservadas 314) y 3.000 sonetos</li>
+                        <li><strong><em>Arte nuevo de hacer comedias</em> (1609)</strong>: Tratado que justifica su ruptura con las reglas clásicas</li>
+                        <li><strong>Temas variados</strong>: históricas, mitológicas, de santos, de honor campesino</li>
+                        <li><strong>Obras maestras</strong>: <em>Fuenteovejuna</em>, <em>El caballero de Olmedo</em>, <em>El perro del hortelano</em>, <em>Peribáñez</em></li>
+                    </ul>
+
+                    <h3>Estilo</h3>
+                    <ul>
+                        <li><strong>Naturalidad</strong>: Lenguaje claro y accesible, sin excesiva complejidad</li>
+                        <li><strong>Ritmo y acción</strong>: Intrigas movidas, mezcla de tragedia y comedia</li>
+                        <li><strong>Poesía popular</strong>: Recoge la tradición del romancero y la lírica tradicional</li>
+                        <li><strong>Fórmula teatral</strong>: 3 actos (jornadas), mezcla de lo cómico y lo serio, ruptura de las unidades clásicas</li>
+                    </ul>
+
+                    <div class="quote-box">
+                        "Porque como las paga el vulgo, es justo / hablarle en necio para darle gusto."
+                        <br><strong>— Lope de Vega, <em>Arte nuevo de hacer comedias</em></strong>
+                    </div>
+                </div>
+
+                <!-- CALDERÓN DE LA BARCA -->
+                <div class="author-card" style="border-left-color: #EC4899;">
+                    <h2>🌟 Calderón de la Barca (1600-1681)</h2>
+                    <h3>El Dramaturgo Filosófico</h3>
+
+                    <p>
+                        <strong>Pedro Calderón de la Barca</strong> llevó el teatro barroco a su máxima complejidad
+                        filosófica y formal. Frente a la naturalidad de Lope, Calderón cultiva el artificio, la
+                        reflexión y la profundidad ideológica.
+                    </p>
+
+                    <h3>Vida</h3>
+                    <ul>
+                        <li><strong>Formación</strong>: Estudios en Alcalá y Salamanca; amplia cultura teológica y filosófica</li>
+                        <li><strong>Soldado</strong>: Participó en campañas militares en Flandes e Italia</li>
+                        <li><strong>Dramaturgo de la corte</strong>: Escribió para Felipe IV, gran aficionado al teatro</li>
+                        <li><strong>Sacerdote</strong>: Ordenado en 1651; se dedicó especialmente a los autos sacramentales</li>
+                        <li><strong>Longevidad creativa</strong>: Escribió hasta su muerte a los 81 años</li>
+                    </ul>
+
+                    <h3>Obra</h3>
+                    <ul>
+                        <li><strong>Unas 120 comedias</strong> y <strong>80 autos sacramentales</strong></li>
+                        <li><strong>Dramas filosóficos</strong>: <em>La vida es sueño</em>, <em>El gran teatro del mundo</em></li>
+                        <li><strong>Dramas de honor</strong>: <em>El alcalde de Zalamea</em>, <em>El médico de su honra</em></li>
+                        <li><strong>Comedias de capa y espada</strong>: <em>La dama duende</em>, <em>Casa con dos puertas mala es de guardar</em></li>
+                    </ul>
+
+                    <h3>Estilo</h3>
+                    <ul>
+                        <li><strong>Profundidad filosófica</strong>: Reflexión sobre el libre albedrío, el destino, la apariencia y la realidad</li>
+                        <li><strong>Lenguaje culto</strong>: Influencia del culteranismo, metáforas complejas</li>
+                        <li><strong>Estructura rigurosa</strong>: Simetría, paralelismos, construcción cuidada</li>
+                        <li><strong>Temas del Barroco</strong>: Desengaño, transitoriedad de la vida, religiosidad</li>
+                    </ul>
+
+                    <div class="quote-box">
+                        "¿Qué es la vida? Un frenesí. / ¿Qué es la vida? Una ilusión, / una sombra, una ficción, / y el mayor bien es pequeño; / que toda la vida es sueño, / y los sueños, sueños son."
+                        <br><strong>— Calderón, <em>La vida es sueño</em></strong>
+                    </div>
+                </div>
+
+                <!-- LUIS DE GÓNGORA -->
+                <div class="author-card" style="border-left-color: #F59E0B;">
+                    <h2>📜 Luis de Góngora (1561-1627)</h2>
+                    <h3>El Príncipe de las Tinieblas (del Culteranismo)</h3>
+
+                    <p>
+                        <strong>Luis de Góngora y Argote</strong> llevó la poesía barroca a la máxima complejidad
+                        formal. Su lenguaje es oscuro, culto, lleno de referencias mitológicas y belleza pura. Es el
+                        máximo representante del <strong>culteranismo</strong>.
+                    </p>
+
+                    <h3>Vida</h3>
+                    <ul>
+                        <li><strong>Origen noble</strong>: Nacido en Córdoba, familia hidalga</li>
+                        <li><strong>Estudios en Salamanca</strong>: Más interesado en la literatura que en la carrera eclesiástica</li>
+                        <li><strong>Racionero de la catedral</strong>: Cargo que le daba rentas sin grandes obligaciones</li>
+                        <li><strong>Vida cortesana</strong>: Pasó sus últimos años en Madrid, con problemas económicos</li>
+                        <li><strong>Rivalidad con Quevedo</strong>: Enemistad literaria y personal legendaria</li>
+                    </ul>
+
+                    <h3>Obra</h3>
+                    <ul>
+                        <li><strong>Poesía popular</strong>: Letrillas, romances de tono festivo y burlesco</li>
+                        <li><strong>Poesía culta</strong>: Sonetos, <em>Fábula de Polifemo y Galatea</em>, <em>Soledades</em></li>
+                        <li><strong><em>Soledades</em> (1613)</strong>: Poema inacabado, cumbre del culteranismo</li>
+                        <li><strong>Ruptura lingüística</strong>: Sintaxis latinizante, metáforas audaces, léxico culto</li>
+                    </ul>
+
+                    <h3>Estilo: El Culteranismo</h3>
+                    <ul>
+                        <li><strong>Belleza de la forma</strong>: Importa más cómo se dice que qué se dice</li>
+                        <li><strong>Latinismos</strong>: Cultismos léxicos (<em>purpúreo, cándido, espléndido</em>)</li>
+                        <li><strong>Hipérbaton</strong>: Alteración extrema del orden sintáctico</li>
+                        <li><strong>Metáforas complejas</strong>: Perífrasis, imágenes encadenadas, alusiones mitológicas</li>
+                        <li><strong>Oscuridad</strong>: Poesía para minorías cultas; "entender es premiar"</li>
+                    </ul>
+
+                    <div class="quote-box">
+                        "Era del año la estación florida / en que el mentido robador de Europa / (media luna las armas de su frente, / y el Sol todos los rayos de su pelo), / luciente honor del cielo..."
+                        <br><strong>— Góngora, <em>Fábula de Polifemo y Galatea</em></strong>
+                    </div>
+                </div>
+
+                <!-- FRANCISCO DE QUEVEDO -->
+                <div class="author-card" style="border-left-color: #10B981;">
+                    <h2>⚔️ Francisco de Quevedo (1580-1645)</h2>
+                    <h3>El Maestro del Conceptismo</h3>
+
+                    <p>
+                        <strong>Francisco de Quevedo y Villegas</strong> es el escritor más mordaz, ingenioso y
+                        profundo del Barroco. Domina todos los géneros y tonos: desde la sátira feroz hasta la
+                        reflexión metafísica. Representa el <strong>conceptismo</strong>.
+                    </p>
+
+                    <h3>Vida</h3>
+                    <ul>
+                        <li><strong>Nobleza y erudición</strong>: Amplia formación humanística y teológica</li>
+                        <li><strong>Hombre de acción</strong>: Involucrado en intrigas políticas, viajes diplomáticos</li>
+                        <li><strong>Encarcelado</strong>: Pasó años en prisión (1639-1643) por enfrentarse al Conde-Duque de Olivares</li>
+                        <li><strong>Rivalidad con Góngora</strong>: Ataques mutuos en poemas satíricos despiadados</li>
+                        <li><strong>Muerte amarga</strong>: Murió pobre y enfermo, desengañado del mundo</li>
+                    </ul>
+
+                    <h3>Obra</h3>
+                    <ul>
+                        <li><strong>Poesía</strong>: Amorosa, satírica, moral, metafísica, burlesca (más de 875 poemas)</li>
+                        <li><strong>Prosa satírica</strong>: <em>Los sueños</em>, <em>La hora de todos</em></li>
+                        <li><strong>Novela picaresca</strong>: <em>El Buscón</em> (1626), sátira despiadada de la sociedad</li>
+                        <li><strong>Prosa filosófica</strong>: <em>La cuna y la sepultura</em>, tratados morales</li>
+                    </ul>
+
+                    <h3>Estilo: El Conceptismo</h3>
+                    <ul>
+                        <li><strong>Agudeza de pensamiento</strong>: Importa el ingenio, la idea sorprendente</li>
+                        <li><strong>Juegos de palabras</strong>: Polisemia, dilogías, paradojas, antítesis</li>
+                        <li><strong>Concisión</strong>: Decir mucho con pocas palabras</li>
+                        <li><strong>Ironía y sátira</strong>: Humor negro, crítica social despiadada</li>
+                        <li><strong>Profundidad moral</strong>: Reflexión sobre el tiempo, la muerte, el desengaño</li>
+                    </ul>
+
+                    <div class="quote-box">
+                        "Miré los muros de la patria mía, / si un tiempo fuertes, ya desmoronados, / de la carrera de la edad cansados, / por quien caduca ya su valentía."
+                        <br><strong>— Quevedo, soneto moral</strong>
+                    </div>
+
+                    <div class="quote-box" style="margin-top: 1rem;">
+                        "Érase un hombre a una nariz pegado, / érase una nariz superlativa, / érase una nariz sayón y escriba, / érase un pez espada muy barbado."
+                        <br><strong>— Quevedo, sátira a Góngora</strong>
+                    </div>
+                </div>
+
+                <!-- COMPARACIÓN -->
+                <h2>⚖️ Comparación: Dos Pares Opuestos</h2>
+
+                <h3>Teatro: Lope vs. Calderón</h3>
+                <ul>
+                    <li><strong>Lope</strong>: Naturalidad, acción rápida, lenguaje claro, popular</li>
+                    <li><strong>Calderón</strong>: Artificio, reflexión filosófica, lenguaje culto, simbólico</li>
+                </ul>
+
+                <h3>Poesía: Góngora vs. Quevedo</h3>
+                <ul>
+                    <li><strong>Góngora (culteranismo)</strong>: Belleza formal, oscuridad, metáforas complejas</li>
+                    <li><strong>Quevedo (conceptismo)</strong>: Agudeza conceptual, ingenio, juegos de ideas</li>
+                </ul>
+
+                <p>
+                    Estos cuatro genios representan las distintas caras del Barroco español: la popularidad y el
+                    artificio teatral, la belleza formal y el ingenio conceptual. Juntos, elevan la literatura
+                    española a su máxima altura.
+                </p>
+            </div>
+        </div>
+    </main>
+
+    <button class="mobile-menu-btn" id="mobileMenuBtn">
+        <span></span><span></span><span></span>
+    </button>
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+    <script>
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const sidebar = document.querySelector('.sidebar');
+        const sidebarOverlay = document.getElementById('sidebarOverlay');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            sidebar.classList.toggle('mobile-open');
+            sidebarOverlay.classList.toggle('active');
+        });
+
+        sidebarOverlay.addEventListener('click', () => {
+            sidebar.classList.remove('mobile-open');
+            sidebarOverlay.classList.remove('active');
+        });
+    </script>
+</body>
+</html>

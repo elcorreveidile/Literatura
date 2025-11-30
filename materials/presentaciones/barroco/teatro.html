@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teatro como Industria - Barroco Español</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        :root {
+            --gradient-barroco: linear-gradient(135deg, #8B5CF6 0%, #EC4899 50%, #F59E0B 100%);
+            --gradient-accent: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+            --text-dark: #1a1a2e; --bg-card: rgba(255, 255, 255, 0.95);
+            --shadow-md: 0 8px 30px rgba(0,0,0,0.12); --shadow-lg: 0 20px 60px rgba(0,0,0,0.3);
+            --sidebar-width: 280px;
+        }
+        body { font-family: 'Inter', sans-serif; color: var(--text-dark); background: var(--gradient-barroco); min-height: 100vh; }
+        .sidebar { position: fixed; left: 0; top: 0; width: var(--sidebar-width); height: 100vh;
+                   background: rgba(15, 15, 30, 0.95); backdrop-filter: blur(20px); padding: 2rem 0;
+                   z-index: 1000; box-shadow: var(--shadow-lg); overflow-y: auto; }
+        .sidebar-header { padding: 0 1.5rem 2rem; border-bottom: 2px solid rgba(255,255,255,0.1); margin-bottom: 2rem; }
+        .logo { font-family: 'Playfair Display', serif; font-size: 1.8rem; font-weight: 900;
+                background: var(--gradient-accent); -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+                background-clip: text; margin-bottom: 0.5rem; }
+        .logo-subtitle { color: rgba(255,255,255,0.6); font-size: 0.85rem; }
+        .nav-menu { list-style: none; padding: 0 1rem; }
+        .nav-link { display: flex; align-items: center; gap: 1rem; padding: 1rem; color: rgba(255,255,255,0.8);
+                    text-decoration: none; border-radius: 12px; font-weight: 600; transition: all 0.3s; margin-bottom: 0.5rem; }
+        .nav-link:hover { background: rgba(255,255,255,0.1); color: #fff; transform: translateX(5px); }
+        .nav-link.active { background: var(--gradient-accent); color: #fff; }
+        .main-content { margin-left: var(--sidebar-width); padding: 3rem; }
+        .container { max-width: 1200px; margin: 0 auto; }
+        .content-card { background: var(--bg-card); border-radius: 30px; padding: 4rem; box-shadow: var(--shadow-lg); margin-bottom: 2rem; }
+        h1 { font-family: 'Playfair Display', serif; font-size: 3.5rem; font-weight: 900; background: var(--gradient-barroco);
+             -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin-bottom: 2rem; }
+        h2 { font-family: 'Playfair Display', serif; font-size: 2rem; color: #8B5CF6; margin: 2rem 0 1rem; }
+        h3 { font-size: 1.4rem; color: #EC4899; margin: 1.5rem 0 0.75rem; }
+        p { line-height: 1.8; color: #444; margin-bottom: 1.5rem; font-size: 1.1rem; }
+        ul, ol { margin: 1rem 0 1.5rem 2rem; line-height: 1.8; }
+        li { margin-bottom: 0.75rem; color: #555; }
+        .highlight-box { background: linear-gradient(135deg, rgba(139, 92, 246, 0.1), rgba(236, 72, 153, 0.1));
+                         border-left: 4px solid #8B5CF6; padding: 1.5rem; border-radius: 12px; margin: 2rem 0; }
+        .teatro-diagram { background: linear-gradient(135deg, rgba(250, 112, 154, 0.1), rgba(254, 225, 64, 0.1));
+                          border-radius: 16px; padding: 2rem; margin: 2rem 0; text-align: center; }
+        .mobile-menu-btn { position: fixed; top: 1.5rem; left: 1.5rem; z-index: 2000; width: 50px; height: 50px;
+                           background: var(--gradient-accent); border: none; border-radius: 12px; display: none; cursor: pointer; }
+        .sidebar-overlay { position: fixed; inset: 0; background: rgba(0, 0, 0, 0.5); z-index: 999; display: none; }
+        @media (max-width: 1024px) {
+            .mobile-menu-btn { display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 5px; }
+            .mobile-menu-btn span { width: 24px; height: 3px; background: white; border-radius: 2px; }
+            .sidebar { transform: translateX(-100%); transition: transform 0.3s ease; }
+            .sidebar.mobile-open { transform: translateX(0); }
+            .sidebar-overlay.active { display: block; }
+            .main-content { margin-left: 0; padding: 5rem 1.5rem 2rem; }
+            .content-card { padding: 2rem; }
+            h1 { font-size: 2.5rem; }
+        }
+    </style>
+</head>
+<body>
+    <aside class="sidebar">
+        <div class="sidebar-header">
+            <h1 class="logo">Barroco<br>Español</h1>
+            <p class="logo-subtitle">Literatura española hasta el siglo XVIII · CLM B1.2</p>
+        </div>
+        <nav>
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link"><span>🏠</span> Inicio</a></li>
+                <li><a href="contexto.html" class="nav-link"><span>🏛️</span> Contexto Histórico</a></li>
+                <li><a href="autores.html" class="nav-link"><span>✍️</span> Autores Principales</a></li>
+                <li><a href="teatro.html" class="nav-link active"><span>🎭</span> Teatro como Industria</a></li>
+                <li><a href="estilos.html" class="nav-link"><span>🖋️</span> Estilos Literarios</a></li>
+                <li><a href="obras.html" class="nav-link"><span>📚</span> Obras Fundamentales</a></li>
+            </ul>
+        </nav>
+    </aside>
+
+    <main class="main-content">
+        <div class="container">
+            <div class="content-card">
+                <h1>🎭 El Teatro como Industria Cultural</h1>
+
+                <p>
+                    El <strong>teatro barroco español</strong> no es solo un género literario: es un fenómeno de
+                    masas, una <strong>industria cultural</strong> comparable al cine o la televisión actuales.
+                    Por primera vez en la historia, el teatro se convierte en <strong>espectáculo popular y
+                    entretenimiento urbano</strong>.
+                </p>
+
+                <h2>🏛️ Los Corrales de Comedias</h2>
+
+                <p>
+                    Los <strong>corrales</strong> eran patios interiores de casas o manzanas de edificios adaptados
+                    para representaciones teatrales. Se construyeron en todas las ciudades importantes de España.
+                </p>
+
+                <h3>Estructura de un Corral</h3>
+                <ul>
+                    <li><strong>Patio</strong>: Espacio central al aire libre donde se colocaba el público masculino de pie (los <em>mosqueteros</em>)</li>
+                    <li><strong>Tablado</strong>: Escenario elevado al fondo del patio, sin cortina</li>
+                    <li><strong>Cazuela</strong>: Galería alta al fondo, reservada exclusivamente a mujeres</li>
+                    <li><strong>Aposentos</strong>: Palcos laterales para la nobleza y clases altas</li>
+                    <li><strong>Tertulia</strong>: Grada superior para eclesiásticos y autoridades</li>
+                    <li><strong>Vestuario</strong>: Detrás del tablado, separado por cortinas</li>
+                </ul>
+
+                <div class="teatro-diagram">
+                    <h3 style="margin-top: 0; color: #8B5CF6;">📐 Plano del Corral</h3>
+                    <pre style="font-size: 0.9rem; text-align: left; line-height: 1.6; color: #555;">
+╔════════════════════════════════════════╗
+║         TERTULIA (arriba)              ║
+╠════════════════════════════════════════╣
+║  APOSENTOS  │                │ APOSENTOS ║
+║  (palcos)   │                │  (palcos) ║
+║             │    TABLADO     │           ║
+║             │   (escenario)  │           ║
+║  CAZUELA ◄──┴────────────────┴──► CAZUELA ║
+║  (mujeres)        PATIO        (mujeres) ║
+║              (mosqueteros)               ║
+╚════════════════════════════════════════╝
+                    </pre>
+                </div>
+
+                <h3>Condiciones del Espectáculo</h3>
+                <ul>
+                    <li><strong>Sin iluminación artificial</strong>: Las funciones eran por la tarde, con luz natural</li>
+                    <li><strong>Sin decorados complejos</strong>: Se usaban cortinas, algunos muebles y pocos elementos escenográficos</li>
+                    <li><strong>Tramoya simple</strong>: Escotillones, poleas para "vuelos", efectos de sonido básicos</li>
+                    <li><strong>Vestuario rico</strong>: Los actores invertían en trajes lujosos para atraer al público</li>
+                </ul>
+
+                <h2>👥 El Público: Una Sociedad en Miniatura</h2>
+
+                <p>
+                    Los corrales reunían a <strong>todos los estamentos sociales</strong>: nobles en los aposentos,
+                    burgueses en las gradas, pueblo llano de pie en el patio, mujeres separadas en la cazuela,
+                    clérigos en la tertulia. El teatro era un <strong>espejo de la sociedad</strong>.
+                </p>
+
+                <h3>El Poder de los Mosqueteros</h3>
+                <p>
+                    Los <strong>mosqueteros</strong> (público popular de pie en el patio) eran temidos por autores y
+                    actores. Su reacción decidía el éxito o fracaso de una obra:
+                </p>
+                <ul>
+                    <li><strong>Aplausos</strong>: La obra triunfaba y se repetía durante días</li>
+                    <li><strong>Silbidos y gritos</strong>: La obra se retiraba inmediatamente</li>
+                    <li><strong>Poder del vulgo</strong>: Lope escribió para complacer al público popular, no a los eruditos</li>
+                </ul>
+
+                <div class="highlight-box">
+                    <h3>💡 El Teatro como Democracia Cultural</h3>
+                    <p style="margin-bottom: 0;">
+                        Por primera vez, el <strong>gusto popular</strong> decide el éxito cultural. Los nobles podían
+                        tener sus preferencias, pero si los mosqueteros silbaban, la obra fracasaba. Este fenómeno
+                        anticipa la cultura de masas moderna.
+                    </p>
+                </div>
+
+                <h2>💰 El Teatro como Negocio</h2>
+
+                <p>
+                    El teatro barroco era una <strong>industria rentable</strong> que movía mucho dinero y empleaba
+                    a cientos de profesionales.
+                </p>
+
+                <h3>Agentes Económicos</h3>
+                <ul>
+                    <li><strong>Autores de comedias</strong>: Empresarios que compraban obras, contrataban actores y organizaban giras</li>
+                    <li><strong>Dramaturgos</strong>: Vendían sus obras a los autores de comedias por un precio fijo</li>
+                    <li><strong>Actores</strong>: Profesionales con sueldos variables; las <em>primeras damas</em> y <em>galanes</em> cobraban más</li>
+                    <li><strong>Cofradías</strong>: Instituciones benéficas que gestionaban los corrales; los beneficios iban a hospitales</li>
+                    <li><strong>Ayuntamientos</strong>: Otorgaban licencias y supervisaban el orden público</li>
+                </ul>
+
+                <h3>Producción en Masa: El Caso de Lope</h3>
+                <p>
+                    <strong>Lope de Vega</strong> es el paradigma del autor-industria. Escribió unas <strong>1.800 comedias</strong>
+                    (según él mismo), lo que implica:
+                </p>
+                <ul>
+                    <li><strong>Una comedia cada 2-3 semanas</strong> durante 40 años de carrera</li>
+                    <li><strong>Sistema de escritura rápida</strong>: Fórmulas repetidas, estructuras preestablecidas</li>
+                    <li><strong>Demanda constante</strong>: El público quería novedades continuas</li>
+                    <li><strong>Éxito comercial</strong>: Lope ganaba bien, aunque se quejaba de que los editores pirateaban sus textos</li>
+                </ul>
+
+                <h2>📜 La Comedia Nueva: Fórmula de Éxito</h2>
+
+                <p>
+                    Lope de Vega revolucionó el teatro español con el <strong><em>Arte nuevo de hacer comedias</em></strong>
+                    (1609), donde justificaba su ruptura con las reglas clásicas para satisfacer al público.
+                </p>
+
+                <h3>Características de la Comedia Nueva</h3>
+                <ul>
+                    <li><strong>3 actos (jornadas)</strong>: En lugar de los 5 actos clásicos (planteamiento, nudo, desenlace)</li>
+                    <li><strong>Ruptura de las tres unidades clásicas</strong>:
+                        <ul>
+                            <li>Unidad de acción: Se permiten tramas secundarias</li>
+                            <li>Unidad de lugar: La acción puede desarrollarse en múltiples espacios</li>
+                            <li>Unidad de tiempo: Puede abarcar días, meses o años</li>
+                        </ul>
+                    </li>
+                    <li><strong>Mezcla de lo trágico y lo cómico</strong>: Personajes nobles y plebeyos, escenas serias y bufas</li>
+                    <li><strong>El <em>gracioso</em></strong>: Criado que acompaña al protagonista, aporta humor y perspectiva popular</li>
+                    <li><strong>Polimetría</strong>: Uso de distintos tipos de verso según la escena (romance, redondilla, décima, soneto)</li>
+                    <li><strong>Decoro poético</strong>: Cada personaje habla según su rango social</li>
+                </ul>
+
+                <h2>🎨 Temas del Teatro Barroco</h2>
+
+                <h3>1. Dramas de Honor</h3>
+                <ul>
+                    <li><strong>El honor</strong>: Valor supremo del noble; manchado por la deshonra de la esposa</li>
+                    <li><strong>Venganza</strong>: El marido debe lavar la afrenta con sangre</li>
+                    <li><strong>Ejemplos</strong>: <em>El alcalde de Zalamea</em> (Calderón), <em>Peribáñez</em> (Lope)</li>
+                </ul>
+
+                <h3>2. Comedias de Capa y Espada</h3>
+                <ul>
+                    <li><strong>Enredos amorosos</strong>: Galanes, damas, celos, confusiones nocturnas</li>
+                    <li><strong>Ambiente urbano</strong>: Madrid, Sevilla; casas con jardines, tapadas, tercerías</li>
+                    <li><strong>Ejemplos</strong>: <em>La dama duende</em> (Calderón), <em>El perro del hortelano</em> (Lope)</li>
+                </ul>
+
+                <h3>3. Dramas Históricos y Legendarios</h3>
+                <ul>
+                    <li><strong>Historias nacionales</strong>: Reyes, héroes, episodios de la Reconquista</li>
+                    <li><strong>Ejemplos</strong>: <em>Fuenteovejuna</em> (Lope), <em>El caballero de Olmedo</em> (Lope)</li>
+                </ul>
+
+                <h3>4. Autos Sacramentales</h3>
+                <ul>
+                    <li><strong>Teatro religioso</strong>: Alegorías sobre el misterio de la Eucaristía</li>
+                    <li><strong>Representados en Corpus</strong>: Con carros escenográficos en calles y plazas</li>
+                    <li><strong>Maestro</strong>: Calderón de la Barca (<em>El gran teatro del mundo</em>)</li>
+                </ul>
+
+                <h2>🌟 Legado del Teatro Barroco</h2>
+
+                <p>
+                    El teatro del Siglo de Oro español fue un fenómeno cultural sin precedentes:
+                </p>
+                <ul>
+                    <li><strong>Democratización cultural</strong>: El teatro llegó a todas las clases sociales</li>
+                    <li><strong>Industria del entretenimiento</strong>: Producción en masa, compañías profesionales, circuitos comerciales</li>
+                    <li><strong>Innovación dramática</strong>: La comedia nueva influyó en el teatro europeo posterior</li>
+                    <li><strong>Reflejo social</strong>: El teatro representaba valores, conflictos y aspiraciones de la sociedad barroca</li>
+                </ul>
+
+                <div class="highlight-box">
+                    <h3>🎬 Paralelo con el Cine Actual</h3>
+                    <p style="margin-bottom: 0;">
+                        El teatro barroco fue el <strong>cine de su época</strong>: espectáculo de masas, industria
+                        rentable, fábrica de sueños y evasión. Lope de Vega es comparable a un director de Hollywood
+                        que produce éxitos comerciales a gran velocidad.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <button class="mobile-menu-btn" id="mobileMenuBtn"><span></span><span></span><span></span></button>
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+    <script>
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const sidebar = document.querySelector('.sidebar');
+        const sidebarOverlay = document.getElementById('sidebarOverlay');
+        mobileMenuBtn.addEventListener('click', () => { sidebar.classList.toggle('mobile-open'); sidebarOverlay.classList.toggle('active'); });
+        sidebarOverlay.addEventListener('click', () => { sidebar.classList.remove('mobile-open'); sidebarOverlay.classList.remove('active'); });
+    </script>
+</body>
+</html>

@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Estilos Literarios - Barroco Español</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        :root {
+            --gradient-barroco: linear-gradient(135deg, #8B5CF6 0%, #EC4899 50%, #F59E0B 100%);
+            --gradient-accent: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+            --text-dark: #1a1a2e; --bg-card: rgba(255, 255, 255, 0.95);
+            --shadow-md: 0 8px 30px rgba(0,0,0,0.12); --shadow-lg: 0 20px 60px rgba(0,0,0,0.3);
+            --sidebar-width: 280px;
+        }
+        body { font-family: 'Inter', sans-serif; color: var(--text-dark); background: var(--gradient-barroco); min-height: 100vh; }
+        .sidebar { position: fixed; left: 0; top: 0; width: var(--sidebar-width); height: 100vh;
+                   background: rgba(15, 15, 30, 0.95); backdrop-filter: blur(20px); padding: 2rem 0;
+                   z-index: 1000; box-shadow: var(--shadow-lg); overflow-y: auto; }
+        .sidebar-header { padding: 0 1.5rem 2rem; border-bottom: 2px solid rgba(255,255,255,0.1); margin-bottom: 2rem; }
+        .logo { font-family: 'Playfair Display', serif; font-size: 1.8rem; font-weight: 900;
+                background: var(--gradient-accent); -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+                background-clip: text; margin-bottom: 0.5rem; }
+        .logo-subtitle { color: rgba(255,255,255,0.6); font-size: 0.85rem; }
+        .nav-menu { list-style: none; padding: 0 1rem; }
+        .nav-link { display: flex; align-items: center; gap: 1rem; padding: 1rem; color: rgba(255,255,255,0.8);
+                    text-decoration: none; border-radius: 12px; font-weight: 600; transition: all 0.3s; margin-bottom: 0.5rem; }
+        .nav-link:hover { background: rgba(255,255,255,0.1); color: #fff; transform: translateX(5px); }
+        .nav-link.active { background: var(--gradient-accent); color: #fff; }
+        .main-content { margin-left: var(--sidebar-width); padding: 3rem; }
+        .container { max-width: 1200px; margin: 0 auto; }
+        .content-card { background: var(--bg-card); border-radius: 30px; padding: 4rem; box-shadow: var(--shadow-lg); margin-bottom: 2rem; }
+        h1 { font-family: 'Playfair Display', serif; font-size: 3.5rem; font-weight: 900; background: var(--gradient-barroco);
+             -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin-bottom: 2rem; }
+        h2 { font-family: 'Playfair Display', serif; font-size: 2rem; color: #8B5CF6; margin: 2rem 0 1rem; }
+        h3 { font-size: 1.4rem; color: #EC4899; margin: 1.5rem 0 0.75rem; }
+        p { line-height: 1.8; color: #444; margin-bottom: 1.5rem; font-size: 1.1rem; }
+        ul, ol { margin: 1rem 0 1.5rem 2rem; line-height: 1.8; }
+        li { margin-bottom: 0.75rem; color: #555; }
+        .comparison-box { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin: 2rem 0; }
+        .culteranismo-box { background: linear-gradient(135deg, rgba(139, 92, 246, 0.1), rgba(139, 92, 246, 0.05));
+                            border-left: 5px solid #8B5CF6; padding: 1.5rem; border-radius: 12px; }
+        .conceptismo-box { background: linear-gradient(135deg, rgba(245, 158, 11, 0.1), rgba(245, 158, 11, 0.05));
+                           border-left: 5px solid #F59E0B; padding: 1.5rem; border-radius: 12px; }
+        .quote-box { background: linear-gradient(135deg, rgba(236, 72, 153, 0.1), rgba(236, 72, 153, 0.05));
+                     border-left: 4px solid #EC4899; padding: 1.5rem; border-radius: 12px; margin: 1.5rem 0;
+                     font-style: italic; font-size: 1.05rem; }
+        .example-box { background: #f8f9fa; border-radius: 12px; padding: 1.5rem; margin: 1.5rem 0; }
+        .example-box h4 { color: #8B5CF6; margin-bottom: 0.75rem; }
+        .mobile-menu-btn { position: fixed; top: 1.5rem; left: 1.5rem; z-index: 2000; width: 50px; height: 50px;
+                           background: var(--gradient-accent); border: none; border-radius: 12px; display: none; cursor: pointer; }
+        .sidebar-overlay { position: fixed; inset: 0; background: rgba(0, 0, 0, 0.5); z-index: 999; display: none; }
+        @media (max-width: 1024px) {
+            .mobile-menu-btn { display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 5px; }
+            .mobile-menu-btn span { width: 24px; height: 3px; background: white; border-radius: 2px; }
+            .sidebar { transform: translateX(-100%); transition: transform 0.3s ease; }
+            .sidebar.mobile-open { transform: translateX(0); }
+            .sidebar-overlay.active { display: block; }
+            .main-content { margin-left: 0; padding: 5rem 1.5rem 2rem; }
+            .content-card { padding: 2rem; }
+            h1 { font-size: 2.5rem; }
+            .comparison-box { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <aside class="sidebar">
+        <div class="sidebar-header">
+            <h1 class="logo">Barroco<br>Español</h1>
+            <p class="logo-subtitle">Literatura española hasta el siglo XVIII · CLM B1.2</p>
+        </div>
+        <nav>
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link"><span>🏠</span> Inicio</a></li>
+                <li><a href="contexto.html" class="nav-link"><span>🏛️</span> Contexto Histórico</a></li>
+                <li><a href="autores.html" class="nav-link"><span>✍️</span> Autores Principales</a></li>
+                <li><a href="teatro.html" class="nav-link"><span>🎭</span> Teatro como Industria</a></li>
+                <li><a href="estilos.html" class="nav-link active"><span>🖋️</span> Estilos Literarios</a></li>
+                <li><a href="obras.html" class="nav-link"><span>📚</span> Obras Fundamentales</a></li>
+            </ul>
+        </nav>
+    </aside>
+
+    <main class="main-content">
+        <div class="container">
+            <div class="content-card">
+                <h1>🖋️ Culteranismo y Conceptismo</h1>
+
+                <p>
+                    El <strong>Barroco</strong> se caracteriza por la <strong>complejidad</strong> y el <strong>artificio</strong>.
+                    Frente a la armonía y naturalidad del Renacimiento, los autores barrocos buscan sorprender, oscurecer
+                    y demostrar ingenio. Esta complejidad se manifiesta en dos estilos opuestos pero complementarios:
+                    el <strong>culteranismo</strong> (belleza de la forma) y el <strong>conceptismo</strong> (agudeza del pensamiento).
+                </p>
+
+                <h2>🎨 Comparación: Dos Caminos hacia la Complejidad</h2>
+
+                <div class="comparison-box">
+                    <div class="culteranismo-box">
+                        <h3 style="margin-top: 0;">🌺 Culteranismo</h3>
+                        <p><strong>Cómo se dice</strong></p>
+                        <ul style="margin-bottom: 0;">
+                            <li>Belleza formal</li>
+                            <li>Lenguaje oscuro y culto</li>
+                            <li>Metáforas complejas</li>
+                            <li>Sintaxis latinizante</li>
+                            <li>Poesía para minorías</li>
+                        </ul>
+                    </div>
+                    <div class="conceptismo-box">
+                        <h3 style="margin-top: 0;">💡 Conceptismo</h3>
+                        <p><strong>Qué se dice</strong></p>
+                        <ul style="margin-bottom: 0;">
+                            <li>Agudeza de pensamiento</li>
+                            <li>Concisión expresiva</li>
+                            <li>Juegos de palabras</li>
+                            <li>Paradojas y antítesis</li>
+                            <li>Ingenio e ironía</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <h2>🌺 El Culteranismo (Gongorismo)</h2>
+
+                <p>
+                    El <strong>culteranismo</strong>, también llamado <strong>gongorismo</strong> por su máximo
+                    representante Luis de Góngora, se centra en la <strong>belleza de la forma</strong>. Lo que importa
+                    es <strong>cómo se dice</strong>, no tanto qué se dice. El resultado es una poesía oscura, refinada,
+                    dirigida a una élite culta capaz de descifrar sus complejidades.
+                </p>
+
+                <h3>Características del Culteranismo</h3>
+
+                <ul>
+                    <li><strong>Cultismos léxicos</strong>: Uso de palabras procedentes del latín o el griego (<em>cándido, purpúreo, refulgente, émulo</em>)</li>
+                    <li><strong>Hipérbaton extremo</strong>: Alteración radical del orden sintáctico natural, imitando la sintaxis latina</li>
+                    <li><strong>Metáforas complejas</strong>: Perífrasis que sustituyen la palabra directa por imágenes elaboradas</li>
+                    <li><strong>Referencias mitológicas</strong>: Alusiones constantes a la mitología grecolatina</li>
+                    <li><strong>Sinestesias y símiles</strong>: Mezcla de sensaciones; comparaciones encadenadas</li>
+                    <li><strong>Adjetivación ornamental</strong>: Abundancia de adjetivos cultos que embellecen el verso</li>
+                </ul>
+
+                <h3>Recursos Estilísticos</h3>
+
+                <ul>
+                    <li><strong>Perífrasis</strong>: "el mentido robador de Europa" = el toro (Zeus disfrazado)</li>
+                    <li><strong>Hipérbaton</strong>: Alterar el orden lógico de las palabras (<em>De este, pues, formidable de la tierra bostezo...</em>)</li>
+                    <li><strong>Metáfora pura</strong>: Eliminar el término real y dejar solo la imagen (<em>nieve</em> = piel blanca; <em>oro</em> = cabello rubio)</li>
+                    <li><strong>Cultismos</strong>: <em>candor, esplendor, cerúleo, refulgente</em></li>
+                </ul>
+
+                <div class="example-box">
+                    <h4>📝 Ejemplo de Culteranismo: Góngora</h4>
+                    <div class="quote-box" style="margin-top: 1rem;">
+                        "Era del año la estación florida<br>
+                        en que el mentido robador de Europa<br>
+                        (media luna las armas de su frente,<br>
+                        y el Sol todos los rayos de su pelo),<br>
+                        luciente honor del cielo..."
+                        <br><br><strong>— Luis de Góngora, <em>Fábula de Polifemo y Galatea</em></strong>
+                    </div>
+                    <p><strong>Análisis</strong>:</p>
+                    <ul>
+                        <li><em>"Estación florida"</em> = primavera (perífrasis)</li>
+                        <li><em>"Mentido robador de Europa"</em> = Zeus transformado en toro (mitología)</li>
+                        <li><em>"Media luna las armas de su frente"</em> = los cuernos del toro (metáfora)</li>
+                        <li><em>"El Sol todos los rayos de su pelo"</em> = el pelaje dorado del toro (metáfora)</li>
+                        <li>Sintaxis latinizante: el orden natural sería "En la estación florida del año..."</li>
+                    </ul>
+                </div>
+
+                <h3>Luis de Góngora: El Príncipe de las Tinieblas</h3>
+                <p>
+                    Góngora fue criticado por sus contemporáneos (especialmente Quevedo) por hacer una poesía
+                    <strong>"oscura"</strong> e incomprensible. Pero Góngora defendía que la dificultad era un mérito:
+                    el lector debía esforzarse, y <strong>"entender es premiar"</strong>.
+                </p>
+
+                <h2>💡 El Conceptismo</h2>
+
+                <p>
+                    El <strong>conceptismo</strong>, cuyo máximo exponente es <strong>Francisco de Quevedo</strong>,
+                    se centra en la <strong>agudeza del pensamiento</strong>. Lo que importa es <strong>qué se dice</strong>,
+                    la idea ingeniosa, la asociación sorprendente. El conceptismo es económico: dice mucho con pocas palabras.
+                </p>
+
+                <h3>Características del Conceptismo</h3>
+
+                <ul>
+                    <li><strong>Concisión</strong>: Máximo contenido en mínimas palabras</li>
+                    <li><strong>Juegos de palabras</strong>: Polisemia (múltiples sentidos), dilogías, calambures</li>
+                    <li><strong>Paradojas</strong>: Unión de ideas aparentemente contradictorias (<em>"vivo sin vivir en mí"</em>)</li>
+                    <li><strong>Antítesis</strong>: Oposición de conceptos (<em>vida/muerte, luz/sombra, amor/odio</em>)</li>
+                    <li><strong>Ironía y sátira</strong>: Crítica mordaz, humor negro, burla despiadada</li>
+                    <li><strong>Sentencias y aforismos</strong>: Frases densas de significado moral o filosófico</li>
+                </ul>
+
+                <h3>Recursos Estilísticos</h3>
+
+                <ul>
+                    <li><strong>Polisemia</strong>: Una palabra con varios significados simultáneos</li>
+                    <li><strong>Dilogía</strong>: Uso de una palabra con doble sentido</li>
+                    <li><strong>Paradoja</strong>: Aparente contradicción que encierra una verdad profunda</li>
+                    <li><strong>Hipérbole</strong>: Exageración con intención humorística o expresiva</li>
+                    <li><strong>Elipsis</strong>: Omisión de elementos para dar rapidez y concisión</li>
+                </ul>
+
+                <div class="example-box">
+                    <h4>📝 Ejemplo de Conceptismo: Quevedo</h4>
+                    <div class="quote-box" style="margin-top: 1rem;">
+                        "Érase un hombre a una nariz pegado,<br>
+                        érase una nariz superlativa,<br>
+                        érase una nariz sayón y escriba,<br>
+                        érase un pez espada muy barbado."
+                        <br><br><strong>— Francisco de Quevedo, "A una nariz" (sátira a Góngora)</strong>
+                    </div>
+                    <p><strong>Análisis</strong>:</p>
+                    <ul>
+                        <li><strong>Hipérbole</strong>: La nariz es tan grande que el hombre parece "pegado" a ella (no al revés)</li>
+                        <li><strong>Ingenio</strong>: Serie de metáforas burlescas (nariz = sayón, escriba, pez espada)</li>
+                        <li><strong>Sátira personal</strong>: Quevedo se burla de la nariz prominente de Góngora</li>
+                        <li><strong>Economía expresiva</strong>: Cada verso es una nueva y sorprendente imagen de la nariz</li>
+                    </ul>
+                </div>
+
+                <div class="example-box">
+                    <h4>📝 Otro Ejemplo: Conceptismo Filosófico</h4>
+                    <div class="quote-box" style="margin-top: 1rem;">
+                        "Ayer se fue; mañana no ha llegado;<br>
+                        hoy se está yendo sin parar un punto:<br>
+                        soy un fue, y un será, y un es cansado."
+                        <br><br><strong>— Quevedo, "Representación de la brevedad de lo que se vive"</strong>
+                    </div>
+                    <p><strong>Análisis</strong>:</p>
+                    <ul>
+                        <li><strong>Paradoja temporal</strong>: El presente es inaprensible, siempre en fuga</li>
+                        <li><strong>Juego verbal</strong>: "Fue" (pasado), "será" (futuro), "es" (presente agotado)</li>
+                        <li><strong>Concisión</strong>: En tres versos resume toda la filosofía sobre el tiempo</li>
+                        <li><strong>Desengaño barroco</strong>: Conciencia de la fugacidad de la vida</li>
+                    </ul>
+                </div>
+
+                <h3>Francisco de Quevedo: El Maestro de la Agudeza</h3>
+                <p>
+                    Quevedo domina todos los tonos: desde la <strong>sátira más feroz</strong> hasta la
+                    <strong>reflexión metafísica más profunda</strong>. Su ingenio es mordaz, su crítica despiadada,
+                    pero también es capaz de la poesía amorosa y moral más honda.
+                </p>
+
+                <h2>⚖️ Culteranismo vs. Conceptismo: ¿Oposición o Complemento?</h2>
+
+                <p>
+                    Aunque se presentan como estilos opuestos, en realidad <strong>comparten el mismo objetivo</strong>:
+                    romper con la armonía renacentista y crear una literatura <strong>compleja, artificial y sorprendente</strong>.
+                </p>
+
+                <div class="comparison-box">
+                    <div>
+                        <h3>🌺 Culteranismo</h3>
+                        <ul>
+                            <li><strong>Poeta</strong>: Luis de Góngora</li>
+                            <li><strong>Objetivo</strong>: Belleza formal, oscuridad culta</li>
+                            <li><strong>Método</strong>: Metáforas, hipérbaton, cultismos</li>
+                            <li><strong>Público</strong>: Élites cultas</li>
+                            <li><strong>Ejemplo</strong>: <em>Soledades</em></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3>💡 Conceptismo</h3>
+                        <ul>
+                            <li><strong>Poeta</strong>: Francisco de Quevedo</li>
+                            <li><strong>Objetivo</strong>: Agudeza, ingenio, concisión</li>
+                            <li><strong>Método</strong>: Paradojas, juegos verbales, ironía</li>
+                            <li><strong>Público</strong>: Público amplio (con educación)</li>
+                            <li><strong>Ejemplo</strong>: <em>El Buscón</em></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <h2>🎭 La Rivalidad Góngora-Quevedo</h2>
+
+                <p>
+                    La oposición entre culteranismo y conceptismo se personificó en la <strong>enemistad legendaria</strong>
+                    entre Góngora y Quevedo. Ambos se atacaron con sátiras feroces:
+                </p>
+
+                <ul>
+                    <li><strong>Quevedo a Góngora</strong>: Lo acusaba de oscuro, incomprensible, pedante</li>
+                    <li><strong>Góngora a Quevedo</strong>: Lo tachaba de vulgar, cojo (Quevedo cojeaba), maldiciente</li>
+                    <li><strong>Sátiras cruzadas</strong>: Poemas burlándose de defectos físicos, orígenes familiares, estilo literario</li>
+                </ul>
+
+                <div class="quote-box">
+                    <strong>Quevedo a Góngora</strong>:<br>
+                    "Yo te untaré mis obras con tocino / porque no me las muerdas, Gongorilla..."
+                    <br><br>
+                    <em>(Alusión antisemita: untaba con tocino para que Góngora, de origen converso, no las tocase)</em>
+                </div>
+
+                <h2>🌟 Legado de los Estilos Barrocos</h2>
+
+                <p>
+                    Tanto el culteranismo como el conceptismo llevaron la lengua española a <strong>límites expresivos
+                    nunca antes alcanzados</strong>. Aunque fueron criticados por oscuros y artificiales, influyeron
+                    profundamente en la poesía posterior:
+                </p>
+
+                <ul>
+                    <li><strong>Generación del 27</strong>: Redescubrió y reivindicó a Góngora (tricentenario en 1927)</li>
+                    <li><strong>Poesía moderna</strong>: La complejidad metafórica y la densidad conceptual son herencia barroca</li>
+                    <li><strong>Ingenio lingüístico</strong>: El juego verbal de Quevedo sigue siendo modelo de agudeza</li>
+                </ul>
+
+                <p>
+                    El Barroco demostró que la <strong>lengua española</strong> podía ser tan refinada, compleja y
+                    expresiva como el latín o el griego. Góngora y Quevedo son los arquitectos de esa conquista.
+                </p>
+            </div>
+        </div>
+    </main>
+
+    <button class="mobile-menu-btn" id="mobileMenuBtn"><span></span><span></span><span></span></button>
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+    <script>
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const sidebar = document.querySelector('.sidebar');
+        const sidebarOverlay = document.getElementById('sidebarOverlay');
+        mobileMenuBtn.addEventListener('click', () => { sidebar.classList.toggle('mobile-open'); sidebarOverlay.classList.toggle('active'); });
+        sidebarOverlay.addEventListener('click', () => { sidebar.classList.remove('mobile-open'); sidebarOverlay.classList.remove('active'); });
+    </script>
+</body>
+</html>
