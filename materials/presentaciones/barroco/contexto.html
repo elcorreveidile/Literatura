@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contexto Histórico - Barroco Español</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --gradient-barroco: linear-gradient(135deg, #8B5CF6 0%, #EC4899 50%, #F59E0B 100%);
+            --gradient-accent: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+            --text-dark: #1a1a2e;
+            --bg-card: rgba(255, 255, 255, 0.95);
+            --shadow-md: 0 8px 30px rgba(0,0,0,0.12);
+            --shadow-lg: 0 20px 60px rgba(0,0,0,0.3);
+            --sidebar-width: 280px;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--text-dark);
+            background: var(--gradient-barroco);
+            min-height: 100vh;
+        }
+
+        .sidebar {
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: var(--sidebar-width);
+            height: 100vh;
+            background: rgba(15, 15, 30, 0.95);
+            backdrop-filter: blur(20px);
+            padding: 2rem 0;
+            z-index: 1000;
+            box-shadow: var(--shadow-lg);
+            overflow-y: auto;
+        }
+
+        .sidebar-header {
+            padding: 0 1.5rem 2rem;
+            border-bottom: 2px solid rgba(255,255,255,0.1);
+            margin-bottom: 2rem;
+        }
+
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            font-weight: 900;
+            background: var(--gradient-accent);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 0.5rem;
+        }
+
+        .logo-subtitle {
+            color: rgba(255,255,255,0.6);
+            font-size: 0.85rem;
+        }
+
+        .nav-menu {
+            list-style: none;
+            padding: 0 1rem;
+        }
+
+        .nav-link {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem;
+            color: rgba(255,255,255,0.8);
+            text-decoration: none;
+            border-radius: 12px;
+            font-weight: 600;
+            transition: all 0.3s;
+            margin-bottom: 0.5rem;
+        }
+
+        .nav-link:hover {
+            background: rgba(255,255,255,0.1);
+            color: #fff;
+            transform: translateX(5px);
+        }
+
+        .nav-link.active {
+            background: var(--gradient-accent);
+            color: #fff;
+        }
+
+        .main-content {
+            margin-left: var(--sidebar-width);
+            padding: 3rem;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .content-card {
+            background: var(--bg-card);
+            border-radius: 30px;
+            padding: 4rem;
+            box-shadow: var(--shadow-lg);
+            margin-bottom: 2rem;
+        }
+
+        h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.5rem;
+            font-weight: 900;
+            background: var(--gradient-barroco);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 2rem;
+        }
+
+        h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            color: #8B5CF6;
+            margin: 2rem 0 1rem;
+        }
+
+        h3 {
+            font-size: 1.4rem;
+            color: #EC4899;
+            margin: 1.5rem 0 0.75rem;
+        }
+
+        p {
+            line-height: 1.8;
+            color: #444;
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+        }
+
+        ul, ol {
+            margin: 1rem 0 1.5rem 2rem;
+            line-height: 1.8;
+        }
+
+        li {
+            margin-bottom: 0.75rem;
+            color: #555;
+        }
+
+        .highlight-box {
+            background: linear-gradient(135deg, rgba(139, 92, 246, 0.1), rgba(236, 72, 153, 0.1));
+            border-left: 4px solid #8B5CF6;
+            padding: 1.5rem;
+            border-radius: 12px;
+            margin: 2rem 0;
+        }
+
+        .timeline {
+            position: relative;
+            padding-left: 3rem;
+            margin: 2rem 0;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: linear-gradient(180deg, #8B5CF6, #EC4899);
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 2rem;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -3.5rem;
+            top: 0.5rem;
+            width: 16px;
+            height: 16px;
+            background: #EC4899;
+            border-radius: 50%;
+            border: 3px solid white;
+            box-shadow: 0 0 0 3px rgba(236, 72, 153, 0.2);
+        }
+
+        .timeline-year {
+            font-weight: 800;
+            color: #8B5CF6;
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Mobile */
+        .mobile-menu-btn {
+            position: fixed;
+            top: 1.5rem;
+            left: 1.5rem;
+            z-index: 2000;
+            width: 50px;
+            height: 50px;
+            background: var(--gradient-accent);
+            border: none;
+            border-radius: 12px;
+            display: none;
+            cursor: pointer;
+        }
+
+        .sidebar-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 999;
+            display: none;
+        }
+
+        @media (max-width: 1024px) {
+            .mobile-menu-btn {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                gap: 5px;
+            }
+
+            .mobile-menu-btn span {
+                width: 24px;
+                height: 3px;
+                background: white;
+                border-radius: 2px;
+            }
+
+            .sidebar {
+                transform: translateX(-100%);
+                transition: transform 0.3s ease;
+            }
+
+            .sidebar.mobile-open {
+                transform: translateX(0);
+            }
+
+            .sidebar-overlay.active {
+                display: block;
+            }
+
+            .main-content {
+                margin-left: 0;
+                padding: 5rem 1.5rem 2rem;
+            }
+
+            .content-card {
+                padding: 2rem;
+            }
+
+            h1 {
+                font-size: 2.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <aside class="sidebar">
+        <div class="sidebar-header">
+            <h1 class="logo">Barroco<br>Español</h1>
+            <p class="logo-subtitle">Literatura española hasta el siglo XVIII · CLM B1.2</p>
+        </div>
+        <nav>
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link"><span>🏠</span> Inicio</a></li>
+                <li><a href="contexto.html" class="nav-link active"><span>🏛️</span> Contexto Histórico</a></li>
+                <li><a href="autores.html" class="nav-link"><span>✍️</span> Autores Principales</a></li>
+                <li><a href="teatro.html" class="nav-link"><span>🎭</span> Teatro como Industria</a></li>
+                <li><a href="estilos.html" class="nav-link"><span>🖋️</span> Estilos Literarios</a></li>
+                <li><a href="obras.html" class="nav-link"><span>📚</span> Obras Fundamentales</a></li>
+            </ul>
+        </nav>
+    </aside>
+
+    <main class="main-content">
+        <div class="container">
+            <div class="content-card">
+                <h1>🏛️ Contexto Histórico del Barroco</h1>
+
+                <p>
+                    El <strong>Barroco español</strong> (siglo XVII) es una época de profundas contradicciones:
+                    mientras el Imperio español entra en <strong>decadencia política y crisis económica</strong>,
+                    las artes y las letras alcanzan su máximo esplendor. Es el periodo conocido como el
+                    <strong>Siglo de Oro</strong> de la literatura española.
+                </p>
+
+                <h2>🌍 La Crisis del Siglo XVII</h2>
+
+                <h3>Crisis Política y Militar</h3>
+                <ul>
+                    <li><strong>Decadencia del Imperio</strong>: Tras el esplendor del siglo XVI bajo Carlos V y Felipe II, España comienza a perder hegemonía en Europa</li>
+                    <li><strong>Guerra de los Treinta Años (1618-1648)</strong>: Conflicto devastador que termina con la Paz de Westfalia y el fin del predominio español</li>
+                    <li><strong>Pérdida de territorios</strong>: Separación de Portugal (1640) e independencia de los Países Bajos</li>
+                    <li><strong>Validos débiles</strong>: Reinados de Felipe III, Felipe IV y Carlos II marcados por privados como el Duque de Lerma y el Conde-Duque de Olivares</li>
+                </ul>
+
+                <h3>Crisis Económica y Social</h3>
+                <ul>
+                    <li><strong>Bancarrotas sucesivas</strong>: La Corona declara varias suspensiones de pagos</li>
+                    <li><strong>Inflación y devaluación</strong>: El oro y la plata de América provocan inflación; manipulación de la moneda</li>
+                    <li><strong>Despoblación rural</strong>: Hambrunas, epidemias (peste) y emigración a las ciudades y América</li>
+                    <li><strong>Empobrecimiento generalizado</strong>: Contrasta la miseria de las clases bajas con el lujo ostentoso de la nobleza</li>
+                </ul>
+
+                <div class="highlight-box">
+                    <h3>💡 Paradoja del Barroco</h3>
+                    <p style="margin-bottom: 0;">
+                        <strong>Crisis material + Esplendor artístico</strong>: Mientras España se empobrece políticamente,
+                        la cultura vive su momento más brillante. Velázquez pinta Las Meninas, Lope y Calderón llenan
+                        los corrales de comedias, Góngora y Quevedo escriben obras inmortales.
+                    </p>
+                </div>
+
+                <h2>👑 El Absolutismo Monárquico</h2>
+
+                <p>
+                    El siglo XVII consolida el <strong>poder absoluto del rey</strong>, presentado como representante
+                    de Dios en la tierra. Este sistema político se apoya en:
+                </p>
+
+                <ul>
+                    <li><strong>Monarquía de derecho divino</strong>: El rey recibe su poder directamente de Dios</li>
+                    <li><strong>Centralización del poder</strong>: Debilitamiento de las instituciones medievales (Cortes, fueros locales)</li>
+                    <li><strong>Burocracia creciente</strong>: Consejos y secretarios que ejecutan la voluntad real</li>
+                    <li><strong>Control ideológico</strong>: Alianza entre trono y altar; la Inquisición censura el pensamiento</li>
+                </ul>
+
+                <h3>El papel de la Iglesia</h3>
+                <ul>
+                    <li><strong>Contrarreforma</strong>: España se convierte en baluarte del catolicismo frente al protestantismo</li>
+                    <li><strong>Concilio de Trento</strong>: Reforma interna de la Iglesia, énfasis en la ortodoxia</li>
+                    <li><strong>Control social</strong>: La Inquisición vigila la moral, las ideas y las costumbres</li>
+                    <li><strong>Arte al servicio de la fe</strong>: Pintura, escultura y teatro como propaganda religiosa</li>
+                </ul>
+
+                <h2>📅 Cronología Clave del Barroco</h2>
+
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-year">1598</div>
+                        <p>Muerte de Felipe II. Comienza el reinado de Felipe III. Inicio del Barroco español.</p>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-year">1605</div>
+                        <p>Publicación del <em>Quijote</em> de Cervantes (obra puente entre Renacimiento y Barroco).</p>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-year">1609</div>
+                        <p>Expulsión de los moriscos. Lope de Vega publica el <em>Arte nuevo de hacer comedias</em>.</p>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-year">1618-1648</div>
+                        <p>Guerra de los Treinta Años. España participa pero pierde hegemonía europea.</p>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-year">1627</div>
+                        <p>Góngora publica las <em>Soledades</em>. Culmen del culteranismo.</p>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-year">1635</div>
+                        <p>Calderón estrena <em>La vida es sueño</em>.</p>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-year">1640</div>
+                        <p>Separación de Portugal. Crisis política del Conde-Duque de Olivares.</p>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-year">1648</div>
+                        <p>Paz de Westfalia. España reconoce la independencia de los Países Bajos.</p>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-year">1700</div>
+                        <p>Muerte de Carlos II sin descendencia. Fin de la dinastía de los Austrias.</p>
+                    </div>
+                </div>
+
+                <h2>🎨 Mentalidad Barroca</h2>
+
+                <p>
+                    La crisis del siglo XVII genera una <strong>mentalidad pesimista y desengañada</strong>,
+                    que se refleja en la literatura:
+                </p>
+
+                <ul>
+                    <li><strong>Desengaño</strong>: Conciencia de la vanidad del mundo y la brevedad de la vida (<em>Vanitas</em>)</li>
+                    <li><strong>Pesimismo</strong>: Tono sombrío, reflexión sobre la muerte y la fugacidad del tiempo</li>
+                    <li><strong>Contraste y contradicción</strong>: Tensión entre apariencia y realidad, lujo y miseria, vida y muerte</li>
+                    <li><strong>Complejidad formal</strong>: Rechazo de la armonía renacentista; búsqueda de la sorpresa y el artificio</li>
+                </ul>
+
+                <div class="highlight-box">
+                    <h3>🎭 Del equilibrio renacentista al contraste barroco</h3>
+                    <p style="margin-bottom: 0;">
+                        <strong>Renacimiento</strong>: armonía, naturalidad, optimismo humanista<br>
+                        <strong>Barroco</strong>: contraste, artificio, pesimismo desengañado
+                    </p>
+                </div>
+
+                <h2>🌟 ¿Por qué es importante entender el contexto?</h2>
+
+                <p>
+                    El contexto histórico explica por qué la literatura barroca es tan compleja, oscura y
+                    contrastada. La <strong>crisis política</strong> genera desengaño; el <strong>absolutismo</strong>
+                    refuerza los temas del honor, la lealtad y el orden social; la <strong>Contrarreforma</strong>
+                    marca el tono religioso y moralizante.
+                </p>
+
+                <p>
+                    Sin embargo, esta época de crisis también impulsa la <strong>creatividad artística</strong>:
+                    los autores barrocos innovan en la forma, experimentan con el lenguaje y crean obras de
+                    una <strong>profundidad y belleza incomparables</strong>.
+                </p>
+            </div>
+        </div>
+    </main>
+
+    <button class="mobile-menu-btn" id="mobileMenuBtn">
+        <span></span>
+        <span></span>
+        <span></span>
+    </button>
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+    <script>
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const sidebar = document.querySelector('.sidebar');
+        const sidebarOverlay = document.getElementById('sidebarOverlay');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            sidebar.classList.toggle('mobile-open');
+            sidebarOverlay.classList.toggle('active');
+        });
+
+        sidebarOverlay.addEventListener('click', () => {
+            sidebar.classList.remove('mobile-open');
+            sidebarOverlay.classList.remove('active');
+        });
+    </script>
+</body>
+</html>

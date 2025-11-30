@@ -253,7 +253,7 @@
         </div>
         <div class="card">
           <h3>Cuadernos de la sesión</h3>
-          <p class="muted">Próximamente.</p>
+          <p class="hint">Pulsa la sesión para abrir el cuaderno. En el visor podrás <b>descargar</b> o <b>abrir en pestaña</b>.</p>
           <div id="chips-barroco"></div>
           <ul class="list" id="lista-barroco"></ul>
         </div>
@@ -502,7 +502,17 @@
           { t: '🪶 MiniWeb Cervantes', link: 'materials/presentaciones/cervantes/index.html' }
         ]
       },
-      "Barroco": { sesiones: [], extras: [] },
+      "Barroco": {
+        sesiones: [],
+        extras: [
+          { t: '🎭 Sesión 11 · MiniWeb Barroco: Contexto y claves', link: 'materials/presentaciones/barroco/index.html' },
+          { t: '🏛️ Contexto Histórico', link: 'materials/presentaciones/barroco/contexto.html' },
+          { t: '✍️ Autores Principales', link: 'materials/presentaciones/barroco/autores.html' },
+          { t: '🎭 Teatro como Industria', link: 'materials/presentaciones/barroco/teatro.html' },
+          { t: '🖋️ Estilos Literarios', link: 'materials/presentaciones/barroco/estilos.html' },
+          { t: '📚 Obras Fundamentales', link: 'materials/presentaciones/barroco/obras.html' }
+        ]
+      },
       "Ilustración": { sesiones: [], extras: [] },
     };
 
@@ -565,6 +575,8 @@
     renderCuadernos('Edad Media','chips-edad-media','lista-edad-media');
     renderCuadernos('Renacimiento','chips-renacimiento','lista-renacimiento');
     renderCuadernos('Cervantes','chips-cervantes','lista-cervantes');
+    renderCuadernos('Barroco','chips-barroco','lista-barroco');
+    renderCuadernos('Ilustración','chips-ilustracion','lista-ilustracion');
 
     // Miniserie
     const plantilla = (obra) => `# ${obra} — Guion breve (B1)

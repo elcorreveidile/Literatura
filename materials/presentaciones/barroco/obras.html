@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Obras Fundamentales - Barroco Español</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        :root {
+            --gradient-barroco: linear-gradient(135deg, #8B5CF6 0%, #EC4899 50%, #F59E0B 100%);
+            --gradient-accent: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+            --text-dark: #1a1a2e; --bg-card: rgba(255, 255, 255, 0.95);
+            --shadow-md: 0 8px 30px rgba(0,0,0,0.12); --shadow-lg: 0 20px 60px rgba(0,0,0,0.3);
+            --sidebar-width: 280px;
+        }
+        body { font-family: 'Inter', sans-serif; color: var(--text-dark); background: var(--gradient-barroco); min-height: 100vh; }
+        .sidebar { position: fixed; left: 0; top: 0; width: var(--sidebar-width); height: 100vh;
+                   background: rgba(15, 15, 30, 0.95); backdrop-filter: blur(20px); padding: 2rem 0;
+                   z-index: 1000; box-shadow: var(--shadow-lg); overflow-y: auto; }
+        .sidebar-header { padding: 0 1.5rem 2rem; border-bottom: 2px solid rgba(255,255,255,0.1); margin-bottom: 2rem; }
+        .logo { font-family: 'Playfair Display', serif; font-size: 1.8rem; font-weight: 900;
+                background: var(--gradient-accent); -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+                background-clip: text; margin-bottom: 0.5rem; }
+        .logo-subtitle { color: rgba(255,255,255,0.6); font-size: 0.85rem; }
+        .nav-menu { list-style: none; padding: 0 1rem; }
+        .nav-link { display: flex; align-items: center; gap: 1rem; padding: 1rem; color: rgba(255,255,255,0.8);
+                    text-decoration: none; border-radius: 12px; font-weight: 600; transition: all 0.3s; margin-bottom: 0.5rem; }
+        .nav-link:hover { background: rgba(255,255,255,0.1); color: #fff; transform: translateX(5px); }
+        .nav-link.active { background: var(--gradient-accent); color: #fff; }
+        .main-content { margin-left: var(--sidebar-width); padding: 3rem; }
+        .container { max-width: 1200px; margin: 0 auto; }
+        .content-card { background: var(--bg-card); border-radius: 30px; padding: 4rem; box-shadow: var(--shadow-lg); margin-bottom: 2rem; }
+        h1 { font-family: 'Playfair Display', serif; font-size: 3.5rem; font-weight: 900; background: var(--gradient-barroco);
+             -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin-bottom: 2rem; }
+        h2 { font-family: 'Playfair Display', serif; font-size: 2rem; color: #8B5CF6; margin: 2rem 0 1rem; }
+        h3 { font-size: 1.4rem; color: #EC4899; margin: 1.5rem 0 0.75rem; }
+        p { line-height: 1.8; color: #444; margin-bottom: 1.5rem; font-size: 1.1rem; }
+        ul, ol { margin: 1rem 0 1.5rem 2rem; line-height: 1.8; }
+        li { margin-bottom: 0.75rem; color: #555; }
+        .obra-card { background: linear-gradient(135deg, rgba(139, 92, 246, 0.05), rgba(236, 72, 153, 0.05));
+                     border-left: 5px solid #8B5CF6; border-radius: 12px; padding: 2rem; margin-bottom: 2rem; }
+        .obra-card h2 { margin-top: 0; }
+        .quote-box { background: linear-gradient(135deg, rgba(250, 112, 154, 0.1), rgba(254, 225, 64, 0.1));
+                     border-left: 4px solid #fa709a; padding: 1.5rem; border-radius: 12px; margin: 1.5rem 0;
+                     font-style: italic; font-size: 1.05rem; }
+        .mobile-menu-btn { position: fixed; top: 1.5rem; left: 1.5rem; z-index: 2000; width: 50px; height: 50px;
+                           background: var(--gradient-accent); border: none; border-radius: 12px; display: none; cursor: pointer; }
+        .sidebar-overlay { position: fixed; inset: 0; background: rgba(0, 0, 0, 0.5); z-index: 999; display: none; }
+        @media (max-width: 1024px) {
+            .mobile-menu-btn { display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 5px; }
+            .mobile-menu-btn span { width: 24px; height: 3px; background: white; border-radius: 2px; }
+            .sidebar { transform: translateX(-100%); transition: transform 0.3s ease; }
+            .sidebar.mobile-open { transform: translateX(0); }
+            .sidebar-overlay.active { display: block; }
+            .main-content { margin-left: 0; padding: 5rem 1.5rem 2rem; }
+            .content-card { padding: 2rem; }
+            h1 { font-size: 2.5rem; }
+        }
+    </style>
+</head>
+<body>
+    <aside class="sidebar">
+        <div class="sidebar-header">
+            <h1 class="logo">Barroco<br>Español</h1>
+            <p class="logo-subtitle">Literatura española hasta el siglo XVIII · CLM B1.2</p>
+        </div>
+        <nav>
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link"><span>🏠</span> Inicio</a></li>
+                <li><a href="contexto.html" class="nav-link"><span>🏛️</span> Contexto Histórico</a></li>
+                <li><a href="autores.html" class="nav-link"><span>✍️</span> Autores Principales</a></li>
+                <li><a href="teatro.html" class="nav-link"><span>🎭</span> Teatro como Industria</a></li>
+                <li><a href="estilos.html" class="nav-link"><span>🖋️</span> Estilos Literarios</a></li>
+                <li><a href="obras.html" class="nav-link active"><span>📚</span> Obras Fundamentales</a></li>
+            </ul>
+        </nav>
+    </aside>
+
+    <main class="main-content">
+        <div class="container">
+            <div class="content-card">
+                <h1>📚 Obras Fundamentales del Barroco</h1>
+
+                <p>
+                    El Barroco español produjo algunas de las <strong>obras más importantes de la literatura
+                    universal</strong>. Aquí presentamos las principales creaciones de Lope, Calderón, Góngora y Quevedo.
+                </p>
+
+                <!-- LOPE DE VEGA -->
+                <h2>🎭 Teatro de Lope de Vega</h2>
+
+                <div class="obra-card">
+                    <h3>Fuenteovejuna (c. 1612-1614)</h3>
+                    <p>
+                        <strong>Género</strong>: Drama histórico de honor colectivo<br>
+                        <strong>Tema</strong>: Rebelión de un pueblo contra el comendador tiránico
+                    </p>
+                    <p>
+                        <strong>Argumento</strong>: El comendador Fernán Gómez de Guzmán abusa de su poder y deshonra
+                        a las mujeres de Fuenteovejuna. El pueblo se rebela y lo mata colectivamente. Cuando el rey
+                        envía un juez pesquisidor, todos responden al unísono: "Fuenteovejuna lo hizo".
+                    </p>
+                    <p><strong>Importancia</strong>:</p>
+                    <ul>
+                        <li>Conflicto entre poder feudal y justicia popular</li>
+                        <li>Defensa del honor campesino frente a la nobleza abusiva</li>
+                        <li>Unidad del pueblo como protagonista colectivo</li>
+                        <li>Lealtad al rey (poder legítimo) vs. tiranía del comendador</li>
+                    </ul>
+                    <div class="quote-box">
+                        "¿Quién mató al Comendador?<br>
+                        — Fuenteovejuna, señor.<br>
+                        — ¿Quién es Fuenteovejuna?<br>
+                        — Todo el pueblo a una."
+                    </div>
+                </div>
+
+                <div class="obra-card" style="border-left-color: #EC4899;">
+                    <h3>El caballero de Olmedo (c. 1620-1625)</h3>
+                    <p>
+                        <strong>Género</strong>: Tragicomedia inspirada en un romance tradicional<br>
+                        <strong>Tema</strong>: Amor, honor y muerte trágica
+                    </p>
+                    <p>
+                        <strong>Argumento</strong>: Don Alonso, el caballero de Olmedo, ama a doña Inés, pero su rival
+                        don Rodrigo, celoso, lo asesina en una emboscada. La obra mezcla comedia amorosa en la primera
+                        parte con tragedia inevitable en la segunda.
+                    </p>
+                    <p><strong>Importancia</strong>:</p>
+                    <ul>
+                        <li>Mezcla perfecta de comedia y tragedia</li>
+                        <li>Presagios de muerte (estructura de tragedia clásica)</li>
+                        <li>Romance popular como base del argumento</li>
+                        <li>Belleza lírica del lenguaje</li>
+                    </ul>
+                    <div class="quote-box">
+                        "Que de noche le mataron<br>
+                        al caballero,<br>
+                        la gala de Medina,<br>
+                        la flor de Olmedo."
+                    </div>
+                </div>
+
+                <div class="obra-card" style="border-left-color: #F59E0B;">
+                    <h3>Otras obras clave de Lope</h3>
+                    <ul>
+                        <li><strong>Peribáñez y el comendador de Ocaña</strong>: Drama de honor campesino</li>
+                        <li><strong>El perro del hortelano</strong>: Comedia de enredo amoroso</li>
+                        <li><strong>La dama boba</strong>: Comedia sobre el amor como educador</li>
+                        <li><strong>El castigo sin venganza</strong>: Tragedia de honor conyugal</li>
+                    </ul>
+                </div>
+
+                <!-- CALDERÓN DE LA BARCA -->
+                <h2>🌟 Teatro de Calderón de la Barca</h2>
+
+                <div class="obra-card" style="border-left-color: #10B981;">
+                    <h3>La vida es sueño (1635)</h3>
+                    <p>
+                        <strong>Género</strong>: Drama filosófico<br>
+                        <strong>Tema</strong>: Libre albedrío vs. destino; apariencia vs. realidad
+                    </p>
+                    <p>
+                        <strong>Argumento</strong>: El príncipe Segismundo ha sido encerrado desde su nacimiento por
+                        su padre, el rey Basilio, quien teme una profecía que anuncia que Segismundo será un tirano.
+                        Basilio decide darle una oportunidad: lo droga, lo lleva a palacio y observa su comportamiento.
+                        Segismundo, sin saber si está despierto o soñando, aprende a dominar sus instintos y elige el bien.
+                    </p>
+                    <p><strong>Importancia</strong>:</p>
+                    <ul>
+                        <li>Reflexión sobre el <strong>libre albedrío</strong>: el hombre puede vencer su destino</li>
+                        <li>Tema barroco del <strong>sueño/realidad</strong>: ¿Qué es real? ¿Qué es ilusión?</li>
+                        <li>Educación y dominio de las pasiones: Segismundo aprende a ser virtuoso</li>
+                        <li>Obra cumbre del teatro filosófico español</li>
+                    </ul>
+                    <div class="quote-box">
+                        "¿Qué es la vida? Un frenesí.<br>
+                        ¿Qué es la vida? Una ilusión,<br>
+                        una sombra, una ficción,<br>
+                        y el mayor bien es pequeño;<br>
+                        que toda la vida es sueño,<br>
+                        y los sueños, sueños son."
+                    </div>
+                </div>
+
+                <div class="obra-card" style="border-left-color: #6366F1;">
+                    <h3>El alcalde de Zalamea (c. 1640)</h3>
+                    <p>
+                        <strong>Género</strong>: Drama de honor<br>
+                        <strong>Tema</strong>: Honor del villano rico; justicia frente a privilegios militares
+                    </p>
+                    <p>
+                        <strong>Argumento</strong>: El capitán don Álvaro viola a Isabel, hija del labrador Pedro Crespo,
+                        alcalde de Zalamea. A pesar de ser militar (fuero militar), Crespo lo juzga y ejecuta, defendiendo
+                        el honor de su hija. El rey Felipe II aprueba la decisión.
+                    </p>
+                    <p><strong>Importancia</strong>:</p>
+                    <ul>
+                        <li>Defensa de la dignidad del villano rico (honra universal)</li>
+                        <li>Conflicto entre jurisdicciones (civil vs. militar)</li>
+                        <li>La justicia por encima de los privilegios de clase</li>
+                        <li>Figura del rey como garante de la justicia</li>
+                    </ul>
+                    <div class="quote-box">
+                        "Al rey la hacienda y la vida<br>
+                        se ha de dar; pero el honor<br>
+                        es patrimonio del alma,<br>
+                        y el alma sólo es de Dios."
+                    </div>
+                </div>
+
+                <div class="obra-card" style="border-left-color: #8B5CF6;">
+                    <h3>Otras obras clave de Calderón</h3>
+                    <ul>
+                        <li><strong>El gran teatro del mundo</strong>: Auto sacramental; alegoría de la vida como representación teatral</li>
+                        <li><strong>La dama duende</strong>: Comedia de capa y espada con juegos de identidad</li>
+                        <li><strong>El médico de su honra</strong>: Drama de honor conyugal extremo</li>
+                        <li><strong>Autos sacramentales</strong>: Calderón escribió más de 80, llevando el género a su perfección</li>
+                    </ul>
+                </div>
+
+                <!-- LUIS DE GÓNGORA -->
+                <h2>📜 Poesía de Luis de Góngora</h2>
+
+                <div class="obra-card" style="border-left-color: #EC4899;">
+                    <h3>Soledades (1613, inacabado)</h3>
+                    <p>
+                        <strong>Género</strong>: Poema culterano, silva (versos endecasílabos y heptasílabos)<br>
+                        <strong>Tema</strong>: Peregrinación de un náufrago por un paisaje idealizado
+                    </p>
+                    <p>
+                        <strong>Argumento</strong>: Un joven náufrago llega a una costa y es acogido por pastores y
+                        cabreros. Góngora describe con lenguaje oscuro y culto la naturaleza, las bodas campesinas,
+                        las actividades rurales. El poema quedó inacabado (solo existen la <em>Soledad primera</em>
+                        y parte de la <em>Soledad segunda</em>).
+                    </p>
+                    <p><strong>Importancia</strong>:</p>
+                    <ul>
+                        <li>Cumbre del <strong>culteranismo</strong></li>
+                        <li>Lenguaje oscuro, sintaxis latinizante, cultismos léxicos</li>
+                        <li>Metáforas complejas y referencias mitológicas constantes</li>
+                        <li>Belleza formal pura: "el arte por el arte"</li>
+                        <li>Obra que causó polémica inmediata; criticada por incomprensible</li>
+                    </ul>
+                    <div class="quote-box">
+                        "Pasos de un peregrino son errante<br>
+                        cuantos me dictó versos dulce musa:<br>
+                        en soledad confusa<br>
+                        perdidos unos, otros inspirados."
+                    </div>
+                </div>
+
+                <div class="obra-card" style="border-left-color: #F59E0B;">
+                    <h3>Fábula de Polifemo y Galatea (1612)</h3>
+                    <p>
+                        <strong>Género</strong>: Fábula mitológica en octavas reales<br>
+                        <strong>Tema</strong>: Amor del cíclope Polifemo por la ninfa Galatea
+                    </p>
+                    <p>
+                        <strong>Argumento</strong>: Polifemo, el monstruoso cíclope, ama a la bella ninfa Galatea,
+                        quien ama al joven Acis. Polifemo, en un ataque de celos, mata a Acis aplastándolo con una roca.
+                        Los dioses transforman la sangre de Acis en un río.
+                    </p>
+                    <p><strong>Importancia</strong>:</p>
+                    <ul>
+                        <li>Transformación barroca del mito clásico</li>
+                        <li>Contraste entre belleza (Galatea) y monstruosidad (Polifemo)</li>
+                        <li>Lenguaje culterano en su máxima expresión</li>
+                        <li>Influencia de Ovidio (<em>Metamorfosis</em>)</li>
+                    </ul>
+                </div>
+
+                <div class="obra-card" style="border-left-color: #10B981;">
+                    <h3>Otras obras de Góngora</h3>
+                    <ul>
+                        <li><strong>Sonetos</strong>: Sobre temas variados (amorosos, burlescos, morales)</li>
+                        <li><strong>Letrillas</strong>: Poemas satíricos y festivos ("Ande yo caliente...")</li>
+                        <li><strong>Romances</strong>: Tono popular y burlesco</li>
+                    </ul>
+                </div>
+
+                <!-- FRANCISCO DE QUEVEDO -->
+                <h2>⚔️ Obra de Francisco de Quevedo</h2>
+
+                <div class="obra-card" style="border-left-color: #6366F1;">
+                    <h3>El Buscón (Historia de la vida del Buscón, llamado don Pablos) (1626)</h3>
+                    <p>
+                        <strong>Género</strong>: Novela picaresca<br>
+                        <strong>Tema</strong>: Ascenso social imposible; sátira despiadada de la sociedad
+                    </p>
+                    <p>
+                        <strong>Argumento</strong>: Pablos, hijo de un ladrón y una bruja, intenta ascender socialmente
+                        mediante engaños y apariencias. Fracasa sistemáticamente y termina decidiendo irse a América,
+                        donde espera "mejorar de suerte", aunque el narrador advierte que le fue peor.
+                    </p>
+                    <p><strong>Importancia</strong>:</p>
+                    <ul>
+                        <li>Picaresca pesimista: a diferencia del <em>Lazarillo</em>, Pablos no aprende ni mejora</li>
+                        <li>Sátira social feroz: todos los estamentos son corruptos</li>
+                        <li>Lenguaje <strong>conceptista</strong>: juegos de palabras, ironía, agudeza</li>
+                        <li>Visión desengañada del mundo barroco</li>
+                    </ul>
+                    <div class="quote-box">
+                        "Yo, señor, soy de Segovia. Mi padre se llamó Clemente Pablo, natural del mismo pueblo;
+                        Dios le tenga en el cielo. Fue, tal como todos dicen, de oficio barbero; aunque eran tan
+                        altos sus pensamientos, que se corrían de que le llamasen así, diciendo que él era
+                        <em>tundidor de mejillas</em> y <em>sastre de barbas</em>."
+                    </div>
+                </div>
+
+                <div class="obra-card" style="border-left-color: #8B5CF6;">
+                    <h3>Los sueños (1606-1627)</h3>
+                    <p>
+                        <strong>Género</strong>: Prosa satírica y moral<br>
+                        <strong>Tema</strong>: Visión alegórica del infierno, la muerte, el juicio final
+                    </p>
+                    <p>
+                        <strong>Contenido</strong>: Serie de visiones oníricas donde Quevedo critica todos los vicios
+                        de la sociedad: hipocresía, codicia, lujuria, soberbia. Incluye <em>El sueño del Juicio Final</em>,
+                        <em>El alguacil endemoniado</em>, <em>El sueño del Infierno</em>, etc.
+                    </p>
+                    <p><strong>Importancia</strong>:</p>
+                    <ul>
+                        <li>Sátira moral implacable</li>
+                        <li>Humor negro y grotesco</li>
+                        <li>Crítica universal: nadie se salva (nobles, clérigos, médicos, mujeres...)</li>
+                    </ul>
+                </div>
+
+                <div class="obra-card" style="border-left-color: #EC4899;">
+                    <h3>Poesía de Quevedo</h3>
+                    <p>
+                        Quevedo escribió más de <strong>875 poemas</strong> sobre todos los temas posibles:
+                    </p>
+                    <ul>
+                        <li><strong>Poesía amorosa</strong>: Amor platónico, apasionado, metafísico (<em>"Amor constante más allá de la muerte"</em>)</li>
+                        <li><strong>Poesía moral y metafísica</strong>: Reflexión sobre el tiempo, la muerte, el desengaño (<em>"Miré los muros de la patria mía..."</em>)</li>
+                        <li><strong>Poesía satírica y burlesca</strong>: Ataques a Góngora, sátiras de costumbres (<em>"Érase un hombre a una nariz pegado..."</em>)</li>
+                        <li><strong>Poesía religiosa</strong>: Arrepentimiento, piedad, petición de perdón</li>
+                    </ul>
+                    <div class="quote-box">
+                        "Cerrar podrá mis ojos la postrera<br>
+                        sombra que me llevare el blanco día,<br>
+                        y podrá desatar esta alma mía<br>
+                        hora a su afán ansioso lisonjera;<br><br>
+                        mas no, de esotra parte, en la ribera,<br>
+                        dejará la memoria, en donde ardía:<br>
+                        nadar sabe mi llama la agua fría,<br>
+                        y perder el respeto a ley severa.<br><br>
+                        Alma a quien todo un dios prisión ha sido,<br>
+                        venas que humor a tanto fuego han dado,<br>
+                        medulas que han gloriosamente ardido,<br><br>
+                        su cuerpo dejará, no su cuidado;<br>
+                        serán ceniza, mas tendrá sentido;<br>
+                        polvo serán, mas polvo enamorado."
+                        <br><br><strong>— Quevedo, "Amor constante más allá de la muerte"</strong>
+                    </div>
+                </div>
+
+                <h2>🌟 Conclusión</h2>
+
+                <p>
+                    Estas obras representan lo mejor del <strong>Siglo de Oro español</strong>. Desde el teatro
+                    popular de Lope hasta la reflexión filosófica de Calderón, desde la belleza oscura de Góngora
+                    hasta el ingenio mordaz de Quevedo, el Barroco exploró todos los registros posibles: la comedia
+                    y la tragedia, la belleza y la fealdad, el amor y la muerte, la fe y el desengaño.
+                </p>
+
+                <p>
+                    Son obras que siguen siendo leídas, estudiadas y representadas <strong>cuatro siglos después</strong>,
+                    testimonio de su genialidad inmortal.
+                </p>
+            </div>
+        </div>
+    </main>
+
+    <button class="mobile-menu-btn" id="mobileMenuBtn"><span></span><span></span><span></span></button>
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+    <script>
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const sidebar = document.querySelector('.sidebar');
+        const sidebarOverlay = document.getElementById('sidebarOverlay');
+        mobileMenuBtn.addEventListener('click', () => { sidebar.classList.toggle('mobile-open'); sidebarOverlay.classList.toggle('active'); });
+        sidebarOverlay.addEventListener('click', () => { sidebar.classList.remove('mobile-open'); sidebarOverlay.classList.remove('active'); });
+    </script>
+</body>
+</html>
