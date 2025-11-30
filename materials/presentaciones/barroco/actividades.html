@@ -1,0 +1,669 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Actividades y Tareas - Barroco Español</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        :root {
+            --gradient-barroco: linear-gradient(135deg, #8B5CF6 0%, #EC4899 50%, #F59E0B 100%);
+            --gradient-accent: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+            --text-dark: #1a1a2e; --bg-card: rgba(255, 255, 255, 0.95);
+            --shadow-md: 0 8px 30px rgba(0,0,0,0.12); --shadow-lg: 0 20px 60px rgba(0,0,0,0.3);
+            --sidebar-width: 280px;
+        }
+        body { font-family: 'Inter', sans-serif; color: var(--text-dark); background: var(--gradient-barroco); min-height: 100vh; }
+        .sidebar { position: fixed; left: 0; top: 0; width: var(--sidebar-width); height: 100vh;
+                   background: rgba(15, 15, 30, 0.95); backdrop-filter: blur(20px); padding: 2rem 0;
+                   z-index: 1000; box-shadow: var(--shadow-lg); overflow-y: auto; }
+        .sidebar-header { padding: 0 1.5rem 2rem; border-bottom: 2px solid rgba(255,255,255,0.1); margin-bottom: 2rem; }
+        .logo { font-family: 'Playfair Display', serif; font-size: 1.8rem; font-weight: 900;
+                background: var(--gradient-accent); -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+                background-clip: text; margin-bottom: 0.5rem; }
+        .logo-subtitle { color: rgba(255,255,255,0.6); font-size: 0.85rem; }
+        .nav-menu { list-style: none; padding: 0 1rem; }
+        .nav-link { display: flex; align-items: center; gap: 1rem; padding: 1rem; color: rgba(255,255,255,0.8);
+                    text-decoration: none; border-radius: 12px; font-weight: 600; transition: all 0.3s; margin-bottom: 0.5rem; }
+        .nav-link:hover { background: rgba(255,255,255,0.1); color: #fff; transform: translateX(5px); }
+        .nav-link.active { background: var(--gradient-accent); color: #fff; }
+        .main-content { margin-left: var(--sidebar-width); padding: 3rem; }
+        .container { max-width: 1200px; margin: 0 auto; }
+        .content-card { background: var(--bg-card); border-radius: 30px; padding: 4rem; box-shadow: var(--shadow-lg); margin-bottom: 2rem; }
+        h1 { font-family: 'Playfair Display', serif; font-size: 3.5rem; font-weight: 900; background: var(--gradient-barroco);
+             -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin-bottom: 2rem; }
+        h2 { font-family: 'Playfair Display', serif; font-size: 2rem; color: #8B5CF6; margin: 2rem 0 1rem; }
+        h3 { font-size: 1.4rem; color: #EC4899; margin: 1.5rem 0 0.75rem; }
+        h4 { font-size: 1.2rem; color: #F59E0B; margin: 1rem 0 0.5rem; }
+        p { line-height: 1.8; color: #444; margin-bottom: 1.5rem; font-size: 1.1rem; }
+        ul, ol { margin: 1rem 0 1.5rem 2rem; line-height: 1.8; }
+        li { margin-bottom: 0.75rem; color: #555; }
+
+        .activity-box { background: linear-gradient(135deg, rgba(139, 92, 246, 0.1), rgba(236, 72, 153, 0.05));
+                        border-left: 5px solid #8B5CF6; border-radius: 12px; padding: 2rem; margin-bottom: 2rem; }
+        .task-box { background: linear-gradient(135deg, rgba(245, 158, 11, 0.1), rgba(236, 72, 153, 0.05));
+                    border-left: 5px solid #F59E0B; border-radius: 12px; padding: 2rem; margin-bottom: 2rem; }
+        .interactive-box { background: linear-gradient(135deg, rgba(67, 172, 232, 0.1), rgba(67, 172, 232, 0.05));
+                           border-left: 5px solid #43ace8; border-radius: 12px; padding: 2rem; margin-bottom: 2rem; }
+
+        .quiz-question { background: #f8f9fa; border-radius: 12px; padding: 1.5rem; margin-bottom: 1.5rem; }
+        .quiz-options { list-style: none; margin: 1rem 0; padding: 0; }
+        .quiz-options li { background: white; padding: 1rem; margin: 0.5rem 0; border-radius: 8px; cursor: pointer;
+                           border: 2px solid #e5e7eb; transition: all 0.3s; }
+        .quiz-options li:hover { border-color: #8B5CF6; background: rgba(139, 92, 246, 0.05); }
+        .quiz-options li.correct { border-color: #10B981; background: rgba(16, 185, 129, 0.1); }
+        .quiz-options li.incorrect { border-color: #EF4444; background: rgba(239, 68, 68, 0.1); }
+
+        .btn { display: inline-block; padding: 0.75rem 1.5rem; background: var(--gradient-barroco);
+               color: white; border: none; border-radius: 8px; font-weight: 600; cursor: pointer;
+               transition: all 0.3s; margin: 0.5rem 0; }
+        .btn:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0,0,0,0.2); }
+        .btn-secondary { background: #6B7280; }
+
+        textarea, input[type="text"] { width: 100%; padding: 1rem; border: 2px solid #e5e7eb; border-radius: 8px;
+                                        font-family: inherit; font-size: 1rem; margin: 0.5rem 0; resize: vertical; }
+        textarea:focus, input[type="text"]:focus { outline: none; border-color: #8B5CF6; }
+
+        .timer { display: inline-block; background: #F59E0B; color: white; padding: 0.5rem 1rem;
+                 border-radius: 20px; font-weight: 700; margin-bottom: 1rem; }
+
+        .mobile-menu-btn { position: fixed; top: 1.5rem; left: 1.5rem; z-index: 2000; width: 50px; height: 50px;
+                           background: var(--gradient-accent); border: none; border-radius: 12px; display: none; cursor: pointer; }
+        .sidebar-overlay { position: fixed; inset: 0; background: rgba(0, 0, 0, 0.5); z-index: 999; display: none; }
+
+        @media (max-width: 1024px) {
+            .mobile-menu-btn { display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 5px; }
+            .mobile-menu-btn span { width: 24px; height: 3px; background: white; border-radius: 2px; }
+            .sidebar { transform: translateX(-100%); transition: transform 0.3s ease; }
+            .sidebar.mobile-open { transform: translateX(0); }
+            .sidebar-overlay.active { display: block; }
+            .main-content { margin-left: 0; padding: 5rem 1.5rem 2rem; }
+            .content-card { padding: 2rem; }
+            h1 { font-size: 2.5rem; }
+        }
+    </style>
+</head>
+<body>
+    <aside class="sidebar">
+        <div class="sidebar-header">
+            <h1 class="logo">Barroco<br>Español</h1>
+            <p class="logo-subtitle">Literatura española hasta el siglo XVIII · CLM B1.2</p>
+        </div>
+        <nav>
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link"><span>🏠</span> Inicio</a></li>
+                <li><a href="contexto.html" class="nav-link"><span>🏛️</span> Contexto Histórico</a></li>
+                <li><a href="autores.html" class="nav-link"><span>✍️</span> Autores Principales</a></li>
+                <li><a href="teatro.html" class="nav-link"><span>🎭</span> Teatro como Industria</a></li>
+                <li><a href="estilos.html" class="nav-link"><span>🖋️</span> Estilos Literarios</a></li>
+                <li><a href="obras.html" class="nav-link"><span>📚</span> Obras Fundamentales</a></li>
+                <li><a href="actividades.html" class="nav-link active"><span>🎯</span> Actividades y Tareas</a></li>
+            </ul>
+        </nav>
+    </aside>
+
+    <main class="main-content">
+        <div class="container">
+            <div class="content-card">
+                <h1>🎯 Actividades y Tareas del Barroco</h1>
+
+                <p>
+                    Esta sección contiene <strong>actividades interactivas</strong> (1 hora) y <strong>tareas
+                    dinámicas para clase</strong> (1 hora) sobre el Barroco español. Las actividades te ayudarán
+                    a consolidar los conocimientos adquiridos sobre autores, estilos y obras.
+                </p>
+
+                <h2>📊 PARTE 1: Actividades Interactivas (1 hora)</h2>
+
+                <!-- ACTIVIDAD 1: QUIZ -->
+                <div class="activity-box">
+                    <h3>Actividad 1: Quiz del Barroco (15 min)</h3>
+                    <p><strong>Instrucciones</strong>: Lee cada pregunta y selecciona la respuesta correcta. Al final, comprueba tus resultados.</p>
+
+                    <div class="quiz-question" id="q1">
+                        <h4>1. ¿Qué siglo abarca el Barroco español?</h4>
+                        <ul class="quiz-options">
+                            <li onclick="checkAnswer('q1', this, false)">a) Siglo XVI</li>
+                            <li onclick="checkAnswer('q1', this, true)">b) Siglo XVII</li>
+                            <li onclick="checkAnswer('q1', this, false)">c) Siglo XVIII</li>
+                            <li onclick="checkAnswer('q1', this, false)">d) Siglo XV</li>
+                        </ul>
+                    </div>
+
+                    <div class="quiz-question" id="q2">
+                        <h4>2. ¿Quién escribió "Fuenteovejuna"?</h4>
+                        <ul class="quiz-options">
+                            <li onclick="checkAnswer('q2', this, false)">a) Calderón de la Barca</li>
+                            <li onclick="checkAnswer('q2', this, true)">b) Lope de Vega</li>
+                            <li onclick="checkAnswer('q2', this, false)">c) Francisco de Quevedo</li>
+                            <li onclick="checkAnswer('q2', this, false)">d) Luis de Góngora</li>
+                        </ul>
+                    </div>
+
+                    <div class="quiz-question" id="q3">
+                        <h4>3. El culteranismo se caracteriza por...</h4>
+                        <ul class="quiz-options">
+                            <li onclick="checkAnswer('q3', this, false)">a) La agudeza de pensamiento</li>
+                            <li onclick="checkAnswer('q3', this, true)">b) La belleza formal y metáforas complejas</li>
+                            <li onclick="checkAnswer('q3', this, false)">c) Los juegos de palabras y la concisión</li>
+                            <li onclick="checkAnswer('q3', this, false)">d) La sátira política</li>
+                        </ul>
+                    </div>
+
+                    <div class="quiz-question" id="q4">
+                        <h4>4. ¿Cuál es la obra más filosófica de Calderón?</h4>
+                        <ul class="quiz-options">
+                            <li onclick="checkAnswer('q4', this, false)">a) El alcalde de Zalamea</li>
+                            <li onclick="checkAnswer('q4', this, true)">b) La vida es sueño</li>
+                            <li onclick="checkAnswer('q4', this, false)">c) La dama duende</li>
+                            <li onclick="checkAnswer('q4', this, false)">d) Fuenteovejuna</li>
+                        </ul>
+                    </div>
+
+                    <div class="quiz-question" id="q5">
+                        <h4>5. ¿Qué autor representa el conceptismo?</h4>
+                        <ul class="quiz-options">
+                            <li onclick="checkAnswer('q5', this, false)">a) Luis de Góngora</li>
+                            <li onclick="checkAnswer('q5', this, true)">b) Francisco de Quevedo</li>
+                            <li onclick="checkAnswer('q5', this, false)">c) Lope de Vega</li>
+                            <li onclick="checkAnswer('q5', this, false)">d) Calderón de la Barca</li>
+                        </ul>
+                    </div>
+
+                    <div class="quiz-question" id="q6">
+                        <h4>6. Los corrales de comedias eran...</h4>
+                        <ul class="quiz-options">
+                            <li onclick="checkAnswer('q6', this, false)">a) Teatros cerrados y lujosos</li>
+                            <li onclick="checkAnswer('q6', this, true)">b) Patios al aire libre adaptados para teatro</li>
+                            <li onclick="checkAnswer('q6', this, false)">c) Salones palaciegos</li>
+                            <li onclick="checkAnswer('q6', this, false)">d) Espacios religiosos</li>
+                        </ul>
+                    </div>
+
+                    <div class="quiz-question" id="q7">
+                        <h4>7. ¿Qué obra NO escribió Quevedo?</h4>
+                        <ul class="quiz-options">
+                            <li onclick="checkAnswer('q7', this, false)">a) El Buscón</li>
+                            <li onclick="checkAnswer('q7', this, false)">b) Los sueños</li>
+                            <li onclick="checkAnswer('q7', this, true)">c) Soledades</li>
+                            <li onclick="checkAnswer('q7', this, false)">d) Amor constante más allá de la muerte</li>
+                        </ul>
+                    </div>
+
+                    <div class="quiz-question" id="q8">
+                        <h4>8. La Comedia Nueva de Lope tiene...</h4>
+                        <ul class="quiz-options">
+                            <li onclick="checkAnswer('q8', this, true)">a) 3 actos (jornadas)</li>
+                            <li onclick="checkAnswer('q8', this, false)">b) 5 actos</li>
+                            <li onclick="checkAnswer('q8', this, false)">c) 2 actos</li>
+                            <li onclick="checkAnswer('q8', this, false)">d) 1 solo acto</li>
+                        </ul>
+                    </div>
+
+                    <button class="btn" onclick="showQuizResults()">📊 Ver Resultados</button>
+                    <button class="btn btn-secondary" onclick="resetQuiz()">🔄 Reiniciar Quiz</button>
+                    <div id="quiz-results" style="margin-top: 1rem; font-weight: 700; font-size: 1.2rem;"></div>
+                </div>
+
+                <!-- ACTIVIDAD 2: IDENTIFICAR ESTILOS -->
+                <div class="activity-box">
+                    <h3>Actividad 2: ¿Culteranismo o Conceptismo? (15 min)</h3>
+                    <p><strong>Instrucciones</strong>: Lee cada fragmento e identifica si pertenece al <strong>culteranismo</strong> (Góngora) o al <strong>conceptismo</strong> (Quevedo).</p>
+
+                    <div class="quiz-question" id="estilo1">
+                        <h4>Fragmento 1:</h4>
+                        <p style="font-style: italic; color: #555;">"Era del año la estación florida / en que el mentido robador de Europa / (media luna las armas de su frente, / y el Sol todos los rayos de su pelo)..."</p>
+                        <ul class="quiz-options">
+                            <li onclick="checkAnswer('estilo1', this, true)">Culteranismo (Góngora)</li>
+                            <li onclick="checkAnswer('estilo1', this, false)">Conceptismo (Quevedo)</li>
+                        </ul>
+                    </div>
+
+                    <div class="quiz-question" id="estilo2">
+                        <h4>Fragmento 2:</h4>
+                        <p style="font-style: italic; color: #555;">"Érase un hombre a una nariz pegado, / érase una nariz superlativa, / érase una nariz sayón y escriba..."</p>
+                        <ul class="quiz-options">
+                            <li onclick="checkAnswer('estilo2', this, false)">Culteranismo (Góngora)</li>
+                            <li onclick="checkAnswer('estilo2', this, true)">Conceptismo (Quevedo)</li>
+                        </ul>
+                    </div>
+
+                    <div class="quiz-question" id="estilo3">
+                        <h4>Fragmento 3:</h4>
+                        <p style="font-style: italic; color: #555;">"Ayer se fue; mañana no ha llegado; / hoy se está yendo sin parar un punto: / soy un fue, y un será, y un es cansado."</p>
+                        <ul class="quiz-options">
+                            <li onclick="checkAnswer('estilo3', this, false)">Culteranismo (Góngora)</li>
+                            <li onclick="checkAnswer('estilo3', this, true)">Conceptismo (Quevedo)</li>
+                        </ul>
+                    </div>
+
+                    <button class="btn" onclick="checkAllStyles()">✅ Comprobar Respuestas</button>
+                </div>
+
+                <!-- ACTIVIDAD 3: RELACIONAR AUTORES Y OBRAS -->
+                <div class="activity-box">
+                    <h3>Actividad 3: Relaciona Autores y Obras (10 min)</h3>
+                    <p><strong>Instrucciones</strong>: Escribe el número de la obra junto al autor correcto.</p>
+
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin: 1.5rem 0;">
+                        <div>
+                            <h4>Autores:</h4>
+                            <ul style="list-style: none; padding: 0;">
+                                <li style="background: white; padding: 1rem; margin: 0.5rem 0; border-radius: 8px;">A. Lope de Vega: <input type="text" id="autor-a" style="width: 60px; display: inline-block; padding: 0.25rem;" placeholder="ej: 1,2"></li>
+                                <li style="background: white; padding: 1rem; margin: 0.5rem 0; border-radius: 8px;">B. Calderón: <input type="text" id="autor-b" style="width: 60px; display: inline-block; padding: 0.25rem;" placeholder="ej: 3,4"></li>
+                                <li style="background: white; padding: 1rem; margin: 0.5rem 0; border-radius: 8px;">C. Góngora: <input type="text" id="autor-c" style="width: 60px; display: inline-block; padding: 0.25rem;" placeholder="ej: 5,6"></li>
+                                <li style="background: white; padding: 1rem; margin: 0.5rem 0; border-radius: 8px;">D. Quevedo: <input type="text" id="autor-d" style="width: 60px; display: inline-block; padding: 0.25rem;" placeholder="ej: 7,8"></li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h4>Obras:</h4>
+                            <ol>
+                                <li>Fuenteovejuna</li>
+                                <li>El caballero de Olmedo</li>
+                                <li>La vida es sueño</li>
+                                <li>El alcalde de Zalamea</li>
+                                <li>Soledades</li>
+                                <li>Fábula de Polifemo y Galatea</li>
+                                <li>El Buscón</li>
+                                <li>Los sueños</li>
+                            </ol>
+                        </div>
+                    </div>
+
+                    <button class="btn" onclick="checkMatching()">✅ Comprobar</button>
+                    <div id="matching-result" style="margin-top: 1rem; font-weight: 600;"></div>
+                </div>
+
+                <!-- ACTIVIDAD 4: ANÁLISIS DE FRAGMENTO -->
+                <div class="interactive-box">
+                    <h3>Actividad 4: Análisis de un Fragmento Barroco (20 min)</h3>
+                    <p><strong>Instrucciones</strong>: Lee el siguiente fragmento de <em>La vida es sueño</em> y responde las preguntas.</p>
+
+                    <div style="background: #f8f9fa; padding: 1.5rem; border-radius: 12px; margin: 1rem 0; font-style: italic; border-left: 4px solid #8B5CF6;">
+                        "¿Qué es la vida? Un frenesí.<br>
+                        ¿Qué es la vida? Una ilusión,<br>
+                        una sombra, una ficción,<br>
+                        y el mayor bien es pequeño;<br>
+                        que toda la vida es sueño,<br>
+                        y los sueños, sueños son."
+                    </div>
+
+                    <h4>Preguntas:</h4>
+                    <ol>
+                        <li><strong>¿Qué visión de la vida presenta Calderón en este fragmento?</strong>
+                            <textarea id="analisis-1" rows="3" placeholder="Escribe tu respuesta aquí..."></textarea>
+                        </li>
+                        <li><strong>Identifica dos recursos retóricos presentes en el texto (ej: metáfora, paradoja, anáfora...)</strong>
+                            <textarea id="analisis-2" rows="3" placeholder="Escribe tu respuesta aquí..."></textarea>
+                        </li>
+                        <li><strong>¿Qué relación tiene este fragmento con la mentalidad barroca del desengaño?</strong>
+                            <textarea id="analisis-3" rows="3" placeholder="Escribe tu respuesta aquí..."></textarea>
+                        </li>
+                    </ol>
+
+                    <button class="btn" onclick="saveAnalysis()">💾 Guardar Análisis</button>
+                    <button class="btn btn-secondary" onclick="showAnalysisTips()">💡 Ver Pistas</button>
+                    <div id="analysis-tips" style="display: none; background: rgba(139, 92, 246, 0.1); padding: 1rem; border-radius: 8px; margin-top: 1rem;">
+                        <h4>💡 Pistas:</h4>
+                        <ul>
+                            <li><strong>Pregunta 1</strong>: Fíjate en las palabras "ilusión", "sombra", "ficción", "sueño".</li>
+                            <li><strong>Pregunta 2</strong>: ¿Se repite alguna estructura? ¿Hay comparaciones implícitas?</li>
+                            <li><strong>Pregunta 3</strong>: Piensa en la crisis del siglo XVII y el pesimismo barroco.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <h2>✏️ PARTE 2: Tareas Dinámicas para Clase (1 hora)</h2>
+
+                <!-- TAREA 1: DEBATE -->
+                <div class="task-box">
+                    <h3>Tarea 1: Debate Literario - Góngora vs. Quevedo (20 min)</h3>
+                    <span class="timer">⏱️ 20 minutos</span>
+
+                    <h4>🎯 Objetivo:</h4>
+                    <p>Defender o criticar el estilo literario de Góngora (culteranismo) o Quevedo (conceptismo) en un debate estructurado.</p>
+
+                    <h4>📋 Preparación (10 min):</h4>
+                    <ol>
+                        <li>Dividir la clase en dos grupos:
+                            <ul>
+                                <li><strong>Grupo A</strong>: Defensores de Góngora (culteranismo)</li>
+                                <li><strong>Grupo B</strong>: Defensores de Quevedo (conceptismo)</li>
+                            </ul>
+                        </li>
+                        <li>Cada grupo prepara 3 argumentos a favor de su autor y estilo</li>
+                        <li>Cada grupo prepara 2 críticas al estilo contrario</li>
+                    </ol>
+
+                    <h4>🗣️ Debate (10 min):</h4>
+                    <ul>
+                        <li><strong>Turno 1</strong> (3 min): Grupo A presenta argumentos a favor de Góngora</li>
+                        <li><strong>Turno 2</strong> (3 min): Grupo B presenta argumentos a favor de Quevedo</li>
+                        <li><strong>Réplica</strong> (4 min): Cada grupo rebate los argumentos del otro (2 min cada uno)</li>
+                    </ul>
+
+                    <h4>📝 Posibles argumentos:</h4>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                        <div style="background: rgba(139, 92, 246, 0.1); padding: 1rem; border-radius: 8px;">
+                            <strong>Pro Góngora:</strong>
+                            <ul style="font-size: 0.95rem;">
+                                <li>Belleza formal sin igual</li>
+                                <li>Eleva el español al nivel del latín</li>
+                                <li>Poesía culta para lectores exigentes</li>
+                                <li>Innovación lingüística radical</li>
+                            </ul>
+                        </div>
+                        <div style="background: rgba(245, 158, 11, 0.1); padding: 1rem; border-radius: 8px;">
+                            <strong>Pro Quevedo:</strong>
+                            <ul style="font-size: 0.95rem;">
+                                <li>Ingenio y agudeza conceptual</li>
+                                <li>Más accesible y directo</li>
+                                <li>Profundidad moral y filosófica</li>
+                                <li>Variedad de tonos y temas</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- TAREA 2: TALLER DE ESCRITURA -->
+                <div class="task-box">
+                    <h3>Tarea 2: Taller de Escritura Barroca (20 min)</h3>
+                    <span class="timer">⏱️ 20 minutos</span>
+
+                    <h4>🎯 Objetivo:</h4>
+                    <p>Escribir un breve texto en estilo culterano O conceptista sobre un tema actual.</p>
+
+                    <h4>📝 Instrucciones:</h4>
+                    <ol>
+                        <li><strong>Elige un estilo</strong>: Culteranismo o Conceptismo</li>
+                        <li><strong>Elige un tema moderno</strong>: Redes sociales, smartphone, videojuegos, streaming, etc.</li>
+                        <li><strong>Escribe 4-6 versos</strong> aplicando las técnicas del estilo elegido</li>
+                    </ol>
+
+                    <h4>💡 Guía de recursos por estilo:</h4>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 1rem 0;">
+                        <div style="background: rgba(139, 92, 246, 0.1); padding: 1rem; border-radius: 8px;">
+                            <strong>Culteranismo:</strong>
+                            <ul style="font-size: 0.9rem;">
+                                <li>Usa metáforas complejas</li>
+                                <li>Emplea cultismos (<em>refulgente, cándido, ínclito</em>)</li>
+                                <li>Altera el orden sintáctico</li>
+                                <li>Evita nombrar directamente las cosas</li>
+                            </ul>
+                            <p style="margin-top: 0.5rem; font-size: 0.85rem; font-style: italic;">Ejemplo: "El luminoso espejo rectangular" = smartphone</p>
+                        </div>
+                        <div style="background: rgba(245, 158, 11, 0.1); padding: 1rem; border-radius: 8px;">
+                            <strong>Conceptismo:</strong>
+                            <ul style="font-size: 0.9rem;">
+                                <li>Usa juegos de palabras</li>
+                                <li>Crea paradojas y antítesis</li>
+                                <li>Sé conciso e ingenioso</li>
+                                <li>Juega con dobles sentidos</li>
+                            </ul>
+                            <p style="margin-top: 0.5rem; font-size: 0.85rem; font-style: italic;">Ejemplo: "Pantalla que todo alumbra / y al alma deja en tiniebla"</p>
+                        </div>
+                    </div>
+
+                    <h4>✍️ Escribe tu texto aquí:</h4>
+                    <input type="text" id="taller-tema" placeholder="Tema elegido (ej: Instagram, Netflix...)">
+                    <select id="taller-estilo" style="width: 100%; padding: 0.75rem; border: 2px solid #e5e7eb; border-radius: 8px; margin: 0.5rem 0;">
+                        <option value="">Selecciona un estilo...</option>
+                        <option value="culterano">Culteranismo (Góngora)</option>
+                        <option value="conceptista">Conceptismo (Quevedo)</option>
+                    </select>
+                    <textarea id="taller-texto" rows="6" placeholder="Escribe aquí tus 4-6 versos barrocos..."></textarea>
+
+                    <button class="btn" onclick="saveTaller()">💾 Guardar mi Texto Barroco</button>
+                    <button class="btn btn-secondary" onclick="showTallerExamples()">📖 Ver Ejemplos</button>
+
+                    <div id="taller-examples" style="display: none; background: #f8f9fa; padding: 1.5rem; border-radius: 12px; margin-top: 1rem;">
+                        <h4>📖 Ejemplos de estudiantes:</h4>
+                        <div style="margin: 1rem 0; padding: 1rem; background: white; border-radius: 8px; border-left: 4px solid #8B5CF6;">
+                            <strong>Tema: Instagram (Culterano)</strong><br>
+                            <em>"Del ojo luciente prisma rectangular,<br>
+                            donde efímeras sombras se guardan,<br>
+                            vanidades purpúreas que esperan<br>
+                            el fugaz aplauso de dedo pulsante."</em>
+                        </div>
+                        <div style="margin: 1rem 0; padding: 1rem; background: white; border-radius: 8px; border-left: 4px solid #F59E0B;">
+                            <strong>Tema: Videojuegos (Conceptista)</strong><br>
+                            <em>"En píxeles vivimos muchas vidas,<br>
+                            morimos mil y resucitamos luego:<br>
+                            realidad que es mentira, juego serio,<br>
+                            ganamos perdiendo nuestras horas."</em>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- TAREA 3: ANÁLISIS COMPARATIVO -->
+                <div class="task-box">
+                    <h3>Tarea 3: Mesa Redonda - El Teatro Barroco y el Cine Actual (20 min)</h3>
+                    <span class="timer">⏱️ 20 minutos</span>
+
+                    <h4>🎯 Objetivo:</h4>
+                    <p>Establecer paralelismos entre el teatro barroco como industria cultural y el cine/series de streaming actuales.</p>
+
+                    <h4>👥 Dinámica (grupos de 4-5 personas):</h4>
+                    <ol>
+                        <li><strong>Discusión grupal (12 min)</strong>: Cada grupo debate las siguientes cuestiones:
+                            <ul>
+                                <li>¿En qué se parecen los corrales de comedias a los cines actuales?</li>
+                                <li>¿Qué tienen en común Lope de Vega y un director de Hollywood prolífico (ej: Steven Spielberg)?</li>
+                                <li>¿Cómo se compara el poder de los "mosqueteros" con el de las redes sociales/crítica actual?</li>
+                                <li>¿Qué similitudes hay entre la Comedia Nueva de Lope y las series de Netflix?</li>
+                            </ul>
+                        </li>
+                        <li><strong>Puesta en común (8 min)</strong>: Un portavoz de cada grupo presenta 2-3 conclusiones</li>
+                    </ol>
+
+                    <h4>💡 Puntos de reflexión:</h4>
+                    <ul>
+                        <li><strong>Producción en masa</strong>: Lope escribía 1 comedia cada 2-3 semanas / Netflix produce cientos de series al año</li>
+                        <li><strong>Público diverso</strong>: Corrales reunían todas las clases / Streaming llega a todos los públicos</li>
+                        <li><strong>Rentabilidad</strong>: Teatro barroco = industria / Cine/series = industria multimillonaria</li>
+                        <li><strong>Mezcla de géneros</strong>: Comedia nueva mezclaba comedia y tragedia / Series actuales mezclan drama, comedia, acción</li>
+                    </ul>
+
+                    <h4>📝 Toma de notas:</h4>
+                    <textarea id="mesa-notas" rows="6" placeholder="Escribe aquí las conclusiones de tu grupo..."></textarea>
+                    <button class="btn" onclick="saveMesa()">💾 Guardar Conclusiones</button>
+                </div>
+
+                <h2>📥 Exportar Resultados</h2>
+                <div style="background: linear-gradient(135deg, rgba(67, 172, 232, 0.1), rgba(67, 172, 232, 0.05)); border-radius: 12px; padding: 2rem; text-align: center;">
+                    <p>Una vez completadas las actividades, puedes descargar un resumen de tus respuestas:</p>
+                    <button class="btn" onclick="exportResults()" style="font-size: 1.1rem; padding: 1rem 2rem;">📄 Descargar Resumen de Actividades</button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <button class="mobile-menu-btn" id="mobileMenuBtn"><span></span><span></span><span></span></button>
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+    <script>
+        // Mobile menu
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const sidebar = document.querySelector('.sidebar');
+        const sidebarOverlay = document.getElementById('sidebarOverlay');
+        mobileMenuBtn.addEventListener('click', () => { sidebar.classList.toggle('mobile-open'); sidebarOverlay.classList.toggle('active'); });
+        sidebarOverlay.addEventListener('click', () => { sidebar.classList.remove('mobile-open'); sidebarOverlay.classList.remove('active'); });
+
+        // Quiz functionality
+        let quizAnswers = {};
+
+        function checkAnswer(questionId, element, isCorrect) {
+            const options = element.parentElement.querySelectorAll('li');
+            options.forEach(opt => {
+                opt.classList.remove('correct', 'incorrect');
+                opt.style.pointerEvents = 'none';
+            });
+
+            element.classList.add(isCorrect ? 'correct' : 'incorrect');
+            quizAnswers[questionId] = isCorrect;
+
+            setTimeout(() => {
+                options.forEach(opt => opt.style.pointerEvents = 'auto');
+            }, 1000);
+        }
+
+        function showQuizResults() {
+            const total = 8;
+            const correct = Object.values(quizAnswers).filter(v => v === true).length;
+            const percentage = Math.round((correct / total) * 100);
+
+            const resultsDiv = document.getElementById('quiz-results');
+            let message = '';
+            let color = '';
+
+            if (percentage >= 80) {
+                message = `🎉 ¡Excelente! ${correct}/${total} correctas (${percentage}%)`;
+                color = '#10B981';
+            } else if (percentage >= 60) {
+                message = `👍 Bien. ${correct}/${total} correctas (${percentage}%)`;
+                color = '#F59E0B';
+            } else {
+                message = `📚 Necesitas repasar. ${correct}/${total} correctas (${percentage}%)`;
+                color = '#EF4444';
+            }
+
+            resultsDiv.innerHTML = message;
+            resultsDiv.style.color = color;
+        }
+
+        function resetQuiz() {
+            quizAnswers = {};
+            document.querySelectorAll('.quiz-options li').forEach(li => {
+                li.classList.remove('correct', 'incorrect');
+            });
+            document.getElementById('quiz-results').innerHTML = '';
+        }
+
+        function checkAllStyles() {
+            // Auto-check all style identification answers
+            alert('Respuestas: 1-Culteranismo, 2-Conceptismo, 3-Conceptismo');
+        }
+
+        function checkMatching() {
+            const answers = {
+                'a': '1,2',
+                'b': '3,4',
+                'c': '5,6',
+                'd': '7,8'
+            };
+
+            let correct = 0;
+            let total = 4;
+
+            for (let key in answers) {
+                const input = document.getElementById('autor-' + key).value.trim();
+                if (input === answers[key]) correct++;
+            }
+
+            const resultDiv = document.getElementById('matching-result');
+            const percentage = Math.round((correct / total) * 100);
+
+            if (percentage === 100) {
+                resultDiv.innerHTML = '🎉 ¡Perfecto! Todas las respuestas son correctas.';
+                resultDiv.style.color = '#10B981';
+            } else {
+                resultDiv.innerHTML = `Tienes ${correct}/${total} correctas. Respuestas: A(1,2), B(3,4), C(5,6), D(7,8)`;
+                resultDiv.style.color = '#F59E0B';
+            }
+        }
+
+        function saveAnalysis() {
+            const ans1 = document.getElementById('analisis-1').value;
+            const ans2 = document.getElementById('analisis-2').value;
+            const ans3 = document.getElementById('analisis-3').value;
+
+            if (ans1 && ans2 && ans3) {
+                alert('✅ Análisis guardado correctamente. Puedes descargarlo al final de la página.');
+                localStorage.setItem('barroco-analisis', JSON.stringify({ans1, ans2, ans3}));
+            } else {
+                alert('⚠️ Por favor, completa todas las preguntas antes de guardar.');
+            }
+        }
+
+        function showAnalysisTips() {
+            const tipsDiv = document.getElementById('analysis-tips');
+            tipsDiv.style.display = tipsDiv.style.display === 'none' ? 'block' : 'none';
+        }
+
+        function saveTaller() {
+            const tema = document.getElementById('taller-tema').value;
+            const estilo = document.getElementById('taller-estilo').value;
+            const texto = document.getElementById('taller-texto').value;
+
+            if (tema && estilo && texto) {
+                alert('✅ Tu texto barroco ha sido guardado. Puedes descargarlo al final de la página.');
+                localStorage.setItem('barroco-taller', JSON.stringify({tema, estilo, texto}));
+            } else {
+                alert('⚠️ Por favor, completa todos los campos antes de guardar.');
+            }
+        }
+
+        function showTallerExamples() {
+            const examplesDiv = document.getElementById('taller-examples');
+            examplesDiv.style.display = examplesDiv.style.display === 'none' ? 'block' : 'none';
+        }
+
+        function saveMesa() {
+            const notas = document.getElementById('mesa-notas').value;
+            if (notas) {
+                alert('✅ Conclusiones guardadas. Puedes descargarlas al final de la página.');
+                localStorage.setItem('barroco-mesa', notas);
+            } else {
+                alert('⚠️ Por favor, escribe las conclusiones antes de guardar.');
+            }
+        }
+
+        function exportResults() {
+            let content = '=== RESUMEN DE ACTIVIDADES - BARROCO ESPAÑOL ===\n\n';
+            content += 'Alumno/a: ___________________________\n';
+            content += 'Fecha: ' + new Date().toLocaleDateString() + '\n\n';
+
+            // Quiz results
+            const quizCorrect = Object.values(quizAnswers).filter(v => v === true).length;
+            content += '--- QUIZ DEL BARROCO ---\n';
+            content += `Respuestas correctas: ${quizCorrect}/8\n\n`;
+
+            // Análisis
+            const analisis = JSON.parse(localStorage.getItem('barroco-analisis') || '{}');
+            if (analisis.ans1) {
+                content += '--- ANÁLISIS DE FRAGMENTO ---\n';
+                content += 'Pregunta 1: ' + analisis.ans1 + '\n';
+                content += 'Pregunta 2: ' + analisis.ans2 + '\n';
+                content += 'Pregunta 3: ' + analisis.ans3 + '\n\n';
+            }
+
+            // Taller
+            const taller = JSON.parse(localStorage.getItem('barroco-taller') || '{}');
+            if (taller.tema) {
+                content += '--- TALLER DE ESCRITURA BARROCA ---\n';
+                content += 'Tema: ' + taller.tema + '\n';
+                content += 'Estilo: ' + taller.estilo + '\n';
+                content += 'Texto:\n' + taller.texto + '\n\n';
+            }
+
+            // Mesa redonda
+            const mesa = localStorage.getItem('barroco-mesa');
+            if (mesa) {
+                content += '--- MESA REDONDA: TEATRO Y CINE ---\n';
+                content += mesa + '\n\n';
+            }
+
+            // Download
+            const blob = new Blob([content], {type: 'text/plain;charset=utf-8'});
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'Barroco_Actividades_' + new Date().toISOString().split('T')[0] + '.txt';
+            document.body.appendChild(a);
+            a.click();
+            setTimeout(() => { URL.revokeObjectURL(url); a.remove(); }, 0);
+        }
+    </script>
+</body>
+</html>
