@@ -257,23 +257,23 @@
                         <div>
                             <h4>Autores:</h4>
                             <ul style="list-style: none; padding: 0;">
-                                <li style="background: white; padding: 1rem; margin: 0.5rem 0; border-radius: 8px;">A. Lope de Vega: <input type="text" id="autor-a" style="width: 60px; display: inline-block; padding: 0.25rem;" placeholder="ej: 1,2"></li>
-                                <li style="background: white; padding: 1rem; margin: 0.5rem 0; border-radius: 8px;">B. Calderón: <input type="text" id="autor-b" style="width: 60px; display: inline-block; padding: 0.25rem;" placeholder="ej: 3,4"></li>
-                                <li style="background: white; padding: 1rem; margin: 0.5rem 0; border-radius: 8px;">C. Góngora: <input type="text" id="autor-c" style="width: 60px; display: inline-block; padding: 0.25rem;" placeholder="ej: 5,6"></li>
-                                <li style="background: white; padding: 1rem; margin: 0.5rem 0; border-radius: 8px;">D. Quevedo: <input type="text" id="autor-d" style="width: 60px; display: inline-block; padding: 0.25rem;" placeholder="ej: 7,8"></li>
+                                <li style="background: white; padding: 1rem; margin: 0.5rem 0; border-radius: 8px;">A. Luis de Góngora: <input type="text" id="autor-a" style="width: 60px; display: inline-block; padding: 0.25rem;" placeholder="ej: 2,5"></li>
+                                <li style="background: white; padding: 1rem; margin: 0.5rem 0; border-radius: 8px;">B. Lope de Vega: <input type="text" id="autor-b" style="width: 60px; display: inline-block; padding: 0.25rem;" placeholder="ej: 2,5"></li>
+                                <li style="background: white; padding: 1rem; margin: 0.5rem 0; border-radius: 8px;">C. Francisco de Quevedo: <input type="text" id="autor-c" style="width: 60px; display: inline-block; padding: 0.25rem;" placeholder="ej: 2,5"></li>
+                                <li style="background: white; padding: 1rem; margin: 0.5rem 0; border-radius: 8px;">D. Calderón de la Barca: <input type="text" id="autor-d" style="width: 60px; display: inline-block; padding: 0.25rem;" placeholder="ej: 2,5"></li>
                             </ul>
                         </div>
                         <div>
                             <h4>Obras:</h4>
                             <ol>
-                                <li>Fuenteovejuna</li>
-                                <li>El caballero de Olmedo</li>
-                                <li>La vida es sueño</li>
-                                <li>El alcalde de Zalamea</li>
-                                <li>Soledades</li>
-                                <li>Fábula de Polifemo y Galatea</li>
-                                <li>El Buscón</li>
                                 <li>Los sueños</li>
+                                <li>Fuenteovejuna</li>
+                                <li>Soledades</li>
+                                <li>La vida es sueño</li>
+                                <li>El Buscón</li>
+                                <li>El caballero de Olmedo</li>
+                                <li>Fábula de Polifemo y Galatea</li>
+                                <li>El alcalde de Zalamea</li>
                             </ol>
                         </div>
                     </div>
@@ -564,10 +564,10 @@
 
         function checkMatching() {
             const answers = {
-                'a': '1,2',
-                'b': '3,4',
-                'c': '5,6',
-                'd': '7,8'
+                'a': '3,7', // Góngora: Soledades; Fábula de Polifemo y Galatea
+                'b': '2,6', // Lope: Fuenteovejuna; El caballero de Olmedo
+                'c': '1,5', // Quevedo: Los sueños; El Buscón
+                'd': '4,8'  // Calderón: La vida es sueño; El alcalde de Zalamea
             };
 
             let correct = 0;
@@ -585,7 +585,7 @@
                 resultDiv.innerHTML = '🎉 ¡Perfecto! Todas las respuestas son correctas.';
                 resultDiv.style.color = '#10B981';
             } else {
-                resultDiv.innerHTML = `Tienes ${correct}/${total} correctas. Respuestas: A(1,2), B(3,4), C(5,6), D(7,8)`;
+                resultDiv.innerHTML = `Tienes ${correct}/${total} correctas. Respuestas: A(3,7), B(2,6), C(1,5), D(4,8)`;
                 resultDiv.style.color = '#F59E0B';
             }
         }
