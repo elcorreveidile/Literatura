@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0f172a"/>
+      <stop offset="100%" stop-color="#0b132b"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="500" fill="url(#bg)"/>
+  <rect x="90" y="100" width="620" height="300" rx="18" fill="#f8fafc" opacity="0.06" stroke="#22c55e" stroke-opacity="0.45" stroke-width="3"/>
+  <text x="120" y="180" fill="#bbf7d0" font-family="'Playfair Display', serif" font-size="46" font-weight="800">El Buscón</text>
+  <text x="120" y="225" fill="#86efac" font-family="'Inter', sans-serif" font-size="20" font-weight="700">Francisco de Quevedo · 1626</text>
+  <text x="120" y="265" fill="#e5e7eb" font-family="'Inter', sans-serif" font-size="18" font-weight="600">Novela picaresca · sátira social · desengaño</text>
+  <path d="M140 330 C220 290 300 320 380 300 C460 280 540 310 620 290" stroke="#22c55e" stroke-width="8" fill="none" opacity="0.35" stroke-linecap="round"/>
+</svg>

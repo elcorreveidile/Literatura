@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#111827"/>
+      <stop offset="100%" stop-color="#0f172a"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="500" fill="url(#bg)"/>
+  <rect x="70" y="80" width="660" height="340" rx="28" fill="#f59e0b" opacity="0.07" stroke="#f59e0b" stroke-opacity="0.4" stroke-width="3"/>
+  <path d="M120 370 L210 260 L310 330 L400 240 L510 320 L590 250 L700 360" fill="none" stroke="#fbbf24" stroke-width="12" stroke-linecap="round" stroke-linejoin="round" opacity="0.35"/>
+  <text x="110" y="160" fill="#f8fafc" font-family="'Playfair Display', serif" font-size="48" font-weight="800">El alcalde de Zalamea</text>
+  <text x="110" y="210" fill="#fde68a" font-family="'Inter', sans-serif" font-size="22" font-weight="700">Honor villano · justicia frente al privilegio</text>
+  <text x="110" y="250" fill="#e5e7eb" font-family="'Inter', sans-serif" font-size="20" font-weight="600">Pedro Calderón de la Barca · c. 1640</text>
+</svg>

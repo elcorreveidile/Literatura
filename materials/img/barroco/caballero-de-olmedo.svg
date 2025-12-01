@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500">
+  <defs>
+    <linearGradient id="g" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0f172a"/>
+      <stop offset="100%" stop-color="#1e293b"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#f97316"/>
+      <stop offset="100%" stop-color="#facc15"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="500" fill="url(#g)"/>
+  <circle cx="160" cy="150" r="90" fill="url(#accent)" opacity="0.35"/>
+  <circle cx="640" cy="370" r="140" fill="#f1f5f9" opacity="0.08"/>
+  <path d="M180 420 L240 280 L320 320 L400 230 L520 300 L640 260 L680 420 Z" fill="#111827" opacity="0.45"/>
+  <text x="60" y="110" fill="#f8fafc" font-family="'Playfair Display', serif" font-size="46" font-weight="700">El caballero de Olmedo</text>
+  <text x="60" y="160" fill="#e2e8f0" font-family="'Inter', sans-serif" font-size="22" font-weight="600">Tragicomedia de Lope de Vega · Siglo XVII</text>
+  <text x="60" y="210" fill="#facc15" font-family="'Inter', sans-serif" font-size="18" font-weight="700">Honor · Amor · Presagio</text>
+</svg>
