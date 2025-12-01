@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#0b1026"/>
+      <stop offset="100%" stop-color="#1f2937"/>
+    </linearGradient>
+    <radialGradient id="halo" cx="70%" cy="30%" r="50%">
+      <stop offset="0%" stop-color="#a855f7" stop-opacity="0.7"/>
+      <stop offset="100%" stop-color="#0b1026" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="800" height="500" fill="url(#bg)"/>
+  <rect width="800" height="500" fill="url(#halo)"/>
+  <path d="M80 360 C150 300 220 320 300 350 C380 380 460 370 540 330 C620 290 700 300 760 330 L760 500 L80 500 Z" fill="#0ea5e9" opacity="0.18"/>
+  <text x="60" y="140" fill="#e0f2fe" font-family="'Playfair Display', serif" font-size="50" font-weight="800">La vida es sueño</text>
+  <text x="60" y="190" fill="#cbd5e1" font-family="'Inter', sans-serif" font-size="22" font-weight="600">Pedro Calderón de la Barca · 1635</text>
+  <text x="60" y="235" fill="#a5b4fc" font-family="'Inter', sans-serif" font-size="18" font-weight="700">Libre albedrío · apariencia vs. realidad</text>
+</svg>
