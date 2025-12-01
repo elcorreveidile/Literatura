@@ -517,6 +517,21 @@
         .card:nth-child(3) { animation-delay: 0.3s; }
         .card:nth-child(4) { animation-delay: 0.4s; }
         .card:nth-child(5) { animation-delay: 0.5s; }
+
+        .footer-content {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+            text-align: left;
+        }
+
+        .footer-logo {
+            height: 56px;
+            width: auto;
+        }
+
         .card:nth-child(6) { animation-delay: 0.6s; }
     </style>
 </head>
@@ -667,8 +682,13 @@
 
             <!-- Footer -->
             <footer class="footer" style="background: var(--bg-card); border-radius: 24px; padding: 2rem; text-align: center; box-shadow: var(--shadow-md); margin-top: 4rem;">
-                <p class="footer-text" style="margin-bottom: 0; color: #666;">Portal educativo sobre el Barroco español</p>
-                <p class="footer-text" style="margin-top: 0.5rem; opacity: 0.7; font-size: 0.9rem;">Profesor Javier Benítez Laínez · Literatura española hasta el siglo XVIII</p>
+                <div class="footer-content">
+                    <img class="footer-logo" src="../../img/logo-clm.png" alt="Logotipo del Centro de Lenguas Modernas de la Universidad de Granada">
+                    <div>
+                        <p class="footer-text" style="margin: 0; color: #666;">Portal educativo sobre el Barroco español</p>
+                        <p class="footer-text" style="margin: 0.35rem 0 0; opacity: 0.7; font-size: 0.9rem;">Profesor Javier Benítez Laínez · Literatura española hasta el siglo XVIII</p>
+                    </div>
+                </div>
             </footer>
         </div>
     </main>
