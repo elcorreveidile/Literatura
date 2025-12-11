@@ -70,6 +70,17 @@
     th,td{border:1px solid var(--border);padding:.6rem;text-align:left}
     th{background:#f8fafc}
 
+    /* Flashcards */
+    .flash-controls{display:flex;gap:.5rem;flex-wrap:wrap;margin-bottom:1rem;align-items:center}
+    .flash-grid{display:grid;gap:1rem;grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}
+    .flashcard{border:1px solid var(--border);border-radius:1rem;padding:1rem;background:#fff;text-align:left;cursor:pointer;transition:transform .15s ease, box-shadow .15s ease;min-height:160px}
+    .flashcard:hover{transform:translateY(-2px);box-shadow:0 12px 30px rgba(0,0,0,.06)}
+    .flash-label{font-size:.85rem;color:#475569;font-weight:600}
+    .flash-question{margin:.4rem 0 .6rem 0;font-weight:700;line-height:1.3}
+    .flash-answer{margin:0;color:#111827;display:none;line-height:1.35}
+    .flashcard.show-answer .flash-answer{display:block}
+    .flashcard.show-answer{border-color:#111827}
+
     @media (max-width:899px){.links{display:none}.hamb{display:inline-block}.container{padding:.75rem 1rem}.section{padding:2rem 0}}
     .nav.open .mobile-panel{display:block}
 
@@ -103,6 +114,7 @@
         <a href="#cervantes">Cervantes</a>
         <a href="#barroco">Barroco</a>
         <a href="#ilustracion">Ilustración</a>
+        <a href="#repaso">Repaso para el examen</a>
         <a href="#descargas">Descargas</a>
         <a href="#foro">Foro</a>
         <a href="#miniserie">Miniserie</a>
@@ -117,6 +129,7 @@
         <a href="#cervantes">Cervantes</a>
         <a href="#barroco">Barroco</a>
         <a href="#ilustracion">Ilustración</a>
+        <a href="#repaso">Repaso para el examen</a>
         <a href="#descargas">Descargas</a>
         <a href="#foro">Foro</a>
         <a href="#miniserie">Miniserie</a>
@@ -287,6 +300,22 @@
           <div id="chips-ilustracion"></div>
           <ul class="list" id="lista-ilustracion"></ul>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- REPASO -->
+  <section class="section" id="repaso">
+    <div class="container">
+      <h2>🧠 Repaso para el examen</h2>
+      <div class="card">
+        <p class="hint">Pulsa cada tarjeta para revelar la respuesta. Puedes barajar el orden cuando quieras.</p>
+        <div class="flash-controls">
+          <button class="btn" id="shuffleCards">🔀 Barajar</button>
+          <button class="btn" id="resetCards">↩️ Volver al orden original</button>
+          <span class="muted" id="flashMeta"></span>
+        </div>
+        <div class="flash-grid" id="flashcards"></div>
       </div>
     </div>
   </section>
@@ -572,6 +601,84 @@
     renderCuadernos('Cervantes','chips-cervantes','lista-cervantes');
     renderCuadernos('Barroco','chips-barroco','lista-barroco');
     renderCuadernos('Ilustración','chips-ilustracion','lista-ilustracion');
+
+    // Flashcards (Repaso)
+    const flashContainer = document.getElementById('flashcards');
+    const flashMeta = document.getElementById('flashMeta');
+    const shuffleBtn = document.getElementById('shuffleCards');
+    const resetBtn = document.getElementById('resetCards');
+    let flashOriginal = [];
+    let flashCurrent = [];
+
+    function parseCSV(text){
+      const rows=[]; let row=[]; let field=''; let inQuotes=false;
+      for(let i=0;i<text.length;i++){
+        const c=text[i];
+        if(c === '"'){
+          if(inQuotes && text[i+1] === '"'){ field+='"'; i++; }
+          else{ inQuotes=!inQuotes; }
+        } else if(c === ',' && !inQuotes){
+          row.push(field.trim()); field='';
+        } else if((c === '\n' || c === '\r') && !inQuotes){
+          if(c === '\r' && text[i+1] === '\n'){ i++; }
+          row.push(field.trim()); if(row.some(v=>v!=='')){ rows.push(row); } row=[]; field='';
+        } else {
+          field+=c;
+        }
+      }
+      if(field || row.length){ row.push(field.trim()); rows.push(row); }
+      return rows;
+    }
+
+    function renderFlashcards(data){
+      if(!flashContainer) return;
+      flashContainer.innerHTML='';
+      data.forEach((card, idx)=>{
+        const btn = document.createElement('button');
+        btn.type = 'button';
+        btn.className = 'flashcard';
+        btn.innerHTML = `
+          <div class="flash-label">Tarjeta ${idx+1}</div>
+          <div class="flash-question">${card.q}</div>
+          <div class="flash-answer">${card.a}</div>
+        `;
+        btn.addEventListener('click', ()=> btn.classList.toggle('show-answer'));
+        flashContainer.appendChild(btn);
+      });
+      if(flashMeta){
+        flashMeta.textContent = data.length ? `${data.length} tarjetas listas.` : 'No se pudieron cargar las tarjetas.';
+      }
+    }
+
+    function shuffleFlashcards(){
+      const arr = [...flashCurrent];
+      for(let i=arr.length-1;i>0;i--){
+        const j = Math.floor(Math.random()*(i+1));
+        [arr[i], arr[j]] = [arr[j], arr[i]];
+      }
+      flashCurrent = arr;
+      renderFlashcards(flashCurrent);
+    }
+
+    function resetFlashcards(){
+      flashCurrent = [...flashOriginal];
+      renderFlashcards(flashCurrent);
+    }
+
+    fetch('materials/flashcards.csv')
+      .then(res=>res.text())
+      .then(text=>{
+        const rows = parseCSV(text).filter(r=>r[0] && r[1]);
+        flashOriginal = rows.map(([q,a])=>({ q, a }));
+        flashCurrent = [...flashOriginal];
+        renderFlashcards(flashCurrent);
+      })
+      .catch(()=>{
+        if(flashMeta) flashMeta.textContent = 'No se pudieron cargar las tarjetas.';
+      });
+
+    shuffleBtn?.addEventListener('click', shuffleFlashcards);
+    resetBtn?.addEventListener('click', resetFlashcards);
 
     // Miniserie
     const plantilla = (obra) => `# ${obra} — Guion breve (B1)
