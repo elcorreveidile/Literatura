@@ -81,6 +81,23 @@
     .flashcard.show-answer .flash-answer{display:block}
     .flashcard.show-answer{border-color:#111827}
 
+    /* Quiz */
+    .quiz{margin-top:1.5rem;padding:1rem;border:1px solid var(--border);border-radius:1rem;background:#fff}
+    .quiz h3{margin:.2rem 0 0.5rem 0}
+    .quiz-meta{display:flex;gap:.75rem;align-items:center;font-size:.95rem;color:#475569}
+    .quiz-question{font-weight:700;line-height:1.4;margin:.75rem 0}
+    .quiz-options{display:grid;gap:.5rem}
+    .quiz-options button{display:flex;gap:.6rem;align-items:flex-start;text-align:left;border:1px solid var(--border);border-radius:.75rem;padding:.65rem .8rem;background:#fff;cursor:pointer;transition:border-color .15s ease, box-shadow .15s ease}
+    .quiz-options button:hover{border-color:#111827}
+    .quiz-options button.active{border-color:#111827;box-shadow:0 8px 16px rgba(0,0,0,.05)}
+    .quiz-options .letter{font-weight:800;color:#111827;min-width:20px}
+    .quiz-feedback{margin:.5rem 0 0 0;font-weight:600}
+    .quiz-feedback.ok{color:#15803d}
+    .quiz-feedback.bad{color:#b91c1c}
+    .quiz-actions{display:flex;gap:.5rem;flex-wrap:wrap;margin-top:.5rem}
+    .quiz-hint{display:none;margin-top:.25rem}
+    .quiz-hint.show{display:block}
+
     @media (max-width:899px){.links{display:none}.hamb{display:inline-block}.container{padding:.75rem 1rem}.section{padding:2rem 0}}
     .nav.open .mobile-panel{display:block}
 
@@ -162,6 +179,22 @@
           <span class="muted" id="flashMeta"></span>
         </div>
         <div class="flash-grid" id="flashcards"></div>
+        <div class="quiz" id="quizBox">
+          <h3>Cuestionario interactivo</h3>
+          <div class="quiz-meta">
+            <span id="quizProgress">Pregunta 1/10</span>
+            <span id="quizScore">Aciertos: 0</span>
+          </div>
+          <p class="quiz-question" id="quizQuestion"></p>
+          <div class="quiz-options" id="quizOptions"></div>
+          <div class="quiz-actions">
+            <button class="btn" id="quizHint">💡 Pista</button>
+            <button class="btn primary" id="quizCheck">Comprobar</button>
+            <button class="btn" id="quizNext">Siguiente</button>
+          </div>
+          <p class="quiz-feedback" id="quizFeedback"></p>
+          <p class="quiz-hint muted" id="quizHintText"></p>
+        </div>
       </div>
     </div>
   </section>
@@ -320,22 +353,6 @@
           <div id="chips-ilustracion"></div>
           <ul class="list" id="lista-ilustracion"></ul>
         </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- REPASO -->
-  <section class="section" id="repaso">
-    <div class="container">
-      <h2>🧠 Repaso para el examen</h2>
-      <div class="card">
-        <p class="hint">Pulsa cada tarjeta para revelar la respuesta. Puedes barajar el orden cuando quieras.</p>
-        <div class="flash-controls">
-          <button class="btn" id="shuffleCards">🔀 Barajar</button>
-          <button class="btn" id="resetCards">↩️ Volver al orden original</button>
-          <span class="muted" id="flashMeta"></span>
-        </div>
-        <div class="flash-grid" id="flashcards"></div>
       </div>
     </div>
   </section>
@@ -699,6 +716,145 @@
 
     shuffleBtn?.addEventListener('click', shuffleFlashcards);
     resetBtn?.addEventListener('click', resetFlashcards);
+
+    // Cuestionario interactivo
+    const QUIZ = [
+      {
+        q: '¿Qué obra anónima de 1554 se considera fundadora de la novela picaresca por su realismo crudo y crítica social?',
+        opts: ['El Buscón','Fuenteovejuna','La vida de Lazarillo de Tormes','Don Quijote de la Mancha'],
+        correct: 'C',
+        hint: 'Piensa en el primer antihéroe que narra su propia historia de supervivencia al servicio de varios amos.'
+      },
+      {
+        q: '¿Qué innovación trajo el Lazarillo en su lenguaje literario?',
+        opts: ['Uso de octavas reales','Legitimó el coloquialismo con estilo directo y auténtico','Introdujo el verso libre','Uso de alegorías mitológicas'],
+        correct: 'B',
+        hint: 'Su fuerza está en sonar a habla viva.'
+      },
+      {
+        q: '¿Qué cuatro autores simbolizan el esplendor del Barroco español?',
+        opts: ['Lope, Calderón, Góngora y Quevedo','Garcilaso, Fray Luis, San Juan, Góngora','Cervantes, Lope, Moratín, Cadalso','Bécquer, Zorrilla, Larra, Mesonero'],
+        correct: 'A',
+        hint: 'Piensa en teatro y en las dos corrientes estéticas contrapuestas.'
+      },
+      {
+        q: '¿Cuál de estos pares representa las corrientes barrocas enfrentadas?',
+        opts: ['Neoclasicismo vs. Romanticismo','Culteranismo vs. Conceptismo','Naturalismo vs. Realismo','Vanguardia vs. Costumbrismo'],
+        correct: 'B',
+        hint: 'Góngora y Quevedo encarnan cada una.'
+      },
+      {
+        q: '¿En qué espacio surgió el teatro como entretenimiento de masas durante el Barroco?',
+        opts: ['Palacios reales','Universidades','Corrales de comedias','Salones ilustrados'],
+        correct: 'C',
+        hint: 'Era un patio urbano acondicionado para el público.'
+      },
+      {
+        q: '¿Qué batalla marcó a Cervantes y le dio su apodo?',
+        opts: ['Pavía','Lepanto','San Quintín','Trafalgar'],
+        correct: 'B',
+        hint: 'Perdió movilidad en la mano izquierda allí.'
+      },
+      {
+        q: '¿Cómo se llama la técnica cervantina que muestra varias miradas sobre una misma realidad?',
+        opts: ['Metalenguaje','Perspectivismo','Polisíndeton','Ironía trágica'],
+        correct: 'B',
+        hint: 'Multiplica los puntos de vista.'
+      },
+      {
+        q: '¿Qué tensión recorre el Quijote según el temario?',
+        opts: ['Feudalismo vs. capitalismo','Idealismo vs. realidad','Religión vs. ciencia','Tragedia vs. comedia'],
+        correct: 'B',
+        hint: 'El choque entre la visión del caballero y lo que sucede.'
+      },
+      {
+        q: '¿Qué rasgo define el cambio del Barroco a la Ilustración según el curso?',
+        opts: ['De la claridad a la oscuridad','De la regla a la licencia','Del exceso barroco a la regla y claridad','Del teatro a la épica'],
+        correct: 'C',
+        hint: 'El siglo XVIII busca luz y norma.'
+      },
+      {
+        q: '¿Cuál es el gran contraste entre Renacimiento y Barroco mencionado?',
+        opts: ['Clasicismo vs. medievalismo','Equilibrio vs. contraste','Prosa vs. poesía','Narrativa vs. teatro'],
+        correct: 'B',
+        hint: 'Uno busca armonía, el otro choque y relieve.'
+      },
+    ];
+
+    const quizQuestion = document.getElementById('quizQuestion');
+    const quizOptions = document.getElementById('quizOptions');
+    const quizProgress = document.getElementById('quizProgress');
+    const quizScore = document.getElementById('quizScore');
+    const quizFeedback = document.getElementById('quizFeedback');
+    const quizHintBtn = document.getElementById('quizHint');
+    const quizCheckBtn = document.getElementById('quizCheck');
+    const quizNextBtn = document.getElementById('quizNext');
+    const quizHintText = document.getElementById('quizHintText');
+
+    let quizIndex = 0;
+    let quizSelected = null;
+    let quizPoints = 0;
+    let answered = false;
+
+    function renderQuiz(){
+      const item = QUIZ[quizIndex];
+      quizSelected = null; answered = false;
+      quizQuestion.textContent = item.q;
+      quizOptions.innerHTML = '';
+      ['A','B','C','D'].forEach((letter,i)=>{
+        const btn = document.createElement('button');
+        btn.innerHTML = `<span class="letter">${letter}.</span> <span>${item.opts[i]}</span>`;
+        btn.onclick = ()=> {
+          quizSelected = letter;
+          quizOptions.querySelectorAll('button').forEach(b=> b.classList.remove('active'));
+          btn.classList.add('active');
+        };
+        quizOptions.appendChild(btn);
+      });
+      quizProgress.textContent = `Pregunta ${quizIndex+1}/${QUIZ.length}`;
+      quizScore.textContent = `Aciertos: ${quizPoints}`;
+      quizFeedback.textContent = '';
+      quizFeedback.className = 'quiz-feedback';
+      quizHintText.textContent = '';
+      quizHintText.classList.remove('show');
+    }
+
+    function checkQuiz(){
+      if(quizSelected === null){
+        quizFeedback.textContent = 'Selecciona una opción antes de comprobar.';
+        quizFeedback.className = 'quiz-feedback bad';
+        return;
+      }
+      const correct = QUIZ[quizIndex].correct === quizSelected;
+      if(correct && !answered){
+        quizPoints++;
+        quizScore.textContent = `Aciertos: ${quizPoints}`;
+      }
+      answered = true;
+      quizFeedback.textContent = correct ? '✅ ¡Correcto!' : `❌ Incorrecto. La respuesta correcta es ${QUIZ[quizIndex].correct}.`;
+      quizFeedback.className = `quiz-feedback ${correct ? 'ok' : 'bad'}`;
+    }
+
+    function nextQuiz(){
+      quizIndex++;
+      if(quizIndex >= QUIZ.length){
+        quizFeedback.textContent = `Fin del cuestionario. Puntuación final: ${quizPoints}/${QUIZ.length}. Reiniciamos.`;
+        quizFeedback.className = 'quiz-feedback ok';
+        quizIndex = 0;
+        quizPoints = 0;
+      }
+      renderQuiz();
+    }
+
+    quizCheckBtn?.addEventListener('click', checkQuiz);
+    quizNextBtn?.addEventListener('click', nextQuiz);
+    quizHintBtn?.addEventListener('click', ()=>{
+      const hint = QUIZ[quizIndex].hint;
+      quizHintText.textContent = hint;
+      quizHintText.classList.add('show');
+    });
+
+    renderQuiz();
 
     // Miniserie
     const plantilla = (obra) => `# ${obra} — Guion breve (B1)
