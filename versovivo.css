@@ -1,4 +1,4 @@
-/* VersoVivo Global Styles */
+/* VersoVivo Global Styles - Comprehensive Legibility Fix */
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Lora:wght@400;700&display=swap');
 
 :root {
@@ -14,132 +14,132 @@
     --font-body: 'Lora', serif;
 }
 
-body {
+/* UNIVERSAL RESETS */
+* {
+    background-color: inherit !important;
+}
+
+html, body {
     background-color: var(--color-dark-bg) !important;
     color: var(--color-gold-light) !important;
     font-family: var(--font-body) !important;
 }
 
-/* Header & Nav */
-.nav, header {
-    background-color: var(--color-dark-bg) !important;
-    border-bottom: 1px solid var(--color-border) !important;
-    backdrop-filter: none !important;
+/* TYPOGRAPHY */
+body, p, span, div, section, article, li, td, th, label, a, button {
+    color: var(--color-gold-light) !important;
 }
 
-.brand, .verso-logo {
+h1, h2, h3, h4, h5, h6, .title, .heading {
+    font-family: var(--font-title) !important;
+    color: var(--color-gold-bright) !important;
+}
+
+strong, b, .bold {
+    color: var(--color-gold-bright) !important;
+}
+
+em, i, .italic {
+    color: var(--color-gold-light) !important;
+}
+
+/* HEADER & NAVIGATION */
+.nav, header, nav, .navbar, .navigation {
+    background-color: var(--color-dark-bg) !important;
+    border-bottom: 1px solid var(--color-border) !important;
+}
+
+.brand, .logo, .verso-logo, .site-title {
     font-family: var(--font-title) !important;
     color: var(--color-gold-bright) !important;
     font-weight: 700 !important;
 }
 
-.links a, .nav-link, .verso-nav-link, a {
+.links a, .nav-link, .verso-nav-link, nav a, .navbar a, .menu a {
     color: var(--color-gold-light) !important;
-    font-family: var(--font-body) !important;
-    transition: color 0.3s ease !important;
     background: transparent !important;
     border: none !important;
+    text-decoration: none !important;
 }
 
-.links a:hover, .nav-link:hover, .verso-nav-link:hover, a:hover {
+.links a:hover, .nav-link:hover, .verso-nav-link:hover, nav a:hover, .navbar a:hover, .menu a:hover {
     color: var(--color-gold-bright) !important;
 }
 
-/* Sections & Containers */
-.section, section {
-    background: transparent !important;
-    padding: 4rem 0 !important;
+/* SECTIONS & CONTAINERS */
+.section, section, .container, .content, main, article {
+    background-color: var(--color-dark-bg) !important;
 }
 
-.container {
-    max-width: 1100px;
-    margin: 0 auto;
-    padding: 1rem;
-}
-
-/* Typography */
-h1, h2, h3, h4, h5, h6 {
-    font-family: var(--font-title) !important;
-    color: var(--color-gold-bright) !important;
-}
-
-p, .muted, .hint, span {
-    color: var(--color-gold-light) !important;
-}
-
-/* Cards */
-.card, .verso-content-card {
+/* CARDS & BOXES */
+.card, .verso-content-card, .box, .panel, .widget, .callout, 
+.alert, .message, .notification, .modal, .dialog {
     background-color: var(--color-dark-secondary) !important;
     border: 1px solid var(--color-border) !important;
     border-radius: 1rem !important;
     color: var(--color-gold-light) !important;
-    transition: transform 0.3s ease, border-color 0.3s ease !important;
 }
 
-.card:hover {
+.card:hover, .box:hover {
     border-color: var(--color-gold-bright) !important;
-    transform: translateY(-4px) !important;
 }
 
-/* Buttons */
-.btn, button, .verso-button-primary, .verso-button-secondary,
-input[type="button"], input[type="submit"], input[type="reset"] {
+/* BUTTONS - UNIVERSAL */
+.btn, button, .button, input[type="button"], input[type="submit"], 
+input[type="reset"], a.btn, a.button, .action, [role="button"] {
     font-family: var(--font-body) !important;
     border-radius: 2rem !important;
     padding: 0.8rem 2rem !important;
     transition: all 0.3s ease !important;
-    cursor: pointer;
+    cursor: pointer !important;
     font-weight: 700 !important;
 }
 
-/* Primary buttons - Dorado con texto oscuro */
-.btn.primary, .verso-button-primary,
-button:not(.hamb):not(.mobile-panel button):not([class*="secondary"]):not([class*="outline"]),
-input[type="submit"] {
+/* PRIMARY BUTTONS */
+.btn.primary, .verso-button-primary, button:not(.hamb):not(.secondary):not(.outline),
+input[type="submit"], .btn-primary, .button-primary, .action-primary {
     background-color: var(--color-gold-bright) !important;
     color: var(--color-dark-bg) !important;
     border: none !important;
 }
 
-.btn.primary:hover, .verso-button-primary:hover,
-button:not(.hamb):not(.mobile-panel button):not([class*="secondary"]):not([class*="outline"]):hover,
-input[type="submit"]:hover {
+.btn.primary:hover, .verso-button-primary:hover, button:not(.hamb):not(.secondary):hover,
+input[type="submit"]:hover, .btn-primary:hover {
     background-color: #e0b896 !important;
     box-shadow: 0 8px 20px rgba(212, 165, 116, 0.3) !important;
     transform: translateY(-2px) !important;
 }
 
-/* Secondary buttons - Borde dorado con fondo transparente */
-.btn:not(.primary), .verso-button-secondary,
-button.secondary, button[class*="outline"],
-input[type="button"], input[type="reset"] {
+/* SECONDARY BUTTONS */
+.btn.secondary, .verso-button-secondary, .btn:not(.primary), button.secondary, 
+button[class*="outline"], input[type="button"], input[type="reset"], 
+.btn-secondary, .button-secondary, .action-secondary {
     background-color: transparent !important;
     color: var(--color-gold-light) !important;
     border: 1px solid var(--color-gold-light) !important;
 }
 
-.btn:not(.primary):hover, .verso-button-secondary:hover,
-button.secondary:hover, button[class*="outline"]:hover,
-input[type="button"]:hover, input[type="reset"]:hover {
+.btn.secondary:hover, .verso-button-secondary:hover, .btn:not(.primary):hover,
+button.secondary:hover, button[class*="outline"]:hover, input[type="button"]:hover {
     background-color: rgba(212, 165, 116, 0.1) !important;
     border-color: var(--color-gold-bright) !important;
     color: var(--color-gold-bright) !important;
 }
 
-/* Hamburger menu button */
-.hamb {
+/* HAMBURGER MENU */
+.hamb, .hamburger, .menu-toggle {
     background-color: var(--color-dark-secondary) !important;
     color: var(--color-gold-light) !important;
     border: 1px solid var(--color-border) !important;
 }
 
-.hamb:hover {
+.hamb:hover, .hamburger:hover, .menu-toggle:hover {
     background-color: rgba(212, 165, 116, 0.1) !important;
     border-color: var(--color-gold-bright) !important;
     color: var(--color-gold-bright) !important;
 }
 
-/* Footer */
+/* FOOTER */
 .footer, footer {
     background-color: var(--color-dark-bg) !important;
     border-top: 1px solid var(--color-border) !important;
@@ -147,51 +147,57 @@ input[type="button"]:hover, input[type="reset"]:hover {
     padding: 2rem 0 !important;
 }
 
-/* Mobile panel */
-.mobile-panel {
+/* MOBILE PANEL */
+.mobile-panel, .mobile-menu {
     background-color: var(--color-dark-bg) !important;
     border-bottom: 1px solid var(--color-border) !important;
 }
 
-.mobile-panel a {
+.mobile-panel a, .mobile-menu a {
     background: transparent !important;
     color: var(--color-gold-light) !important;
     border: 1px solid var(--color-border) !important;
-    transition: all 0.3s ease !important;
 }
 
-.mobile-panel a:hover {
+.mobile-panel a:hover, .mobile-menu a:hover {
     color: var(--color-gold-bright) !important;
     border-color: var(--color-gold-bright) !important;
 }
 
-/* Chips */
-.chip {
+/* CHIPS & TAGS */
+.chip, .tag, .badge, .label {
     background: transparent !important;
     border-color: var(--color-gold-light) !important;
     color: var(--color-gold-light) !important;
 }
 
-.chip.active {
+.chip.active, .tag.active, .badge.active, .label.active {
     background: var(--color-gold-bright) !important;
     color: var(--color-dark-bg) !important;
     border-color: var(--color-gold-bright) !important;
 }
 
-/* Tables */
-table, th, td {
+/* TABLES */
+table, tbody, thead, tfoot, tr, td, th {
     border-color: var(--color-border) !important;
     color: var(--color-gold-light) !important;
+    background-color: var(--color-dark-secondary) !important;
 }
 
-th {
+th, thead {
     background-color: var(--color-dark-secondary) !important;
     color: var(--color-gold-bright) !important;
+    font-weight: 700 !important;
 }
 
-/* Input fields */
+tr:hover {
+    background-color: rgba(212, 165, 116, 0.1) !important;
+}
+
+/* FORMS & INPUTS */
 input[type="text"], input[type="email"], input[type="password"], 
-textarea, select {
+input[type="search"], input[type="url"], input[type="tel"], input[type="number"],
+textarea, select, .form-control, .input, .field {
     background-color: var(--color-dark-secondary) !important;
     color: var(--color-gold-light) !important;
     border: 1px solid var(--color-border) !important;
@@ -199,14 +205,43 @@ textarea, select {
     padding: 0.6rem !important;
 }
 
-input[type="text"]:focus, input[type="email"]:focus, input[type="password"]:focus,
-textarea:focus, select:focus {
+input::placeholder, textarea::placeholder {
+    color: var(--color-muted-text) !important;
+}
+
+input:focus, textarea:focus, select:focus {
     border-color: var(--color-gold-bright) !important;
     outline: none !important;
     box-shadow: 0 0 0 2px rgba(212, 165, 116, 0.2) !important;
+    background-color: var(--color-dark-secondary) !important;
+    color: var(--color-gold-light) !important;
 }
 
-/* Scrollbar */
+/* RADIO & CHECKBOXES */
+input[type="radio"], input[type="checkbox"] {
+    accent-color: var(--color-gold-bright) !important;
+}
+
+input[type="radio"] + label, input[type="checkbox"] + label {
+    color: var(--color-gold-light) !important;
+}
+
+/* LINKS */
+a, .link, [href] {
+    color: var(--color-gold-light) !important;
+    text-decoration: none !important;
+}
+
+a:hover, .link:hover, [href]:hover {
+    color: var(--color-gold-bright) !important;
+}
+
+/* LISTS */
+ul, ol, li, dl, dt, dd {
+    color: var(--color-gold-light) !important;
+}
+
+/* SCROLLBAR */
 ::-webkit-scrollbar {
     width: 10px;
     height: 10px;
@@ -225,16 +260,99 @@ textarea:focus, select:focus {
     background: var(--color-gold-bright);
 }
 
-/* List items */
-li {
+/* CODE & PRE */
+code, pre, .code, .highlight {
+    background-color: var(--color-dark-secondary) !important;
+    color: var(--color-gold-light) !important;
+    border: 1px solid var(--color-border) !important;
+}
+
+/* BLOCKQUOTE */
+blockquote, .quote {
+    border-left: 4px solid var(--color-gold-light) !important;
+    color: var(--color-gold-light) !important;
+    background-color: var(--color-dark-secondary) !important;
+    padding: 1rem !important;
+}
+
+/* SPECIFIC ACTIVITY PAGE FIXES */
+.quiz, .activity, .exercise, .question, .answer {
+    background-color: var(--color-dark-secondary) !important;
+    color: var(--color-gold-light) !important;
+    border: 1px solid var(--color-border) !important;
+}
+
+.quiz-question, .quiz-option, .question-text, .option-text {
     color: var(--color-gold-light) !important;
 }
 
-/* Strong and emphasis */
-strong, b {
+.quiz-button, .check-button, .submit-answer {
+    background-color: var(--color-gold-bright) !important;
+    color: var(--color-dark-bg) !important;
+    border: none !important;
+}
+
+.quiz-button:hover, .check-button:hover, .submit-answer:hover {
+    background-color: #e0b896 !important;
+}
+
+/* MODAL & DIALOGS */
+.modal, .dialog, .popup, .overlay {
+    background-color: var(--color-dark-bg) !important;
+}
+
+.modal-content, .dialog-content {
+    background-color: var(--color-dark-secondary) !important;
+    color: var(--color-gold-light) !important;
+    border: 1px solid var(--color-border) !important;
+}
+
+/* TABS & ACCORDIONS */
+.tabs, .tab, .accordion, .tab-content, .accordion-item {
+    background-color: var(--color-dark-secondary) !important;
+    color: var(--color-gold-light) !important;
+    border: 1px solid var(--color-border) !important;
+}
+
+.tab.active, .accordion-item.active {
+    background-color: rgba(212, 165, 116, 0.1) !important;
+    border-color: var(--color-gold-bright) !important;
+}
+
+/* DROPDOWNS & SELECTS */
+.dropdown, .select, .menu {
+    background-color: var(--color-dark-secondary) !important;
+    color: var(--color-gold-light) !important;
+    border: 1px solid var(--color-border) !important;
+}
+
+.dropdown-item, .menu-item {
+    color: var(--color-gold-light) !important;
+}
+
+.dropdown-item:hover, .menu-item:hover {
+    background-color: rgba(212, 165, 116, 0.1) !important;
     color: var(--color-gold-bright) !important;
 }
 
-em, i {
-    color: var(--color-gold-light) !important;
+/* PROGRESS & LOADING */
+progress, .progress, .loading, .spinner {
+    background-color: var(--color-dark-secondary) !important;
+    color: var(--color-gold-bright) !important;
 }
+
+/* ALERTS & MESSAGES */
+.alert, .alert-info, .alert-success, .alert-warning, .alert-error, .alert-danger {
+    background-color: var(--color-dark-secondary) !important;
+    color: var(--color-gold-light) !important;
+    border: 1px solid var(--color-border) !important;
+}
+
+/* UTILITY CLASSES */
+.text-light { color: var(--color-gold-light) !important; }
+.text-bright { color: var(--color-gold-bright) !important; }
+.text-dark { color: var(--color-dark-bg) !important; }
+.bg-dark { background-color: var(--color-dark-bg) !important; }
+.bg-secondary { background-color: var(--color-dark-secondary) !important; }
+.border-gold { border-color: var(--color-gold-light) !important; }
+.border-bright { border-color: var(--color-gold-bright) !important; }
