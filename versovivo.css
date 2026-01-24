@@ -364,3 +364,26 @@ progress, .progress, .loading, .spinner {
 .bg-secondary { background-color: var(--color-dark-secondary) !important; }
 .border-gold { border-color: var(--color-gold-light) !important; }
 .border-bright { border-color: var(--color-gold-bright) !important; }
+
+
+/* AGGRESSIVE BUTTON TEXT FIXES - HIGHEST SPECIFICITY */
+.tab-btn, .tab-btn span, .tab-btn * {
+    color: #1a1a2e !important;
+}
+
+.submit-btn, .submit-btn * {
+    color: #1a1a2e !important;
+}
+
+button[class*="btn"], button[class*="btn"] * {
+    color: #1a1a2e !important;
+}
+
+.tab-btn.active, .tab-btn.active span, .tab-btn.active * {
+    color: white !important;
+}
+
+/* Ensure text inside buttons is always readable */
+button span, button label, button div, button p {
+    color: inherit !important;
+}
