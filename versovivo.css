@@ -26,7 +26,7 @@ html, body {
 }
 
 /* TYPOGRAPHY */
-body, p, span, div, section, article, li, td, th, label, a, button {
+body, p, span, div, section, article, li, td, th, label, a {
     color: var(--color-gold-light) !important;
 }
 
@@ -93,9 +93,10 @@ input[type="reset"], a.btn, a.button, .action, [role="button"] {
     transition: all 0.3s ease !important;
     cursor: pointer !important;
     font-weight: 700 !important;
+    color: var(--color-dark-bg) !important;
 }
 
-/* PRIMARY BUTTONS */
+/* PRIMARY BUTTONS - YELLOW/GOLD BACKGROUND */
 .btn.primary, .verso-button-primary, button:not(.hamb):not(.secondary):not(.outline),
 input[type="submit"], .btn-primary, .button-primary, .action-primary {
     background-color: var(--color-gold-bright) !important;
@@ -103,11 +104,18 @@ input[type="submit"], .btn-primary, .button-primary, .action-primary {
     border: none !important;
 }
 
+.btn.primary, .verso-button-primary, button:not(.hamb):not(.secondary):not(.outline),
+input[type="submit"], .btn-primary, .button-primary, .action-primary,
+button {
+    color: var(--color-dark-bg) !important;
+}
+
 .btn.primary:hover, .verso-button-primary:hover, button:not(.hamb):not(.secondary):hover,
 input[type="submit"]:hover, .btn-primary:hover {
     background-color: #e0b896 !important;
     box-shadow: 0 8px 20px rgba(212, 165, 116, 0.3) !important;
     transform: translateY(-2px) !important;
+    color: var(--color-dark-bg) !important;
 }
 
 /* SECONDARY BUTTONS */
