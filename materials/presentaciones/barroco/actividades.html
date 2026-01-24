@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Actividades y tareas - Barroco español</title>
+    <title>Actividades y Tareas - Barroco Español</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -71,9 +71,6 @@
         .footer { border-top: 1px solid rgba(255, 255, 255, 0.2); padding: 2rem 0; color: rgba(255, 255, 255, 0.7);
                   text-align: center; font-size: 0.9rem; }
         .footer .container { max-width: 1200px; margin: 0 auto; }
-        .footer-content { display: flex; align-items: center; justify-content: center; gap: 1rem; flex-wrap: wrap; text-align: left; }
-        .footer-logo { height: 52px; width: auto; }
-        .footer-text { margin: 0; }
 
         .mobile-menu-btn { position: fixed; top: 1.5rem; left: 1.5rem; z-index: 2000; width: 50px; height: 50px;
                            background: var(--gradient-accent); border: none; border-radius: 12px; display: none; cursor: pointer; }
@@ -106,6 +103,7 @@
                 <li><a href="estilos.html" class="nav-link"><span>🖋️</span> Estilos literarios</a></li>
                 <li><a href="obras.html" class="nav-link"><span>📚</span> Obras fundamentales</a></li>
                 <li><a href="actividades.html" class="nav-link active"><span>🎯</span> Actividades y tareas</a></li>
+                <li style="margin-top: 1rem; padding-top: 1rem; border-top: 1px solid rgba(255,255,255,0.1);"><a href="../../index.html#barroco" class="nav-link"><span>↩️</span> Volver al portal</a></li>
             </ul>
         </nav>
     </aside>
@@ -113,19 +111,19 @@
     <main class="main-content">
         <div class="container">
             <div class="content-card">
-                <h1>🎯 Actividades y tareas del Barroco</h1>
+                <h1>🎯 Actividades y Tareas del Barroco</h1>
 
                 <p>
-                    Esta sección contiene <strong>actividades interactivas</strong> y <strong>tareas
-                    dinámicas para clase</strong> sobre el Barroco español. Las actividades te ayudarán
+                    Esta sección contiene <strong>actividades interactivas</strong> (1 hora) y <strong>tareas
+                    dinámicas para clase</strong> (1 hora) sobre el Barroco español. Las actividades te ayudarán
                     a consolidar los conocimientos adquiridos sobre autores, estilos y obras.
                 </p>
 
-                <h2>📊 PARTE 1: Actividades interactivas</h2>
+                <h2>📊 PARTE 1: Actividades Interactivas (1 hora)</h2>
 
                 <!-- ACTIVIDAD 1: QUIZ -->
                 <div class="activity-box">
-                    <h3>Actividad 1: Quiz del Barroco</h3>
+                    <h3>Actividad 1: Quiz del Barroco (15 min)</h3>
                     <p><strong>Instrucciones</strong>: Lee cada pregunta y selecciona la respuesta correcta. Al final, comprueba tus resultados.</p>
 
                     <div class="quiz-question" id="q1">
@@ -215,7 +213,7 @@
 
                 <!-- ACTIVIDAD 2: IDENTIFICAR ESTILOS -->
                 <div class="activity-box">
-                    <h3>Actividad 2: ¿Culteranismo o conceptismo?</h3>
+                    <h3>Actividad 2: ¿Culteranismo o Conceptismo? (15 min)</h3>
                     <p><strong>Instrucciones</strong>: Lee cada fragmento e identifica si pertenece al <strong>culteranismo</strong> (Góngora) o al <strong>conceptismo</strong> (Quevedo).</p>
 
                     <div class="quiz-question" id="estilo1">
@@ -250,30 +248,30 @@
 
                 <!-- ACTIVIDAD 3: RELACIONAR AUTORES Y OBRAS -->
                 <div class="activity-box">
-                    <h3>Actividad 3: Relaciona autores y obras</h3>
+                    <h3>Actividad 3: Relaciona Autores y Obras (10 min)</h3>
                     <p><strong>Instrucciones</strong>: Escribe el número de la obra junto al autor correcto.</p>
 
                     <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin: 1.5rem 0;">
                         <div>
                             <h4>Autores:</h4>
                             <ul style="list-style: none; padding: 0;">
-                                <li style="background: white; padding: 1rem; margin: 0.5rem 0; border-radius: 8px;">A. Luis de Góngora: <input type="text" id="autor-a" style="width: 60px; display: inline-block; padding: 0.25rem;" placeholder="ej: 2,5"></li>
-                                <li style="background: white; padding: 1rem; margin: 0.5rem 0; border-radius: 8px;">B. Lope de Vega: <input type="text" id="autor-b" style="width: 60px; display: inline-block; padding: 0.25rem;" placeholder="ej: 2,5"></li>
-                                <li style="background: white; padding: 1rem; margin: 0.5rem 0; border-radius: 8px;">C. Francisco de Quevedo: <input type="text" id="autor-c" style="width: 60px; display: inline-block; padding: 0.25rem;" placeholder="ej: 2,5"></li>
-                                <li style="background: white; padding: 1rem; margin: 0.5rem 0; border-radius: 8px;">D. Calderón de la Barca: <input type="text" id="autor-d" style="width: 60px; display: inline-block; padding: 0.25rem;" placeholder="ej: 2,5"></li>
+                                <li style="background: white; padding: 1rem; margin: 0.5rem 0; border-radius: 8px;">A. Lope de Vega: <input type="text" id="autor-a" style="width: 60px; display: inline-block; padding: 0.25rem;" placeholder="ej: 1,2"></li>
+                                <li style="background: white; padding: 1rem; margin: 0.5rem 0; border-radius: 8px;">B. Calderón: <input type="text" id="autor-b" style="width: 60px; display: inline-block; padding: 0.25rem;" placeholder="ej: 3,4"></li>
+                                <li style="background: white; padding: 1rem; margin: 0.5rem 0; border-radius: 8px;">C. Góngora: <input type="text" id="autor-c" style="width: 60px; display: inline-block; padding: 0.25rem;" placeholder="ej: 5,6"></li>
+                                <li style="background: white; padding: 1rem; margin: 0.5rem 0; border-radius: 8px;">D. Quevedo: <input type="text" id="autor-d" style="width: 60px; display: inline-block; padding: 0.25rem;" placeholder="ej: 7,8"></li>
                             </ul>
                         </div>
                         <div>
                             <h4>Obras:</h4>
                             <ol>
-                                <li>Los sueños</li>
                                 <li>Fuenteovejuna</li>
-                                <li>Soledades</li>
-                                <li>La vida es sueño</li>
-                                <li>El Buscón</li>
                                 <li>El caballero de Olmedo</li>
-                                <li>Fábula de Polifemo y Galatea</li>
+                                <li>La vida es sueño</li>
                                 <li>El alcalde de Zalamea</li>
+                                <li>Soledades</li>
+                                <li>Fábula de Polifemo y Galatea</li>
+                                <li>El Buscón</li>
+                                <li>Los sueños</li>
                             </ol>
                         </div>
                     </div>
@@ -284,7 +282,7 @@
 
                 <!-- ACTIVIDAD 4: ANÁLISIS DE FRAGMENTO -->
                 <div class="interactive-box">
-                    <h3>Actividad 4: Análisis de un fragmento barroco (20 min)</h3>
+                    <h3>Actividad 4: Análisis de un Fragmento Barroco (20 min)</h3>
                     <p><strong>Instrucciones</strong>: Lee el siguiente fragmento de <em>La vida es sueño</em> y responde las preguntas.</p>
 
                     <div style="background: #f8f9fa; padding: 1.5rem; border-radius: 12px; margin: 1rem 0; font-style: italic; border-left: 4px solid #8B5CF6;">
@@ -321,11 +319,11 @@
                     </div>
                 </div>
 
-                <h2>✏️ PARTE 2: Tareas dinámicas para clase (1 hora)</h2>
+                <h2>✏️ PARTE 2: Tareas Dinámicas para Clase (1 hora)</h2>
 
                 <!-- TAREA 1: DEBATE -->
                 <div class="task-box">
-                    <h3>Tarea 1: Debate literario - Góngora vs. Quevedo (20 min)</h3>
+                    <h3>Tarea 1: Debate Literario - Góngora vs. Quevedo (20 min)</h3>
                     <span class="timer">⏱️ 20 minutos</span>
 
                     <h4>🎯 Objetivo:</h4>
@@ -375,7 +373,7 @@
 
                 <!-- TAREA 2: TALLER DE ESCRITURA -->
                 <div class="task-box">
-                    <h3>Tarea 2: Taller de escritura barroca (20 min)</h3>
+                    <h3>Tarea 2: Taller de Escritura Barroca (20 min)</h3>
                     <span class="timer">⏱️ 20 minutos</span>
 
                     <h4>🎯 Objetivo:</h4>
@@ -445,7 +443,7 @@
 
                 <!-- TAREA 3: ANÁLISIS COMPARATIVO -->
                 <div class="task-box">
-                    <h3>Tarea 3: Mesa redonda - el teatro barroco y el cine actual (20 min)</h3>
+                    <h3>Tarea 3: Mesa Redonda - El Teatro Barroco y el Cine Actual (20 min)</h3>
                     <span class="timer">⏱️ 20 minutos</span>
 
                     <h4>🎯 Objetivo:</h4>
@@ -477,7 +475,7 @@
                     <button class="btn" onclick="saveMesa()">💾 Guardar Conclusiones</button>
                 </div>
 
-                <h2>📥 Exportar resultados</h2>
+                <h2>📥 Exportar Resultados</h2>
                 <div style="background: linear-gradient(135deg, rgba(67, 172, 232, 0.1), rgba(67, 172, 232, 0.05)); border-radius: 12px; padding: 2rem; text-align: center;">
                     <p>Una vez completadas las actividades, puedes descargar un resumen de tus respuestas:</p>
                     <button class="btn" onclick="exportResults()" style="font-size: 1.1rem; padding: 1rem 2rem;">📄 Descargar Resumen de Actividades</button>
@@ -486,9 +484,9 @@
         </div>
 
         <footer class="footer">
-            <div class="container footer-content">
-                <img src="../../img/IMG_3551.PNG" alt="Logotipo del Centro de Lenguas Modernas de la Universidad de Granada" class="footer-logo">
-                <p class="footer-text">© <span id="y"></span> Curso: Literatura española hasta el siglo XVIII · Centro de Lenguas Modernas - Universidad de Granada · Profesor Javier Benítez Laínez</p>
+            <div class="container" style="display: flex; align-items: center; justify-content: center; gap: 1rem; flex-wrap: wrap;">
+                <img src="../../img/logo-clm.png" alt="Centro de Lenguas Modernas" style="height: 40px; vertical-align: middle;">
+                <span>© <span id="y"></span> Curso: Literatura española hasta el siglo XVIII · Centro de Lenguas Modernas - Universidad de Granada · Profesor Javier Benítez Laínez</span>
             </div>
         </footer>
     </main>
@@ -564,10 +562,10 @@
 
         function checkMatching() {
             const answers = {
-                'a': '3,7', // Góngora: Soledades; Fábula de Polifemo y Galatea
-                'b': '2,6', // Lope: Fuenteovejuna; El caballero de Olmedo
-                'c': '1,5', // Quevedo: Los sueños; El Buscón
-                'd': '4,8'  // Calderón: La vida es sueño; El alcalde de Zalamea
+                'a': '1,2',
+                'b': '3,4',
+                'c': '5,6',
+                'd': '7,8'
             };
 
             let correct = 0;
@@ -585,7 +583,7 @@
                 resultDiv.innerHTML = '🎉 ¡Perfecto! Todas las respuestas son correctas.';
                 resultDiv.style.color = '#10B981';
             } else {
-                resultDiv.innerHTML = `Tienes ${correct}/${total} correctas. Respuestas: A(3,7), B(2,6), C(1,5), D(4,8)`;
+                resultDiv.innerHTML = `Tienes ${correct}/${total} correctas. Respuestas: A(1,2), B(3,4), C(5,6), D(7,8)`;
                 resultDiv.style.color = '#F59E0B';
             }
         }
