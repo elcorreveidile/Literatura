@@ -1,0 +1,78 @@
+/* VersoVivo Global Styles */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Lora:wght@400;700&display=swap');
+
+:root {
+    --color-gold: #d4a574;
+    --color-dark-bg: #1a1a1a;
+    --color-dark-secondary: #2a2a2a;
+    --color-light-text: #e8e8e8;
+    --color-muted-text: #b0b0b0;
+    --color-border: rgba(212, 165, 116, 0.2);
+    --font-title: 'Playfair Display', serif;
+    --font-body: 'Lora', serif;
+}
+
+body {
+    background-color: var(--color-dark-bg) !important;
+    color: var(--color-light-text) !important;
+    font-family: var(--font-body) !important;
+}
+
+.nav, header {
+    background-color: var(--color-dark-bg) !important;
+    border-bottom: 1px solid var(--color-border) !important;
+}
+
+.brand, .verso-logo {
+    font-family: var(--font-title) !important;
+    color: var(--color-gold) !important;
+    font-weight: 700 !important;
+}
+
+.links a, .nav-link, .verso-nav-link {
+    color: var(--color-muted-text) !important;
+    background: transparent !important;
+    border: none !important;
+}
+
+.links a:hover {
+    color: var(--color-gold) !important;
+}
+
+.section, section {
+    background: transparent !important;
+}
+
+h1, h2, h3 {
+    font-family: var(--font-title) !important;
+    color: var(--color-light-text) !important;
+}
+
+.card {
+    background-color: var(--color-dark-secondary) !important;
+    border: 1px solid var(--color-border) !important;
+    border-radius: 1rem !important;
+}
+
+.btn, button, input[type="submit"] {
+    border-radius: 2rem !important;
+    padding: 0.8rem 2rem !important;
+    font-weight: 700 !important;
+}
+
+.btn.primary, input[type="submit"], button:not(.hamb) {
+    background-color: var(--color-gold) !important;
+    color: var(--color-dark-bg) !important;
+    border: none !important;
+}
+
+.btn:not(.primary), button.secondary {
+    background-color: transparent !important;
+    color: var(--color-light-text) !important;
+    border: 1px solid var(--color-gold) !important;
+}
+
+.footer, footer {
+    background-color: var(--color-dark-bg) !important;
+    border-top: 1px solid var(--color-border) !important;
+}
