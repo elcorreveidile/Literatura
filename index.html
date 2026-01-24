@@ -70,34 +70,6 @@
     th,td{border:1px solid var(--border);padding:.6rem;text-align:left}
     th{background:#f8fafc}
 
-    /* Flashcards */
-    .flash-controls{display:flex;gap:.5rem;flex-wrap:wrap;margin-bottom:1rem;align-items:center}
-    .flash-grid{display:grid;gap:1rem;grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}
-    .flashcard{border:1px solid var(--border);border-radius:1rem;padding:1rem;background:#fff;text-align:left;cursor:pointer;transition:transform .15s ease, box-shadow .15s ease;min-height:160px}
-    .flashcard:hover{transform:translateY(-2px);box-shadow:0 12px 30px rgba(0,0,0,.06)}
-    .flash-label{font-size:.85rem;color:#475569;font-weight:600}
-    .flash-question{margin:.4rem 0 .6rem 0;font-weight:700;line-height:1.3}
-    .flash-answer{margin:0;color:#111827;display:none;line-height:1.35}
-    .flashcard.show-answer .flash-answer{display:block}
-    .flashcard.show-answer{border-color:#111827}
-
-    /* Quiz */
-    .quiz{margin-top:1.5rem;padding:1rem;border:1px solid var(--border);border-radius:1rem;background:#fff}
-    .quiz h3{margin:.2rem 0 0.5rem 0}
-    .quiz-meta{display:flex;gap:.75rem;align-items:center;font-size:.95rem;color:#475569}
-    .quiz-question{font-weight:700;line-height:1.4;margin:.75rem 0}
-    .quiz-options{display:grid;gap:.5rem}
-    .quiz-options button{display:flex;gap:.6rem;align-items:flex-start;text-align:left;border:1px solid var(--border);border-radius:.75rem;padding:.65rem .8rem;background:#fff;cursor:pointer;transition:border-color .15s ease, box-shadow .15s ease}
-    .quiz-options button:hover{border-color:#111827}
-    .quiz-options button.active{border-color:#111827;box-shadow:0 8px 16px rgba(0,0,0,.05)}
-    .quiz-options .letter{font-weight:800;color:#111827;min-width:20px}
-    .quiz-feedback{margin:.5rem 0 0 0;font-weight:600}
-    .quiz-feedback.ok{color:#15803d}
-    .quiz-feedback.bad{color:#b91c1c}
-    .quiz-actions{display:flex;gap:.5rem;flex-wrap:wrap;margin-top:.5rem}
-    .quiz-hint{display:none;margin-top:.25rem}
-    .quiz-hint.show{display:block}
-
     @media (max-width:899px){.links{display:none}.hamb{display:inline-block}.container{padding:.75rem 1rem}.section{padding:2rem 0}}
     .nav.open .mobile-panel{display:block}
 
@@ -131,7 +103,7 @@
         <a href="#cervantes">Cervantes</a>
         <a href="#barroco">Barroco</a>
         <a href="#ilustracion">Ilustración</a>
-        <a href="#repaso">Repaso para el examen</a>
+        <a href="repaso.html">Repaso</a>
         <a href="#descargas">Descargas</a>
         <a href="#foro">Foro</a>
         <a href="#miniserie">Miniserie</a>
@@ -146,7 +118,7 @@
         <a href="#cervantes">Cervantes</a>
         <a href="#barroco">Barroco</a>
         <a href="#ilustracion">Ilustración</a>
-        <a href="#repaso">Repaso para el examen</a>
+        <a href="repaso.html">Repaso</a>
         <a href="#descargas">Descargas</a>
         <a href="#foro">Foro</a>
         <a href="#miniserie">Miniserie</a>
@@ -160,42 +132,6 @@
     <div class="container">
       <h1>Literatura española hasta el siglo XVIII</h1>
       <p class="muted">Cinco épocas, materiales completos y <b>cuadernos de la sesión</b>. En móvil, los PDF se abren dentro de la web (botón <b>Volver</b>).</p>
-    </div>
-  </section>
-
-  <!-- REPASO -->
-  <section class="section" id="repaso">
-    <div class="container">
-      <h2>🧠 Repaso para el examen</h2>
-      <div class="card">
-        <p class="hint">Pulsa cada tarjeta para revelar la respuesta. Puedes barajar el orden cuando quieras.</p>
-        <div style="margin:0 0 1rem 0;display:flex;gap:.5rem;flex-wrap:wrap">
-          <button class="btn primary" data-pdf="materials/presentaciones/repaso.pdf">📑 Ver presentación de repaso (PDF)</button>
-          <a class="btn" href="materials/presentaciones/repaso.pdf" target="_blank" rel="noopener">↗️ Abrir en pestaña nueva</a>
-        </div>
-        <div class="flash-controls">
-          <button class="btn" id="shuffleCards">🔀 Barajar</button>
-          <button class="btn" id="resetCards">↩️ Volver al orden original</button>
-          <span class="muted" id="flashMeta"></span>
-        </div>
-        <div class="flash-grid" id="flashcards"></div>
-        <div class="quiz" id="quizBox">
-          <h3>Cuestionario interactivo</h3>
-          <div class="quiz-meta">
-            <span id="quizProgress">Pregunta 1/10</span>
-            <span id="quizScore">Aciertos: 0</span>
-          </div>
-          <p class="quiz-question" id="quizQuestion"></p>
-          <div class="quiz-options" id="quizOptions"></div>
-          <div class="quiz-actions">
-            <button class="btn" id="quizHint">💡 Pista</button>
-            <button class="btn primary" id="quizCheck">Comprobar</button>
-            <button class="btn" id="quizNext">Siguiente</button>
-          </div>
-          <p class="quiz-feedback" id="quizFeedback"></p>
-          <p class="quiz-hint muted" id="quizHintText"></p>
-        </div>
-      </div>
     </div>
   </section>
 
@@ -438,7 +374,10 @@
   </section>
 
   <footer class="footer">
-    <div class="container">© <span id="y"></span> Curso: Literatura española hasta el siglo XVIII · Centro de Lenguas Modernas - Universidad de Granada · Profesor Javier Benítez Laínez</div>
+    <div class="container" style="display: flex; align-items: center; justify-content: center; gap: 1rem; flex-wrap: wrap;">
+      <img src="materials/img/logo-clm.png" alt="Centro de Lenguas Modernas" style="height: 40px; vertical-align: middle;">
+      <span>© <span id="y"></span> Curso: Literatura española hasta el siglo XVIII · Centro de Lenguas Modernas - Universidad de Granada · Profesor Javier Benítez Laínez</span>
+    </div>
   </footer>
 
   <!-- Visor PDF -->
@@ -638,223 +577,6 @@
     renderCuadernos('Cervantes','chips-cervantes','lista-cervantes');
     renderCuadernos('Barroco','chips-barroco','lista-barroco');
     renderCuadernos('Ilustración','chips-ilustracion','lista-ilustracion');
-
-    // Flashcards (Repaso)
-    const flashContainer = document.getElementById('flashcards');
-    const flashMeta = document.getElementById('flashMeta');
-    const shuffleBtn = document.getElementById('shuffleCards');
-    const resetBtn = document.getElementById('resetCards');
-    let flashOriginal = [];
-    let flashCurrent = [];
-
-    function parseCSV(text){
-      const rows=[]; let row=[]; let field=''; let inQuotes=false;
-      for(let i=0;i<text.length;i++){
-        const c=text[i];
-        if(c === '"'){
-          if(inQuotes && text[i+1] === '"'){ field+='"'; i++; }
-          else{ inQuotes=!inQuotes; }
-        } else if(c === ',' && !inQuotes){
-          row.push(field.trim()); field='';
-        } else if((c === '\n' || c === '\r') && !inQuotes){
-          if(c === '\r' && text[i+1] === '\n'){ i++; }
-          row.push(field.trim()); if(row.some(v=>v!=='')){ rows.push(row); } row=[]; field='';
-        } else {
-          field+=c;
-        }
-      }
-      if(field || row.length){ row.push(field.trim()); rows.push(row); }
-      return rows;
-    }
-
-    function renderFlashcards(data){
-      if(!flashContainer) return;
-      flashContainer.innerHTML='';
-      data.forEach((card, idx)=>{
-        const btn = document.createElement('button');
-        btn.type = 'button';
-        btn.className = 'flashcard';
-        btn.innerHTML = `
-          <div class="flash-label">Tarjeta ${idx+1}</div>
-          <div class="flash-question">${card.q}</div>
-          <div class="flash-answer">${card.a}</div>
-        `;
-        btn.addEventListener('click', ()=> btn.classList.toggle('show-answer'));
-        flashContainer.appendChild(btn);
-      });
-      if(flashMeta){
-        flashMeta.textContent = data.length ? `${data.length} tarjetas listas.` : 'No se pudieron cargar las tarjetas.';
-      }
-    }
-
-    function shuffleFlashcards(){
-      const arr = [...flashCurrent];
-      for(let i=arr.length-1;i>0;i--){
-        const j = Math.floor(Math.random()*(i+1));
-        [arr[i], arr[j]] = [arr[j], arr[i]];
-      }
-      flashCurrent = arr;
-      renderFlashcards(flashCurrent);
-    }
-
-    function resetFlashcards(){
-      flashCurrent = [...flashOriginal];
-      renderFlashcards(flashCurrent);
-    }
-
-    fetch('materials/flashcards.csv')
-      .then(res=>res.text())
-      .then(text=>{
-        const rows = parseCSV(text).filter(r=>r[0] && r[1]);
-        flashOriginal = rows.map(([q,a])=>({ q, a }));
-        flashCurrent = [...flashOriginal];
-        renderFlashcards(flashCurrent);
-      })
-      .catch(()=>{
-        if(flashMeta) flashMeta.textContent = 'No se pudieron cargar las tarjetas.';
-      });
-
-    shuffleBtn?.addEventListener('click', shuffleFlashcards);
-    resetBtn?.addEventListener('click', resetFlashcards);
-
-    // Cuestionario interactivo
-    const QUIZ = [
-      {
-        q: '¿Qué obra anónima de 1554 se considera fundadora de la novela picaresca por su realismo crudo y crítica social?',
-        opts: ['El Buscón','Fuenteovejuna','La vida de Lazarillo de Tormes','Don Quijote de la Mancha'],
-        correct: 'C',
-        hint: 'Piensa en el primer antihéroe que narra su propia historia de supervivencia al servicio de varios amos.'
-      },
-      {
-        q: '¿Qué innovación trajo el Lazarillo en su lenguaje literario?',
-        opts: ['Uso de octavas reales','Legitimó el coloquialismo con estilo directo y auténtico','Introdujo el verso libre','Uso de alegorías mitológicas'],
-        correct: 'B',
-        hint: 'Su fuerza está en sonar a habla viva.'
-      },
-      {
-        q: '¿Qué cuatro autores simbolizan el esplendor del Barroco español?',
-        opts: ['Lope, Calderón, Góngora y Quevedo','Garcilaso, Fray Luis, San Juan, Góngora','Cervantes, Lope, Moratín, Cadalso','Bécquer, Zorrilla, Larra, Mesonero'],
-        correct: 'A',
-        hint: 'Piensa en teatro y en las dos corrientes estéticas contrapuestas.'
-      },
-      {
-        q: '¿Cuál de estos pares representa las corrientes barrocas enfrentadas?',
-        opts: ['Neoclasicismo vs. Romanticismo','Culteranismo vs. Conceptismo','Naturalismo vs. Realismo','Vanguardia vs. Costumbrismo'],
-        correct: 'B',
-        hint: 'Góngora y Quevedo encarnan cada una.'
-      },
-      {
-        q: '¿En qué espacio surgió el teatro como entretenimiento de masas durante el Barroco?',
-        opts: ['Palacios reales','Universidades','Corrales de comedias','Salones ilustrados'],
-        correct: 'C',
-        hint: 'Era un patio urbano acondicionado para el público.'
-      },
-      {
-        q: '¿Qué batalla marcó a Cervantes y le dio su apodo?',
-        opts: ['Pavía','Lepanto','San Quintín','Trafalgar'],
-        correct: 'B',
-        hint: 'Perdió movilidad en la mano izquierda allí.'
-      },
-      {
-        q: '¿Cómo se llama la técnica cervantina que muestra varias miradas sobre una misma realidad?',
-        opts: ['Metalenguaje','Perspectivismo','Polisíndeton','Ironía trágica'],
-        correct: 'B',
-        hint: 'Multiplica los puntos de vista.'
-      },
-      {
-        q: '¿Qué tensión recorre el Quijote según el temario?',
-        opts: ['Feudalismo vs. capitalismo','Idealismo vs. realidad','Religión vs. ciencia','Tragedia vs. comedia'],
-        correct: 'B',
-        hint: 'El choque entre la visión del caballero y lo que sucede.'
-      },
-      {
-        q: '¿Qué rasgo define el cambio del Barroco a la Ilustración según el curso?',
-        opts: ['De la claridad a la oscuridad','De la regla a la licencia','Del exceso barroco a la regla y claridad','Del teatro a la épica'],
-        correct: 'C',
-        hint: 'El siglo XVIII busca luz y norma.'
-      },
-      {
-        q: '¿Cuál es el gran contraste entre Renacimiento y Barroco mencionado?',
-        opts: ['Clasicismo vs. medievalismo','Equilibrio vs. contraste','Prosa vs. poesía','Narrativa vs. teatro'],
-        correct: 'B',
-        hint: 'Uno busca armonía, el otro choque y relieve.'
-      },
-    ];
-
-    const quizQuestion = document.getElementById('quizQuestion');
-    const quizOptions = document.getElementById('quizOptions');
-    const quizProgress = document.getElementById('quizProgress');
-    const quizScore = document.getElementById('quizScore');
-    const quizFeedback = document.getElementById('quizFeedback');
-    const quizHintBtn = document.getElementById('quizHint');
-    const quizCheckBtn = document.getElementById('quizCheck');
-    const quizNextBtn = document.getElementById('quizNext');
-    const quizHintText = document.getElementById('quizHintText');
-
-    let quizIndex = 0;
-    let quizSelected = null;
-    let quizPoints = 0;
-    let answered = false;
-
-    function renderQuiz(){
-      const item = QUIZ[quizIndex];
-      quizSelected = null; answered = false;
-      quizQuestion.textContent = item.q;
-      quizOptions.innerHTML = '';
-      ['A','B','C','D'].forEach((letter,i)=>{
-        const btn = document.createElement('button');
-        btn.innerHTML = `<span class="letter">${letter}.</span> <span>${item.opts[i]}</span>`;
-        btn.onclick = ()=> {
-          quizSelected = letter;
-          quizOptions.querySelectorAll('button').forEach(b=> b.classList.remove('active'));
-          btn.classList.add('active');
-        };
-        quizOptions.appendChild(btn);
-      });
-      quizProgress.textContent = `Pregunta ${quizIndex+1}/${QUIZ.length}`;
-      quizScore.textContent = `Aciertos: ${quizPoints}`;
-      quizFeedback.textContent = '';
-      quizFeedback.className = 'quiz-feedback';
-      quizHintText.textContent = '';
-      quizHintText.classList.remove('show');
-    }
-
-    function checkQuiz(){
-      if(quizSelected === null){
-        quizFeedback.textContent = 'Selecciona una opción antes de comprobar.';
-        quizFeedback.className = 'quiz-feedback bad';
-        return;
-      }
-      const correct = QUIZ[quizIndex].correct === quizSelected;
-      if(correct && !answered){
-        quizPoints++;
-        quizScore.textContent = `Aciertos: ${quizPoints}`;
-      }
-      answered = true;
-      quizFeedback.textContent = correct ? '✅ ¡Correcto!' : `❌ Incorrecto. La respuesta correcta es ${QUIZ[quizIndex].correct}.`;
-      quizFeedback.className = `quiz-feedback ${correct ? 'ok' : 'bad'}`;
-    }
-
-    function nextQuiz(){
-      quizIndex++;
-      if(quizIndex >= QUIZ.length){
-        quizFeedback.textContent = `Fin del cuestionario. Puntuación final: ${quizPoints}/${QUIZ.length}. Reiniciamos.`;
-        quizFeedback.className = 'quiz-feedback ok';
-        quizIndex = 0;
-        quizPoints = 0;
-      }
-      renderQuiz();
-    }
-
-    quizCheckBtn?.addEventListener('click', checkQuiz);
-    quizNextBtn?.addEventListener('click', nextQuiz);
-    quizHintBtn?.addEventListener('click', ()=>{
-      const hint = QUIZ[quizIndex].hint;
-      quizHintText.textContent = hint;
-      quizHintText.classList.add('show');
-    });
-
-    renderQuiz();
 
     // Miniserie
     const plantilla = (obra) => `# ${obra} — Guion breve (B1)
