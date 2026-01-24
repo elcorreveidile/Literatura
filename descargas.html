@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Literatura española hasta el siglo XVIII</title>
+  <title>Descargas - Literatura española hasta el siglo XVIII</title>
   <style>
     :root{
       --fg:#1f2937; --bg:#ffffff; --border:#e5e7eb; --brand:#111827;
@@ -36,16 +36,9 @@
     .muted{color:#374151;font-size:.95rem}
     .btn{display:inline-block;padding:.6rem 1rem;border-radius:9999px;border:1px solid var(--border);background:#fff;cursor:pointer}
     .btn.primary{background:var(--brand);color:#fff;border-color:var(--brand)}
-    .list{padding-left:1.1rem}
-    .list li{margin:.35rem 0}
     .footer{border-top:1px solid var(--border);padding:1rem 0;color:#6b7280}
     .card{background:rgba(255,255,255,.92);border:1px solid var(--border);border-radius:1rem;padding:1rem}
     @media(max-width:899px){.card{background:rgba(255,255,255,.96)}}
-    .grid{display:grid;gap:1rem}
-    @media(min-width:900px){.grid-3{grid-template-columns: 1fr 1fr 1fr;}}
-    .chip{display:inline-block;padding:.25rem .6rem;border:1px solid var(--border);border-radius:9999px;margin:.15rem .25rem;background:#fff;cursor:pointer}
-    .chip.active{background:#111827;color:#fff;border-color:#111827}
-    .hint{font-size:.9rem;color:#334155;margin:.25rem 0 .5rem}
 
     table{width:100%;border-collapse:collapse}
     th,td{border:1px solid var(--border);padding:.6rem;text-align:left}
@@ -53,6 +46,16 @@
 
     @media (max-width:899px){.links{display:none}.hamb{display:inline-block}.container{padding:.75rem 1rem}.section{padding:2rem 0}}
     .nav.open .mobile-panel{display:block}
+
+    /* Visor PDF */
+    .overlay{position:fixed;inset:0;background:rgba(0,0,0,.6);display:none;z-index:50}
+    .overlay.show{display:block}
+    .viewer{position:fixed;inset:5% 3%;background:#111827;border-radius:1rem;box-shadow:0 25px 50px rgba(0,0,0,.35);display:none;flex-direction:column;z-index:60}
+    .viewer .top{display:flex;align-items:center;gap:.5rem;padding:.6rem .75rem;background:#0f172a;color:#fff;border-top-left-radius:1rem;border-top-right-radius:1rem;flex-wrap:wrap}
+    .viewer .top .spacer{flex:1}
+    .viewer .btn{border-color:#334155;background:#fff;color:#0f172a;font-weight:600;padding:.45rem .8rem;border-radius:.65rem;text-decoration:none;display:inline-flex;align-items:center;gap:.4rem}
+    .viewer iframe{flex:1;border:0;border-bottom-left-radius:1rem;border-bottom-right-radius:1rem;background:#fff}
+    @media (max-width:640px){ .viewer{inset:4% 2%} .viewer .btn{flex:1;justify-content:center;min-width:120px} #fileName{flex-basis:100%;font-size:1rem} }
   </style>
 </head>
 <body>
@@ -93,66 +96,19 @@
     </div>
   </div>
 
-  <!-- HOME / LANDING PAGE -->
-  <section class="section" style="background:linear-gradient(to bottom, #fef3c7, #dcfce7);padding:4rem 0">
+  <!-- DESCARGAS -->
+  <section class="section">
     <div class="container">
-      <h1>Literatura española hasta el siglo XVIII</h1>
-      <p class="muted" style="font-size:1.1rem;margin-bottom:2rem">Cinco épocas, materiales completos y cuadernos de la sesión. Explora cada periodo literario con recursos interactivos.</p>
-
-      <h3 style="margin:2rem 0 1rem">Épocas literarias</h3>
-      <div class="grid grid-3">
-        <a href="edad-media.html" class="card" style="text-decoration:none;color:inherit;transition:transform 0.2s;cursor:pointer" onmouseover="this.style.transform='translateY(-4px)'" onmouseout="this.style.transform='translateY(0)'">
-          <h3>🛡️ Edad Media</h3>
-          <p class="muted">Cantar de Mio Cid · vasallaje · teocentrismo · frontera feudal</p>
-        </a>
-
-        <a href="renacimiento.html" class="card" style="text-decoration:none;color:inherit;transition:transform 0.2s;cursor:pointer" onmouseover="this.style.transform='translateY(-4px)'" onmouseout="this.style.transform='translateY(0)'">
-          <h3>🏛️ Renacimiento</h3>
-          <p class="muted">Garcilaso · humanismo · armonía · naturaleza ideal</p>
-        </a>
-
-        <a href="cervantes.html" class="card" style="text-decoration:none;color:inherit;transition:transform 0.2s;cursor:pointer" onmouseover="this.style.transform='translateY(-4px)'" onmouseout="this.style.transform='translateY(0)'">
-          <h3>🪶 Cervantes</h3>
-          <p class="muted">Don Quijote · perspectivismo · verosimilitud · idealismo vs. realidad</p>
-        </a>
-
-        <a href="barroco.html" class="card" style="text-decoration:none;color:inherit;transition:transform 0.2s;cursor:pointer" onmouseover="this.style.transform='translateY(-4px)'" onmouseout="this.style.transform='translateY(0)'">
-          <h3>🎭 Barroco</h3>
-          <p class="muted">Lope, Calderón, Góngora, Quevedo · crisis · culteranismo/conceptismo</p>
-        </a>
-
-        <a href="ilustracion.html" class="card" style="text-decoration:none;color:inherit;transition:transform 0.2s;cursor:pointer" onmouseover="this.style.transform='translateY(-4px)'" onmouseout="this.style.transform='translateY(0)'">
-          <h3>💡 Ilustración</h3>
-          <p class="muted">Moratín · razón pública · reforma · claridad</p>
-        </a>
-
-        <a href="repaso.html" class="card" style="text-decoration:none;color:inherit;transition:transform 0.2s;cursor:pointer;background:#fef3c7" onmouseover="this.style.transform='translateY(-4px)'" onmouseout="this.style.transform='translateY(0)'">
-          <h3>📖 Repaso</h3>
-          <p class="muted">Página de repaso para el examen con cuestionarios interactivos</p>
-        </a>
-      </div>
-
-      <h3 style="margin:2rem 0 1rem">Recursos adicionales</h3>
-      <div class="grid grid-3">
-        <a href="descargas.html" class="card" style="text-decoration:none;color:inherit;transition:transform 0.2s;cursor:pointer" onmouseover="this.style.transform='translateY(-4px)'" onmouseout="this.style.transform='translateY(0)'">
-          <h3>📥 Descargas</h3>
-          <p class="muted">Syllabus, programa detallado y materiales generales del curso</p>
-        </a>
-
-        <a href="foro.html" class="card" style="text-decoration:none;color:inherit;transition:transform 0.2s;cursor:pointer" onmouseover="this.style.transform='translateY(-4px)'" onmouseout="this.style.transform='translateY(0)'">
-          <h3>💬 Foro</h3>
-          <p class="muted">Accede al foro de la plataforma del centro</p>
-        </a>
-
-        <a href="miniserie.html" class="card" style="text-decoration:none;color:inherit;transition:transform 0.2s;cursor:pointer" onmouseover="this.style.transform='translateY(-4px)'" onmouseout="this.style.transform='translateY(0)'">
-          <h3>🎬 Miniserie</h3>
-          <p class="muted">Crea guiones breves basados en obras literarias</p>
-        </a>
-
-        <a href="versos.html" class="card" style="text-decoration:none;color:inherit;transition:transform 0.2s;cursor:pointer" onmouseover="this.style.transform='translateY(-4px)'" onmouseout="this.style.transform='translateY(0)'">
-          <h3>🪶 Generador de versos</h3>
-          <p class="muted">Genera versos medievales de forma interactiva</p>
-        </a>
+      <h2>📥 Descargas</h2>
+      <div class="card">
+        <table>
+          <thead><tr><th>Documento</th><th>Acción</th></tr></thead>
+          <tbody>
+            <tr><td>Syllabus del curso</td><td><button class="btn" data-pdf="materials/syllabus.pdf">Abrir/descargar</button></td></tr>
+            <tr><td>Programa detallado sesión a sesión</td><td><button class="btn" data-pdf="materials/programa-detallado.pdf">Abrir/descargar</button></td></tr>
+            <tr><td>Cuaderno de actividades (general)</td><td><button class="btn" data-pdf="materials/cuadernos/Modulo1_Literatura_Medieval.pdf">Abrir/descargar</button></td></tr>
+          </tbody>
+        </table>
       </div>
     </div>
   </section>
@@ -164,6 +120,19 @@
     </div>
   </footer>
 
+  <!-- Visor PDF -->
+  <div class="overlay" id="overlay"></div>
+  <div class="viewer" id="viewer">
+    <div class="top">
+      <strong id="fileName">Documento</strong>
+      <div class="spacer"></div>
+      <a class="btn" id="openTab" target="_blank" rel="noopener">Abrir en pestaña</a>
+      <a class="btn" id="download" download>Descargar</a>
+      <button class="btn primary" id="closeViewer">Volver</button>
+    </div>
+    <iframe id="frame" title="Visor PDF" src="about:blank"></iframe>
+  </div>
+
   <script>
     // Año
     document.getElementById('y').textContent = new Date().getFullYear();
@@ -173,6 +142,42 @@
     const hamb = document.getElementById('hamb');
     hamb?.addEventListener('click', ()=> nav.classList.toggle('open'));
     document.querySelectorAll('#mobilePanel a').forEach(a=> a.addEventListener('click', ()=> nav.classList.remove('open')));
+
+    // Visor PDF
+    const overlay = document.getElementById('overlay');
+    const viewer = document.getElementById('viewer');
+    const frame = document.getElementById('frame');
+    const openTab = document.getElementById('openTab');
+    const download = document.getElementById('download');
+    const fileName = document.getElementById('fileName');
+    const closeViewer = document.getElementById('closeViewer');
+
+    function openPDF(path){
+      fileName.textContent = decodeURIComponent(path.split('/').pop());
+      frame.src = path;
+      openTab.href = path;
+      download.href = path;
+      overlay.classList.add('show');
+      viewer.style.display = 'flex';
+      document.body.style.overflow='hidden';
+    }
+    function closePDF(){
+      overlay.classList.remove('show');
+      viewer.style.display = 'none';
+      frame.src = 'about:blank';
+      document.body.style.overflow='';
+    }
+    overlay.addEventListener('click', closePDF);
+    closeViewer.addEventListener('click', closePDF);
+
+    // Delegación: cualquier [data-pdf] abre visor
+    document.addEventListener('click', (e)=>{
+      const target = e.target.closest('[data-pdf]');
+      if(target){
+        e.preventDefault();
+        openPDF(target.getAttribute('data-pdf'));
+      }
+    });
   </script>
 </body>
 </html>
