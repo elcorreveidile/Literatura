@@ -3,6 +3,8 @@
 
 :root {
     --color-gold: #d4a574;
+    --color-gold-light: #e8c547;
+    --color-gold-bright: #f4d03f;
     --color-dark-bg: #1a1a1a;
     --color-dark-secondary: #2a2a2a;
     --color-light-text: #e8e8e8;
@@ -14,65 +16,225 @@
 
 body {
     background-color: var(--color-dark-bg) !important;
-    color: var(--color-light-text) !important;
+    color: var(--color-gold-light) !important;
     font-family: var(--font-body) !important;
 }
 
+/* Header & Nav */
 .nav, header {
     background-color: var(--color-dark-bg) !important;
     border-bottom: 1px solid var(--color-border) !important;
+    backdrop-filter: none !important;
 }
 
 .brand, .verso-logo {
     font-family: var(--font-title) !important;
-    color: var(--color-gold) !important;
+    color: var(--color-gold-bright) !important;
     font-weight: 700 !important;
 }
 
-.links a, .nav-link, .verso-nav-link {
-    color: var(--color-muted-text) !important;
+.links a, .nav-link, .verso-nav-link, a {
+    color: var(--color-gold-light) !important;
+    font-family: var(--font-body) !important;
+    transition: color 0.3s ease !important;
     background: transparent !important;
     border: none !important;
 }
 
-.links a:hover {
-    color: var(--color-gold) !important;
+.links a:hover, .nav-link:hover, .verso-nav-link:hover, a:hover {
+    color: var(--color-gold-bright) !important;
 }
 
+/* Sections & Containers */
 .section, section {
     background: transparent !important;
+    padding: 4rem 0 !important;
 }
 
-h1, h2, h3 {
+.container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 1rem;
+}
+
+/* Typography */
+h1, h2, h3, h4, h5, h6 {
     font-family: var(--font-title) !important;
-    color: var(--color-light-text) !important;
+    color: var(--color-gold-bright) !important;
 }
 
-.card {
+p, .muted, .hint, span {
+    color: var(--color-gold-light) !important;
+}
+
+/* Cards */
+.card, .verso-content-card {
     background-color: var(--color-dark-secondary) !important;
     border: 1px solid var(--color-border) !important;
     border-radius: 1rem !important;
+    color: var(--color-gold-light) !important;
+    transition: transform 0.3s ease, border-color 0.3s ease !important;
 }
 
-.btn, button, input[type="submit"] {
+.card:hover {
+    border-color: var(--color-gold-bright) !important;
+    transform: translateY(-4px) !important;
+}
+
+/* Buttons */
+.btn, button, .verso-button-primary, .verso-button-secondary,
+input[type="button"], input[type="submit"], input[type="reset"] {
+    font-family: var(--font-body) !important;
     border-radius: 2rem !important;
     padding: 0.8rem 2rem !important;
+    transition: all 0.3s ease !important;
+    cursor: pointer;
     font-weight: 700 !important;
 }
 
-.btn.primary, input[type="submit"], button:not(.hamb) {
-    background-color: var(--color-gold) !important;
+/* Primary buttons - Dorado con texto oscuro */
+.btn.primary, .verso-button-primary,
+button:not(.hamb):not(.mobile-panel button):not([class*="secondary"]):not([class*="outline"]),
+input[type="submit"] {
+    background-color: var(--color-gold-bright) !important;
     color: var(--color-dark-bg) !important;
     border: none !important;
 }
 
-.btn:not(.primary), button.secondary {
-    background-color: transparent !important;
-    color: var(--color-light-text) !important;
-    border: 1px solid var(--color-gold) !important;
+.btn.primary:hover, .verso-button-primary:hover,
+button:not(.hamb):not(.mobile-panel button):not([class*="secondary"]):not([class*="outline"]):hover,
+input[type="submit"]:hover {
+    background-color: #e0b896 !important;
+    box-shadow: 0 8px 20px rgba(212, 165, 116, 0.3) !important;
+    transform: translateY(-2px) !important;
 }
 
+/* Secondary buttons - Borde dorado con fondo transparente */
+.btn:not(.primary), .verso-button-secondary,
+button.secondary, button[class*="outline"],
+input[type="button"], input[type="reset"] {
+    background-color: transparent !important;
+    color: var(--color-gold-light) !important;
+    border: 1px solid var(--color-gold-light) !important;
+}
+
+.btn:not(.primary):hover, .verso-button-secondary:hover,
+button.secondary:hover, button[class*="outline"]:hover,
+input[type="button"]:hover, input[type="reset"]:hover {
+    background-color: rgba(212, 165, 116, 0.1) !important;
+    border-color: var(--color-gold-bright) !important;
+    color: var(--color-gold-bright) !important;
+}
+
+/* Hamburger menu button */
+.hamb {
+    background-color: var(--color-dark-secondary) !important;
+    color: var(--color-gold-light) !important;
+    border: 1px solid var(--color-border) !important;
+}
+
+.hamb:hover {
+    background-color: rgba(212, 165, 116, 0.1) !important;
+    border-color: var(--color-gold-bright) !important;
+    color: var(--color-gold-bright) !important;
+}
+
+/* Footer */
 .footer, footer {
     background-color: var(--color-dark-bg) !important;
     border-top: 1px solid var(--color-border) !important;
+    color: var(--color-gold-light) !important;
+    padding: 2rem 0 !important;
+}
+
+/* Mobile panel */
+.mobile-panel {
+    background-color: var(--color-dark-bg) !important;
+    border-bottom: 1px solid var(--color-border) !important;
+}
+
+.mobile-panel a {
+    background: transparent !important;
+    color: var(--color-gold-light) !important;
+    border: 1px solid var(--color-border) !important;
+    transition: all 0.3s ease !important;
+}
+
+.mobile-panel a:hover {
+    color: var(--color-gold-bright) !important;
+    border-color: var(--color-gold-bright) !important;
+}
+
+/* Chips */
+.chip {
+    background: transparent !important;
+    border-color: var(--color-gold-light) !important;
+    color: var(--color-gold-light) !important;
+}
+
+.chip.active {
+    background: var(--color-gold-bright) !important;
+    color: var(--color-dark-bg) !important;
+    border-color: var(--color-gold-bright) !important;
+}
+
+/* Tables */
+table, th, td {
+    border-color: var(--color-border) !important;
+    color: var(--color-gold-light) !important;
+}
+
+th {
+    background-color: var(--color-dark-secondary) !important;
+    color: var(--color-gold-bright) !important;
+}
+
+/* Input fields */
+input[type="text"], input[type="email"], input[type="password"], 
+textarea, select {
+    background-color: var(--color-dark-secondary) !important;
+    color: var(--color-gold-light) !important;
+    border: 1px solid var(--color-border) !important;
+    border-radius: 0.5rem !important;
+    padding: 0.6rem !important;
+}
+
+input[type="text"]:focus, input[type="email"]:focus, input[type="password"]:focus,
+textarea:focus, select:focus {
+    border-color: var(--color-gold-bright) !important;
+    outline: none !important;
+    box-shadow: 0 0 0 2px rgba(212, 165, 116, 0.2) !important;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--color-dark-secondary);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--color-gold);
+    border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--color-gold-bright);
+}
+
+/* List items */
+li {
+    color: var(--color-gold-light) !important;
+}
+
+/* Strong and emphasis */
+strong, b {
+    color: var(--color-gold-bright) !important;
+}
+
+em, i {
+    color: var(--color-gold-light) !important;
 }
